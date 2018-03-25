@@ -62,6 +62,8 @@ function loadTeamRoster(week, teamID) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
+		  getNumTimesPlayersUsed(phpResponse);
+		  
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getDataForChoosePlayerLists("QB", phpResponse[week].QB);
 		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
@@ -76,6 +78,26 @@ function loadTeamRoster(week, teamID) {
 		  console.log("finished populating available players and loading roster");	//For testing
 	    }
 	});
+}
+
+function getNumTimesPlayersUsed(teamRoster){
+	var playersUsedCount;
+	
+	for (var key in teamRoster) {
+	    console.log("iterating through week "+teamRoster[key]);
+		
+		playersUsedCount[teamRoster[key]["QB"]] += 1;
+		playersUsedCount[teamRoster[key]["RB1"]] += 1;
+		playersUsedCount[teamRoster[key]["RB2"]] += 1;
+		playersUsedCount[teamRoster[key]["WR1"]] += 1;
+		playersUsedCount[teamRoster[key]["WR2"]] += 1;
+		playersUsedCount[teamRoster[key]["WR3"]] += 1;
+		playersUsedCount[teamRoster[key]["TE"]] += 1;
+		playersUsedCount[teamRoster[key]["DEF"]] += 1;
+		playersUsedCount[teamRoster[key]["K"]] += 1;
+		playersUsedCount[teamRoster[key]["FLEX"]] += 1;
+	}
+	$('#result2').html(playersUsedCount);
 }
 
 function getUrlVars() {
