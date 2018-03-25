@@ -62,7 +62,7 @@ function loadTeamRoster(week, teamID) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
-		  getNumTimesPlayersUsed(phpResponse);
+		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getDataForChoosePlayerLists("QB", phpResponse[week].QB);
