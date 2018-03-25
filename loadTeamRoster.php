@@ -34,7 +34,7 @@
             //echo "Finished reading row ".$index."<br>";
             
             //Assign rows from table to team roster array
-            $teamRoster[$weekNum] = array(
+            $teamRoster[$week] = array(
                 "week"=>$week, 
                 "teamName"=>$teamName, 
                 "teamID"=>$teamID, 
