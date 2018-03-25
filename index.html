@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="testpage2.js" ></script>
+	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
+</head>
+<body>
+	<div id="headerWrapper">
+		<table class="headerTable">
+			<th class="headerTableColumn" id="headerTableColumn1">League</th>
+			<th class="headerTableColumn" id="headerTableColumn2">My Team</th>
+			<th class="headerTableColumn" id="headerTableColumn3">Match Up</th>
+		</table>
+	</div>
+	<!--Have a blank row so that content at top gets pushed underneath header-->
+	<table>
+		<tr style="height: 50px"></tr>
+		<tr>
+			<td>Current week:</td>
+			<td>
+				<select id="currentWeekNum" onchange="updatePage()">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Team:</td>
+			<td id="currentTeamName"></td>
+		</tr>
+	</table>
+	
+	<form method="POST">	
+	    <table>
+	        <tr>
+	            <td>
+	                Position
+	            </td>
+	            <td>
+	                Player
+	            </td>
+				<td>
+					<div style="width:10px; height:10px;"> </div>
+				</td>
+	            <td>
+	                Points 
+					<button id="refreshPoints">Refresh</button>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>QB:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputQB" name="QBtophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="qbConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="qbPoints">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>RB1:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputRB1" name="RB1tophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="rb1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="rb1Points">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>RB2:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputRB2" name="RB2tophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="rb2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="rb2Points">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>WR1:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputWR1" name="WR1tophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="wr1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="wr1Points">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>WR2:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputWR2" name="WR2tophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="wr2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="wr2Points">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>WR3:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputWR3" name="WR3tophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="wr3Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="wr3Points">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>TE:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputTE" name="TEtophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="teConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="tePoints">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>DEF:</label>
+	            </td>
+	            <td>
+	                <select id="inputDEF" name="DEFtophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="defConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="defPoints">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>K:</label>
+	            </td>
+	            <td>
+	                <select id="inputK" name="Ktophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="kConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="kPoints">--</p>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>FLEX:</label>
+	            </td>
+	            <td>
+	                <select class="playerSelect" id="inputFLEX" name="FLEXtophp" onchange="sendToPhp(this.name)"></select>
+	            </td>
+				<td>
+					<img id="flexConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+				</td>
+	            <td>
+	                <p id="flexPoints">--</p>
+	            </td>
+	        </tr>
+	    </table>
+	</form>
+
+	Query sent to testpage2.php: <br/>
+	<div id="result"></div><br/>
+	Results from loadTeamRoster.php: <br/>
+	<div id="result2"></div><br/>
+	<div id="errorOutput">
+		<p></p>
+	</div>  
+</body>
+</html>

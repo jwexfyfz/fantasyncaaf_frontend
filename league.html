@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="league.js" ></script>
+	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
+</head>
+	<body>
+		<div id="headerWrapper">
+			<table class="headerTable">
+				<th class="headerTableColumn" id="headerTableColumn1">League</th>
+				<th class="headerTableColumn" id="headerTableColumn2">My Team</th>
+				<th class="headerTableColumn" id="headerTableColumn3">Match Up</th>
+			</table>
+		</div>
+		<!--Have a blank row so that content at top gets pushed underneath header-->
+		<table id="standingsTable">
+			<tr style="height: 50px"></tr>
+			<tr>
+				<td>Current week:</td>
+				<td id="currentWeekNum" colspan="2">12</td>
+			</tr>
+			<tr>
+				<td style="font-size: 1.5em" colspan="3">Standings</td>
+			</tr>
+			<tr>
+				<th>
+					Rank
+				</th>
+				<th>
+					Team Name
+				</th>
+				<th>
+					Record
+				</th>
+			</tr>
+		</table>
+	</body>
+</html>
