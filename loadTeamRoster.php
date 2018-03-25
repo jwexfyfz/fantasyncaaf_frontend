@@ -10,7 +10,7 @@
 	$weekNum = $_POST["weekNum"];
 	$teamID = $_POST["teamIDNum"];
     //Query to get team rosters
-    $sql = "SELECT * FROM teamRoster where teamID in ($teamID) and week=$weekNum;";
+    $sql = "SELECT * FROM teamRoster where teamID in ($teamID);";
     $result = $conn->query($sql);
 
     $index = 0;
@@ -34,7 +34,7 @@
             //echo "Finished reading row ".$index."<br>";
             
             //Assign rows from table to team roster array
-            $teamRoster[$index] = array(
+            $teamRoster[$weekNum] = array(
                 "week"=>$week, 
                 "teamName"=>$teamName, 
                 "teamID"=>$teamID, 
@@ -59,7 +59,7 @@
         }
     } else {
         //Set everything to null so at least you return something
-        $teamRoster[0] = array(
+        $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
             "teamID"=>$teamID, 
             "QB"=>null,

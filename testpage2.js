@@ -63,16 +63,16 @@ function loadTeamRoster(week, teamID) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
-		  getDataForChoosePlayerLists("QB", phpResponse[0].QB);
-		  getDataForChoosePlayerLists("RB1", phpResponse[0].RB1);
-		  getDataForChoosePlayerLists("RB2", phpResponse[0].RB2);
-		  getDataForChoosePlayerLists("WR1", phpResponse[0].WR1);
-		  getDataForChoosePlayerLists("WR2", phpResponse[0].WR2);
-		  getDataForChoosePlayerLists("WR3", phpResponse[0].WR3);
-		  getDataForChoosePlayerLists("TE", phpResponse[0].TE);
-		  getDataForChoosePlayerLists("DEF", phpResponse[0].DEF);
-		  getDataForChoosePlayerLists("K", phpResponse[0].K);
-		  getDataForChoosePlayerLists("FLEX", phpResponse[0].FLEX);
+		  getDataForChoosePlayerLists("QB", phpResponse[week].QB);
+		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
+		  getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
+		  getDataForChoosePlayerLists("WR1", phpResponse[week].WR1);
+		  getDataForChoosePlayerLists("WR2", phpResponse[week].WR2);
+		  getDataForChoosePlayerLists("WR3", phpResponse[week].WR3);
+		  getDataForChoosePlayerLists("TE", phpResponse[week].TE);
+		  getDataForChoosePlayerLists("DEF", phpResponse[week].DEF);
+		  getDataForChoosePlayerLists("K", phpResponse[week].K);
+		  getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX);
 		  console.log("finished populating available players and loading roster");	//For testing
 	    }
 	});
@@ -407,6 +407,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	select.value = currentSelectedPlayer;
 };
 
+//jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
 function confirmPlayer(position) {
 	console.log("player confirmed: "+position);
 	$('#'+position+'Confirm').fadeIn("fast");

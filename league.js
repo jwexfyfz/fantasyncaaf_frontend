@@ -21,7 +21,7 @@ function getTeamNameFromTeamID(teamID) {
 	var phpResponse;
 	var dataString = "";
 	
-	//Send query to loadTeamRoster.php via AJAX
+	//Send query to convertTeamIDToName.php via AJAX
 	//This gets the roster that was already set by the user previously
 	$.ajax({
 	    type: "POST",
@@ -40,7 +40,7 @@ function populateStandings(teamID, getNameFromID) {
 	var phpResponse;
 	var dataString = "";
 	
-	//Send query to loadTeamRoster.php via AJAX
+	//Send query to getLeagueStandings.php via AJAX
 	//This gets the roster that was already set by the user previously
 	$.ajax({
 	    type: "POST",

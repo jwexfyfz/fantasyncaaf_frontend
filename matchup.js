@@ -88,7 +88,7 @@ function getTeamTotalPoints(week, teamID, homeOrAway, tableIndex) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  console.log(phpResponse);
 		  		  
-		  printMatchupListFantasyPoints(week, homeOrAway, phpResponse[0], tableIndex, teamID);
+		  printMatchupListFantasyPoints(week, homeOrAway, phpResponse[week], tableIndex, teamID);
 	    }
 	});
 }
@@ -183,11 +183,11 @@ function getTeamRoster(week, teamID, homeOrAway) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  console.log(phpResponse);
-		  console.log("id: "+'#'+homeOrAway+'TeamName'+" teamName: "+phpResponse[0]["teamName"]);
+		  console.log("id: "+'#'+homeOrAway+'TeamName'+" teamName: "+phpResponse[week]["teamName"]);
 		  
-		  $('#'+homeOrAway+'TeamName').html(phpResponse[0]["teamName"]);
+		  $('#'+homeOrAway+'TeamName').html(phpResponse[week]["teamName"]);
 		  
-		  populateMatchupTable(week, homeOrAway, phpResponse[0]);	
+		  populateMatchupTable(week, homeOrAway, phpResponse[week]);	
 		  console.log("finished populating " + homeOrAway + " roster");	//For testing
 	    }
 	});
