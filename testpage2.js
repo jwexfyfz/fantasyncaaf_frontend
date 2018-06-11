@@ -366,11 +366,12 @@ function checkGameStarted(week, teamID) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [selector, gametime] pair
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
-		  //$('#result3').html(Date.now());
+		  $('#now').html(Date.now());
+		  $('#checkGameStartedLength').html(phpResponse.length);
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
-			  if (Date.now() > Date.getTime(phpResponse["gametime"])) {
-				document.getElementById(phpResponse["selector"]).disabled = true;
+			  if (Date.now() > Date.getTime(phpResponse[i].gametime)) {
+				document.getElementById(phpResponse[i].selector.disabled = true;
 			  }
 		  }
 		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
