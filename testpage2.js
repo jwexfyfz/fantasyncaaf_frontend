@@ -360,13 +360,13 @@ function checkGameStarted(week, teamID) {
 	    url: "checkGameStarted.php",
 	    data: dataString,
 	    success: function(response) {
-	      //$('#result3').html(response);
+	      $('#result3').html(response);
 		  //console.log("response from checkGameStarted.php: "+response);
 		  console.log("successfully sent query to tell php to provide game times!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [selector, gametime] pair
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
-		  $('#result3').html(Date.now());
+		  //$('#result3').html(Date.now());
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
 			  if (Date.now() > phpResponse["gametime"]) {
