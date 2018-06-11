@@ -3,7 +3,6 @@
     $username	= "b4078336a46f7e"; //DB User
     $password	= "10f5241c";  //Password
     $db_name	= "heroku_28ca4c386152c4f";  //DB Name
-    <script src="league.js" type="text/javascript" charset="utf-8"></script>
     
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
