@@ -11,7 +11,7 @@
 	$defSelected = false;
 	
 	if(isset($_POST['teamID'])) {
-		$team = $_POST["teamID"];
+		$team = "team_".$_POST["teamID"];
 	} 
 		
     $sql = "SELECT playerID, $team FROM timesPlayerUsed";
