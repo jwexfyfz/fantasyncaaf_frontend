@@ -360,8 +360,8 @@ function checkGameStarted(week, teamID) {
 	    url: "checkGameStarted.php",
 	    data: dataString,
 	    success: function(response) {
-	      $('#result').html(response);
-		  console.log("response from checkGameStarted.php: "+response);
+	      $('#result3').html(response);
+		  //console.log("response from checkGameStarted.php: "+response);
 		  console.log("successfully sent query to tell php to provide game times!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
