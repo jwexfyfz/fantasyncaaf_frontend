@@ -370,14 +370,14 @@ function checkGameStarted(week, teamID) {
 		  //$('#checkGameStartedLength').html(Date.getTime(addquote));
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
-			  var gametime = new Date(phpResponse[i]["gametime"]);
+			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  $('#checkGameStartedLength').html(gametime.getTime());
 			  if (Date.now() > gametime.getTime()) {
-				//document.getElementById(phpResponse[i]["selector"].disabled = true;
+				document.getElementById(phpResponse[i]["selector"].setAttribute('disabled',true);
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 		  }
-		  document.getElementById('inputQB').setAttribute('disabled',true);
+		  //document.getElementById('inputQB').setAttribute('disabled',true);
 		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
 		  //getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
 		  //getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
