@@ -353,6 +353,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 	var dataString="";
 	var positionHash="";
 	var week=$("#currentWeekNum").val();		//TODO: jeffwang to pass week # as a parameter into this function
+	console.log("+++++++++++++++++++++teamID="+teamID);
 	switch(position) {
 	    case "QB":
 	        dataString = 'QBtophp='+'QB'+'&weekNum='+week+'&teamID='+teamID;
