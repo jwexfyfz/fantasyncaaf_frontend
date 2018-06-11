@@ -10,6 +10,19 @@
 	$weekNum = $_POST["weekNum"];
 	$defSelected = false;
 	
+	if(isset($_POST['teamID'])) {
+		$team = $_POST["teamID"];
+	} 
+		
+    $sql = "SELECT playerID, $team FROM timesPlayerUsed";
+    $result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $usedPlayerTable[$row["playerID"]] = $row[$team];
+        }
+    }
+	
+	
 	if(isset($_POST['QBtophp'])) {
 		$qPosition = $_POST["QBtophp"];
 		//echo "received QB: $position";
@@ -33,12 +46,12 @@
 	} 
 	
 	if(isset($_POST['FLEXtophp'])) {
-	    $sql = "SELECT playerName, team, position FROM collegeTeamRoster where position in ('RB','WR','TE');";
+	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','WR','TE');";
 	} else if(isset($_POST['DEFtophp'])) {
-	    $sql = "SELECT teamName FROM collegeTeams;";
+	    $sql = "SELECT teamName, teamID FROM collegeTeams;";
 	} else {
     	//Query to get team rosters
-    	$sql = "SELECT playerName, team, position FROM collegeTeamRoster where position='$qPosition';";
+    	$sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position='$qPosition';";
 	}
 	//echo $sql;
     $result = $conn->query($sql);
@@ -51,9 +64,15 @@
             if($defSelected) {
             	$playerArray[$row["teamName"]] = $row["teamName"];
             } else {
-				$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].")";
-				//echo $playerArray[$row["playerName"]];
-	            //$index++;
+				if(isset($usedPlayerTable[$row["playerID"]])) {
+					$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].") (".$usedPlayerTable[$row["playerID"]].")";
+					//echo $playerArray[$row["playerName"]];
+		            //$index++;
+				} else {
+					$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].") (0)";
+					//echo $playerArray[$row["playerName"]];
+		            //$index++;
+				}
             }
         }
     } else {
