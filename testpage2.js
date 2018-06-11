@@ -345,6 +345,44 @@ function verifyNoDupes() {
         
 }
 
+//cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
+//It will check to see if a player's gametime has passed and disable that 'select'
+function checkGameStarted() {
+	 
+	var phpResponse;
+	
+	//only need week and teamID to retrieve a user's roster
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	
+	$.ajax({
+	    type: "POST",
+	    url: "checkGameStarted.php",
+	    data: dataString,
+	    success: function(response) {
+	      $('#result').html(response);
+		  //console.log("response from loadTeamRoster.php: "+response);
+		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
+		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
+		  
+		  //getNumTimesPlayersUsed(phpResponse);
+		  
+		  //Set eligible players for each select, set the current chosen player as default value
+		  $('#inputQB').disabled = true;
+		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
+		  //getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
+		  //getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
+		  //getDataForChoosePlayerLists("WR1", phpResponse[week].WR1);
+		  //getDataForChoosePlayerLists("WR2", phpResponse[week].WR2);
+		  //getDataForChoosePlayerLists("WR3", phpResponse[week].WR3);
+		  //getDataForChoosePlayerLists("TE", phpResponse[week].TE);
+		  //getDataForChoosePlayerLists("DEF", phpResponse[week].DEF);
+		  //getDataForChoosePlayerLists("K", phpResponse[week].K);
+		  //getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX);
+		  console.log("finished populating available players and loading roster");	//For testing
+	    }
+	});
+}
+
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
 //2) Run populateChoosePlayerLists(), which populates the select options for each position
