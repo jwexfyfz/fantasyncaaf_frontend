@@ -18,6 +18,7 @@ $( document ).ready(
 		$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
+		checkGameStarted(week, teamID);
 		
 		$("#refreshPoints").click( function(event) {
 		  event.preventDefault();
@@ -347,7 +348,7 @@ function verifyNoDupes() {
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has passed and disable that 'select'
-function checkGameStarted() {
+function checkGameStarted(week, teamID) {
 	 
 	var phpResponse;
 	
@@ -360,13 +361,12 @@ function checkGameStarted() {
 	    data: dataString,
 	    success: function(response) {
 	      $('#result').html(response);
-		  //console.log("response from loadTeamRoster.php: "+response);
-		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
+		  console.log("response from checkGameStarted.php: "+response);
+		  console.log("successfully sent query to tell php to provide game times!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
-		  //getNumTimesPlayersUsed(phpResponse);
-		  
 		  //Set eligible players for each select, set the current chosen player as default value
+		  console.log(Date.now());
 		  $('#inputQB').disabled = true;
 		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
 		  //getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
