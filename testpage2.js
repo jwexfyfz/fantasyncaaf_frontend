@@ -369,7 +369,7 @@ function checkGameStarted(week, teamID) {
 		  //$('#result3').html(Date.now());
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
-			  if (Date.now() > phpResponse["gametime"]) {
+			  if (Date.now() > Date.getTime(phpResponse["gametime"])) {
 				document.getElementById(phpResponse["selector"]).disabled = true;
 			  }
 		  }
