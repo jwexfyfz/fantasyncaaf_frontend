@@ -373,7 +373,7 @@ function checkGameStarted(week, teamID) {
 			  var gametime = new Date(phpResponse[i]["gametime"]);
 			  $('#checkGameStartedLength').html(gametime.getTime());
 			  if (Date.now() > gametime.getTime()) {
-				document.getElementById(phpResponse[i]["selector"].disabled = true;
+				//document.getElementById(phpResponse[i]["selector"].disabled = true;
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 		  }
