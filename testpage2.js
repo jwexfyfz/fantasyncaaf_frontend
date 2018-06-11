@@ -369,11 +369,11 @@ function checkGameStarted(week, teamID) {
 		  $('#now').html(Date.now());
 		  $('#checkGameStartedLength').html(phpResponse.length);
 		  var i;
-		  for (i = 0; i < phpResponse.length; i++) {
-			  if (Date.now() > Date.getTime(phpResponse[i].gametime)) {
-				document.getElementById(phpResponse[i].selector.disabled = true;
-			  }
-		  }
+		  //for (i = 0; i < phpResponse.length; i++) {
+		//	  if (Date.now() > Date.getTime(phpResponse[i].gametime)) {
+		//		document.getElementById(phpResponse[i].selector.disabled = true;
+		//	  }
+		//  }
 		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
 		  //getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
 		  //getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
