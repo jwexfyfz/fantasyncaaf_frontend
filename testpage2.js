@@ -65,16 +65,16 @@ function loadTeamRoster(week, teamID) {
 		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
-		  getDataForChoosePlayerLists("QB", phpResponse[week].QB);
-		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
-		  getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
-		  getDataForChoosePlayerLists("WR1", phpResponse[week].WR1);
-		  getDataForChoosePlayerLists("WR2", phpResponse[week].WR2);
-		  getDataForChoosePlayerLists("WR3", phpResponse[week].WR3);
-		  getDataForChoosePlayerLists("TE", phpResponse[week].TE);
-		  getDataForChoosePlayerLists("DEF", phpResponse[week].DEF);
-		  getDataForChoosePlayerLists("K", phpResponse[week].K);
-		  getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX);
+		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID);
+		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1, teamID);
+		  getDataForChoosePlayerLists("RB2", phpResponse[week].RB2, teamID);
+		  getDataForChoosePlayerLists("WR1", phpResponse[week].WR1, teamID);
+		  getDataForChoosePlayerLists("WR2", phpResponse[week].WR2, teamID);
+		  getDataForChoosePlayerLists("WR3", phpResponse[week].WR3, teamID);
+		  getDataForChoosePlayerLists("TE", phpResponse[week].TE, teamID);
+		  getDataForChoosePlayerLists("DEF", phpResponse[week].DEF, teamID);
+		  getDataForChoosePlayerLists("K", phpResponse[week].K, teamID);
+		  getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX, teamID);
 		  console.log("finished populating available players and loading roster");	//For testing
 	    }
 	});
@@ -349,40 +349,40 @@ function verifyNoDupes() {
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
 //2) Run populateChoosePlayerLists(), which populates the select options for each position
 //TODO: jeffwang to add case "DEF" to the switch statement
-function getDataForChoosePlayerLists(position,currentSelectedPlayer) {
+function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 	var dataString="";
 	var positionHash="";
 	var week=$("#currentWeekNum").val();		//TODO: jeffwang to pass week # as a parameter into this function
 	switch(position) {
 	    case "QB":
-	        dataString = 'QBtophp='+'QB'+'&weekNum='+week;
+	        dataString = 'QBtophp='+'QB'+'&weekNum='+week+'&teamID='+teamID;
 			positionHash="QB";
 	        break;
 	    case "RB1":
 		case "RB2":
-	        dataString = 'RBtophp='+'RB'+'&weekNum='+week;
+	        dataString = 'RBtophp='+'RB'+'&weekNum='+week;+'&teamID='+teamID
 			positionHash="RB";
 	        break;
 	    case "WR1":
 		case "WR2":
 		case "WR3":
-	        dataString = 'WRtophp='+'WR'+'&weekNum='+week;
+	        dataString = 'WRtophp='+'WR'+'&weekNum='+week+'&teamID='+teamID;
 			positionHash="WR";
 	        break;
 		case "TE":
-			dataString = 'TEtophp='+'TE'+'&weekNum='+week;
+			dataString = 'TEtophp='+'TE'+'&weekNum='+week+'&teamID='+teamID;
 			positionHash="TE";
 			break;
 		case "DEF":
-			dataString = 'DEFtophp='+'DEF'+'&weekNum='+week;
+			dataString = 'DEFtophp='+'DEF'+'&weekNum='+week+'&teamID='+teamID;
 			positionHash="DEF";
 			break;
 		case "K":
-			dataString = 'Ktophp='+'PK'+'&weekNum='+week;
+			dataString = 'Ktophp='+'PK'+'&weekNum='+week+'&teamID='+teamID;
 			positionHash="PK";
 			break;
 		case "FLEX":
-			dataString = 'FLEXtophp='+'FLEX'+'&weekNum='+week;
+			dataString = 'FLEXtophp='+'FLEX'+'&weekNum='+week+'&teamID='+teamID;
 			positionHash="FLEX";
 			break;
 	    default:

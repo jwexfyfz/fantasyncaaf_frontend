@@ -9,8 +9,11 @@
 
 	$weekNum = $_POST["weekNum"];
 	$defSelected = false;
-	$team = "team_101";
 	
+	if(isset($_POST['teamID'])) {
+		$team = $_POST["teamID"];
+	} 
+		
     $sql = "SELECT playerID, $team FROM timesPlayerUsed";
     $result = $conn->query($sql);
 	if ($result->num_rows > 0) {
