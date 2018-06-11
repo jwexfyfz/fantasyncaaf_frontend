@@ -3,12 +3,23 @@
     $username	= "b4078336a46f7e"; //DB User
     $password	= "10f5241c";  //Password
     $db_name	= "heroku_28ca4c386152c4f";  //DB Name
+    <script src="league.js" type="text/javascript" charset="utf-8"></script>
     
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
 	$weekNum = $_POST["weekNum"];
 	$defSelected = false;
+	$team = "team_101";
+	
+    $sql = "SELECT playerID, $team FROM timesPlayerUsed";
+    $result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $usedPlayerTable[$row["playerID"]] = $row["playerID"];
+        }
+    }
+	
 	
 	if(isset($_POST['QBtophp'])) {
 		$qPosition = $_POST["QBtophp"];
@@ -33,12 +44,12 @@
 	} 
 	
 	if(isset($_POST['FLEXtophp'])) {
-	    $sql = "SELECT playerName, team, position FROM collegeTeamRoster where position in ('RB','WR','TE');";
+	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','WR','TE');";
 	} else if(isset($_POST['DEFtophp'])) {
-	    $sql = "SELECT teamName FROM collegeTeams;";
+	    $sql = "SELECT teamName, teamID FROM collegeTeams;";
 	} else {
     	//Query to get team rosters
-    	$sql = "SELECT playerName, team, position FROM collegeTeamRoster where position='$qPosition';";
+    	$sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position='$qPosition';";
 	}
 	//echo $sql;
     $result = $conn->query($sql);
@@ -51,9 +62,15 @@
             if($defSelected) {
             	$playerArray[$row["teamName"]] = $row["teamName"];
             } else {
-				$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].")";
-				//echo $playerArray[$row["playerName"]];
-	            //$index++;
+				if($usedPlayerTable[$row["playerID"]]=null) {
+					$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].") (0)";
+					//echo $playerArray[$row["playerName"]];
+		            //$index++;
+				} else {
+					$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].") (".$usedPlayerTable[$row["playerID"]].")";
+					//echo $playerArray[$row["playerName"]];
+		            //$index++;
+				}
             }
         }
     } else {
