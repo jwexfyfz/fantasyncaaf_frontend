@@ -369,11 +369,12 @@ function checkGameStarted(week, teamID) {
 		  $('#now').html(Date.now());
 		  $('#checkGameStartedLength').html(phpResponse.length);
 		  var i;
-		  //for (i = 0; i < phpResponse.length; i++) {
-		//	  if (Date.now() > Date.getTime(phpResponse[i].gametime)) {
+		  for (i = 0; i < phpResponse.length; i++) {
+			  if (Date.now() > Date.getTime(phpResponse[i].gametime)) {
 		//		document.getElementById(phpResponse[i].selector.disabled = true;
-		//	  }
-		//  }
+				$('#checkGameStartedLength').html("woot");
+			  }
+		  }
 		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
 		  //getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
 		  //getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
@@ -384,7 +385,7 @@ function checkGameStarted(week, teamID) {
 		  //getDataForChoosePlayerLists("DEF", phpResponse[week].DEF);
 		  //getDataForChoosePlayerLists("K", phpResponse[week].K);
 		  //getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX);
-		  console.log("finished populating available players and loading roster");	//For testing
+		  console.log("finished checking if games are started");	//For testing
 	    }
 	});
 }
