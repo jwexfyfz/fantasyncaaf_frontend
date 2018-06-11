@@ -401,7 +401,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer) {
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-	      //$('#result2').html(response);
+	      $('#result2').html(response);
 		  //console.log("successfully queried for eligible player names!");
 		  var playerList=JSON.parse(response);
 		  
