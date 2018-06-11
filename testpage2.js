@@ -370,9 +370,10 @@ function checkGameStarted(week, teamID) {
 		  $('#checkGameStartedLength').html(phpResponse.length);
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
-			  if (Date.now() > Date.getTime(phpResponse[i].gametime)) {
+			  $('#checkGameStartedLength').html(Date.getTime(phpResponse[i]["gametime"]));
+			  if (Date.now() > Date.getTime(phpResponse[i]["gametime"])) {
 		//		document.getElementById(phpResponse[i].selector.disabled = true;
-				$('#checkGameStartedLength').html("woot");
+				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 		  }
 		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
