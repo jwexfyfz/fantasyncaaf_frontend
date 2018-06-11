@@ -367,7 +367,8 @@ function checkGameStarted(week, teamID) {
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
 		  $('#now').html(Date.now());
-		  $('#checkGameStartedLength').html(Date.getTime(phpResponse[0]["gametime"].toString()));
+		  var addquote = "'"+phpResponse[0]["gametime"]+"'";
+		  $('#checkGameStartedLength').html(Date.getTime(addquote));
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
 			  $('#checkGameStartedLength').html(Date.getTime(phpResponse[i]["gametime"]));
