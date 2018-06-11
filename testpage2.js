@@ -377,6 +377,7 @@ function checkGameStarted(week, teamID) {
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 		  }
+		  document.getElementById("inputQB").disabled = true;
 		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
 		  //getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
 		  //getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
