@@ -348,6 +348,7 @@ function verifyNoDupes() {
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has passed and disable that 'select'
+//TODO: Add to both page load and when a player selects something. (Is that the sendtophp function?)
 function checkGameStarted(week, teamID) {
 	 
 	var phpResponse;
@@ -365,29 +366,16 @@ function checkGameStarted(week, teamID) {
 		  console.log("successfully sent query to tell php to provide game times!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [selector, gametime] pair
 		  
-		  //Set eligible players for each select, set the current chosen player as default value
-		  $('#now').html(Date.now());
-		  //$('#checkGameStartedLength').html(Date.getTime(addquote));
+		  //Iterate through game times and disable selector for players whose games have started
+		  //TODO: Player used logic
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
-			  $('#checkGameStartedLength').html(gametime.getTime());
 			  if (Date.now() > gametime.getTime()) {
 				document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 		  }
-		  //document.getElementById('inputQB').setAttribute('disabled',true);
-		  //getDataForChoosePlayerLists("QB", phpResponse[week].QB);
-		  //getDataForChoosePlayerLists("RB1", phpResponse[week].RB1);
-		  //getDataForChoosePlayerLists("RB2", phpResponse[week].RB2);
-		  //getDataForChoosePlayerLists("WR1", phpResponse[week].WR1);
-		  //getDataForChoosePlayerLists("WR2", phpResponse[week].WR2);
-		  //getDataForChoosePlayerLists("WR3", phpResponse[week].WR3);
-		  //getDataForChoosePlayerLists("TE", phpResponse[week].TE);
-		  //getDataForChoosePlayerLists("DEF", phpResponse[week].DEF);
-		  //getDataForChoosePlayerLists("K", phpResponse[week].K);
-		  //getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX);
 		  console.log("finished checking if games are started");	//For testing
 	    }
 	});
