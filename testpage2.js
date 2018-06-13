@@ -424,13 +424,14 @@ function checkGameStarted(week, fantasyID) {
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  if (Date.now() > gametime.getTime()) {
 				  if (!document.getElementById(phpResponse[i]["selector"]).disabled) {
-					document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
+					//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
+					document.getElementById(phpResponse[i]["selector"]).disabled = true;
 					
 					if (phpResponse[i]["selector"].localeCompare("inputDEF") == 0) {  // if DEF, grab teamID
-						updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
+					//	updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
 					}
 					else {  // else grab playerID
-						updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
+					//	updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
 					}
 				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
