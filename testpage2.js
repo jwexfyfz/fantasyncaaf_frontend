@@ -284,6 +284,7 @@ function sendToPhp(position) {
 	    default:
 	        newPosition = "";
 	}
+	console.log("position: "+position+", newPosition: "+newPosition+", position=newPosition? "+(position==newPosition));
 	
 	//If duplicate names exist, block the sql query and inform user
 	if(dupesExist != false) {
