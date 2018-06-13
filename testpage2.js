@@ -287,6 +287,11 @@ function sendToPhp(position) {
 	}
 	console.log("position: "+position+", newPosition: "+newPosition+", position=newPosition? "+(position==newPosition));
 	
+	//JEFF TO CONFIRM THIS CODE: checkGameStarted returns an array of disabled newPositions. Only run the code below if a position is not disabled. This should also run checkGameStarted which is what we want.
+	//if (!checkGameStarted(week, teamID).indexOf(newPosition) > -1) {
+		// PUT ALL CODE BELOW IN HERE IF YOU AGREE.
+	//}
+	
 	//If duplicate names exist, block the sql query and inform user
 	if(dupesExist != false) {
 		temp = $('#'+newPosition).val();
@@ -403,7 +408,7 @@ function verifyNoDupes() {
 function checkGameStarted(week, fantasyID) {
 	 
 	var phpResponse;
-	
+	var disabledPositions = [];
 	//only need week and fantasyID to retrieve a user's roster
 	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
 	
@@ -419,6 +424,7 @@ function checkGameStarted(week, fantasyID) {
 		  
 		  //Iterate through game times and disable selector for players whose games have started
 		  //TODO: Player used logic
+		  
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
@@ -426,7 +432,7 @@ function checkGameStarted(week, fantasyID) {
 				  if (!document.getElementById(phpResponse[i]["selector"]).disabled) {
 					//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
 					document.getElementById(phpResponse[i]["selector"]).disabled = true;
-					
+					disabledPositions.push(phpResponse[i]["selector"]);
 					if (phpResponse[i]["selector"].localeCompare("inputDEF") == 0) {  // if DEF, grab teamID
 						//updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
 					}
@@ -440,6 +446,7 @@ function checkGameStarted(week, fantasyID) {
 		  console.log("finished checking if games are started");	//For testing
 	    }
 	});
+	return disabledPositions;
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
