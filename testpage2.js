@@ -431,6 +431,7 @@ function checkGameStarted(week, fantasyID) {
 					}
 					else {  // else grab playerID
 						updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
+						$('#result3').html(phpResponse[i]["playerID"]);
 					}
 				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
