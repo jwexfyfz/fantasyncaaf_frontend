@@ -250,10 +250,45 @@ function sendToPhp(position) {
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
 	
+	switch(position) {
+	    case "QBtophp":
+	        newPosition = "inputQB";
+	        break;
+	    case "RB1tophp":
+	        newPosition = "inputRB1";
+	        break;
+	    case "RB2tophp":
+	        newPosition = "inputRB2";
+	        break;
+	    case "WR1tophp":
+	        newPosition = "inputWR1";
+	        break;
+	    case "WR2tophp":
+	        newPosition = "inputWR2";
+	        break;
+	    case "WR3tophp":
+	        newPosition = "inputWR3";
+	        break;
+	    case "TEtophp":
+	        newPosition = "inputTE";
+	        break;
+	    case "DEFtophp":
+	        newPosition = "inputDEF";
+	        break;
+	    case "Ktophp":
+	        newPosition = "inputK";
+	        break;
+	    case "FLEXtophp":
+	        newPosition = "inputFLEX";
+	        break;
+	    default:
+	        newPosition = "";
+	}
+	
 	//If duplicate names exist, block the sql query and inform user
 	if(dupesExist != false) {
-		temp = $('#'+position).val();
-		$('#'+position).val() = $('#'+dupesExist).val();
+		temp = $('#'+newPosition).val();
+		$('#'+newPosition).val() = $('#'+dupesExist).val();
 		$('#'+dupesExist).val() = temp;
 		
 		
