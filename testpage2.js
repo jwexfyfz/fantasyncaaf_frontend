@@ -242,14 +242,21 @@ function getFantasyPoints() {
 //2) send the playerName, week, and teamID to testpage2.php to update the week's roster
 //TODO: jeffwang to add in defense after list of defenses table is created
 function sendToPhp(position) {
+	console.log('------position set: ' + position);
 	var dupesExist = verifyNoDupes();		//Check for dupes
 	var week=$("#currentWeekNum").val();	//Get week # from page	TODO: jeffwang to figure out how to dynamically change week	
 	var urlArray = getUrlVars();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var confirmPosition = "";
+	var temp;								//Temporarily hold the duplicate player to switch
 	
 	//If duplicate names exist, block the sql query and inform user
-	if(dupesExist) {
+	if(dupesExist != false) {
+		temp = $('#'+position).val();
+		$('#'+position).val() = $('#'+dupesExist).val();
+		$('#'+dupesExist).val() = temp;
+		
+		
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	}
 	//Otherwise, run sql query. dataString includes parameters to send to php 
@@ -327,7 +334,8 @@ function sendToPhp(position) {
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
 function verifyNoDupes() {
-    if(		(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)		) ||
+    /*
+	if(		(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)		) ||
 			(	($('#inputWR1').val() == $('#inputWR2').val()) 	&& ($('#inputWR1').val() != null)		) ||
 			(	($('#inputWR2').val() == $('#inputWR3').val()) 	&& ($('#inputWR2').val() != null)		) ||
 			(	($('#inputWR1').val() == $('#inputWR3').val()) 	&& ($('#inputWR3').val() != null)		) ||
@@ -343,12 +351,19 @@ function verifyNoDupes() {
 	} else {
 		return false;
 	}
-        
+    */
+	  
+    if(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)	) {
+		return "inputRB2";
+	} else {
+		return false;
+	}
 }
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has passed and disable that 'select'
 //TODO: Add to both page load and when a player selects something. (Is that the sendtophp function?)
+/* jeffwang commenting this out to check for dupe player changes
 function checkGameStarted(week, teamID) {
 	 
 	var phpResponse;
@@ -380,6 +395,7 @@ function checkGameStarted(week, teamID) {
 	    }
 	});
 }
+*/
 
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
