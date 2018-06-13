@@ -428,10 +428,10 @@ function checkGameStarted(week, fantasyID) {
 					document.getElementById(phpResponse[i]["selector"]).disabled = true;
 					
 					if (phpResponse[i]["selector"].localeCompare("inputDEF") == 0) {  // if DEF, grab teamID
-					//	updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
+						updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
 					}
 					else {  // else grab playerID
-					//	updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
+						updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
 					}
 				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
