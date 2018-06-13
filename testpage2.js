@@ -289,8 +289,8 @@ function sendToPhp(position) {
 	//If duplicate names exist, block the sql query and inform user
 	if(dupesExist != false) {
 		temp = $('#'+newPosition).val();
-		$('#'+newPosition).val() = $('#'+dupesExist).val();
-		$('#'+dupesExist).val() = temp;
+		$('#'+newPosition).val($('#'+dupesExist).val());
+		$('#'+dupesExist).val(temp);
 		
 		
 		$("#errorOutput p:first").html("Can't have duplicate players!");
@@ -441,7 +441,6 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 	var dataString="";
 	var positionHash="";
 	var week=$("#currentWeekNum").val();		//TODO: jeffwang to pass week # as a parameter into this function
-	console.log("+++++++++++++++++++++teamID="+teamID);
 	switch(position) {
 	    case "QB":
 	        dataString = 'QBtophp='+'QB'+'&weekNum='+week+'&teamID='+teamID;
