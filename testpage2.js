@@ -424,6 +424,13 @@ function checkGameStarted(week, fantasyID) {
 			  if (Date.now() > gametime.getTime()) {
 				  if (!document.getElementById(phpResponse[i]["selector"]).disabled) {
 					document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
+					
+					if (phpResponse[i]["selector"].localeCompare("inputDEF") == 0) {  // if DEF, grab teamID
+						updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
+					}
+					else {  // else grab playerID
+						updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
+					}
 				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
@@ -434,10 +441,10 @@ function checkGameStarted(week, fantasyID) {
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
-function updateTimesPlayerUsed(week, fantasyID) {
+function updateTimesPlayerUsed(playerID, fantasyID) {
 	var phpResponse;
 	
-	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
+	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID;
 	
 	$.ajax({
 		type: "POST",
