@@ -18,7 +18,7 @@ $( document ).ready(
 		$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
-		checkGameStarted(week, teamID);
+		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
 		  event.preventDefault();
@@ -363,13 +363,12 @@ function verifyNoDupes() {
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has passed and disable that 'select'
 //TODO: Add to both page load and when a player selects something. (Is that the sendtophp function?)
-/* jeffwang commenting this out to check for dupe player changes
-function checkGameStarted(week, teamID) {
+function checkGameStarted(week, fantasyID) {
 	 
 	var phpResponse;
 	
-	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	//only need week and fantasyID to retrieve a user's roster
+	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
 	
 	$.ajax({
 	    type: "POST",
@@ -387,7 +386,9 @@ function checkGameStarted(week, teamID) {
 		  for (i = 0; i < phpResponse.length; i++) {
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  if (Date.now() > gametime.getTime()) {
-				document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
+				  if (!document.getElementById(phpResponse[i]["selector"]).disabled) {
+					document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
+				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 		  }
@@ -395,7 +396,22 @@ function checkGameStarted(week, teamID) {
 	    }
 	});
 }
-*/
+
+//cauchychoi 6/12/18: Update timesplayerused table
+function updateTimesPlayerUsed(week, fantasyID) {
+	var phpResponse;
+	
+	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
+	
+	$.ajax({
+		type: "POST",
+		url: "updateTimesPlayerUsed.php",
+		data: dataString,
+		success: function(response) {
+			phpResponse = JSON.parse(response);
+		}
+	});
+}
 
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
