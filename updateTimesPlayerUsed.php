@@ -10,7 +10,7 @@
 	$playerID = $_POST["playerID"];
 	$fantasyID = $_POST["fantasyID"];
     //Query to update timesPlayerUsed
-	$sql = "INSERT INTO timesplayerused (playerID, teamID, timesUsed) VALUES ($playerID, $fantasyID, 1) ON DUPLICATE KEY UPDATE(timesUsed=timesUsed+1)";
+	$sql = "INSERT INTO timesplayerused (playerID, teamID, timesUsed) VALUES ($playerID, $fantasyID, 1) ON DUPLICATE KEY UPDATE timesUsed=timesUsed+1";
 	$result = $conn->query($sql);
     
     $conn->close();
