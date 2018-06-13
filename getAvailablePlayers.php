@@ -11,14 +11,14 @@
 	$defSelected = false;
 	
 	if(isset($_POST['teamID'])) {
-		$team = "team_".$_POST["teamID"];
+		$team = $_POST["teamID"];
 	} 
 		
-    $sql = "SELECT playerID, $team FROM timesPlayerUsed";
+    $sql = "SELECT playerID, timesUsed FROM timesPlayerUsed where teamID = $team";
     $result = $conn->query($sql);
 	if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $usedPlayerTable[$row["playerID"]] = $row[$team];
+            $usedPlayerTable[$row["playerID"]] = $row["timesUsed"];
         }
     }
 	
