@@ -410,9 +410,9 @@ function verifyNoDupes(week, teamID) {
 		  //Player changes RB1 to equal the same value as teamRoster's RB2
 	      if(	($('#inputRB1').val().localeCompare(phpResponse[week]["RB2"]) == 0) 	&& ($('#inputRB1').val() != null)	) {
 			  console.log("values were the same!");
-			  temp = $('#inputRB2').val();
-			  $('#inputRB2').val($('#inputRB1').val());
-			  $('#inputRB1').val(temp);
+
+			  $('#inputRB1').val(phpResponse[week]["RB2"]);
+			  $('#inputRB2').val(phpResponse[week]["RB1"]);
 			  
 			  switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
 	  		  return true;
