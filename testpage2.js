@@ -477,7 +477,7 @@ function checkGameStarted(week, fantasyID) {
 	      //$('#result3').html(response);
 		  //console.log("response from checkGameStarted.php: "+response);
 		  console.log("successfully sent query to tell php to provide game times!");	//For testing
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [selector, gametime] pair  //TODO get [selector, gametime, hasPlayed]
+		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
 		  
 		  //Iterate through game times and disable selector for players whose games have started
 		  //TODO: Player used logic
@@ -489,13 +489,13 @@ function checkGameStarted(week, fantasyID) {
 				  if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 					//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
 					document.getElementById("input"+phpResponse[i]["position"]).disabled = true;
-					disabledPositions.push(phpResponse[i]["position"]);
+					disabledPositions.push("input"+phpResponse[i]["position"]);
 					if (phpResponse[i]["hasPlayed"] == 0) {
-						if (phpResponse[i]["position"].localeCompare("DEF") == 0) {  // if DEF, grab teamID //TODO add && phpResponse[i]["played"] == 0
-							//updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
+						if (phpResponse[i]["position"].localeCompare("DEF") == 0) {  // if DEF, grab teamID
+							updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID, week, phpResponse[i]["position"]);
 						}
 						else {  // else grab playerID
-							//updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
+							updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID, week, phpResponse[i]["position"]);
 						}
 					}
 				  }
@@ -509,10 +509,10 @@ function checkGameStarted(week, fantasyID) {
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
-function updateTimesPlayerUsed(playerID, fantasyID) {  // TODO add query to flip the played bit in updateTimesPlayerUsed - will need to pass in week, fantasyID, playerName
+function updateTimesPlayerUsed(playerID, fantasyID, week, position) {  // TODO add query to flip the played bit in updateTimesPlayerUsed - will need to pass in week, fantasyID, playerName
 	var phpResponse;
 	
-	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID;
+	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID+'&weekNum='+week+'&position='+position;
 	
 	$.ajax({
 		type: "POST",
