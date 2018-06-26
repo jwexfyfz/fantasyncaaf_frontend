@@ -59,7 +59,7 @@ function loadTeamRoster(week, teamID) {
 	    url: "loadTeamRoster.php",
 	    data: dataString,
 	    success: function(response) {
-	      $('#result').html(response);
+	      //$('#result').html(response);
 		  //console.log("response from loadTeamRoster.php: "+response);
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
@@ -99,7 +99,7 @@ function getNumTimesPlayersUsed(teamRoster){
 		playersUsedCount[teamRoster[key]["K"]] += 1;
 		playersUsedCount[teamRoster[key]["FLEX"]] += 1;
 	}
-	$('#result2').html(playersUsedCount);
+	//$('#result2').html(playersUsedCount);
 }
 
 function getUrlVars() {
@@ -458,7 +458,7 @@ function checkGameStarted(week, fantasyID) {
 	    url: "checkGameStarted.php",
 	    data: dataString,
 	    success: function(response) {
-	      $('#result3').html(response);
+	      //$('#result3').html(response);
 		  //console.log("response from checkGameStarted.php: "+response);
 		  console.log("successfully sent query to tell php to provide game times!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [selector, gametime] pair
