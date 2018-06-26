@@ -56,7 +56,11 @@
 		else {
 			echo "Error: Something went wrong when passing info to PHP.  Please contact Jeff about this";
 		}
-			$sql = "UPDATE teamRoster set $position = \"$input\" where teamID = $teamID and week = $week;";
+			if($input == "null") {
+				$sql = "UPDATE teamRoster set $position = \"\" where teamID = $teamID and week = $week;";
+			} else {
+				$sql = "UPDATE teamRoster set $position = \"$input\" where teamID = $teamID and week = $week;";
+			}
 			echo $sql;
 			$result = $conn->query($sql);
 	}
