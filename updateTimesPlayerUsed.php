@@ -9,7 +9,8 @@
 
 	$playerID = $_POST["playerID"];
 	$fantasyID = $_POST["fantasyID"];
-	$weekNum = $_POST["
+	$weekNum = $_POST["weekNum"];
+	$position = $_POST["position"];
     //Query to update timesPlayerUsed
 	$sql = "INSERT INTO timesplayerused (playerID, teamID, timesUsed) VALUES ($playerID, $fantasyID, 1) ON DUPLICATE KEY UPDATE timesUsed=timesUsed+1";
 	$result = $conn->query($sql);
