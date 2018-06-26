@@ -162,7 +162,7 @@ function getFantasyPoints() {
 	      }
 		  //$('#result2').html(response);
 		  playerPoints = JSON.parse(response);
-		  console.log("successfully got fantasyPoints from php!");
+		  //console.log("successfully got fantasyPoints from php!");
 	  
 		  if(	playerPoints[$('#inputQB').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputQB').val()]);
@@ -563,7 +563,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-	      $('#result2').html(response);
+	      //$('#result2').html(response);
 		  //console.log("successfully queried for eligible player names!");
 		  var playerList=JSON.parse(response);
 		  
