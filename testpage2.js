@@ -423,15 +423,16 @@ function verifyNoDupes(week, teamID) {
 
 function addPlayerToRoster(dataString) {
 	$.ajax({
-	type: "POST",
-	url: "testpage2.php",
-	data: dataString,
-	success: function(response) {
-      console.log("switch players: "+response);
-  
-	  confirmPlayer(confirmPosition);
-	  console.log("ran confirmPlayer function");
-	  getFantasyPoints();
+		type: "POST",
+		url: "testpage2.php",
+		data: dataString,
+		success: function(response) {
+			console.log("switch players: "+response);
+
+			confirmPlayer(confirmPosition);
+			console.log("ran confirmPlayer function");
+			getFantasyPoints();
+		}
 	});
 }
 
