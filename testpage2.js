@@ -285,6 +285,7 @@ function sendToPhp(position) {
 	        newPosition = "";
 	}
 	
+	//var dupesExist = false;
 	var dupesExist = verifyNoDupes(week, teamID);		//Check for dupes
 	
 	//JEFF TO CONFIRM THIS CODE: checkGameStarted returns an array of disabled newPositions. Only run the code below if a position is not disabled. This should also run checkGameStarted which is what we want.
@@ -294,6 +295,7 @@ function sendToPhp(position) {
 	
 	//If duplicate names exist, block the sql query and inform user
 	if(dupesExist != false) {
+		console.log("dupesExist="+dupesExist);
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	}
 	//Otherwise, run sql query. dataString includes parameters to send to php 
