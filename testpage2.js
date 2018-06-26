@@ -519,7 +519,7 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {  // TODO a
 		url: "updateTimesPlayerUsed.php",
 		data: dataString,
 		success: function(response) {
-			phpResponse = JSON.parse(response);
+			//phpResponse = JSON.parse(response);
 			console.log("timesplayerused updated");
 		}
 	});
