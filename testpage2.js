@@ -430,8 +430,7 @@ function verifyNoDupes(week, teamID) {
 				$('#inputRB2').val(phpResponse[week]["RB1"]);
 
 				switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
-				makeChangesToTeamRoster(true);
-		  	}			  
+				makeChangesToTeamRoster(true);			  
 	  	  } else {
 			  makeChangesToTeamRoster(false);			  
 	  	  }
