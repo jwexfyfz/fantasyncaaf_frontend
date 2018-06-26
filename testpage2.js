@@ -297,7 +297,7 @@ function sendToPhp(position) {
 	
 }
 
-function makeChangesToTeamRoster(position, dupesExist) {
+function makeChangesToTeamRoster(position, week, teamID, dupesExist) {
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	} else {
@@ -430,9 +430,9 @@ function verifyNoDupes(position, week, teamID) {
 				$('#inputRB2').val(phpResponse[week]["RB1"]);
 
 				switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
-				makeChangesToTeamRoster(position, true);			  
+				makeChangesToTeamRoster(position, week, teamID, true);			  
 	  	  } else {
-			  makeChangesToTeamRoster(position, false);			  
+			  makeChangesToTeamRoster(position, week, teamID, false);			  
 	  	  }
 	    }
 	});  
