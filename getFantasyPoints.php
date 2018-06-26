@@ -47,7 +47,7 @@
     }
 	
 	//Do the same thing for the kicker table
-	$sql = "SELECT playerName, fantasyPoints FROM kickerStats where playerName in ('$qK') and week=$weekNum;";
+	$sql = "SELECT playerName, fantasyPoints FROM offenseStats where playerName in ('$qK') and week=$weekNum;";
 	$result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
