@@ -243,7 +243,6 @@ function getFantasyPoints() {
 //TODO: jeffwang to add in defense after list of defenses table is created
 function sendToPhp(position) {
 	console.log('------position set: ' + position);
-	var dupesExist = verifyNoDupes();		//Check for dupes
 	var week=$("#currentWeekNum").val();	//Get week # from page	TODO: jeffwang to figure out how to dynamically change week	
 	var urlArray = getUrlVars();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
@@ -284,15 +283,11 @@ function sendToPhp(position) {
 	    default:
 	        newPosition = "";
 	}
-	console.log("position: "+position+", newPosition: "+newPosition+", position=newPosition? "+(position==newPosition));
+	
+	var dupesExist = verifyNoDupes(week, teamID);		//Check for dupes
 	
 	//If duplicate names exist, block the sql query and inform user
 	if(dupesExist != false) {
-		temp = $('#'+newPosition).val();
-		$('#'+newPosition).val($('#'+dupesExist).val());
-		$('#'+dupesExist).val(temp);
-		
-		
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	}
 	//Otherwise, run sql query. dataString includes parameters to send to php 
@@ -369,7 +364,7 @@ function sendToPhp(position) {
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes() {
+function verifyNoDupes(week, teamID) {
     /*
 	if(		(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)		) ||
 			(	($('#inputWR1').val() == $('#inputWR2').val()) 	&& ($('#inputWR1').val() != null)		) ||
@@ -388,12 +383,58 @@ function verifyNoDupes() {
 		return false;
 	}
     */
-	  
-    if(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)	) {
-		return "inputRB2";
-	} else {
-		return false;
-	}
+	
+    var phpResponse;
+	
+	//only need week and teamID to retrieve a user's roster
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var temp;
+	
+	//Send query to loadTeamRoster.php via AJAX
+	//This gets the roster that was already set by the user previously
+	$.ajax({
+	    type: "POST",
+	    url: "loadTeamRoster.php",
+	    data: dataString,
+	    success: function(response) {
+		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
+		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
+		  
+		  //TODO: jeffwang to add cases for any other dupe
+	      if(	($('#inputRB1').val() == phpResponse[week]["RB2"] 	&& ($('#inputRB1').val() != null)	) {
+			  temp = $('#inputRB2').val();
+			  $('#inputRB2').val($('#inputRB1').val());
+			  $('#inputRB1').val(temp);
+			  
+			  switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
+	  		  return true;
+	  	  } else {
+	  		  return false;
+	  	  }
+	    }
+	});  
+}
+
+function addPlayerToRoster(dataString) {
+	$.ajax({
+	type: "POST",
+	url: "testpage2.php",
+	data: dataString,
+	success: function(response) {
+      console.log("switch players: "+response);
+  
+	  confirmPlayer(confirmPosition);
+	  console.log("ran confirmPlayer function");
+	  getFantasyPoints();
+	});
+}
+
+function switchPlayerUpdateRoster(position1, position2, week, teamID) {
+  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
+	addPlayerToRoster(dataString);
+
+  	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
+	addPlayerToRoster(dataString);
 }
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
