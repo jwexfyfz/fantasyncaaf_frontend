@@ -18,7 +18,7 @@ $( document ).ready(
 		$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
-		checkGameStarted(week, teamID);
+		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
 		  event.preventDefault();
@@ -42,6 +42,7 @@ function updatePage() {
 	var teamName=	urlArray["teamName"];
 	
 	loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
+	//checkGameStarted(week, teamID);  //Uncomment when ready
 	
 }
 
@@ -286,6 +287,11 @@ function sendToPhp(position) {
 	
 	var dupesExist = verifyNoDupes(week, teamID);		//Check for dupes
 	
+	//JEFF TO CONFIRM THIS CODE: checkGameStarted returns an array of disabled newPositions. Only run the code below if a position is not disabled. This should also run checkGameStarted which is what we want.
+	//if (!checkGameStarted(week, teamID).indexOf(newPosition) > -1) {
+		// PUT ALL CODE BELOW IN HERE IF YOU AGREE.
+	//}
+	
 	//If duplicate names exist, block the sql query and inform user
 	if(dupesExist != false) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
@@ -440,13 +446,12 @@ function switchPlayerUpdateRoster(position1, position2, week, teamID) {
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has passed and disable that 'select'
 //TODO: Add to both page load and when a player selects something. (Is that the sendtophp function?)
-/* jeffwang commenting this out to check for dupe player changes
-function checkGameStarted(week, teamID) {
+function checkGameStarted(week, fantasyID) {
 	 
 	var phpResponse;
-	
-	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var disabledPositions = [];
+	//only need week and fantasyID to retrieve a user's roster
+	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
 	
 	$.ajax({
 	    type: "POST",
@@ -460,19 +465,47 @@ function checkGameStarted(week, teamID) {
 		  
 		  //Iterate through game times and disable selector for players whose games have started
 		  //TODO: Player used logic
+		  
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  if (Date.now() > gametime.getTime()) {
-				document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
+				  if (!document.getElementById(phpResponse[i]["selector"]).disabled) {
+					//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
+					document.getElementById(phpResponse[i]["selector"]).disabled = true;
+					disabledPositions.push(phpResponse[i]["selector"]);
+					if (phpResponse[i]["selector"].localeCompare("inputDEF") == 0) {  // if DEF, grab teamID
+						//updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
+					}
+					else {  // else grab playerID
+						//updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
+					}
+				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 		  }
 		  console.log("finished checking if games are started");	//For testing
 	    }
 	});
+	return disabledPositions;
 }
-*/
+
+//cauchychoi 6/12/18: Update timesplayerused table
+function updateTimesPlayerUsed(playerID, fantasyID) {
+	var phpResponse;
+	
+	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID;
+	
+	$.ajax({
+		type: "POST",
+		url: "updateTimesPlayerUsed.php",
+		data: dataString,
+		success: function(response) {
+			phpResponse = JSON.parse(response);
+			console.log("timesplayerused updated");
+		}
+	});
+}
 
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
