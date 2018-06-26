@@ -408,9 +408,12 @@ function verifyNoDupes(week, teamID) {
 		  console.log("rb1="+$('#inputRB1').val()+", teamRoster's RB2="+phpResponse[week]["RB2"]);
 		  //TODO: jeffwang to add cases for any other dupe
 		  //Player changes RB1 to equal the same value as teamRoster's RB2
-	      if(	(
-			  		($('#inputRB1').val().localeCompare(phpResponse[week]["RB2"]) == 0) 	||
-			  		($('#inputRB2').val().localeCompare(phpResponse[week]["RB1"]) == 0)
+	      if(	( 
+			  		//($('#inputRB1').val().localeCompare(phpResponse[week]["RB2"]) == 0) 	||
+			  		//($('#inputRB2').val().localeCompare(phpResponse[week]["RB1"]) == 0)
+			  
+			  		($('#inputRB1').val() == phpResponse[week]["RB2"]) 	||
+			  		($('#inputRB2').val() == phpResponse[week]["RB1"])
 		  		)
 		  	  	&& 	
 				(
