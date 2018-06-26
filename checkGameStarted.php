@@ -9,8 +9,7 @@
 
 	$weekNum = $_POST["weekNum"];
 	$fantasyID = $_POST["fantasyID"];
-    //Query to get team rosters
-   // $sql = "SELECT QB as player, RB1 as player, RB2 as player,  FROM teamRoster where teamID in ($teamID);";
+    //Query to get playerID, fantasyID, position, hasPlayed, gametime for each player on a given (week, team)
     //$sql = "select distinct C.playerID, C.teamID, C.selector, D.gametime from (select A.player, B.playerID, B.teamID, A.selector from (select QB as player, 'inputQB' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select RB1 as player, 'inputRB1' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select RB2 as player, 'inputRB2' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select WR1 as player, 'inputWR1' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select WR2 as player, 'inputWR2' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select WR3 as player, 'inputWR3' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select TE as player, 'inputTE' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select K as player, 'inputK' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select DEF as player, 'inputDEF' as selector from teamRoster where week=$weekNum and teamID=$fantasyID union select UTIL as player, 'inputFLEX' as selector from teamRoster where week=$weekNum and teamID=$fantasyID) as A inner join collegeTeamRoster as B on A.player=B.PlayerName or A.player=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
 	$sql = "select distinct C.playerID, C.teamID, C.position, C.hasPlayed, D.gametime from (select A.playerName, B.playerID, B.teamID, A.position, A.hasPlayed from (select playerName, position, hasPlayed from teamroster where week=$weekNum and teamID=$fantasyID) as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
 	$result = $conn->query($sql);
@@ -25,40 +24,9 @@
 			$position = $row["position"];
 			$hasPlayed = $row["hasPlayed"];
 			$gametime = $row["gametime"];
-/*			$week = $row["week"];
-            $teamName = $row["teamName"];
-            $teamID = $row["teamID"];
-            $QB = $row["QB"];
-            $RB1 = $row["RB1"];
-            $RB2 = $row["RB2"];
-            $WR1 = $row["WR1"];
-            $WR2 = $row["WR2"];
-            $WR3 = $row["WR3"];
-            $TE = $row["TE"];
-            $K = $row["K"];
-            $DEF = $row["DEF"];
-            $UTIL = $row["UTIL"];
-*/
+
             
-            //echo "Finished reading row ".$index."<br>";
-            
-            //Assign rows from table to team roster array
-/*            $teamRoster[$week] = array(
-                "week"=>$week, 
-                "teamName"=>$teamName, 
-                "teamID"=>$teamID, 
-                "QB"=>$QB,
-                "RB1"=>$RB1, 
-                "RB2"=>$RB2, 
-                "WR1"=>$WR1, 
-                "WR2"=>$WR2, 
-                "WR3"=>$WR3, 
-                "TE"=>$TE, 
-                "K"=>$K, 
-                "DEF"=>$DEF, 
-                "FLEX"=>$UTIL);
-*/
-			// Assign rows from table to gametimes array
+            //Assign rows from table to gametimes array
 			$gametimes[$index] = array(
 				"playerID"=>$playerID,
 				"teamID"=>$teamID,
@@ -66,30 +34,11 @@
 				"position"=>$position,
 				"hasPlayed"=>$hasPlayed,
 				"gametime"=>$gametime);
-/*
-            //Print team roster
-            foreach($teamRoster as $key => $value) {
-                echo $key.": ".$value."<br>";
-            }
-*/
+
             $index++;
         }
     } else {
         //Set everything to null so at least you return something
-/*        $teamRoster[$weekNum] = array(
-            "week"=>$weekNum, 
-            "teamID"=>$teamID, 
-            "QB"=>null,
-            "RB1"=>null, 
-            "RB2"=>null, 
-            "WR1"=>null, 
-            "WR2"=>null, 
-            "WR3"=>null, 
-            "TE"=>null, 
-            "K"=>null, 
-            "DEF"=>null, 
-            "FLEX"=>null);
-*/
 		$gametimes[0] = array(
 			"playerID"=>null,
 			"teamID"=>null,
@@ -99,7 +48,6 @@
 			"gametime"=>null);
     }
     //Output table to testpage2.js
-    //echo json_encode($teamRoster);
 	echo json_encode($gametimes);
 	
     
