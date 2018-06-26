@@ -286,7 +286,7 @@ function sendToPhp(position) {
 	}
 	
 	//var dupesExist = false;
-	var dupesExist = verifyNoDupes(week, teamID);		//Check for dupes
+	verifyNoDupes(position, week, teamID);		//Check for dupes
 	
 	//JEFF TO CONFIRM THIS CODE: checkGameStarted returns an array of disabled newPositions. Only run the code below if a position is not disabled. This should also run checkGameStarted which is what we want.
 	//if (!checkGameStarted(week, teamID).indexOf(newPosition) > -1) {
@@ -297,7 +297,7 @@ function sendToPhp(position) {
 	
 }
 
-function makeChangesToTeamRoster(dupesExist) {
+function makeChangesToTeamRoster(position, dupesExist) {
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	} else {
@@ -373,7 +373,7 @@ function makeChangesToTeamRoster(dupesExist) {
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes(week, teamID) {
+function verifyNoDupes(position, week, teamID) {
     /*
 	if(		(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)		) ||
 			(	($('#inputWR1').val() == $('#inputWR2').val()) 	&& ($('#inputWR1').val() != null)		) ||
@@ -430,9 +430,9 @@ function verifyNoDupes(week, teamID) {
 				$('#inputRB2').val(phpResponse[week]["RB1"]);
 
 				switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
-				makeChangesToTeamRoster(true);			  
+				makeChangesToTeamRoster(position, true);			  
 	  	  } else {
-			  makeChangesToTeamRoster(false);			  
+			  makeChangesToTeamRoster(position, false);			  
 	  	  }
 	    }
 	});  
