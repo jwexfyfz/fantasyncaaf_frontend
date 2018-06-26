@@ -407,7 +407,8 @@ function verifyNoDupes(week, teamID) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
 		  //TODO: jeffwang to add cases for any other dupe
-	      if(	$('#inputRB1').val() == phpResponse[week]["RB2"] 	&& ($('#inputRB1').val() != null)	) {
+	      if(	($('#inputRB1').val().localeCompare(phpResponse[week]["RB2"]) == 0) 	&& ($('#inputRB1').val() != null)	) {
+			  console.log("values were the same!");
 			  temp = $('#inputRB2').val();
 			  $('#inputRB2').val($('#inputRB1').val());
 			  $('#inputRB1').val(temp);
