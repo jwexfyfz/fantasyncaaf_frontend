@@ -294,12 +294,13 @@ function sendToPhp(position) {
 	//}
 	
 	//If duplicate names exist, block the sql query and inform user
-	if(dupesExist != false) {
-		console.log("dupesExist="+dupesExist);
+	
+}
+
+function makeChangesToTeamRoster(dupesExist) {
+	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
-	}
-	//Otherwise, run sql query. dataString includes parameters to send to php 
-	else {
+	} else {
 		$("#errorOutput p:first").html("");
 		switch(position) {
 		    case "QBtophp":
@@ -351,7 +352,7 @@ function sendToPhp(position) {
 		dataString = dataString.trim().replace(/ /g, '%20');
 
 		//console.log(dataString);	//For testing
-		
+	
 		//Send query to testpage2.php via AJAX
 		//For testing: fill #result div with the query that was sent
 		$.ajax({
@@ -361,14 +362,14 @@ function sendToPhp(position) {
 		    success: function(response) {
 		      $('#result').html(response);
 			  console.log("successfully sent selected position that changed! "+position);	//For testing
-			  
+		  
 			  confirmPlayer(confirmPosition);
 			  console.log("ran confirmPlayer function");
 			  getFantasyPoints();
 		    }
 		});
 	}
-};
+}
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
@@ -425,13 +426,14 @@ function verifyNoDupes(week, teamID) {
 		  ) {
 			  console.log("values were the same!");
 
-			  $('#inputRB1').val(phpResponse[week]["RB2"]);
-			  $('#inputRB2').val(phpResponse[week]["RB1"]);
-			  
-			  switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
-	  		  return true;
+				$('#inputRB1').val(phpResponse[week]["RB2"]);
+				$('#inputRB2').val(phpResponse[week]["RB1"]);
+
+				switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
+				makeChangesToTeamRoster(true);
+		  	}			  
 	  	  } else {
-	  		  return false;
+			  makeChangesToTeamRoster(false);			  
 	  	  }
 	    }
 	});  
