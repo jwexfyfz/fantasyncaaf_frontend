@@ -6,6 +6,8 @@
     
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
+	
+	$input = "";
 
 	if (isset($_POST["weekNum"]) && isset($_POST["teamIDNum"])) {
 		$week = $_POST["weekNum"];
