@@ -408,34 +408,33 @@ function verifyNoDupes(position, week, teamID) {
 	    success: function(response) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
-		  console.log("rb1="+$('#inputRB1').val()+", teamRoster's RB2="+phpResponse[week]["RB2"]);
-		  //TODO: jeffwang to add cases for any other dupe
 		  //Player changes RB1 to equal the same value as teamRoster's RB2
-	      if(	( 
-			  		//($('#inputRB1').val().localeCompare(phpResponse[week]["RB2"]) == 0) 	||
-			  		//($('#inputRB2').val().localeCompare(phpResponse[week]["RB1"]) == 0)
-			  
-			  		($('#inputRB1').val() == phpResponse[week]["RB2"]) 	||
-			  		($('#inputRB2').val() == phpResponse[week]["RB1"])
-		  		)
-		  	  	&& 	
-				(
-				  	($('#inputRB1').val() != null)	&&
-			  		($('#inputRB2').val() != null)
-		  		)	
-		  ) {
-			  console.log("values were the same!");
-
-				$('#inputRB1').val(phpResponse[week]["RB2"]);
-				$('#inputRB2').val(phpResponse[week]["RB1"]);
-
-				switchPlayerUpdateRoster("RB1", "RB2", week, teamID);
-				makeChangesToTeamRoster(position, week, teamID, true);			  
-	  	  } else {
-			  makeChangesToTeamRoster(position, week, teamID, false);			  
-	  	  }
+	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID);
 	    }
 	});  
+}
+
+function comparePotentialDupes (switchPosition1, switchPosition2, position, phpResponse, week, teamID){
+    if(	( 
+	  		($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
+	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])
+  		)
+  	  	&& 	
+		(
+		  	($('#input'+switchPosition1).val() != null)	&&
+	  		($('#input'+switchPosition2).val() != null)
+  		)	
+  ) {
+	  console.log("values were the same!");
+
+		$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
+		$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
+
+		switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID);
+		makeChangesToTeamRoster(position, week, teamID, true);			  
+	  } else {
+	  makeChangesToTeamRoster(position, week, teamID, false);			  
+	  }
 }
 
 function addPlayerToRoster(dataString) {
