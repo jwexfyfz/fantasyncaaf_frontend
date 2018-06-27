@@ -62,18 +62,36 @@
         // output data of each row
         while($row = $result->fetch_assoc()) {
 			if ($defSelected) {
-				$playerArray[index] = array(
-					"playerName"=>$row["teamName"],
-					"timesUsed"=>$usedPlayerTable[$row["playerID"]]
-				);
+				if(isset($usedPlayerTable[$row["playerID"]])) {
+					$playerArray[index] = array(
+						"playerName"=>$row["teamName"],
+						"timesUsed"=>$usedPlayerTable[$row["playerID"]]
+					);
+				}
+				else {
+					$playerArray[index] = array(
+						"playerName"=>$row["teamName"],
+						"timesUsed"=>0
+					);
+				}
 			}
 			else {
-				$playerArray[index] = array(
-					"playerName"=>$row["playerName"],
-					"position"=>$row["position"],
-					"team"=>$row["team"],
-					"timesUsed"=>$usedPlayerTable[$row["playerID"]]
-				);
+				if(isset($usedPlayerTable[$row["playerID"]])) {
+					$playerArray[index] = array(
+						"playerName"=>$row["playerName"],
+						"position"=>$row["position"],
+						"team"=>$row["team"],
+						"timesUsed"=>$usedPlayerTable[$row["playerID"]]
+					);
+				}
+				else {
+					$playerArray[index] = array(
+						"playerName"=>$row["playerName"],
+						"position"=>$row["position"],
+						"team"=>$row["team"],
+						"timesUsed"=>0
+					);
+				}
 			}
 			index++;
 			
