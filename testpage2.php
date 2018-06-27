@@ -51,7 +51,7 @@
 		}
 		elseif (isset($_POST["FLEXtophp"])) {
 			$input = $_POST["FLEXtophp"];
-			$position = "UTIL";
+			$position = "FLEX";
 		}
 		else {
 			echo "Error: Something went wrong when passing info to PHP.  Please contact Jeff about this";

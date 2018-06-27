@@ -27,7 +27,7 @@
             $TE = $row["TE"];
             $K = $row["K"];
             $DEF = $row["DEF"];
-            $UTIL = $row["UTIL"];
+            $FLEX = $row["FLEX"];
             
             //echo "Finished reading row ".$index."<br>";
             
@@ -45,7 +45,7 @@
                 "TE"=>$TE, 
                 "K"=>$K, 
                 "D"=>$DEF, 
-                "FLEX"=>$UTIL);
+                "FLEX"=>$FLEX);
 
 /*
             //Print team roster
