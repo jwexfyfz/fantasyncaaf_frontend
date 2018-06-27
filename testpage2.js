@@ -619,7 +619,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		for(i = 0; i < positionList.length; i++) {
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
 			if (positionList[i]["timesUsed"] >= 5) {
-				select.options[select.options.length].disabled = true;
+				select.options[select.options.length-1].disabled = true;
 			}
 		}
 	}
@@ -627,7 +627,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		for(i = 0; i < positionList.length; i++) {
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
 			if (positionList[i]["timesUsed"] >= 5) {
-				select.options[select.options.length].disabled = true;
+				select.options[select.options.length-1].disabled = true;
 			}
 		}
 	}
