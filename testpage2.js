@@ -411,6 +411,15 @@ function verifyNoDupes(position, week, teamID) {
 		  //Player changes RB1 to equal the same value as teamRoster's RB2
 	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID);
 	      comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID);
+	      comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID);
+	      comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID);
+	      comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID);
+	      comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID);
+	      comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID);
+	      comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID);
+	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID);
+	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID);
+	      comparePotentialDupes("K", "FLEX", position, phpResponse, week, teamID);
 	    }
 	});  
 }
