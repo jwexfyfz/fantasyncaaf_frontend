@@ -62,10 +62,10 @@
         // output data of each row
         while($row = $result->fetch_assoc()) {
 			if ($defSelected) {
-				if(isset($usedPlayerTable[$row["playerID"]])) {
+				if(isset($usedPlayerTable[$row["teamID"]])) {
 					$playerArray[index] = array(
 						"playerName"=>$row["teamName"],
-						"timesUsed"=>$usedPlayerTable[$row["playerID"]]
+						"timesUsed"=>$usedPlayerTable[$row["teamID"]]
 					);
 				}
 				else {
