@@ -476,7 +476,7 @@ function checkGameStarted(week, fantasyID) {
 	      //$('#result3').html(response);
 		  //console.log("response from checkGameStarted.php: "+response);
 		  console.log("successfully sent query to tell php to provide game times!");	//For testing
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [selector, gametime] pair
+		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
 		  
 		  //Iterate through game times and disable selector for players whose games have started
 		  //TODO: Player used logic
@@ -485,15 +485,17 @@ function checkGameStarted(week, fantasyID) {
 		  for (i = 0; i < phpResponse.length; i++) {
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  if (Date.now() > gametime.getTime()) {
-				  if (!document.getElementById(phpResponse[i]["selector"]).disabled) {
+				  if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 					//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
-					document.getElementById(phpResponse[i]["selector"]).disabled = true;
-					disabledPositions.push(phpResponse[i]["selector"]);
-					if (phpResponse[i]["selector"].localeCompare("inputDEF") == 0) {  // if DEF, grab teamID
-						//updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID);
-					}
-					else {  // else grab playerID
-						//updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID);
+					document.getElementById("input"+phpResponse[i]["position"]).disabled = true;
+					disabledPositions.push("input"+phpResponse[i]["position"]);
+					if (phpResponse[i]["hasPlayed"] == 0) {
+						if (phpResponse[i]["position"].localeCompare("DEF") == 0) {  // if DEF, grab teamID
+							updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID, week, phpResponse[i]["position"]);
+						}
+						else {  // else grab playerID
+							updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID, week, phpResponse[i]["position"]);
+						}
 					}
 				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
@@ -506,17 +508,17 @@ function checkGameStarted(week, fantasyID) {
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
-function updateTimesPlayerUsed(playerID, fantasyID) {
+function updateTimesPlayerUsed(playerID, fantasyID, week, position) {  // TODO add query to flip the played bit in updateTimesPlayerUsed - will need to pass in week, fantasyID, playerName
 	var phpResponse;
 	
-	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID;
+	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID+'&weekNum='+week+'&position='+position;
 	
 	$.ajax({
 		type: "POST",
 		url: "updateTimesPlayerUsed.php",
 		data: dataString,
 		success: function(response) {
-			phpResponse = JSON.parse(response);
+			//phpResponse = JSON.parse(response);
 			console.log("timesplayerused updated");
 		}
 	});
