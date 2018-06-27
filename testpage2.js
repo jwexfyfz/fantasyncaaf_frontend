@@ -532,11 +532,6 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 	});
 }
 
-//cauchychoi 6/26/18: Checks to see if a player has hit its use limit and disables the <option> in the <select>
-function disablePlayer() {
-	
-}
-
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
 //2) Run populateChoosePlayerLists(), which populates the select options for each position
@@ -612,6 +607,8 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 //jeffwang 3/14/2018: This function is currently called by function getDataForChoosePlayerLists(), which is run on document.ready
 //It takes the following inputs: 1) ID of select, 2) array of eligible players, 3) player currently on the roster
 //It populates the selects, and sets the current selected player to show the user what their roster is currently
+//cauchychoi 6/26/2018: Refactored where the array of eligible players is (playerName, position, team, timesUsed) or (playerName, timesUsed) for defense
+//Also added select option disabled for players with 5+ uses
 //TODO: jeffwang to think through use case where defensive players are being used on offense (e.g. Myles Jack)
 function populateChoosePlayerLists(inputPosition, positionList, currentSelectedPlayer) {
     var select = document.getElementById(inputPosition);
@@ -621,11 +618,17 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	if (inputPosition == "inputDEF") {
 		for(i = 0; i < positionList.length; i++) {
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+			if (positionList[i]["timesUsed"] >= 5) {
+				select.options[select.options.length].disabled = true;
+			}
 		}
 	}
 	else {
 		for(i = 0; i < positionList.length; i++) {
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+			if (positionList[i]["timesUsed"] >= 5) {
+				select.options[select.options.length].disabled = true;
+			}
 		}
 	}
 	select.value = currentSelectedPlayer;
