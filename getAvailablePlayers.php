@@ -94,7 +94,7 @@
 				}
 			}
 			echo $playerArray[$index];
-			index++;
+			$index++;
 			
             /*if($defSelected) {
             	$playerArray[$row["teamName"]] = $row["teamName"];
