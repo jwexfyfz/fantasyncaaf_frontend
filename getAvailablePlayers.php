@@ -93,7 +93,7 @@
 					);
 				}
 			}
-			echo $playerArray[index];
+			echo $playerArray[$index];
 			index++;
 			
             /*if($defSelected) {
