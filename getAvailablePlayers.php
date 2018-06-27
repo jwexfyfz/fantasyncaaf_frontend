@@ -56,12 +56,28 @@
 	//echo $sql;
     $result = $conn->query($sql);
 
-    //$index = 0;
+    $index = 0;
 	//var $playerArray = array();
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            if($defSelected) {
+			if ($defSelected) {
+				$playerArray[index] = array(
+					"playerName"=>$row["teamName"],
+					"timesUsed"=>$usedPlayerTable[$row["playerID"]]
+				);
+			}
+			else {
+				$playerArray[index] = array(
+					"playerName"=>$row["playerName"],
+					"position"=>$row["position"],
+					"team"=>$row["team"],
+					"timesUsed"=>$usedPlayerTable[$row["playerID"]]
+				);
+			}
+			index++;
+			
+            /*if($defSelected) {
             	$playerArray[$row["teamName"]] = $row["teamName"];
             } else {
 				if(isset($usedPlayerTable[$row["playerID"]])) {
@@ -73,7 +89,7 @@
 					//echo $playerArray[$row["playerName"]];
 		            //$index++;
 				}
-            }
+            }*/
         }
     } else {
         echo "0 results";

@@ -480,7 +480,6 @@ function checkGameStarted(week, fantasyID) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
 		  
 		  //Iterate through game times and disable selector for players whose games have started
-		  //TODO: Player used logic
 		  
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
@@ -509,7 +508,7 @@ function checkGameStarted(week, fantasyID) {
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
-function updateTimesPlayerUsed(playerID, fantasyID, week, position) {  // TODO add query to flip the played bit in updateTimesPlayerUsed - will need to pass in week, fantasyID, playerName
+function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 	var phpResponse;
 	
 	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID+'&weekNum='+week+'&position='+position;
@@ -519,10 +518,14 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {  // TODO a
 		url: "updateTimesPlayerUsed.php",
 		data: dataString,
 		success: function(response) {
-			//phpResponse = JSON.parse(response);
 			console.log("timesplayerused updated");
 		}
 	});
+}
+
+//cauchychoi 6/26/18: Checks to see if a player has hit its use limit and disables the <option> in the <select>
+function disablePlayer() {
+	
 }
 
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
@@ -603,9 +606,19 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 //TODO: jeffwang to think through use case where defensive players are being used on offense (e.g. Myles Jack)
 function populateChoosePlayerLists(inputPosition, positionList, currentSelectedPlayer) {
     var select = document.getElementById(inputPosition);
-    for(var index in positionList) {
-        select.options[select.options.length] = new Option(positionList[index], index);
-    }
+    //for(var index in positionList) {
+    //    select.options[select.options.length] = new Option(positionList[index], index);
+    //}
+	if (inputPosition == "inputDEF") {
+		for(i = 0; i < positionList.length; i++) {
+			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+		}
+	}
+	else {
+		for(i = 0; i < positionList.length; i++) {
+			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+		}
+	}
 	select.value = currentSelectedPlayer;
 };
 
