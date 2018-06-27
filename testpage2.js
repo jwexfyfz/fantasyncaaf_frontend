@@ -410,7 +410,7 @@ function verifyNoDupes(position, week, teamID) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  //Player changes RB1 to equal the same value as teamRoster's RB2
 	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID);
-	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID);
+	      comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID);
 	    }
 	});  
 }
