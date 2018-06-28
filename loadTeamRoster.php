@@ -68,18 +68,18 @@
         //Set everything to null so at least you return something
         $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
-			"teamName"=>"",
+			"teamName"=>null,
             "teamID"=>$teamID, 
-            "QB"=>"",
-            "RB1"=>"", 
-            "RB2"=>"", 
-            "WR1"=>"", 
-            "WR2"=>"", 
-            "WR3"=>"", 
-            "TE"=>"", 
-            "K"=>", 
-            "DEF"=>"", 
-            "FLEX"=>"");
+            "QB"=>null,
+            "RB1"=>null, 
+            "RB2"=>null, 
+            "WR1"=>null, 
+            "WR2"=>null, 
+            "WR3"=>null, 
+            "TE"=>null, 
+            "K"=>null, 
+            "DEF"=>null, 
+            "FLEX"=>null);
     }
     //Output table to readTeamRoster.js
     echo json_encode($teamRoster);
