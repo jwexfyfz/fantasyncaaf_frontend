@@ -1,7 +1,12 @@
 $( document ).ready(
 	function startPage() {
-	    var currentWeek = document.getElementById("currentWeekNum");
-		currentWeek.value = 12;	//This is hardcoded right now TODO: jeffwang to figure out how to make this change based on the current week
+		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
+		var currentWeek = 1;
+		$("#currentWeekNum").val(currentWeek);
+		console.log("Current week is now set to "+$("#currentWeekNum").val());
+	    
+		//var currentWeek = document.getElementById("currentWeekNum");
+		//currentWeek.value = 12;	//This is hardcoded right now TODO: jeffwang to figure out how to make this change based on the current week
 
 		$("#headerTableColumn1").click( function(event) {
 			window.location.href = "league.html" + window.location.search;

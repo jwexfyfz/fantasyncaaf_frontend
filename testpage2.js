@@ -6,11 +6,16 @@
 $( document ).ready(
 	function sendTeamRosterToPhp() {
 		//Set default week value 
-	    var currentWeek = document.getElementById("currentWeekNum");
-		currentWeek.value = 12;	//This is hardcoded right now TODO: jeffwang to figure out how to make this change based on the current week
+		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
+		var currentWeek = 1;
+		$("#currentWeekNum").val(currentWeek);
+		console.log("Current week is now set to "+$("#currentWeekNum").val());
+		
+		//var currentWeek = document.getElementById("currentWeekNum");
+		//currentWeek.value = 12;	//This is hardcoded right now TODO: jeffwang to figure out how to make this change based on the current week
 		
 		var urlArray = getUrlVars();
-		console.log(urlArray);
+		//console.log(urlArray);
 		var week	=	$("#currentWeekNum").val();
 		var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		
