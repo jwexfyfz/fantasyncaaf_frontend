@@ -59,6 +59,7 @@
 			if($input == "null") {
 				//$sql = "UPDATE teamRoster set $position = \"\" where teamID = $teamID and week = $week;";
 				$sql = "UPDATE teamRoster set playerName = \"\" where teamID = $teamID and week = $week and position = \"$position\";";
+				$sql = "INSERT INTO teamRoster (week, teamID, position, playerName, hasPlayed) VALUES ($week, $teamID, \"$position\", \"\", 0) ON DUPLICATE KEY UPDATE playerName=VALUES(playerName);";
 			} else {
 				//$sql = "UPDATE teamRoster set $position = \"$input\" where teamID = $teamID and week = $week;";
 				//$sql = "UPDATE teamRoster set playerName = \"$input\" where teamID = $teamID and week = $week and position = \"$position\";";
