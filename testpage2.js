@@ -302,7 +302,8 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	} 
-	else if(	(switchPosition1 == "TE")	&&	(switchPosition2 == "FLEX")	) {
+	//This else condition is here because this function is called many times, so we don't want to execute a query to sql every time.  TE and FLEX happen to be the last one.  TODO: jeffwang to remove the extra query to sql from this function after two players have already been switched via addPlayerToRoster function
+	else if(	(switchPosition1 == "TE")	&&	(switchPosition2 == "FLEX")	) {		
 		$("#errorOutput p:first").html("");
 		switch(position) {
 		    case "QBtophp":
@@ -405,53 +406,46 @@ function verifyNoDupes(position, week, teamID) {
 }
 
 function comparePotentialDupes (switchPosition1, switchPosition2, position, phpResponse, week, teamID){
-    if(	( 
-	  		($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
-	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])
-  		)
-  	  	&& 	
-		(
-		  	($('#input'+switchPosition1).val() != null)	&&
-	  		($('#input'+switchPosition2).val() != null)
-  		)	
-  ) {
-	  console.log("values were the same!");
+    if(	(	($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
+	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])		)	&& 	
+		(	($('#input'+switchPosition1).val() != null)	&&
+		(	$('#input'+switchPosition2).val() != null)		)												) 
+	{
+			console.log("values were the same!");
+			$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
+			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
 
-		$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
-		$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
-
-		switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID);
-		//makeChangesToTeamRoster(position, week, teamID, true);			  
-	  } else {
-	  makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, false);			  
-	  }
+			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID);
+			//makeChangesToTeamRoster(position, week, teamID, true);			  
+	} else {
+			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, false);			  
+	}
 }
 
-function addPlayerToRoster(confirmPosition, dataString, isLastConfirm) {
+function switchPlayerUpdateRoster(position1, position2, week, teamID) {
+  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
 	$.ajax({
 		type: "POST",
 		url: "testpage2.php",
 		data: dataString,
 		success: function(response) {
 			console.log("switch players: "+response);
+			confirmPlayer(position1.toLowerCase());
 			
-			if(isLastConfirm) {
-				console.log("lastConfirm");
-				confirmPlayer(confirmPosition);
-				getFantasyPoints();
-			}
+		  	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
+			$.ajax({
+				type: "POST",
+				url: "testpage2.php",
+				data: dataString,
+				success: function(response) {
+					console.log("switch players: "+response);
+					console.log("lastConfirm");
+					confirmPlayer(position2.toLowerCase());
+					getFantasyPoints();
+				}
+			});
 		}
-	});
-}
-
-function switchPlayerUpdateRoster(position1, position2, week, teamID) {
-  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(position1.toLowerCase(), dataString, false);
-
-  	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(position2.toLowerCase(), dataString, true);
-	
-	
+	});	
 }
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
