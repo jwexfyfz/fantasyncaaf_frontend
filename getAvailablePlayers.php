@@ -59,11 +59,7 @@
 	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('WR','TE');";
 	} 
 	//RB1:	Allow RB and FB positions
-	else if(isset($_POST['RB1tophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','FB');";
-	} 
-	//RB2:	Allow RB and FB positions
-	else if(isset($_POST['RB2tophp'])) {
+	else if(isset($_POST['RBtophp'])) {
 	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','FB');";
 	} 
 	//DEF:	Select from collegeTeams table
