@@ -301,7 +301,8 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 	console.log("from makeChangesToTeamRoster, switchPostion1="+switchPosition1+", switchPosition2="+switchPosition2);
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
-	} else {
+	} 
+	else if(	(switchPosition1 == "TE")	&&	(switchPosition2 == "FLEX")	) {
 		$("#errorOutput p:first").html("");
 		switch(position) {
 		    case "QBtophp":
@@ -363,13 +364,8 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 		    success: function(response) {
 		      $('#result').html(response);
 			  console.log("successfully sent selected position that changed! "+position);	//For testing
-		  
-			  if(	(switchPosition1 == "TE")	&& 
-				  	(switchPosition2 == "FLEX")
-		  		) {
-	  			  confirmPlayer(confirmPosition);
-				  getFantasyPoints();
-		  		}
+			  confirmPlayer(confirmPosition);
+			  getFantasyPoints();
 		    }
 		});
 	}
