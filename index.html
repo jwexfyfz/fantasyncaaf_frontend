@@ -13,7 +13,7 @@
 		<table class="headerTable" id="currentWeekDisplayTable">
 			<th class="headerTableColumn" id="avatarBox"></th>
 			<th class="headerTableColumn" id="currentWeekBox">
-				<div class="custom-select" style="width:200px; top:0; right:0; position:absolute">
+				<div class="custom-select" id="currentWeekNum" style="width:200px; top:0; right:0; position:absolute" onchange="updatePage()" >
 					<select>
 						<option value="1">Week 1</option>
 						<option value="2">Week 2</option>
@@ -49,6 +49,7 @@
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	<table>
 		<tr style="height: 104px"></tr>
+		<!-- Switching out week select statement to see if it works
 		<tr>
 			<td>Current week:</td>
 			<td>
@@ -69,6 +70,7 @@
 				</select>
 			</td>
 		</tr>
+		-->
 		<tr>
 			<td>Team:</td>
 			<td id="currentTeamName"></td>
