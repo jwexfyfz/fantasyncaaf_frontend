@@ -52,9 +52,9 @@ function populateStandings(teamID, getNameFromID) {
 		  
 		  for(i = 0; i < phpResponse.length; i++) {
 			  if(phpResponse[i]["teamID"] == teamID) {
-			  	  $('#standingsTable').append('<tr style="background-color: #EEEEEE"><td>'+(i+1)+'</td><td>'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td>'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
+			  	  $('#standingsTable').append('<tr style="background-color: #EEEEEE"><td class="standingsTableRow">'+(i+1)+'</td><td class="standingsTableRow">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
 			  } else {
-				  $('#standingsTable').append('<tr><td>'+(i+1)+'</td><td>'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td>'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
+				  $('#standingsTable').append('<tr><td class="standingsTableRow">'+(i+1)+'</td><td class="standingsTableRow">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
 			  }
 		  }
 		  
