@@ -36,6 +36,7 @@ $( document ).ready(
 });
 
 function updatePage() {
+	console.log("week changed to "+$('#currentWeekNum').val());
 	var urlArray = getUrlVars();
 	var week	=	$("#currentWeekNum").val();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
