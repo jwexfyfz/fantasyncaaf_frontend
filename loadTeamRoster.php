@@ -68,7 +68,7 @@
         //Set everything to null so at least you return something
         $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
-			"teamName"=>null,
+			"teamName"=>"",
             "teamID"=>$teamID, 
             "QB"=>null,
             "RB1"=>null, 
