@@ -17,7 +17,7 @@ $( document ).ready(
 		var teamName=	urlArray["teamName"];
 		$('#currentTeamName').html(teamName);
 		
-	    loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
+	    loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
 		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
@@ -41,16 +41,16 @@ function updatePage() {
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName=	urlArray["teamName"];
 	
-	loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
+	loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
 	
 }
 
-function loadTeamRoster(week, teamID) {
+function loadTeamRoster(week, teamID, teamName) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 	
 	//Send query to loadTeamRoster.php via AJAX
 	//This gets the roster that was already set by the user previously
