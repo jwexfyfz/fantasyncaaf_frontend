@@ -58,10 +58,10 @@
 		}
 			if($input == "null") {
 				//$sql = "UPDATE teamRoster set $position = \"\" where teamID = $teamID and week = $week;";
-				$sql = "UPDATE teamRoster set position = \"$position\", playerName = \"\"  where teamID = $teamID and week = $week;";
+				$sql = "UPDATE teamRoster set playerName = \"\" where teamID = $teamID and week = $week and position = \"$position\";";
 			} else {
 				//$sql = "UPDATE teamRoster set $position = \"$input\" where teamID = $teamID and week = $week;";
-				$sql = "UPDATE teamRoster set position = \"$position\", playerName = \"$input\" where teamID = $teamID and week = $week;";
+				$sql = "UPDATE teamRoster set playerName = \"$input\" where teamID = $teamID and week = $week and position = \"$position\";";
 			}
 			echo $sql;
 			$result = $conn->query($sql);
