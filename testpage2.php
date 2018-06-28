@@ -12,6 +12,7 @@
 	if (isset($_POST["weekNum"]) && isset($_POST["teamIDNum"])) {
 		$week = $_POST["weekNum"];
 		$teamID = $_POST["teamIDNum"];
+		$teamName = $_POST["teamName"];
 		
 		if (isset($_POST["QBtophp"])) {
 			$input = $_POST["QBtophp"];
@@ -54,18 +55,22 @@
 			$position = "FLEX";
 		}
 		else {
-			echo "Error: Something went wrong when passing info to PHP.  Please contact Jeff about this";
+			echo "Error 1: Something went wrong when passing info to PHP.  Please contact Jeff about this";
 		}
 			if($input == "null") {
-				$sql = "UPDATE teamRoster set $position = \"\" where teamID = $teamID and week = $week;";
+				//$sql = "UPDATE teamRoster set $position = \"\" where teamID = $teamID and week = $week;";
+				//$sql = "UPDATE teamRoster set playerName = \"\" where teamID = $teamID and week = $week and position = \"$position\";";
+				$sql = "INSERT INTO teamRoster (week, teamName, teamID, position, playerName, hasPlayed) VALUES ($week, \"$teamName\", $teamID, \"$position\", \"\", 0) ON DUPLICATE KEY UPDATE playerName=VALUES(playerName);";
 			} else {
-				$sql = "UPDATE teamRoster set $position = \"$input\" where teamID = $teamID and week = $week;";
+				//$sql = "UPDATE teamRoster set $position = \"$input\" where teamID = $teamID and week = $week;";
+				//$sql = "UPDATE teamRoster set playerName = \"$input\" where teamID = $teamID and week = $week and position = \"$position\";";
+				$sql = "INSERT INTO teamRoster (week, teamName, teamID, position, playerName, hasPlayed) VALUES ($week, \"$teamName\", $teamID, \"$position\", \"$input\", 0) ON DUPLICATE KEY UPDATE playerName=VALUES(playerName);";
 			}
 			echo $sql;
 			$result = $conn->query($sql);
 	}
 	else {
-		echo "Error: Something went wrong when passing info to PHP.  Please contact Jeff about this";
+		echo "Error 2: Something went wrong when passing info to PHP.  Please contact Jeff about this";
 	}
 	
     

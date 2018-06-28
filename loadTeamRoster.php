@@ -9,15 +9,17 @@
 
 	$weekNum = $_POST["weekNum"];
 	$teamID = $_POST["teamIDNum"];
+	$teamName = $_POST["teamName"];
     //Query to get team rosters
-    $sql = "SELECT * FROM teamRoster where teamID in ($teamID);";
+    $sql = "SELECT * FROM teamRoster where teamID in ($teamID) and week in ($weekNum);";
+	//$sql = "SELECT week, teamName, teamID, playerName, position FROM teamRoster where teamID in ($teamID);";
     $result = $conn->query($sql);
 
-    $index = 0;
+//    $index = 0;
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            $week = $row["week"];
+            /*$week = $row["week"];
             $teamName = $row["teamName"];
             $teamID = $row["teamID"];
             $QB = $row["QB"];
@@ -30,11 +32,17 @@
             $K = $row["K"];
             $DEF = $row["DEF"];
             $FLEX = $row["FLEX"];
-            
+            */
+			$position = $row["position"];
+			$teamRoster[$row["week"]]["$position"] = $row["playerName"];
+			$teamRoster[$row["week"]]["week"] = $row["week"];
+			$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
+			$teamRoster[$row["week"]]["teamID"] = $row["teamID"];
+			
             //echo "Finished reading row ".$index."<br>";
             
             //Assign rows from table to team roster array
-            $teamRoster[$week] = array(
+            /*$teamRoster[$week] = array(
                 "week"=>$week, 
                 "teamName"=>$teamName, 
                 "teamID"=>$teamID, 
@@ -48,19 +56,20 @@
                 "K"=>$K, 
                 "DEF"=>$DEF, 
                 "FLEX"=>$FLEX);
-
+*/
 /*
             //Print team roster
             foreach($teamRoster as $key => $value) {
                 echo $key.": ".$value."<br>";
             }
 */
-            $index++;
+//            $index++;
         }
     } else {
         //Set everything to null so at least you return something
         $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
+			"teamName"=>$teamName,
             "teamID"=>$teamID, 
             "QB"=>null,
             "RB1"=>null, 

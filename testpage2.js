@@ -17,7 +17,7 @@ $( document ).ready(
 		var teamName=	urlArray["teamName"];
 		$('#currentTeamName').html(teamName);
 		
-	    loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
+	    loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
 		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
@@ -41,16 +41,16 @@ function updatePage() {
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName=	urlArray["teamName"];
 	
-	loadTeamRoster(week, teamID);	//Populate select lists based on the week, set rosters that have already been chosen
+	loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
 	
 }
 
-function loadTeamRoster(week, teamID) {
+function loadTeamRoster(week, teamID, teamName) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 	
 	//Send query to loadTeamRoster.php via AJAX
 	//This gets the roster that was already set by the user previously
@@ -247,6 +247,7 @@ function sendToPhp(position) {
 	var week=$("#currentWeekNum").val();	//Get week # from page	TODO: jeffwang to figure out how to dynamically change week	
 	var urlArray = getUrlVars();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+	var teamName = urlArray["teamName"];
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
 	
@@ -286,7 +287,7 @@ function sendToPhp(position) {
 	}
 	
 	//var dupesExist = false;
-	verifyNoDupes(position, week, teamID);		//Check for dupes
+	verifyNoDupes(position, week, teamID, teamName);		//Check for dupes
 	
 	//JEFF TO CONFIRM THIS CODE: checkGameStarted returns an array of disabled newPositions. Only run the code below if a position is not disabled. This should also run checkGameStarted which is what we want.
 	//if (!checkGameStarted(week, teamID).indexOf(newPosition) > -1) {
@@ -297,7 +298,7 @@ function sendToPhp(position) {
 	
 }
 
-function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, dupesExist) {
+function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, dupesExist) {
 	console.log("from makeChangesToTeamRoster, switchPostion1="+switchPosition1+", switchPosition2="+switchPosition2);
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
@@ -307,43 +308,43 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 		$("#errorOutput p:first").html("");
 		switch(position) {
 		    case "QBtophp":
-		        dataString = 'QBtophp='+$('#inputQB').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'QBtophp='+$('#inputQB').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "qb";
 		        break;
 		    case "RB1tophp":
-		        dataString = 'RB1tophp='+$('#inputRB1').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'RB1tophp='+$('#inputRB1').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "rb1";
 		        break;
 			case "RB2tophp":
-		        dataString = 'RB2tophp='+$('#inputRB2').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'RB2tophp='+$('#inputRB2').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "rb2";
 		        break;
 		    case "WR1tophp":
-		        dataString = 'WR1tophp='+$('#inputWR1').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'WR1tophp='+$('#inputWR1').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "wr1";
 		        break;
 			case "WR2tophp":
-		        dataString = 'WR2tophp='+$('#inputWR2').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'WR2tophp='+$('#inputWR2').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "wr2";
 		        break;
 			case "WR3tophp":
-		        dataString = 'WR3tophp='+$('#inputWR3').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'WR3tophp='+$('#inputWR3').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "wr3";
 		        break;
 			case "TEtophp":
-		        dataString = 'TEtophp='+$('#inputTE').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'TEtophp='+$('#inputTE').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "te";
 		        break;
 			case "Ktophp":
-		        dataString = 'Ktophp='+$('#inputK').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'Ktophp='+$('#inputK').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "k";
 		        break;
 			case "DEFtophp":
-		        dataString = 'DEFtophp='+$('#inputDEF').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'DEFtophp='+$('#inputDEF').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "def";
 		        break;
 			case "FLEXtophp":
-		        dataString = 'FLEXtophp='+$('#inputFLEX').val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		        dataString = 'FLEXtophp='+$('#inputFLEX').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 				confirmPosition = "flex";
 		        break;
 		    //Empty data string will return error message from php because it can't find parameters that are set
@@ -374,11 +375,11 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes(position, week, teamID) {	
+function verifyNoDupes(position, week, teamID, teamName) {	
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 	var temp;
 	
 	//Send query to loadTeamRoster.php via AJAX
@@ -391,21 +392,21 @@ function verifyNoDupes(position, week, teamID) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  //Player changes RB1 to equal the same value as teamRoster's RB2
-	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID);
-	      comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID);
-	      comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID);
-	      comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID);
-	      comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID);
-	      comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID);
-	      comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID);
-	      comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID);
-	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID);
-	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID);
+	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
+	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
 	    }
 	});  
 }
 
-function comparePotentialDupes (switchPosition1, switchPosition2, position, phpResponse, week, teamID){
+function comparePotentialDupes (switchPosition1, switchPosition2, position, phpResponse, week, teamID, teamName){
     if(	(	($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
 	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])		)	&& 	
 		(	($('#input'+switchPosition1).val() != null)	&&
@@ -415,14 +416,14 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 			$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
 			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
 
-			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID);
+			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID, teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
 	} else {
-			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, false);			  
+			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);			  
 	}
 }
 
-function switchPlayerUpdateRoster(position1, position2, week, teamID) {
+function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) {
   	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
 	$.ajax({
 		type: "POST",
@@ -432,7 +433,7 @@ function switchPlayerUpdateRoster(position1, position2, week, teamID) {
 			console.log("switch players: "+response);
 			confirmPlayer(position1.toLowerCase());
 			
-		  	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
+		  	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 			$.ajax({
 				type: "POST",
 				url: "testpage2.php",
@@ -568,7 +569,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-	      $('#result2').html(response);
+	      //$('#result2').html(response);
 		  //console.log("successfully queried for eligible player names!");
 		  var playerList=JSON.parse(response);
 		  
@@ -598,7 +599,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	if (inputPosition == "inputDEF") {
 		for(i = 0; i < positionList.length; i++) {
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
-			if (positionList[i]["timesUsed"] >= 5) {
+			if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 				select.options[select.options.length-1].disabled = true;
 			}
 		}
