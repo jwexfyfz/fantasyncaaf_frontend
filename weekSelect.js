@@ -67,6 +67,10 @@ function closeAllSelect(elmnt) {
     }
   }
 }
+
+$("#currentWeekNum").change(function() {
+  alert( "Handler for .change() called." );
+});
 /*if the user clicks anywhere outside the select box,
 then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
