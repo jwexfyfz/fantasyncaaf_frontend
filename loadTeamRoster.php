@@ -10,7 +10,7 @@
 	$weekNum = $_POST["weekNum"];
 	$teamID = $_POST["teamIDNum"];
     //Query to get team rosters
-    $sql = "SELECT * FROM teamRoster where teamID in ($teamID);";
+    $sql = "SELECT * FROM teamRoster where teamID in ($teamID) and week in ($weekNum);";
 	//$sql = "SELECT week, teamName, teamID, playerName, position FROM teamRoster where teamID in ($teamID);";
     $result = $conn->query($sql);
 
