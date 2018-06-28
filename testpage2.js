@@ -297,7 +297,7 @@ function sendToPhp(position) {
 	
 }
 
-function makeChangesToTeamRoster(position, week, teamID, dupesExist) {
+function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, dupesExist) {
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	} else {
@@ -363,9 +363,12 @@ function makeChangesToTeamRoster(position, week, teamID, dupesExist) {
 		      $('#result').html(response);
 			  console.log("successfully sent selected position that changed! "+position);	//For testing
 		  
-			  confirmPlayer(confirmPosition);
-			  console.log("ran confirmPlayer function");
-			  getFantasyPoints();
+			  if(	(switchPosition1 == "TE")	&& 
+				  	(switchPosition2 == "FLEX")
+		  		) {
+	  			  confirmPlayer(confirmPosition);
+				  getFantasyPoints();
+		  		}
 		    }
 		});
 	}
@@ -400,7 +403,6 @@ function verifyNoDupes(position, week, teamID) {
 	      comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID);
 	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID);
 	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID);
-	      comparePotentialDupes("K", "FLEX", position, phpResponse, week, teamID);
 	    }
 	});  
 }
@@ -422,13 +424,13 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 		$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
 
 		switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID);
-		makeChangesToTeamRoster(position, week, teamID, true);			  
+		//makeChangesToTeamRoster(position, week, teamID, true);			  
 	  } else {
-	  makeChangesToTeamRoster(position, week, teamID, false);			  
+	  makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, false);			  
 	  }
 }
 
-function addPlayerToRoster(dataString) {
+function addPlayerToRoster(confirmPosition, dataString) {
 	$.ajax({
 		type: "POST",
 		url: "testpage2.php",
@@ -436,6 +438,7 @@ function addPlayerToRoster(dataString) {
 		success: function(response) {
 			console.log("switch players: "+response);
 
+			confirmPlayer(confirmPosition);
 			getFantasyPoints();
 		}
 	});
@@ -443,10 +446,12 @@ function addPlayerToRoster(dataString) {
 
 function switchPlayerUpdateRoster(position1, position2, week, teamID) {
   	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(dataString);
+	addPlayerToRoster(position1.toLowerCase(), dataString);
 
   	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(dataString);
+	addPlayerToRoster(position2.toLowerCase(), dataString);
+	
+	
 }
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
