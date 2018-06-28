@@ -60,11 +60,11 @@
 			if($input == "null") {
 				//$sql = "UPDATE teamRoster set $position = \"\" where teamID = $teamID and week = $week;";
 				//$sql = "UPDATE teamRoster set playerName = \"\" where teamID = $teamID and week = $week and position = \"$position\";";
-				$sql = "INSERT INTO teamRoster (week, teamName, teamID, position, playerName, hasPlayed) VALUES ($week, $teamName, $teamID, \"$position\", \"\", 0) ON DUPLICATE KEY UPDATE playerName=VALUES(playerName);";
+				$sql = "INSERT INTO teamRoster (week, teamName, teamID, position, playerName, hasPlayed) VALUES ($week, \"$teamName\", $teamID, \"$position\", \"\", 0) ON DUPLICATE KEY UPDATE playerName=VALUES(playerName);";
 			} else {
 				//$sql = "UPDATE teamRoster set $position = \"$input\" where teamID = $teamID and week = $week;";
 				//$sql = "UPDATE teamRoster set playerName = \"$input\" where teamID = $teamID and week = $week and position = \"$position\";";
-				$sql = "INSERT INTO teamRoster (week, teamName, teamID, position, playerName, hasPlayed) VALUES ($week, $teamName, $teamID, \"$position\", \"$input\", 0) ON DUPLICATE KEY UPDATE playerName=VALUES(playerName);";
+				$sql = "INSERT INTO teamRoster (week, teamName, teamID, position, playerName, hasPlayed) VALUES ($week, \"$teamName\", $teamID, \"$position\", \"$input\", 0) ON DUPLICATE KEY UPDATE playerName=VALUES(playerName);";
 			}
 			echo $sql;
 			$result = $conn->query($sql);
