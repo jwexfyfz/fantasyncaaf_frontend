@@ -70,3 +70,12 @@ function getUrlVars() {
     });
     return vars;
 }
+
+function updatePage() {
+	//This is a dummy function because weekSelect.js calls updatePage() when new week is selected
+	console.log("updatePage() called");
+}
+function allMatchupsFunction() {
+	//This is a dummy function because weekSelect.js calls allMatchupsFunction() when new week is selected
+	console.log("allMatchupsFunction() called");
+}

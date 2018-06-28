@@ -622,3 +622,7 @@ function confirmPlayer(position) {
 	$('#'+position+'Confirm').fadeIn("fast");
 	$('#'+position+'Confirm').delay(300).fadeOut("slow");
 }
+function allMatchupsFunction() {
+	//This is a dummy function because weekSelect.js calls allMatchupsFunction() when new week is selected
+	console.log("allMatchupsFunction() called");
+}

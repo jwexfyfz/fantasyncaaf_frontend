@@ -35,6 +35,9 @@ for (i = 0; i < x.length; i++) {
           }
         }
         h.click();
+		console.log("new select value chosen, calling updatePage()");
+		updatePage();
+		allMatchupsFunction();
     });
     b.appendChild(c);
   }
@@ -68,9 +71,7 @@ function closeAllSelect(elmnt) {
   }
 }
 
-$("#currentWeekNum").change(function() {
-  alert( "Handler for .change() called." );
-});
+
 /*if the user clicks anywhere outside the select box,
 then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
