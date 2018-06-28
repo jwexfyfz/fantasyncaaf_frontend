@@ -76,12 +76,45 @@
 	//echo $sql;
     $result = $conn->query($sql);
 
-    //$index = 0;
-	//var $playerArray = array();
+    $index = 0;
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            if($defSelected) {
+			if ($defSelected) {
+				if(isset($usedPlayerTable[$row["teamID"]])) {
+					$playerArray[$index] = array(
+						"playerName"=>$row["teamName"],
+						"timesUsed"=>$usedPlayerTable[$row["teamID"]]
+					);
+				}
+				else {
+					$playerArray[$index] = array(
+						"playerName"=>$row["teamName"],
+						"timesUsed"=>0
+					);
+				}
+			}
+			else {
+				if(isset($usedPlayerTable[$row["playerID"]])) {
+					$playerArray[$index] = array(
+						"playerName"=>$row["playerName"],
+						"position"=>$row["position"],
+						"team"=>$row["team"],
+						"timesUsed"=>$usedPlayerTable[$row["playerID"]]
+					);
+				}
+				else {
+					$playerArray[$index] = array(
+						"playerName"=>$row["playerName"],
+						"position"=>$row["position"],
+						"team"=>$row["team"],
+						"timesUsed"=>0
+					);
+				}
+			}
+			$index++;
+			
+            /*if($defSelected) {
             	$playerArray[$row["teamName"]] = $row["teamName"];
             } else {
 				if(isset($usedPlayerTable[$row["playerID"]])) {
@@ -93,7 +126,7 @@
 					//echo $playerArray[$row["playerName"]];
 		            //$index++;
 				}
-            }
+            }*/
         }
     } else {
         echo "0 results";

@@ -470,7 +470,6 @@ function checkGameStarted(week, fantasyID) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
 		  
 		  //Iterate through game times and disable selector for players whose games have started
-		  //TODO: Player used logic
 		  
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
@@ -499,7 +498,7 @@ function checkGameStarted(week, fantasyID) {
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
-function updateTimesPlayerUsed(playerID, fantasyID, week, position) {  // TODO add query to flip the played bit in updateTimesPlayerUsed - will need to pass in week, fantasyID, playerName
+function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 	var phpResponse;
 	
 	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID+'&weekNum='+week+'&position='+position;
@@ -509,7 +508,6 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {  // TODO a
 		url: "updateTimesPlayerUsed.php",
 		data: dataString,
 		success: function(response) {
-			//phpResponse = JSON.parse(response);
 			console.log("timesplayerused updated");
 		}
 	});
@@ -571,7 +569,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-	      //$('#result2').html(response);
+	      $('#result2').html(response);
 		  //console.log("successfully queried for eligible player names!");
 		  var playerList=JSON.parse(response);
 		  
@@ -590,12 +588,30 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 //jeffwang 3/14/2018: This function is currently called by function getDataForChoosePlayerLists(), which is run on document.ready
 //It takes the following inputs: 1) ID of select, 2) array of eligible players, 3) player currently on the roster
 //It populates the selects, and sets the current selected player to show the user what their roster is currently
+//cauchychoi 6/26/2018: Refactored where the array of eligible players is (playerName, position, team, timesUsed) or (playerName, timesUsed) for defense
+//Also added select option disabled for players with 5+ uses
 //TODO: jeffwang to think through use case where defensive players are being used on offense (e.g. Myles Jack)
 function populateChoosePlayerLists(inputPosition, positionList, currentSelectedPlayer) {
     var select = document.getElementById(inputPosition);
-    for(var index in positionList) {
-        select.options[select.options.length] = new Option(positionList[index], index);
-    }
+    //for(var index in positionList) {
+    //    select.options[select.options.length] = new Option(positionList[index], index);
+    //}
+	if (inputPosition == "inputDEF") {
+		for(i = 0; i < positionList.length; i++) {
+			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+			if (positionList[i]["timesUsed"] >= 5) {
+				select.options[select.options.length-1].disabled = true;
+			}
+		}
+	}
+	else {
+		for(i = 0; i < positionList.length; i++) {
+			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+			if (positionList[i]["timesUsed"] >= 5) {
+				select.options[select.options.length-1].disabled = true;
+			}
+		}
+	}
 	select.value = currentSelectedPlayer;
 };
 
