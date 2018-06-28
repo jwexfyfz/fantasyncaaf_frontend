@@ -55,7 +55,7 @@
 			$position = "FLEX";
 		}
 		else {
-			echo "Error: Something went wrong when passing info to PHP.  Please contact Jeff about this";
+			echo "Error 1: Something went wrong when passing info to PHP.  Please contact Jeff about this";
 		}
 			if($input == "null") {
 				//$sql = "UPDATE teamRoster set $position = \"\" where teamID = $teamID and week = $week;";
@@ -70,7 +70,7 @@
 			$result = $conn->query($sql);
 	}
 	else {
-		echo "Error: Something went wrong when passing info to PHP.  Please contact Jeff about this";
+		echo "Error 2: Something went wrong when passing info to PHP.  Please contact Jeff about this";
 	}
 	
     
