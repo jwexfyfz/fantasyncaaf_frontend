@@ -379,7 +379,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 	var temp;
 	
 	//Send query to loadTeamRoster.php via AJAX

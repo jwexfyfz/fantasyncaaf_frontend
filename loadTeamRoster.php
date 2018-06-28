@@ -9,6 +9,7 @@
 
 	$weekNum = $_POST["weekNum"];
 	$teamID = $_POST["teamIDNum"];
+	$teamName = $_POST["teamName"];
     //Query to get team rosters
     $sql = "SELECT * FROM teamRoster where teamID in ($teamID) and week in ($weekNum);";
 	//$sql = "SELECT week, teamName, teamID, playerName, position FROM teamRoster where teamID in ($teamID);";
@@ -68,7 +69,7 @@
         //Set everything to null so at least you return something
         $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
-			"teamName"=>"",
+			"teamName"=>$teamName,
             "teamID"=>$teamID, 
             "QB"=>null,
             "RB1"=>null, 
