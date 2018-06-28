@@ -298,6 +298,7 @@ function sendToPhp(position) {
 }
 
 function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, dupesExist) {
+	console.log("from makeChangesToTeamRoster, switchPostion1="+switchPosition1+", switchPosition2="+switchPosition2);
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
 	} else {
@@ -430,26 +431,29 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 	  }
 }
 
-function addPlayerToRoster(confirmPosition, dataString) {
+function addPlayerToRoster(confirmPosition, dataString, isLastConfirm) {
 	$.ajax({
 		type: "POST",
 		url: "testpage2.php",
 		data: dataString,
 		success: function(response) {
 			console.log("switch players: "+response);
-
-			confirmPlayer(confirmPosition);
-			getFantasyPoints();
+			
+			if(isLastConfirm) {
+				console.log("lastConfirm");
+				confirmPlayer(confirmPosition);
+				getFantasyPoints();
+			}
 		}
 	});
 }
 
 function switchPlayerUpdateRoster(position1, position2, week, teamID) {
   	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(position1.toLowerCase(), dataString);
+	addPlayerToRoster(position1.toLowerCase(), dataString, false);
 
   	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(position2.toLowerCase(), dataString);
+	addPlayerToRoster(position2.toLowerCase(), dataString, true);
 	
 	
 }
