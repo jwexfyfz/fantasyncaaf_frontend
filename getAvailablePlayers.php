@@ -7,13 +7,18 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
-	$weekNum = $_POST["weekNum"];
+	//Default value for defSelected variable (used to figure out if the function from JS is for offense or for defense)
 	$defSelected = false;
 	
+	//Get week # from POST
+	$weekNum = $_POST["weekNum"];
+	
+	//Get team ID from POST
 	if(isset($_POST['teamID'])) {
 		$team = $_POST["teamID"];
 	} 
 		
+	//Read timesPlayerUsed table to extract how many times specific players have been used. Output into array (usedPlayerTable) keyed on player ID.
     $sql = "SELECT playerID, timesUsed FROM timesPlayerUsed where teamID = $team";
     $result = $conn->query($sql);
 	if ($result->num_rows > 0) {
@@ -45,9 +50,20 @@
 		$qPosition = $_POST["Ktophp"];
 	} 
 	
+	//FLEX:	Allow RB, FB, WR, and TE positions 
 	if(isset($_POST['FLEXtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','WR','TE');";
-	} else if(isset($_POST['DEFtophp'])) {
+	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','FB','WR','TE');";
+	} 
+	//TE:	Allow TE and WR positions
+	else if(isset($_POST['TEtophp'])) {
+	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('WR','TE');";
+	} 
+	//RB1:	Allow RB and FB positions
+	else if(isset($_POST['RBtophp'])) {
+	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','FB');";
+	} 
+	//DEF:	Select from collegeTeams table
+	else if(isset($_POST['DEFtophp'])) {
 	    $sql = "SELECT teamName, teamID FROM collegeTeams;";
 	} else {
     	//Query to get team rosters

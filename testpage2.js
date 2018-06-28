@@ -297,10 +297,13 @@ function sendToPhp(position) {
 	
 }
 
-function makeChangesToTeamRoster(position, week, teamID, dupesExist) {
+function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, dupesExist) {
+	console.log("from makeChangesToTeamRoster, switchPostion1="+switchPosition1+", switchPosition2="+switchPosition2);
 	if(dupesExist) {
 		$("#errorOutput p:first").html("Can't have duplicate players!");
-	} else {
+	} 
+	//This else condition is here because this function is called many times, so we don't want to execute a query to sql every time.  TE and FLEX happen to be the last one.  TODO: jeffwang to remove the extra query to sql from this function after two players have already been switched via addPlayerToRoster function
+	else if(	(switchPosition1 == "TE")	&&	(switchPosition2 == "FLEX")	) {		
 		$("#errorOutput p:first").html("");
 		switch(position) {
 		    case "QBtophp":
@@ -362,9 +365,7 @@ function makeChangesToTeamRoster(position, week, teamID, dupesExist) {
 		    success: function(response) {
 		      $('#result').html(response);
 			  console.log("successfully sent selected position that changed! "+position);	//For testing
-		  
 			  confirmPlayer(confirmPosition);
-			  console.log("ran confirmPlayer function");
 			  getFantasyPoints();
 		    }
 		});
@@ -373,26 +374,7 @@ function makeChangesToTeamRoster(position, week, teamID, dupesExist) {
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes(position, week, teamID) {
-    /*
-	if(		(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)		) ||
-			(	($('#inputWR1').val() == $('#inputWR2').val()) 	&& ($('#inputWR1').val() != null)		) ||
-			(	($('#inputWR2').val() == $('#inputWR3').val()) 	&& ($('#inputWR2').val() != null)		) ||
-			(	($('#inputWR1').val() == $('#inputWR3').val()) 	&& ($('#inputWR3').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputRB1').val())	&& ($('#inputRB1').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputRB2').val())	&& ($('#inputRB2').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputWR1').val()) && ($('#inputWR1').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputWR2').val()) && ($('#inputWR2').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputWR3').val()) && ($('#inputWR3').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputTE').val()) 	&& ($('#inputTE').val() != null)		)
-	) {
-		
-		return true;
-	} else {
-		return false;
-	}
-    */
-	
+function verifyNoDupes(position, week, teamID) {	
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
@@ -419,53 +401,51 @@ function verifyNoDupes(position, week, teamID) {
 	      comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID);
 	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID);
 	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID);
-	      comparePotentialDupes("K", "FLEX", position, phpResponse, week, teamID);
 	    }
 	});  
 }
 
 function comparePotentialDupes (switchPosition1, switchPosition2, position, phpResponse, week, teamID){
-    if(	( 
-	  		($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
-	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])
-  		)
-  	  	&& 	
-		(
-		  	($('#input'+switchPosition1).val() != null)	&&
-	  		($('#input'+switchPosition2).val() != null)
-  		)	
-  ) {
-	  console.log("values were the same!");
+    if(	(	($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
+	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])		)	&& 	
+		(	($('#input'+switchPosition1).val() != null)	&&
+		(	$('#input'+switchPosition2).val() != null)		)												) 
+	{
+			console.log("values were the same!");
+			$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
+			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
 
-		$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
-		$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
-
-		switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID);
-		makeChangesToTeamRoster(position, week, teamID, true);			  
-	  } else {
-	  makeChangesToTeamRoster(position, week, teamID, false);			  
-	  }
+			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID);
+			//makeChangesToTeamRoster(position, week, teamID, true);			  
+	} else {
+			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, false);			  
+	}
 }
 
-function addPlayerToRoster(dataString) {
+function switchPlayerUpdateRoster(position1, position2, week, teamID) {
+  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
 	$.ajax({
 		type: "POST",
 		url: "testpage2.php",
 		data: dataString,
 		success: function(response) {
 			console.log("switch players: "+response);
-
-			getFantasyPoints();
+			confirmPlayer(position1.toLowerCase());
+			
+		  	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
+			$.ajax({
+				type: "POST",
+				url: "testpage2.php",
+				data: dataString,
+				success: function(response) {
+					console.log("switch players: "+response);
+					console.log("lastConfirm");
+					confirmPlayer(position2.toLowerCase());
+					getFantasyPoints();
+				}
+			});
 		}
-	});
-}
-
-function switchPlayerUpdateRoster(position1, position2, week, teamID) {
-  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(dataString);
-
-  	dataString = position2+'tophp='+$('#input'+position2).val()+'&weekNum='+week+'&teamIDNum='+teamID;
-	addPlayerToRoster(dataString);
+	});	
 }
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
