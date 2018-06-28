@@ -373,26 +373,7 @@ function makeChangesToTeamRoster(position, week, teamID, dupesExist) {
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes(position, week, teamID) {
-    /*
-	if(		(	($('#inputRB1').val() == $('#inputRB2').val()) 	&& ($('#inputRB1').val() != null)		) ||
-			(	($('#inputWR1').val() == $('#inputWR2').val()) 	&& ($('#inputWR1').val() != null)		) ||
-			(	($('#inputWR2').val() == $('#inputWR3').val()) 	&& ($('#inputWR2').val() != null)		) ||
-			(	($('#inputWR1').val() == $('#inputWR3').val()) 	&& ($('#inputWR3').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputRB1').val())	&& ($('#inputRB1').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputRB2').val())	&& ($('#inputRB2').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputWR1').val()) && ($('#inputWR1').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputWR2').val()) && ($('#inputWR2').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputWR3').val()) && ($('#inputWR3').val() != null)		) ||
-			(	($('#inputFLEX').val() == $('#inputTE').val()) 	&& ($('#inputTE').val() != null)		)
-	) {
-		
-		return true;
-	} else {
-		return false;
-	}
-    */
-	
+function verifyNoDupes(position, week, teamID) {	
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
