@@ -9,7 +9,7 @@
 	
 	$input = "";
 
-	if (isset($_POST["weekNum"]) && isset($_POST["teamIDNum"]) && isset($_POST["teamName"])) {
+	if (isset($_POST["weekNum"]) && isset($_POST["teamIDNum"])) {
 		$week = $_POST["weekNum"];
 		$teamID = $_POST["teamIDNum"];
 		$teamName = $_POST["teamName"];
