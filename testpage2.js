@@ -628,6 +628,12 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		}
 	}
 	select.value = currentSelectedPlayer;
+	if (positionList[i]["timesUsed"] >= 5) {
+		select.value.style.color="red";
+	}
+	else if (positionList[i]["timesUsed"] == 4) {
+		select.value.style.color="#FFA500";
+	}
 };
 
 //jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
