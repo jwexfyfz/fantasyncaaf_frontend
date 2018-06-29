@@ -53,32 +53,6 @@
 		<tr style="height: 104px"></tr>
 			<!--Leave space between header and first table-->
 			<tr style="height: 10px"></tr>
-		<!-- Switching out week select statement to see if it works
-		<tr>
-			<td>Current week:</td>
-			<td>
-				<select id="currentWeekNum" onchange="updatePage()">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Team:</td>
-			<td id="currentTeamName"></td>
-		</tr>
-		-->
 	</table>
 	
 	<form method="POST">	
@@ -118,7 +92,7 @@
 	            <td class="myTeamTableRow">
 	                <label>QB:</label>
 	            </td>
-	            <td class="myTeamTableRow">
+	            <td class="myTeamTableRowLong">
 	                <select class="playerSelect" id="inputQB" name="QBtophp" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">

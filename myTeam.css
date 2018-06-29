@@ -30,3 +30,15 @@
 	text-align: center;
 	z-index:-1;
 }
+
+.myTeamTableRowLong {
+	position: relative;
+	margin: 0 auto;
+	font-weight:100;
+	height:50px;
+	line-height:50px;
+	color:#A0A0A0;
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+	z-index:-1;
+}
