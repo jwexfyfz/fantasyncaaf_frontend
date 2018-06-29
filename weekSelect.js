@@ -12,7 +12,7 @@ for (i = 0; i < x.length; i++) {
   b = document.createElement("DIV");
   b.setAttribute("class", "select-items select-hide");
   var height = screen.height-85;
-  var string = "overflow-y:auto; height:"+height+"px";
+  var string = "overflow-y:scroll; height:"+height+"px";
   console.log(string);
   b.setAttribute("style", string)
   for (j = 0; j < selElmnt.length; j++) {
