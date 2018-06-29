@@ -255,6 +255,8 @@ function sendToPhp(position) {
 	var urlArray = getUrlVars();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName = urlArray["teamName"];
+	console.log("teamName: "+teamName);
+	
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
 	
