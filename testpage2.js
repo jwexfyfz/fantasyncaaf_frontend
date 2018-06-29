@@ -614,7 +614,6 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				select.options[select.options.length-1].style.color="#FFA500";
 			}
 		}
-		$('#inputDEF').selectpicker('refresh');
 	}
 	else {
 		for(i = 0; i < positionList.length; i++) {
@@ -627,9 +626,9 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				select.options[select.options.length-1].style.color="#FFA500";
 			}
 		}
-		$('#'+inputPosition).selectpicker('refresh');
 	}
 	select.value = currentSelectedPlayer;
+	$('#'+inputPosition).selectpicker('refresh');
 };
 
 //jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
