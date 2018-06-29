@@ -37,7 +37,7 @@
 }
 /*style items (options):*/
 .select-items {
-  position: absolute;
+  position: relative;
   background-color: #808080;
   top: 100%;
   left: 0;

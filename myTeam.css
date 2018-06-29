@@ -28,7 +28,7 @@
 	color:#A0A0A0;
 	border-bottom: 1px solid #ddd;
 	text-align: center;
-	z-index:-1;
+
 }
 
 .myTeamTableRowLong {
@@ -40,5 +40,5 @@
 	color:#A0A0A0;
 	border-bottom: 1px solid #ddd;
 	text-align: left;
-	z-index:-1;
+
 }
