@@ -608,6 +608,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
 			if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 				select.options[select.options.length-1].disabled = true;
+				select.options[select.options.length-1].style.color="red";
 			}
 		}
 	}
@@ -616,6 +617,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
 			if (positionList[i]["timesUsed"] >= 5) {
 				select.options[select.options.length-1].disabled = true;
+				select.options[select.options.length-1].style.color="red";
 			}
 		}
 	}
