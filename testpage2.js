@@ -603,6 +603,8 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
     //for(var index in positionList) {
     //    select.options[select.options.length] = new Option(positionList[index], index);
     //}
+	
+	select.options[select.options.length] = new Option("");
 	if (inputPosition == "inputDEF") {
 		for(i = 0; i < positionList.length; i++) {
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
