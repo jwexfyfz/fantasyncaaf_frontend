@@ -424,16 +424,14 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
 
 			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID, teamName);
-			console.log("switchPlayerUpdateRoster teamName: "+teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
 	} else {
 			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
-			console.log("makeChangesToTeamRoster teamName: "+teamName);
 	}
 }
 
 function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) {
-  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
+  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 	$.ajax({
 		type: "POST",
 		url: "testpage2.php",
