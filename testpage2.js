@@ -610,6 +610,9 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				select.options[select.options.length-1].disabled = true;
 				select.options[select.options.length-1].style.color="red";
 			}
+			else if (positionList[i]["timesUsed"] == 4) {
+				select.options[select.options.length-1].style.color="orange";
+			}
 		}
 	}
 	else {
@@ -618,6 +621,9 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			if (positionList[i]["timesUsed"] >= 5) {
 				select.options[select.options.length-1].disabled = true;
 				select.options[select.options.length-1].style.color="red";
+			}
+			else if (positionList[i]["timesUsed"] == 4) {
+				select.options[select.options.length-1].style.color="orange";
 			}
 		}
 	}
