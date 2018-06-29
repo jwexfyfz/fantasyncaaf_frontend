@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-  <link rel="stylesheet" href="dist/css/bootstrap-select.css">
-
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.js" defer></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" defer></script>
-  <script src="dist/js/bootstrap-select.js" defer></script>
-  
-  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" href="dist/css/bootstrap-select.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" defer></script>
+	<script src="dist/js/bootstrap-select.js" defer></script>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 	
 	<select id="selector" class="selectpicker" data-live-search="true" data-width="100%" data-show-subtext="true">
-	  <option data-tokens="Josh Rosen UCLA" value = "Josh Rosen" data-subtext="QB, UCLA (0)">J. Rosen</option>
-	  <option data-tokens="Sam Darnold USC" value = "Sam Darnold" data-subtext="QB, USC (0)">S. Darnold</option>
-	  <option data-tokens="Manny Wilkins ASU Arizona State" value = "Manny Wilkins" data-subtext="QB, ASU (0)">M. Wilkins</option>
-	  <option data-tokens="Khalil Tate Arizona" value = "Khalil Tate" data-subtext="QB, Arizona (0)">K. Tate</option>
+		<option data-tokens="Josh Rosen UCLA" value = "Josh Rosen" data-subtext="QB, UCLA (0)">J. Rosen</option>
+		<option data-tokens="Sam Darnold USC" value = "Sam Darnold" data-subtext="QB, USC (0)">S. Darnold</option>
+		<option data-tokens="Manny Wilkins ASU Arizona State" value = "Manny Wilkins" data-subtext="QB, ASU (0)">M. Wilkins</option>
+		<option data-tokens="Khalil Tate Arizona" value = "Khalil Tate" data-subtext="QB, Arizona (0)">K. Tate</option>
 	</select>
 	
-	<script>
-		var sel = document.getElementById('selector');
-		var selected = sel.options[sel.selectedIndex];
-		var extra = selected.getAttribute('data-tokens');		
-		
+	<script>		
 		//Use this line to disable any of the selectable options
 		var disabledValue = "Sam Darnold";
 		$("#selector option[value='"+disabledValue+"']").attr('disabled','true');
