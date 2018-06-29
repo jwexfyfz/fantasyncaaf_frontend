@@ -254,6 +254,7 @@ function sendToPhp(position) {
 	var urlArray = getUrlVars();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName = urlArray["teamName"];
+	
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
 	
@@ -425,12 +426,12 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID, teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
 	} else {
-			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);			  
+			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
 	}
 }
 
 function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) {
-  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID;
+  	dataString = position1+'tophp='+$('#input'+position1).val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
 	$.ajax({
 		type: "POST",
 		url: "testpage2.php",
@@ -607,6 +608,10 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
 			if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 				select.options[select.options.length-1].disabled = true;
+				select.options[select.options.length-1].style.color="red";
+			}
+			else if (positionList[i]["timesUsed"] == 4) {
+				select.options[select.options.length-1].style.color="#FFA500";
 			}
 		}
 	}
@@ -615,6 +620,10 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
 			if (positionList[i]["timesUsed"] >= 5) {
 				select.options[select.options.length-1].disabled = true;
+				select.options[select.options.length-1].style.color="red";
+			}
+			else if (positionList[i]["timesUsed"] == 4) {
+				select.options[select.options.length-1].style.color="#FFA500";
 			}
 		}
 	}
