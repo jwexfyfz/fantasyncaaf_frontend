@@ -11,8 +11,8 @@ for (i = 0; i < x.length; i++) {
   /*for each element, create a new DIV that will contain the option list:*/
   b = document.createElement("DIV");
   b.setAttribute("class", "select-items select-hide");
-  var height = screen.height-85;
-  var string = "overflow-y:scroll; height:"+height+"px";
+  var height = screen.height-185;
+  var string = "overflow-y:scroll; max-height:663px; height:"+height+"px";
   console.log(string);
   b.setAttribute("style", string)
   for (j = 0; j < selElmnt.length; j++) {
