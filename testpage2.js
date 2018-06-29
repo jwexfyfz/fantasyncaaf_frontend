@@ -46,7 +46,6 @@ function updatePage() {
 	var week	=	$("#currentWeekNum").val();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName=	urlArray["teamName"];
-	console.log("teamName: "+teamName);
 	
 	loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
@@ -255,7 +254,6 @@ function sendToPhp(position) {
 	var urlArray = getUrlVars();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName = urlArray["teamName"];
-	console.log("teamName: "+teamName);
 	
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
@@ -426,9 +424,11 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
 
 			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID, teamName);
+			console.log("switchPlayerUpdateRoster teamName: "+teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
 	} else {
-			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);			  
+			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
+			console.log("makeChangesToTeamRoster teamName: "+teamName);
 	}
 }
 
