@@ -612,7 +612,6 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			}
 			else if (positionList[i]["timesUsed"] == 4) {
 				select.options[select.options.length-1].style.color="#FFA500";
-				select.value.style.color="red";
 			}
 		}
 	}
@@ -625,7 +624,6 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			}
 			else if (positionList[i]["timesUsed"] == 4) {
 				select.options[select.options.length-1].style.color="#FFA500";
-				select.value.style.color="#FFA500";
 			}
 		}
 	}
