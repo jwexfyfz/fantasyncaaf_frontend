@@ -40,6 +40,7 @@ function updatePage() {
 	var week	=	$("#currentWeekNum").val();
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName=	urlArray["teamName"];
+	console.log("teamName: "+teamName);
 	
 	loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
