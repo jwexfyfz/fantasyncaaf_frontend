@@ -6,36 +6,69 @@
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="league.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="standings.css" media="screen" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 	<body>
 		<div id="headerWrapper">
+			<table class="headerTable" id="currentWeekDisplayTable">
+				<th class="headerTableColumn" id="avatarBox"></th>
+				<th class="headerTableColumn" id="currentWeekBox">
+					<div class="custom-select" style="width:200px; top:0; right:0; position:absolute">
+						<select id="currentWeekNum">
+							<option value="1">Week 1</option>
+							<option value="2">Week 2</option>
+							<option value="3">Week 3</option>
+							<option value="4">Week 4</option>
+							<option value="5">Week 5</option>
+							<option value="6">Week 6</option>
+							<option value="7">Week 7</option>
+							<option value="8">Week 8</option>
+							<option value="9">Week 9</option>
+							<option value="10">Week 10</option>
+							<option value="11">Week 11</option>
+							<option value="12">Week 12</option>
+						</select>
+					</div>
+				</th>
+			</table>
 			<table class="headerTable">
-				<th class="headerTableColumn" id="headerTableColumn1">League</th>
-				<th class="headerTableColumn" id="headerTableColumn2">My Team</th>
-				<th class="headerTableColumn" id="headerTableColumn3">Match Up</th>
+				<th class="headerTableColumn activeHeaderColumn" id="headerTableColumn1">
+					<div style="height: 36px; vertical-align: middle; line-height: 45px">Standings</div>
+					<div class="arrow-up"></div>
+				</th>
+				<th class="headerTableColumn" id="headerTableColumn3">
+					<div style="height: 36px; vertical-align: middle; line-height: 45px">Match Up</div>
+					<div class="arrow-up hidden-arrow"></div>
+				</th>
+				<th class="headerTableColumn" id="headerTableColumn2">
+					<div style="height: 36px; vertical-align: middle; line-height: 45px">My Team</div>
+					<div class="arrow-up hidden-arrow"></div>
+				</th>
 			</table>
 		</div>
+		
 		<!--Have a blank row so that content at top gets pushed underneath header-->
 		<table id="standingsTable">
-			<tr style="height: 50px"></tr>
+			<!--Leave space for the top header-->
+			<tr style="height: 104px"></tr>
+			<!--Leave space between header and first table-->
+			<tr style="height: 10px"></tr>
 			<tr>
-				<td>Current week:</td>
-				<td id="currentWeekNum" colspan="2">12</td>
-			</tr>
-			<tr>
-				<td style="font-size: 1.5em" colspan="3">Standings</td>
-			</tr>
-			<tr>
-				<th>
+				<th class="standingsTableHeader">
 					Rank
 				</th>
-				<th>
+				<th class="standingsTableHeader">
 					Team Name
 				</th>
-				<th>
+				<th class="standingsTableHeader">
 					Record
 				</th>
 			</tr>
 		</table>
+		
+		
+	    <script type="text/javascript" src="weekSelect.js" ></script>
 	</body>
 </html>

@@ -1,6 +1,7 @@
 body {
 	top: 0;
 	left: 0;
+	font-family: 'Open Sans Light', sans-serif;
 }
 
 table { 
@@ -21,8 +22,15 @@ tr p {
 	width: 100%;
 	top: 0;
 	left: 0;
-	height: 50px; 
+	height: 104px; 
 	background-color: #808080;
+}
+
+#currentWeekDisplayTable {
+	padding-top: 10px;
+}
+#currentWeekBox {
+	font-size: 2em;
 }
 
 .headerTable {
@@ -33,6 +41,13 @@ tr p {
 .headerTableColumn {
 	width: 100%;
 	height: 50px;
+	color: #bfbfbf;
+	font-weight:100;
+	position:relative;
+}
+
+.activeHeaderColumn {
+	color: #ffffff;
 }
 
 .matchupTotalScore {
@@ -49,4 +64,19 @@ tr p {
 
 .matchupTableList {
 	margin-top: 25px;
+}
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid white;
+  top: 0px;
+  margin: 0 auto;
+  position: relative;  
+}
+
+.hidden-arrow {
+	border-bottom: 15px solid #808080;
 }

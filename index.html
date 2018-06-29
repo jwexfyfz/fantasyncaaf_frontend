@@ -6,18 +6,54 @@
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="testpage2.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="myTeam.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 </head>
 <body>
 	<div id="headerWrapper">
+		<table class="headerTable" id="currentWeekDisplayTable">
+			<th class="headerTableColumn" id="avatarBox"></th>
+			<th class="headerTableColumn" id="currentWeekBox">
+				<div class="custom-select" style="width:200px; top:0; right:0; position:absolute">
+					<select id="currentWeekNum" onchange="updatePage()">
+						<option value="1" selected="selected">Week 1</option>
+						<option value="2">Week 2</option>
+						<option value="3">Week 3</option>
+						<option value="4">Week 4</option>
+						<option value="5">Week 5</option>
+						<option value="6">Week 6</option>
+						<option value="7">Week 7</option>
+						<option value="8">Week 8</option>
+						<option value="9">Week 9</option>
+						<option value="10">Week 10</option>
+						<option value="11">Week 11</option>
+						<option value="12">Week 12</option>
+						<option value="12">Week 13</option>
+					</select>
+				</div>
+			</th>
+		</table>
 		<table class="headerTable">
-			<th class="headerTableColumn" id="headerTableColumn1">League</th>
-			<th class="headerTableColumn" id="headerTableColumn2">My Team</th>
-			<th class="headerTableColumn" id="headerTableColumn3">Match Up</th>
+			<th class="headerTableColumn" id="headerTableColumn1">
+				<div style="height: 36px; vertical-align: middle; line-height: 45px">Standings</div>
+				<div class="arrow-up hidden-arrow"></div>
+			</th>
+			<th class="headerTableColumn" id="headerTableColumn3">
+				<div style="height: 36px; vertical-align: middle; line-height: 45px">Match Up</div>
+				<div class="arrow-up hidden-arrow"></div>
+			</th>
+			<th class="headerTableColumn activeHeaderColumn" id="headerTableColumn2">
+				<div style="height: 36px; vertical-align: middle; line-height: 45px">My Team</div>
+				<div class="arrow-up"></div>
+			</th>
 		</table>
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	<table>
-		<tr style="height: 50px"></tr>
+		<tr style="height: 104px"></tr>
+			<!--Leave space between header and first table-->
+			<tr style="height: 10px"></tr>
+		<!-- Switching out week select statement to see if it works
 		<tr>
 			<td>Current week:</td>
 			<td>
@@ -42,11 +78,27 @@
 			<td>Team:</td>
 			<td id="currentTeamName"></td>
 		</tr>
+		-->
 	</table>
 	
 	<form method="POST">	
-	    <table>
-	        <tr>
+	    <table id="myTeamTable">
+			<tr>
+				<th class="myTeamTableHeader">
+					Position
+				</th>
+				<th class="myTeamTableHeader">
+					Player
+				</th>
+				<th>
+					<div style="width:10px; height:1em;"> </div>
+				</th>
+				<th class="myTeamTableHeader">
+					Points
+				</th>
+			</tr>
+		<!--
+			<tr>
 	            <td>
 	                Position
 	            </td>
@@ -61,6 +113,7 @@
 					<button id="refreshPoints">Refresh</button>
 	            </td>
 	        </tr>
+		-->
 	        <tr>
 	            <td>
 	                <label>QB:</label>
@@ -203,16 +256,18 @@
 	        </tr>
 	    </table>
 	</form>
-
+	
+	<button id="refreshPoints">Refresh</button>
+	
 	Query sent to testpage2.php: <br/>
 	<div id="result"></div><br/>
 	Results from loadTeamRoster.php: <br/>
 	<div id="result2"></div><br/>
 	<div id="errorOutput">
 		<p></p>
-	</div>
-	Results from checkGameStarted.php: <br/>
-	<div id="result3"></div><br/>
+	</div>  
+	
+    <script type="text/javascript" src="weekSelect.js" ></script>
 	
 </body>
 </html>

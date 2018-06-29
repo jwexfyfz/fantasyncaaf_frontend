@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</head>     
+
+<body>
+	<script>
+		function updatePage() {
+  		  console.log( "updatePage called" );
+		}
+		
+		$( "#currentWeekNum" ).change(function() {
+		  console.log( "Handler for .change() called." );
+		});
+	</script>
+
+
+<!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+<div class="custom-select" style="width:200px;">
+  <select id="currentWeekNum" onchange="updatePage()">
+    <option value="1">Week 1</option>
+    <option value="2">Week 2</option>
+    <option value="3">Week 3</option>
+    <option value="4">Week 4</option>
+    <option value="5">Week 5</option>
+    <option value="6" selected="selected">Week 6</option>
+    <option value="7">Week 7</option>
+    <option value="8">Week 8</option>
+    <option value="9">Week 9</option>
+    <option value="10">Week 10</option>
+    <option value="11">Week 11</option>
+    <option value="12">Week 12</option>
+  </select>
+</div>
+	
+
+    <script type="text/javascript" src="weekSelect.js" ></script>
+
+</body>
+</html>

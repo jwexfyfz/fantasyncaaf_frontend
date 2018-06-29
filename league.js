@@ -1,8 +1,13 @@
 $( document ).ready(
 	function startPage() {
+		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
+		var currentWeek = 1;
+		$("#currentWeekNum").val(currentWeek);
+		console.log("Current week is now set to "+$("#currentWeekNum").val());
+		
 		var urlArray = getUrlVars();
-		//console.log(urlArray);
-		var week	=	$("#currentWeekNum").html();
+		
+		var week	=	$("#currentWeekNum").val();
 		var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		
 				
@@ -52,9 +57,9 @@ function populateStandings(teamID, getNameFromID) {
 		  
 		  for(i = 0; i < phpResponse.length; i++) {
 			  if(phpResponse[i]["teamID"] == teamID) {
-			  	  $('#standingsTable').append('<tr style="background-color: #EEEEEE"><td>'+(i+1)+'</td><td>'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td>'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
+			  	  $('#standingsTable').append('<tr><td class="standingsTableRow currentTeam">'+(i+1)+'</td><td class="standingsTableRow currentTeam">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
 			  } else {
-				  $('#standingsTable').append('<tr><td>'+(i+1)+'</td><td>'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td>'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
+				  $('#standingsTable').append('<tr><td class="standingsTableRow">'+(i+1)+'</td><td class="standingsTableRow">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'-'+phpResponse[i]["ties"]+'</td></tr>');
 			  }
 		  }
 		  
@@ -69,4 +74,13 @@ function getUrlVars() {
         vars[key] = value;
     });
     return vars;
+}
+
+function updatePage() {
+	//This is a dummy function because weekSelect.js calls updatePage() when new week is selected
+	console.log("updatePage() called");
+}
+function allMatchupsFunction() {
+	//This is a dummy function because weekSelect.js calls allMatchupsFunction() when new week is selected
+	console.log("allMatchupsFunction() called");
 }
