@@ -611,7 +611,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				select.options[select.options.length-1].style.color="red";
 			}
 			else if (positionList[i]["timesUsed"] == 4) {
-				select.options[select.options.length-1].style.color="yellow";
+				select.options[select.options.length-1].style.color="#FFA500";
 			}
 		}
 	}
@@ -623,7 +623,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				select.options[select.options.length-1].style.color="red";
 			}
 			else if (positionList[i]["timesUsed"] == 4) {
-				select.options[select.options.length-1].style.color="yellow";
+				select.options[select.options.length-1].style.color="#FFA500";
 			}
 		}
 	}
