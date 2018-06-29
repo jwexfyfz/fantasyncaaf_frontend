@@ -627,7 +627,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				select.options[select.options.length-1].style.color="#FFA500";
 			}
 		}
-		$("'#"+inputPosition+"'").selectpicker('refresh');
+		$('#'+inputPosition).selectpicker('refresh');
 	}
 	select.value = currentSelectedPlayer;
 };
