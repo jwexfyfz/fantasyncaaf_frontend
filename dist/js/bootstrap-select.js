@@ -341,7 +341,7 @@
 
   // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
   Selectpicker.DEFAULTS = {
-    noneSelectedText: 'Nothing selected',
+    noneSelectedText: '--Select Player--',
     noneResultsText: 'No results matched {0}',
     addNewText: '<strong>Add new:</strong> {0}',
     countSelectedText: function (numSelected, numTotal) {
