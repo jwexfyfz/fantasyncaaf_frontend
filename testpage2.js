@@ -473,25 +473,6 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 	});  
 }
 
-function getSelectedPlayersTeam(week, fantasyID, position) {
-	var selectedPlayer = $('#input'+position).val();
-	var dataString = 
-	
-	$.ajax({
-	    type: "POST",
-	    url: "getSelectedPlayersTeam.php",
-	    data: dataString,
-	    success: function(response) {
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
-		  if (phpResponse < 0) {
-			phpResponse = 0;
-		  }
-		  teamDupes(week, fantasyID, phpResponse, position);
-	    }
-	});
-	
-}
-
 function getNumDupeTeamsAllowed(week, fantasyID, position) {
 	var phpResponse;
 	var dataString = 'weekNum='+week+'&conference=PAC12';  // PAC12 is temporary
