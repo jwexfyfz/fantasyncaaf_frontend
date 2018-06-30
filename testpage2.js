@@ -429,7 +429,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 	    url: "getPlayerSchools.php",
 	    data: dataString,
 	    success: function(response) {
-
+			
 			$('#result2').html(response);
 			console.log("successfully sent query to tell php to provide list of schools");	//For testing
 			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
@@ -440,11 +440,11 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
 				//console.log("Response from getPlayerSchools.php: "+counts[i]);
 			}
-			console.log("Response from getPlayerSchools.php: "+JSON.stringify(counts));
-/*			
-			for (var i = 0; i < phpResponse.length; i++) {
+			console.log("Counts array: "+JSON.stringify(counts));
+			
+			for (var key in counts) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
-				if (phpResponse[i]["teamCount"] >= 2) {
+				if (counts[key] >= 2) {
 					dupeTeams++;
 				}
 				console.log("dupeTeams: "+dupeTeams);
@@ -454,14 +454,21 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 				console.log("TOO MANY DUPE TEAMS, CHANGE NOT ALLOWED"); // Change not allowed	
 			}
 			else {
-				if () {  // If selected team is >= 2 uses
+				var selectedPlayerTeam = "";
+				for (var i = 0; i < phpResponse.length; i++) {
+					if ($('#input'+position).val() == phpResponse[i]["playerName"]) {
+						selectedPlayerTeam = phpResponse[i]["teamName"];
+					}
+				}
 				
+				if (counts[selectedPlayerTeam] >= 2) {  // If selected team is >= 2 uses
+					console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				}
 				else {  // allow the change
-					
+					console.log("CHANGE ALLOWED");
 				}
 			}
-*/			
+			
 	    }
 	});  
 }
