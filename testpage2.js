@@ -692,8 +692,8 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		}
 	}
 	select.value = currentSelectedPlayer;
-	//$('#'+inputPosition).selectpicker('refresh');
-	console.log("done populating the lists");
+	$('#'+inputPosition).selectpicker('refresh');
+	console.log("done populating "+inputPosition);
 };
 
 //jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
