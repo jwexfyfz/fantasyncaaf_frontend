@@ -481,8 +481,9 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 			console.log("values were the same!");
 			$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
 			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
-			$('#'+switchPosition1).selectpicker('refresh');
-			$('#'+switchPosition2).selectpicker('refresh');
+			
+			$('#input'+switchPosition1).selectpicker('refresh');
+			$('#input'+switchPosition2).selectpicker('refresh');
 
 			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID, teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
