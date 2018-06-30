@@ -36,21 +36,7 @@ $( document ).ready(
 		});
 		$("#headerTableColumn3").click( function(event) {
 			window.location.href = "matchup.html" + window.location.search;
-		});
-		
-		$("#myTeamTable").click( function(event) {
-			console.log('myTeamTable clicked');
-		});
-		$("#test1").click( function(event) {
-			console.log('test1 clicked');
-		});
-		$("#test2").click( function(event) {
-			console.log('test2 clicked');
-		});
-		$("#test3").click( function(event) {
-			console.log('test3 clicked');
-		});
-		
+		});	
 });
 
 function updatePage() {
@@ -707,6 +693,9 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 //TODO: jeffwang to think through use case where defensive players are being used on offense (e.g. Myles Jack)
 function populateChoosePlayerLists(inputPosition, positionList, currentSelectedPlayer, weekChanged) {
     var select = document.getElementById(inputPosition);
+	var currentOption;
+	var currentSubtext;
+	var currentMetadata;
     //for(var index in positionList) {
     //    select.options[select.options.length] = new Option(positionList[index], index);
     //}
@@ -716,7 +705,11 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		select.options[select.options.length] = new Option("");
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
-				select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+				//currentOption = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
+				select.options[select.options.length] = currentOption;
+				currentSubtext = "("+positionList[i]["timesUsed"]+")";
+				currentOption.setAttribute("data-subtext",currentSubtext);
 				if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";
@@ -728,7 +721,18 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		}
 		else {
 			for(i = 0; i < positionList.length; i++) {
-				select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+				//select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
+				currentSubtext = positionList[i]["position"]+", "+positionList[i]["team"]+" ("+positionList[i]["timesUsed"]+")";
+				currentMetadata = positionList[i]["playerName"] + " " + positionList[i]["team"];
+				
+				
+				select.options[select.options.length] = currentOption;
+				
+				currentOption.setAttribute("data-subtext",currentSubtext);
+				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+' '+'<small class="text-muted">' + currentSubtext + '</small>');
+				currentOption.setAttribute("data-tokens",currentMetadata);
+
 				if (positionList[i]["timesUsed"] >= 5) {
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";

@@ -28,18 +28,22 @@ tr p {
 	left: 0;
 	height: var(--headerHeight); 
 	background-color: #808080;
+    z-index:3;
 }
 
 #currentWeekDisplayTable {
 	padding-top: 10px;
+    z-index:3;
 }
 #currentWeekBox {
 	font-size: 2em;
+    z-index:3;
 }
 
 .headerTable {
 	width: 100%;
 	table-layout: fixed;
+    z-index:3;
 }
 
 .headerTableColumn {
@@ -49,6 +53,7 @@ tr p {
 	font-weight:100;
 	position:relative;
 	text-align: center;
+    z-index:2;
 }
 
 .activeHeaderColumn {
@@ -84,4 +89,5 @@ tr p {
 
 .hidden-arrow {
 	border-bottom: 15px solid #808080;
+    z-index:10;
 }

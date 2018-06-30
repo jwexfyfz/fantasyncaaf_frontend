@@ -13,26 +13,32 @@
 <body>
 	
 	<select id="selector" class="selectpicker" data-live-search="true" data-width="100%" data-show-subtext="true">
-		<!--<option data-tokens="Josh Rosen UCLA" value = "Josh Rosen" data-subtext="QB, UCLA (0)">J. Rosen</option>
+		<!--
+			<option data-tokens="Josh Rosen UCLA" value = "Josh Rosen" data-subtext="QB, UCLA (0)">J. Rosen</option>
 		<option data-tokens="Sam Darnold USC" value = "Sam Darnold" data-subtext="QB, USC (0)">S. Darnold</option>
 		<option data-tokens="Manny Wilkins ASU Arizona State" value = "Manny Wilkins" data-subtext="QB, ASU (0)">M. Wilkins</option>
-		<option data-tokens="Khalil Tate Arizona" value = "Khalil Tate" data-subtext="QB, Arizona (0)">K. Tate</option> -->
+		<option data-tokens="Khalil Tate Arizona" value = "Khalil Tate" data-subtext="QB, Arizona (0)">K. Tate</option>	-->
 	</select>
 	
 	<script>
 	    var select = document.getElementById("selector");
 		
 		for(i = 0; i < 10; i++) {
-			select.options[select.options.length] = new Option("Josh Rosen "+i);
+			o1 = new Option("Josh Rosen "+i, "Josh Rosen "+i);
+			select.options[select.options.length] = o1;
+			o1.setAttribute("data-subtext","QB, UCLA (0)");
+			//console.log(select.options[select.options.length].value);
 		}
 	</script>
+		
+		
 	
-	<!--
+
 	<script>		
 		//Use this line to disable any of the selectable options
 		var disabledValue = "Sam Darnold";
 		$("#selector option[value='"+disabledValue+"']").attr('disabled','true');
 	</script>
-		-->
+
 </body>
 </html>

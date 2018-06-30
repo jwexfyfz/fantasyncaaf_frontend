@@ -52,22 +52,22 @@
 	
 	//FLEX:	Allow RB, FB, WR, and TE positions 
 	if(isset($_POST['FLEXtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','FB','WR','TE');";
+	    $sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB','WR','TE');";
 	} 
 	//TE:	Allow TE and WR positions
 	else if(isset($_POST['TEtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('WR','TE');";
+	    $sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position in ('WR','TE');";
 	} 
 	//RB1:	Allow RB and FB positions
 	else if(isset($_POST['RBtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position in ('RB','FB');";
+	    $sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB');";
 	} 
 	//DEF:	Select from collegeTeams table
 	else if(isset($_POST['DEFtophp'])) {
 	    $sql = "SELECT teamName, teamID FROM collegeTeams;";
 	} else {
     	//Query to get team rosters
-    	$sql = "SELECT playerName, playerID, team, position FROM collegeTeamRoster where position='$qPosition';";
+    	$sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position='$qPosition';";
 	}
 	//echo $sql;
     $result = $conn->query($sql);
@@ -94,6 +94,7 @@
 				if(isset($usedPlayerTable[$row["playerID"]])) {
 					$playerArray[$index] = array(
 						"playerName"=>$row["playerName"],
+						"playerAbbr"=>$row["PlayerAbbr"],
 						"position"=>$row["position"],
 						"team"=>$row["team"],
 						"timesUsed"=>$usedPlayerTable[$row["playerID"]]
@@ -102,6 +103,7 @@
 				else {
 					$playerArray[$index] = array(
 						"playerName"=>$row["playerName"],
+						"playerAbbr"=>$row["PlayerAbbr"],
 						"position"=>$row["position"],
 						"team"=>$row["team"],
 						"timesUsed"=>0
