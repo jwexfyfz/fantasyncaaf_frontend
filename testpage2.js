@@ -432,7 +432,7 @@ function comparePotentialTeamDupes(week, teamID, numDupeTeamsAllowed) {
 	var dupeTeams = 0;
 	
 	var phpResponse;
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var dataString = 'weekNum='+week+'&fantasyID='+teamID;
 	
 	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
 	
