@@ -38,6 +38,19 @@ $( document ).ready(
 			window.location.href = "matchup.html" + window.location.search;
 		});
 		
+		$("#myTeamTable").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		$("#test1").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		$("#test2").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		$("#test3").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		
 });
 
 function updatePage() {
@@ -468,6 +481,8 @@ function comparePotentialDupes (switchPosition1, switchPosition2, position, phpR
 			console.log("values were the same!");
 			$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
 			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
+			$('#'+switchPosition1).selectpicker('refresh');
+			$('#'+switchPosition2).selectpicker('refresh');
 
 			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID, teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
@@ -680,7 +695,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	}
 	select.value = currentSelectedPlayer;
 	$('#'+inputPosition).selectpicker('refresh');
-	console.log("done populating the lists");
+	console.log("done populating "+inputPosition);
 };
 
 //jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
