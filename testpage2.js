@@ -430,27 +430,29 @@ function verifyNoDupes(position, week, teamID, teamName) {
 	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
 	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
 		  
-		  comparePotentialTeamDupes(week, teamID);
+		  getNumDupeTeamsAllowed(week, teamID);
 	    }
 	});  
 }
 
-function comparePotentialTeamDupes(week, teamID) {
+function comparePotentialTeamDupes(week, teamID, numDupeTeamsAllowed) {
 	var dupeTeams = 0;
 	
 	var phpResponse;
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	var dataString = 'weekNum='+week+'&fantasyID='+teamID;
+	
+	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
 	
 	$.ajax({
 	    type: "POST",
 	    url: "getPlayerSchools.php",
 	    data: dataString,
 	    success: function(response) {
-		  var numDupeTeamsAllowed = getNumDupeTeamsAllowed(week, teamID);
-		  console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
-		  
+
+		  $('#result2').html(response);
 		  console.log("successfully sent query to tell php to provide list of schools");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
+		  console.log("Response from getPlayerSchools.php: "+phpResponse);
 			var i;
 			for (i = 0; i < phpResponse.length; i++) {
 				dupeTeams += (phpResponse[i]["teamCount"] - 1);
@@ -474,7 +476,10 @@ function getNumDupeTeamsAllowed(week, teamID) {
 	    data: dataString,
 	    success: function(response) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
-		  return phpResponse;
+		  if (phpResponse < 0) {
+			phpResponse = 0;
+		  }
+		  comparePotentialTeamDupes(week, teamID, phpResponse);
 	    }
 	});
 	
