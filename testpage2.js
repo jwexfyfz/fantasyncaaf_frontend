@@ -438,9 +438,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 			var counts = {};
 			for (var i = 0; i < phpResponse.length; i++) {
 				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
-				console.log("Response from getPlayerSchools.php: "+counts[i]);
+				//console.log("Response from getPlayerSchools.php: "+counts[i]);
 			}
-			//console.log("Response from getPlayerSchools.php: "+counts);
+			console.log("Response from getPlayerSchools.php: "+JSON.stringify(counts));
 /*			
 			for (var i = 0; i < phpResponse.length; i++) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
