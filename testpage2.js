@@ -469,6 +469,9 @@ function getNumDupeTeamsAllowed(week, teamID) {
 	    data: dataString,
 	    success: function(response) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
+		  if (phpResponse < 0) {
+			phpResponse = 0;
+		  }
 		  comparePotentialTeamDupes(week, teamID, phpResponse);
 	    }
 	});
