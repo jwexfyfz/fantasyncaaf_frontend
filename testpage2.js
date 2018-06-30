@@ -434,14 +434,14 @@ function comparePotentialTeamDupes(week, teamID) {
 	var phpResponse;
 	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
 	
-	var numDupeTeamsAllowed = getNumDupeTeamsAllowed(week, teamID);
-	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
-	
 	$.ajax({
 	    type: "POST",
 	    url: "getPlayerSchools.php",
 	    data: dataString,
 	    success: function(response) {
+		  var numDupeTeamsAllowed = getNumDupeTeamsAllowed(week, teamID);
+		  console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
+		  
 		  console.log("successfully sent query to tell php to provide list of schools");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
 			var i;
