@@ -476,8 +476,8 @@ function getNumDupeTeamsAllowed(week, teamID) {
 function comparePotentialDupes (switchPosition1, switchPosition2, position, phpResponse, week, teamID, teamName){
     if(	(	($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
 	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])		)	&& 	
-		(	($('#input'+switchPosition1).val() != null)	&&
-		(	$('#input'+switchPosition2).val() != null)		)												) 
+		(	($('#input'+switchPosition1).val() != "")	&&
+		(	$('#input'+switchPosition2).val() != "")		)												) 
 	{
 			console.log("values were the same!");
 			$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
