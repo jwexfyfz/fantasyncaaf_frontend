@@ -42,13 +42,13 @@ $( document ).ready(
 			console.log('myTeamTable clicked');
 		});
 		$("#test1").click( function(event) {
-			console.log('myTeamTable clicked');
+			console.log('test1 clicked');
 		});
 		$("#test2").click( function(event) {
-			console.log('myTeamTable clicked');
+			console.log('test2 clicked');
 		});
 		$("#test3").click( function(event) {
-			console.log('myTeamTable clicked');
+			console.log('test3 clicked');
 		});
 		
 });
