@@ -656,6 +656,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
     var select = document.getElementById(inputPosition);
 	var currentOption;
 	var currentSubtext;
+	var currentMetadata;
     //for(var index in positionList) {
     //    select.options[select.options.length] = new Option(positionList[index], index);
     //}
@@ -683,9 +684,16 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			for(i = 0; i < positionList.length; i++) {
 				//select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
 				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
+				currentSubtext = positionList[i]["position"]+", "+positionList[i]["team"]+" ("+positionList[i]["timesUsed"]+")";
+				currentMetadata = positionList[i]["playerName"] + " " + positionList[i]["team"];
+				
+				
 				select.options[select.options.length] = currentOption;
-				currentSubtext = positionList[i]["position"]+","+positionList[i]["team"]+"("+positionList[i]["timesUsed"]+")";
+				
 				currentOption.setAttribute("data-subtext",currentSubtext);
+				currentOption.setAttribute("title",positionList[i]["playerAbbr"]);
+				currentOption.setAttribute("data-tokens",currentMetadata);
+
 				if (positionList[i]["timesUsed"] >= 5) {
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";
