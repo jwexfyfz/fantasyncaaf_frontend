@@ -8,7 +8,6 @@
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
 	$weekNum = $_POST["weekNum"];
-	$fantasyID = $_POST["fantasyID"];
 	$conference = $_POST["conference"];
 	
     //Query to get number of teams in the conference

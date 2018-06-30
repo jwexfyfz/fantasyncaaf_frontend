@@ -10,7 +10,10 @@
 	$weekNum = $_POST["weekNum"];
 	$fantasyID = $_POST["fantasyID"];
     //Query to get playerNames and teams for each person on the roster in a given week including defense
-	$sql = "select C.team, count(*) as teamCount from (select distinct A.playerName, B.team from (select playerName from teamroster where teamID=$fantasyID and week=$weekNum) as A inner join collegeTeamRoster as B on A.playerName=B.PlayerName or A.PlayerName = B.team) as C group by team;";
+	
+	// Counting later so I can use the (playerName, team) for the dupe teams check
+	//$sql = "select C.team, count(*) as teamCount from (select distinct A.playerName, B.team from (select playerName from teamroster where teamID=$fantasyID and week=$weekNum) as A inner join collegeTeamRoster as B on A.playerName=B.PlayerName or A.PlayerName = B.team) as C group by team;";
+	$sql = "select distinct A.playerName, B.team from (select playerName from teamroster where teamID=$fantasyID and week=$weekNum) as A inner join collegeTeamRoster as B on A.playerName=B.PlayerName or A.PlayerName = B.team";
 	
 	$result = $conn->query($sql);
 
@@ -18,13 +21,17 @@
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            $teamName = $row["team"];
-			$teamCount = $row["teamCount"];
-            
+            //$teamName = $row["team"];
+			//$teamCount = $row["teamCount"];
+            $playerName = $row["playerName"];
+			$teamName = $row["team"];
+			
             //Assign rows from table to teamCounts array
 			$teamCounts[$index] = array(
-				"teamName"=>$teamName,
-				"teamCount"=>$teamCount
+				//"teamName"=>$teamName,
+				//"teamCount"=>$teamCount
+				"playerName"=>$playerName,
+				"teamName"=>$teamName
 			);
 
             $index++;
@@ -32,8 +39,10 @@
     } else {
         //Set everything to null so at least you return something
 		$teamCounts[0] = array(
-			"teamName"=>null,
-			"teamCount"=>null
+			//"teamName"=>null,
+			//"teamCount"=>null
+			"playerName"=>null,
+			"teamName"=>null
 		);
     }
     //Output table to testpage2.js

@@ -411,6 +411,9 @@ function verifyNoDupes(position, week, teamID, teamName) {
 	    success: function(response) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
+		  
+		  getNumDupeTeamsAllowed(week, teamID, position);
+		  
 		  //Player changes RB1 to equal the same value as teamRoster's RB2
 	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
 	      comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
@@ -423,16 +426,15 @@ function verifyNoDupes(position, week, teamID, teamName) {
 	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
 	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
 		  
-		  getNumDupeTeamsAllowed(week, teamID);
 	    }
 	});  
 }
 
-function comparePotentialTeamDupes(week, teamID, numDupeTeamsAllowed) {
+function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 	var dupeTeams = 0;
 	
 	var phpResponse;
-	var dataString = 'weekNum='+week+'&fantasyID='+teamID;
+	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
 	
 	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
 	
@@ -442,26 +444,63 @@ function comparePotentialTeamDupes(week, teamID, numDupeTeamsAllowed) {
 	    data: dataString,
 	    success: function(response) {
 
-		  $('#result2').html(response);
-		  console.log("successfully sent query to tell php to provide list of schools");	//For testing
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
-		  console.log("Response from getPlayerSchools.php: "+phpResponse);
-			var i;
-			for (i = 0; i < phpResponse.length; i++) {
-				dupeTeams += (phpResponse[i]["teamCount"] - 1);
+			$('#result2').html(response);
+			console.log("successfully sent query to tell php to provide list of schools");	//For testing
+			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
+			//console.log("Response from getPlayerSchools.php: "+phpResponse);
+			
+			var counts = {};
+			for (var i = 0; i < phpResponse.length; i++) {
+				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
+			}
+			console.log("Response from getPlayerSchools.php: "+counts);
+			
+/*			for (var i = 0; i < phpResponse.length; i++) {
+				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
+				if (phpResponse[i]["teamCount"] >= 2) {
+					dupeTeams++;
+				}
 				console.log("dupeTeams: "+dupeTeams);
-				if (dupeTeams > numDupeTeamsAllowed) {
-					console.log("UNDO LAST MOVE"); // undo the last move
+
+			}
+			if (dupeTeams > numDupeTeamsAllowed) {
+				console.log("TOO MANY DUPE TEAMS, CHANGE NOT ALLOWED"); // Change not allowed	
+			}
+			else {
+				if () {  // If selected team is >= 2 uses
+				
+				}
+				else {  // allow the change
+					
 				}
 			}
-			
+			*/
 	    }
 	});  
 }
 
-function getNumDupeTeamsAllowed(week, teamID) {
+function getSelectedPlayersTeam(week, fantasyID, position) {
+	var selectedPlayer = $('#input'+position).val();
+	var dataString = 
+	
+	$.ajax({
+	    type: "POST",
+	    url: "getSelectedPlayersTeam.php",
+	    data: dataString,
+	    success: function(response) {
+		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
+		  if (phpResponse < 0) {
+			phpResponse = 0;
+		  }
+		  teamDupes(week, fantasyID, phpResponse, position);
+	    }
+	});
+	
+}
+
+function getNumDupeTeamsAllowed(week, fantasyID, position) {
 	var phpResponse;
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&conference=PAC12';  // PAC12 is temporary
+	var dataString = 'weekNum='+week+'&conference=PAC12';  // PAC12 is temporary
 	
 	$.ajax({
 	    type: "POST",
@@ -472,7 +511,7 @@ function getNumDupeTeamsAllowed(week, teamID) {
 		  if (phpResponse < 0) {
 			phpResponse = 0;
 		  }
-		  comparePotentialTeamDupes(week, teamID, phpResponse);
+		  teamDupes(week, fantasyID, phpResponse, position);
 	    }
 	});
 	
