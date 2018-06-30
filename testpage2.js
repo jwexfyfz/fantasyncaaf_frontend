@@ -691,7 +691,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				select.options[select.options.length] = currentOption;
 				
 				currentOption.setAttribute("data-subtext",currentSubtext);
-				currentOption.setAttribute("title",positionList[i]["playerAbbr"]);
+				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+"<span style='color: blue'> test</span>");
 				currentOption.setAttribute("data-tokens",currentMetadata);
 
 				if (positionList[i]["timesUsed"] >= 5) {
