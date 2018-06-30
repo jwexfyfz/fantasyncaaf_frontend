@@ -1,6 +1,6 @@
 .custom-select {
   position: relative;
-  font-size: 1em;
+  font-size: 0.9em;
   text-align: left;
   font-weight: 100;
 }
@@ -37,7 +37,7 @@
 }
 /*style items (options):*/
 .select-items {
-  position: absolute;
+  position: relative;
   background-color: #808080;
   top: 100%;
   left: 0;

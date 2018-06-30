@@ -4,6 +4,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+	
+	<!--These are for the custom select styling taken from GitHub for the team roster-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" href="dist/css/bootstrap-select.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" defer></script>
+	<script src="dist/js/bootstrap-select.js" defer></script>
+	
     <script type="text/javascript" src="testpage2.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="myTeam.css" media="screen" />
@@ -12,26 +19,30 @@
 <body>
 	<div id="headerWrapper">
 		<table class="headerTable" id="currentWeekDisplayTable">
-			<th class="headerTableColumn" id="avatarBox"></th>
-			<th class="headerTableColumn" id="currentWeekBox">
-				<div class="custom-select" style="width:200px; top:0; right:0; position:absolute">
-					<select id="currentWeekNum" onchange="updatePage()">
-						<option value="1" selected="selected">Week 1</option>
-						<option value="2">Week 2</option>
-						<option value="3">Week 3</option>
-						<option value="4">Week 4</option>
-						<option value="5">Week 5</option>
-						<option value="6">Week 6</option>
-						<option value="7">Week 7</option>
-						<option value="8">Week 8</option>
-						<option value="9">Week 9</option>
-						<option value="10">Week 10</option>
-						<option value="11">Week 11</option>
-						<option value="12">Week 12</option>
-						<option value="12">Week 13</option>
-					</select>
-				</div>
-			</th>
+			<tr style="height:10px">
+			</tr>
+			<tr>
+				<th class="headerTableColumn" id="avatarBox"></th>
+				<th class="headerTableColumn" style="text-align: left" id="currentWeekBox">
+					<div class="custom-select" style="width:160px; position:relative; float:right">
+						<select id="currentWeekNum">
+							<option value="1">Week 1</option>
+							<option value="2">Week 2</option>
+							<option value="3">Week 3</option>
+							<option value="4">Week 4</option>
+							<option value="5">Week 5</option>
+							<option value="6">Week 6</option>
+							<option value="7">Week 7</option>
+							<option value="8">Week 8</option>
+							<option value="9">Week 9</option>
+							<option value="10">Week 10</option>
+							<option value="11">Week 11</option>
+							<option value="12">Week 12</option>
+							<option value="13">Week 13</option>
+						</select>
+					</div>
+				</th>
+			</tr>
 		</table>
 		<table class="headerTable">
 			<th class="headerTableColumn" id="headerTableColumn1">
@@ -50,7 +61,7 @@
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	<table>
-		<tr style="height: 104px"></tr>
+		<tr style="height: 114px"></tr>
 			<!--Leave space between header and first table-->
 			<tr style="height: 10px"></tr>
 	</table>
@@ -64,36 +75,20 @@
 				<th class="myTeamTableHeader">
 					Player
 				</th>
-				<th class="myTeamTableHeader" style="width: 10px">
+				<th class="myTeamTableHeader" style="width: 10px; padding-left:0px">
 					<div style="width:10px; height:1em;"> </div>
 				</th>
 				<th class="myTeamTableHeader" style="width: 50px">
 					Points
 				</th>
 			</tr>
-		<!--
-			<tr>
-	            <td>
-	                Position
-	            </td>
-	            <td>
-	                Player
-	            </td>
-				<td>
-					<div style="width:10px; height:1em;"> </div>
-				</td>
-	            <td>
-	                Points 
-					<button id="refreshPoints">Refresh</button>
-	            </td>
-	        </tr>
-		-->
 	        <tr>
 	            <td class="myTeamTableRow">
 	                <label>QB:</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="playerSelect" id="inputQB" name="QBtophp" onchange="sendToPhp(this.name)"></select>
+	                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)" style="position: relative">
+	                </select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="qbConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -106,8 +101,8 @@
 	            <td class="myTeamTableRow">
 	                <label>RB1:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select class="playerSelect" id="inputRB1" name="RB1tophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputRB1" name="RB1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="rb1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -120,8 +115,8 @@
 	            <td class="myTeamTableRow">
 	                <label>RB2:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select class="playerSelect" id="inputRB2" name="RB2tophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputRB2" name="RB2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="rb2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -134,8 +129,8 @@
 	            <td class="myTeamTableRow">
 	                <label>WR1:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select class="playerSelect" id="inputWR1" name="WR1tophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputWR1" name="WR1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="wr1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -148,8 +143,8 @@
 	            <td class="myTeamTableRow">
 	                <label>WR2:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select class="playerSelect" id="inputWR2" name="WR2tophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputWR2" name="WR2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="wr2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -162,8 +157,8 @@
 	            <td class="myTeamTableRow">
 	                <label>WR3:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select class="playerSelect" id="inputWR3" name="WR3tophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputWR3" name="WR3tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="wr3Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -176,8 +171,8 @@
 	            <td class="myTeamTableRow">
 	                <label>TE:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select class="playerSelect" id="inputTE" name="TEtophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputTE" name="TEtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="teConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -190,8 +185,8 @@
 	            <td class="myTeamTableRow">
 	                <label>DEF:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select id="inputDEF" name="DEFtophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputDEF" name="DEFtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="defConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -204,8 +199,8 @@
 	            <td class="myTeamTableRow">
 	                <label>K:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select id="inputK" name="Ktophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputK" name="Ktophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="kConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -218,8 +213,8 @@
 	            <td class="myTeamTableRow">
 	                <label>FLEX:</label>
 	            </td>
-	            <td class="myTeamTableRow">
-	                <select class="playerSelect" id="inputFLEX" name="FLEXtophp" onchange="sendToPhp(this.name)"></select>
+	            <td class="myTeamTableRowLong">
+	                <select class="selectpicker" id="inputFLEX" name="FLEXtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 	            </td>
 				<td class="myTeamTableRow">
 					<img id="flexConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">

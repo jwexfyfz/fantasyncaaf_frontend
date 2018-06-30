@@ -1,3 +1,7 @@
+:root {
+    --headerHeight: 114px; 
+}
+
 body {
 	top: 0;
 	left: 0;
@@ -22,7 +26,7 @@ tr p {
 	width: 100%;
 	top: 0;
 	left: 0;
-	height: 104px; 
+	height: var(--headerHeight); 
 	background-color: #808080;
 }
 
@@ -44,6 +48,7 @@ tr p {
 	color: #bfbfbf;
 	font-weight:100;
 	position:relative;
+	text-align: center;
 }
 
 .activeHeaderColumn {
