@@ -50,6 +50,13 @@ $( document ).ready(
 		$("#test3").click( function(event) {
 			console.log('test3 clicked');
 		});
+		$("#inputQB").click( function(event) {
+			console.log('inputQB clicked');
+		});
+		$("#weekBlock").click( function(event) {
+			console.log('weekBlock clicked');
+		});
+		
 		
 });
 
