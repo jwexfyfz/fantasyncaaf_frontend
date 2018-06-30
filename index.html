@@ -24,7 +24,7 @@
 			<tr>
 				<th class="headerTableColumn" id="avatarBox"></th>
 				<th class="headerTableColumn" style="text-align: left" id="currentWeekBox">
-					<div class="custom-select" style="width:160px; position:relative; float:right">
+					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right">
 						<select id="currentWeekNum">
 							<option value="1">Week 1</option>
 							<option value="2">Week 2</option>
@@ -61,14 +61,14 @@
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	<table>
-		<tr style="height: 114px"></tr>
+		<tr style="height: 111px"></tr>
 			<!--Leave space between header and first table-->
 			<tr style="height: 10px"></tr>
 	</table>
 	
 	<form method="POST">	
 	    <table id="myTeamTable">
-			<tr>
+			<tr id="test1">
 				<th class="myTeamTableHeader" style="width: 60px">
 					Position
 				</th>
@@ -82,11 +82,11 @@
 					Points
 				</th>
 			</tr>
-	        <tr>
+	        <tr id="test2">
 	            <td class="myTeamTableRow">
 	                <label>QB:</label>
 	            </td>
-	            <td class="myTeamTableRowLong">
+	            <td class="myTeamTableRowLong" id="test3">
 	                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)" style="position: relative">
 	                </select>
 	            </td>

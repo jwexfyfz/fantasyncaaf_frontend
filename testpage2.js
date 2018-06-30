@@ -38,6 +38,19 @@ $( document ).ready(
 			window.location.href = "matchup.html" + window.location.search;
 		});
 		
+		$("#myTeamTable").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		$("#test1").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		$("#test2").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		$("#test3").click( function(event) {
+			console.log('myTeamTable clicked');
+		});
+		
 });
 
 function updatePage() {
@@ -633,7 +646,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		}
 	}
 	select.value = currentSelectedPlayer;
-	$('#'+inputPosition).selectpicker('refresh');
+	//$('#'+inputPosition).selectpicker('refresh');
 	console.log("done populating the lists");
 };
 
