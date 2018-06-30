@@ -22,7 +22,7 @@ $( document ).ready(
 		var teamName=	urlArray["teamName"];
 		//$('#currentTeamName').html(teamName);
 		
-	    loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
+	    loadTeamRoster(week, teamID, teamName, false);	//Populate select lists based on the week, set rosters that have already been chosen
 		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
@@ -47,12 +47,12 @@ function updatePage() {
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName=	urlArray["teamName"];
 	
-	loadTeamRoster(week, teamID, teamName);	//Populate select lists based on the week, set rosters that have already been chosen
+	loadTeamRoster(week, teamID, teamName, true);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
 	
 }
 
-function loadTeamRoster(week, teamID, teamName) {
+function loadTeamRoster(week, teamID, teamName, weekChanged) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
@@ -73,16 +73,16 @@ function loadTeamRoster(week, teamID, teamName) {
 		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
-		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID);
-		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1, teamID);
-		  getDataForChoosePlayerLists("RB2", phpResponse[week].RB2, teamID);
-		  getDataForChoosePlayerLists("WR1", phpResponse[week].WR1, teamID);
-		  getDataForChoosePlayerLists("WR2", phpResponse[week].WR2, teamID);
-		  getDataForChoosePlayerLists("WR3", phpResponse[week].WR3, teamID);
-		  getDataForChoosePlayerLists("TE", phpResponse[week].TE, teamID);
-		  getDataForChoosePlayerLists("DEF", phpResponse[week].DEF, teamID);
-		  getDataForChoosePlayerLists("K", phpResponse[week].K, teamID);
-		  getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX, teamID);
+		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID, weekChanged);
+		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1, teamID, weekChanged);
+		  getDataForChoosePlayerLists("RB2", phpResponse[week].RB2, teamID, weekChanged);
+		  getDataForChoosePlayerLists("WR1", phpResponse[week].WR1, teamID, weekChanged);
+		  getDataForChoosePlayerLists("WR2", phpResponse[week].WR2, teamID, weekChanged);
+		  getDataForChoosePlayerLists("WR3", phpResponse[week].WR3, teamID, weekChanged);
+		  getDataForChoosePlayerLists("TE", phpResponse[week].TE, teamID, weekChanged);
+		  getDataForChoosePlayerLists("DEF", phpResponse[week].DEF, teamID, weekChanged);
+		  getDataForChoosePlayerLists("K", phpResponse[week].K, teamID, weekChanged);
+		  getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX, teamID, weekChanged);
 		  console.log("finished populating available players and loading roster");	//For testing
 	    }
 	});
@@ -524,7 +524,7 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
 //2) Run populateChoosePlayerLists(), which populates the select options for each position
 //TODO: jeffwang to add case "DEF" to the switch statement
-function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
+function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, weekChanged) {
 	var dataString="";
 	var positionHash="";
 	var week=$("#currentWeekNum").val();		//TODO: jeffwang to pass week # as a parameter into this function
@@ -582,7 +582,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 		  
 		  //Parameters are 1) ID of select, 2) array of eligible players, 3) player currently on the roster
 		  //TODO: jeffwang to figure out edge case when no players are chosen yet
-		  populateChoosePlayerLists("input"+position, playerList, currentSelectedPlayer);		
+		  populateChoosePlayerLists("input"+position, playerList, currentSelectedPlayer, weekChanged);		
 		  
 		  	if(position="FLEX") {
 		  		//console.log("time to populate inputFLEX. inputPosition= "+inputPosition);
@@ -598,34 +598,37 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID) {
 //cauchychoi 6/26/2018: Refactored where the array of eligible players is (playerName, position, team, timesUsed) or (playerName, timesUsed) for defense
 //Also added select option disabled for players with 5+ uses
 //TODO: jeffwang to think through use case where defensive players are being used on offense (e.g. Myles Jack)
-function populateChoosePlayerLists(inputPosition, positionList, currentSelectedPlayer) {
+function populateChoosePlayerLists(inputPosition, positionList, currentSelectedPlayer, weekChanged) {
     var select = document.getElementById(inputPosition);
     //for(var index in positionList) {
     //    select.options[select.options.length] = new Option(positionList[index], index);
     //}
 	
-	select.options[select.options.length] = new Option("");
-	if (inputPosition == "inputDEF") {
-		for(i = 0; i < positionList.length; i++) {
-			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
-			if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
-				select.options[select.options.length-1].disabled = true;
-				select.options[select.options.length-1].style.color="red";
-			}
-			else if (positionList[i]["timesUsed"] == 4) {
-				select.options[select.options.length-1].style.color="#FFA500";
+	//If we just changed the week, then we don't want to re-populate the rosters
+	if(!weekChanged) {
+		select.options[select.options.length] = new Option("");
+		if (inputPosition == "inputDEF") {
+			for(i = 0; i < positionList.length; i++) {
+				select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+				if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
+					select.options[select.options.length-1].disabled = true;
+					select.options[select.options.length-1].style.color="red";
+				}
+				else if (positionList[i]["timesUsed"] == 4) {
+					select.options[select.options.length-1].style.color="#FFA500";
+				}
 			}
 		}
-	}
-	else {
-		for(i = 0; i < positionList.length; i++) {
-			select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
-			if (positionList[i]["timesUsed"] >= 5) {
-				select.options[select.options.length-1].disabled = true;
-				select.options[select.options.length-1].style.color="red";
-			}
-			else if (positionList[i]["timesUsed"] == 4) {
-				select.options[select.options.length-1].style.color="#FFA500";
+		else {
+			for(i = 0; i < positionList.length; i++) {
+				select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+				if (positionList[i]["timesUsed"] >= 5) {
+					select.options[select.options.length-1].disabled = true;
+					select.options[select.options.length-1].style.color="red";
+				}
+				else if (positionList[i]["timesUsed"] == 4) {
+					select.options[select.options.length-1].style.color="#FFA500";
+				}
 			}
 		}
 	}
