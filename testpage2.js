@@ -22,7 +22,7 @@ $( document ).ready(
 		var teamName=	urlArray["teamName"];
 		//$('#currentTeamName').html(teamName);
 		
-	    loadTeamRoster(week, teamID, teamName, false);	//Populate select lists based on the week, set rosters that have already been chosen
+	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
 		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
@@ -46,16 +46,16 @@ function updatePage() {
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName=	urlArray["teamName"];
 	
-	loadTeamRoster(week, teamID, teamName, true);	//Populate select lists based on the week, set rosters that have already been chosen
+	loadTeamRoster(week, teamID, true);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
 	
 }
 
-function loadTeamRoster(week, teamID, teamName, weekChanged) {
+function loadTeamRoster(week, teamID, weekChanged) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
 	
 	//Send query to loadTeamRoster.php via AJAX
 	//This gets the roster that was already set by the user previously
@@ -385,7 +385,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
 	var temp;
 	
 	//Send query to loadTeamRoster.php via AJAX
@@ -451,7 +451,8 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 
 			}
 			if (dupeTeams > numDupeTeamsAllowed) {
-				console.log("TOO MANY DUPE TEAMS, CHANGE NOT ALLOWED"); // Change not allowed	
+				console.log("TOO MANY DUPE TEAMS, CHANGE NOT ALLOWED"); // Change not allowed
+				loadTeamRoster(week, fantasyID, false);
 			}
 			else {
 				var selectedPlayerTeam = "";
