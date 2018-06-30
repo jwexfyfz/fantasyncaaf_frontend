@@ -12,20 +12,20 @@
 	$conference = $_POST["conference"];
 	
     //Query to get number of teams in the conference
-	$sql = "select COUNT(*) from collegeteams where league=\"$conference\"";
+	$sql = "select COUNT(*) as numTeams from collegeteams where league=\"$conference\"";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			$numTeams = $row["COUNT(*)"];
+			$numTeams = $row["numTeams"];
 		}
 	}
 	
 	//Query to get number of conference teams playing in the current week
-	$sql = "select COUNT(*) from (select team from gametimes where week=$weekNum) as A inner join (select * from collegeteams where league=\"$conference\") as B on A.team=B.teamName";
+	$sql = "select COUNT(*) as numTeamsPlaying from (select team from gametimes where week=$weekNum) as A inner join (select * from collegeteams where league=\"$conference\") as B on A.team=B.teamName";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			$numTeamsPlaying = $row["COUNT(*)"];
+			$numTeamsPlaying = $row["numTeamsPlaying"];
 		}
 	}
 	

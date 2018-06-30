@@ -435,6 +435,7 @@ function comparePotentialTeamDupes(week, teamID) {
 	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
 	
 	var numDupeTeamsAllowed = getNumDupeTeamsAllowed(week, teamID);
+	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
 	
 	$.ajax({
 	    type: "POST",
@@ -445,7 +446,8 @@ function comparePotentialTeamDupes(week, teamID) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
 			var i;
 			for (i = 0; i < phpResponse.length; i++) {
-				dupeTeams += phpResponse[i]["teamCount"] - 1;
+				dupeTeams += (phpResponse[i]["teamCount"] - 1);
+				console.log("dupeTeams: "+dupeTeams);
 				if (dupeTeams > numDupeTeamsAllowed) {
 					console.log("UNDO LAST MOVE"); // undo the last move
 				}
@@ -465,8 +467,6 @@ function getNumDupeTeamsAllowed(week, teamID) {
 	    data: dataString,
 	    success: function(response) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
-		  console.log("numDupeTeamsAllowed: "+phpResponse);	//For testing
-					
 	    }
 	});
 	return phpResponse;
