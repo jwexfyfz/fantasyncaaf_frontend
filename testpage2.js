@@ -400,7 +400,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
 		  
 		  var valid = getNumDupeTeamsAllowed(week, teamID, position);
 		  
-		  //if (valid) {
+		  if (valid) {
 			  //Player changes RB1 to equal the same value as teamRoster's RB2
 			  comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
 			  comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
@@ -412,7 +412,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
 			  comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID, teamName);
 			  comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
 			  comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
-		  //}
+		  }
 	    }
 	});  
 }
@@ -453,7 +453,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 			}
 			if (dupeTeams > numDupeTeamsAllowed) {
 				console.log("TOO MANY DUPE TEAMS, CHANGE NOT ALLOWED"); // Change not allowed
-				//loadTeamRoster(week, fantasyID, false);
+				loadTeamRoster(week, fantasyID, false);
 				return false;
 			}
 			else {
