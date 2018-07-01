@@ -466,6 +466,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 				
 				if (counts[selectedPlayerTeam] >= 2) {  // If selected team is >= 2 uses
 					console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
+					loadTeamRoster(week, fantasyID, false);
 					return false;
 				}
 				else {  // allow the change
