@@ -458,7 +458,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			}
 			else {
 				var selectedPlayerTeam = "";
+				console.log("Input val: "+$('#input'+position).val());
 				for (var i = 0; i < phpResponse.length; i++) {
+					console.log("playerName: "+phpResponse[i]["playerName"]);
 					if ($('#input'+position).val() == phpResponse[i]["playerName"]) {
 						selectedPlayerTeam = phpResponse[i]["teamName"];
 						console.log("selectedPlayerTeam: "+selectedPlayerTeam);
