@@ -481,7 +481,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 
 function getNumDupeTeamsAllowed(week, fantasyID, position) {
 	var phpResponse;
-	var dataString = 'weekNum='+week+'&conference=PAC12';  // PAC12 is temporary
+	var dataString = 'weekNum='+week;
 	
 	$.ajax({
 	    type: "POST",
