@@ -399,7 +399,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
 		  var valid = getNumDupeTeamsAllowed(week, teamID, position);
-		  
+		  console.log("VALID CHANGE: "+valid);
 		  if (valid) {
 			  //Player changes RB1 to equal the same value as teamRoster's RB2
 			  comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
