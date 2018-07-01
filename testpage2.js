@@ -398,7 +398,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
-		  getNumDupeTeamsAllowed(week, teamID, position);
+		  getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);
 		  //console.log("VALID CHANGE: "+valid);
 		  /*if (valid) {
 			  //Player changes RB1 to equal the same value as teamRoster's RB2
@@ -417,7 +417,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
 	});  
 }
 
-function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
+function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, phpResponse, teamName) {
 	var dupeTeams = 0;
 	
 	var phpResponse;
@@ -472,16 +472,16 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 				else {  // allow the change
 					console.log("CHANGE ALLOWED");
 					
-					comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
-					comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
+					comparePotentialDupes("RB1", "RB2", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("WR1", "WR2", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("WR2", "WR3", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("WR1", "WR3", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, fantasyID, teamName);
+					comparePotentialDupes("TE", "FLEX", position, phpResponse, week, fantasyID, teamName);
 					//return true;
 				}
 			}
@@ -490,7 +490,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position) {
 	});  
 }
 
-function getNumDupeTeamsAllowed(week, fantasyID, position) {
+function getNumDupeTeamsAllowed(week, fantasyID, position, phpResponse, teamName) {
 	var phpResponse;
 	var dataString = 'weekNum='+week;
 	
@@ -503,7 +503,7 @@ function getNumDupeTeamsAllowed(week, fantasyID, position) {
 		  if (phpResponse < 0) {
 			phpResponse = 0;
 		  }
-		  teamDupes(week, fantasyID, phpResponse, position);
+		  teamDupes(week, fantasyID, phpResponse, position, phpResponse, teamName);
 	    }
 	});
 	
