@@ -174,7 +174,13 @@ function getFantasyPoints() {
 			  $('#qbPoints').html(playerPoints[$('#inputQB').val()]);
 		  }
 		  else {
-			  $('#qbPoints').html("0");
+			  if($('#inputQB').attr('disabled') == 'disabled') {
+				  console.log("QB is disabled, so setting points to 0");
+				  $('#qbPoints').html("0");
+			  } else {
+				  console.log("QB is not disabled, so setting points to --");
+				  $('#qbPoints').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputRB1').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputRB1').val()]);
