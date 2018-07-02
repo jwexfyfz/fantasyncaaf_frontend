@@ -449,40 +449,32 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 					dupeTeams++;
 				}
 				console.log("dupeTeams: "+dupeTeams);
-
 			}
-			if (dupeTeams > numDupeTeamsAllowed) {
-				console.log("TOO MANY DUPE TEAMS, CHANGE NOT ALLOWED"); // Change not allowed
+			
+			var newPosition = position.replace("tophp","");
+			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
+			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
+			
+			if (counts[selectedPlayerTeam] >= 1 && dupeTeams == numDupeTeamsAllowed) {  // If selected team is >= 2 uses
+				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				loadTeamRoster(week, fantasyID, false);
 				//return false;
 			}
-			else {
-				var newPosition = position.replace("tophp","");
-				var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
-				console.log("selectedPlayerTeam: "+selectedPlayerTeam);
+			else {  // allow the change
+				console.log("CHANGE ALLOWED");
 				
-				if (counts[selectedPlayerTeam] >= 2) {  // If selected team is >= 2 uses
-					console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
-					loadTeamRoster(week, fantasyID, false);
-					//return false;
-				}
-				else {  // allow the change
-					console.log("CHANGE ALLOWED");
-					
-					comparePotentialDupes("RB1", "RB2", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("RB1", "FLEX", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("RB2", "FLEX", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("WR1", "WR2", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("WR2", "WR3", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("WR1", "WR3", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("WR1", "FLEX", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("WR2", "FLEX", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("WR3", "FLEX", position, teamRoster, week, fantasyID, teamName);
-					comparePotentialDupes("TE", "FLEX", position, teamRoster, week, fantasyID, teamName);
-					//return true;
-				}
+				comparePotentialDupes("RB1", "RB2", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("RB1", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("RB2", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("WR1", "WR2", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("WR2", "WR3", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("WR1", "WR3", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("WR1", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("WR2", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("WR3", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				comparePotentialDupes("TE", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				//return true;
 			}
-			
 	    }
 	});  
 }
