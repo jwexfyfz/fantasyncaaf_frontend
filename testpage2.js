@@ -457,16 +457,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				//return false;
 			}
 			else {
-				var selectedPlayerTeam = "";
 				var newPosition = position.replace("tophp","");
-				console.log("Position: "+newPosition);
-				for (var i = 0; i < phpResponse.length; i++) {
-					console.log("playerName: "+phpResponse[i]["playerName"]);
-					if ($('#input'+newPosition).val() == phpResponse[i]["playerName"]) {
-						selectedPlayerTeam = phpResponse[i]["teamName"];
-						console.log("selectedPlayerTeam: "+selectedPlayerTeam);
-					}
-				}
+				var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
+				console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 				
 				if (counts[selectedPlayerTeam] >= 2) {  // If selected team is >= 2 uses
 					console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
