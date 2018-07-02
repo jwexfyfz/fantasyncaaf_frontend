@@ -22,7 +22,7 @@ $( document ).ready(
 		var teamName=	urlArray["teamName"];
 		//$('#currentTeamName').html(teamName);
 		
-	    loadTeamRoster(week, teamID, teamName, false);	//Populate select lists based on the week, set rosters that have already been chosen
+	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
 		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
@@ -46,16 +46,16 @@ function updatePage() {
 	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 	var teamName=	urlArray["teamName"];
 	
-	loadTeamRoster(week, teamID, teamName, true);	//Populate select lists based on the week, set rosters that have already been chosen
+	loadTeamRoster(week, teamID, true);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
 	
 }
 
-function loadTeamRoster(week, teamID, teamName, weekChanged) {
+function loadTeamRoster(week, teamID, weekChanged) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
 	
 	//Send query to loadTeamRoster.php via AJAX
 	//This gets the roster that was already set by the user previously
@@ -385,7 +385,7 @@ function verifyNoDupes(position, week, teamID, teamName) {
     var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
 	var temp;
 	
 	//Send query to loadTeamRoster.php via AJAX
@@ -397,28 +397,31 @@ function verifyNoDupes(position, week, teamID, teamName) {
 	    success: function(response) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
-		  //Player changes RB1 to equal the same value as teamRoster's RB2
-	      comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
-	      comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
 		  
-		  getNumDupeTeamsAllowed(week, teamID);
+		  getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);
+		  //console.log("VALID CHANGE: "+valid);
+		  /*if (valid) {
+			  //Player changes RB1 to equal the same value as teamRoster's RB2
+			  comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
+			  comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
+		  }*/
 	    }
 	});  
 }
 
-function comparePotentialTeamDupes(week, teamID, numDupeTeamsAllowed) {
+function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName) {
 	var dupeTeams = 0;
 	
 	var phpResponse;
-	var dataString = 'weekNum='+week+'&fantasyID='+teamID;
+	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
 	
 	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
 	
@@ -427,17 +430,63 @@ function comparePotentialTeamDupes(week, teamID, numDupeTeamsAllowed) {
 	    url: "getPlayerSchools.php",
 	    data: dataString,
 	    success: function(response) {
-
-		  $('#result2').html(response);
-		  console.log("successfully sent query to tell php to provide list of schools");	//For testing
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
-		  console.log("Response from getPlayerSchools.php: "+phpResponse);
-			var i;
-			for (i = 0; i < phpResponse.length; i++) {
-				dupeTeams += (phpResponse[i]["teamCount"] - 1);
+			
+			$('#result2').html(response);
+			console.log("successfully sent query to tell php to provide list of schools");	//For testing
+			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a (playerName, team) pair
+			//console.log("Response from getPlayerSchools.php: "+phpResponse);
+			
+			var counts = {};
+			for (var i = 0; i < phpResponse.length; i++) {
+				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
+				//console.log("Response from getPlayerSchools.php: "+counts[i]);
+			}
+			console.log("Counts array: "+JSON.stringify(counts));
+			
+			for (var key in counts) {
+				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
+				if (counts[key] >= 2) {
+					dupeTeams++;
+				}
 				console.log("dupeTeams: "+dupeTeams);
-				if (dupeTeams > numDupeTeamsAllowed) {
-					console.log("UNDO LAST MOVE"); // undo the last move
+
+			}
+			if (dupeTeams > numDupeTeamsAllowed) {
+				console.log("TOO MANY DUPE TEAMS, CHANGE NOT ALLOWED"); // Change not allowed
+				loadTeamRoster(week, fantasyID, false);
+				//return false;
+			}
+			else {
+				var selectedPlayerTeam = "";
+				var newPosition = position.replace("tophp","");
+				console.log("Position: "+newPosition);
+				for (var i = 0; i < phpResponse.length; i++) {
+					console.log("playerName: "+phpResponse[i]["playerName"]);
+					if ($('#input'+newPosition).val() == phpResponse[i]["playerName"]) {
+						selectedPlayerTeam = phpResponse[i]["teamName"];
+						console.log("selectedPlayerTeam: "+selectedPlayerTeam);
+					}
+				}
+				
+				if (counts[selectedPlayerTeam] >= 2) {  // If selected team is >= 2 uses
+					console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
+					loadTeamRoster(week, fantasyID, false);
+					//return false;
+				}
+				else {  // allow the change
+					console.log("CHANGE ALLOWED");
+					
+					comparePotentialDupes("RB1", "RB2", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("RB1", "FLEX", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("RB2", "FLEX", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("WR1", "WR2", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("WR2", "WR3", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("WR1", "WR3", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("WR1", "FLEX", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("WR2", "FLEX", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("WR3", "FLEX", position, teamRoster, week, fantasyID, teamName);
+					comparePotentialDupes("TE", "FLEX", position, teamRoster, week, fantasyID, teamName);
+					//return true;
 				}
 			}
 			
@@ -445,20 +494,20 @@ function comparePotentialTeamDupes(week, teamID, numDupeTeamsAllowed) {
 	});  
 }
 
-function getNumDupeTeamsAllowed(week, teamID) {
+function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName) {
 	var phpResponse;
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID+'&conference=PAC12';  // PAC12 is temporary
+	var dataString = 'weekNum='+week;
 	
 	$.ajax({
 	    type: "POST",
 	    url: "getNumDupeTeamsAllowed.php",
 	    data: dataString,
 	    success: function(response) {
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a team, followed by the count of uses of that team
+		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a (playerName, team) pair
 		  if (phpResponse < 0) {
 			phpResponse = 0;
 		  }
-		  comparePotentialTeamDupes(week, teamID, phpResponse);
+		  teamDupes(week, fantasyID, phpResponse, position, teamRoster, teamName);
 	    }
 	});
 	
