@@ -23,7 +23,7 @@ $( document ).ready(
 		//$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
-		checkGameStarted(week, teamID);  //uncomment when ready
+		//checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
 		  event.preventDefault();
@@ -174,7 +174,13 @@ function getFantasyPoints() {
 			  $('#qbPoints').html(playerPoints[$('#inputQB').val()]);
 		  }
 		  else {
-			  $('#qbPoints').html("0");
+			  if($('#inputQB').attr('disabled') == 'disabled') {
+				  console.log("QB is disabled, so setting points to 0");
+				  $('#qbPoints').html("0");
+			  } else {
+				  console.log("QB is not disabled, so setting points to --");
+				  $('#qbPoints').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputRB1').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputRB1').val()]);
