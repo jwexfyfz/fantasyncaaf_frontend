@@ -458,8 +458,8 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			}
 			else {
 				var selectedPlayerTeam = "";
-				var newPosition = position.split("tophp");
-				console.log("Input val: "+$('#input'+newPosition).val());
+				var newPosition = position.split("tophp").trim();
+				console.log("Position: "+newPosition);
 				for (var i = 0; i < phpResponse.length; i++) {
 					console.log("playerName: "+phpResponse[i]["playerName"]);
 					if ($('#input'+newPosition).val() == phpResponse[i]["playerName"]) {
