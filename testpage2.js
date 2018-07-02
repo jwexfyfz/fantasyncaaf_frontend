@@ -187,63 +187,117 @@ function getFantasyPoints() {
 			  $('#rb1Points').html(playerPoints[$('#inputRB1').val()]);
 		  }
 		  else {
-			  $('#rb1Points').html("0");
+			  if($('#inputRB1').attr('disabled') == 'disabled') {
+				  console.log("RB1 is disabled, so setting points to 0");
+				  $('#rb1Points').html("0");
+			  } else {
+				  console.log("RB1 is not disabled, so setting points to --");
+				  $('#rb1Points').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputRB2').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputRB2').val()]);
 			  $('#rb2Points').html(playerPoints[$('#inputRB2').val()]);
 		  }
 		  else {
-			  $('#rb2Points').html("0");
+			  if($('#inputRB2').attr('disabled') == 'disabled') {
+				  console.log("RB2 is disabled, so setting points to 0");
+				  $('#rb2Points').html("0");
+			  } else {
+				  console.log("RB2 is not disabled, so setting points to --");
+				  $('#rb2Points').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputWR1').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputWR1').val()]);
 			  $('#wr1Points').html(playerPoints[$('#inputWR1').val()]);
 		  }
 		  else {
-			  $('#wr1Points').html("0");
+			  if($('#inputWR1').attr('disabled') == 'disabled') {
+				  console.log("WR1 is disabled, so setting points to 0");
+				  $('#wr1Points').html("0");
+			  } else {
+				  console.log("WR1 is not disabled, so setting points to --");
+				  $('#wr1Points').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputWR2').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputWR2').val()]);
 			  $('#wr2Points').html(playerPoints[$('#inputWR2').val()]);
 		  }
 		  else {
-			  $('#wr2Points').html("0");
+			  if($('#inputWR2').attr('disabled') == 'disabled') {
+				  console.log("WR2 is disabled, so setting points to 0");
+				  $('#wr2Points').html("0");
+			  } else {
+				  console.log("WR2 is not disabled, so setting points to --");
+				  $('#wr2Points').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputWR3').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputWR3').val()]);
 			  $('#wr3Points').html(playerPoints[$('#inputWR3').val()]);
 		  }
 		  else {
-			  $('#wr3Points').html("0");
+			  if($('#inputWR3').attr('disabled') == 'disabled') {
+				  console.log("WR3 is disabled, so setting points to 0");
+				  $('#wr3Points').html("0");
+			  } else {
+				  console.log("WR3 is not disabled, so setting points to --");
+				  $('#wr3Points').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputTE').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputTE').val()]);
 			  $('#tePoints').html(playerPoints[$('#inputTE').val()]);
 		  }
 		  else {
-			  $('#tePoints').html("0");
+			  if($('#inputTE').attr('disabled') == 'disabled') {
+				  console.log("TE is disabled, so setting points to 0");
+				  $('#tePoints').html("0");
+			  } else {
+				  console.log("TE is not disabled, so setting points to --");
+				  $('#tePoints').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputDEF').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputDEF').val()]);
 			  $('#defPoints').html(playerPoints[$('#inputDEF').val()]);
 		  }
 		  else {
-			  $('#defPoints').html("0");
+			  if($('#inputDEF').attr('disabled') == 'disabled') {
+				  console.log("DEF is disabled, so setting points to 0");
+				  $('#defPoints').html("0");
+			  } else {
+				  console.log("DEF is not disabled, so setting points to --");
+				  $('#defPoints').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputK').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputK').val()]);
 			  $('#kPoints').html(playerPoints[$('#inputK').val()]);
 		  }
 		  else {
-			  $('#kPoints').html("0");
+			  if($('#inputK').attr('disabled') == 'disabled') {
+				  console.log("K is disabled, so setting points to 0");
+				  $('#kPoints').html("0");
+			  } else {
+				  console.log("K is not disabled, so setting points to --");
+				  $('#kPoints').html("--");
+			  }
 		  }
 		  if(	playerPoints[$('#inputFLEX').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputFLEX').val()]);
 			  $('#flexPoints').html(playerPoints[$('#inputFLEX').val()]);
 		  }
 		  else {
-			  $('#flexPoints').html("0");
+			  if($('#inputFLEX').attr('disabled') == 'disabled') {
+				  console.log("FLEX is disabled, so setting points to 0");
+				  $('#flexPoints').html("0");
+			  } else {
+				  console.log("FLEX is not disabled, so setting points to --");
+				  $('#flexPoints').html("--");
+			  }
 		  }
 	    }
 	});
