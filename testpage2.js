@@ -708,11 +708,18 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		select.options[select.options.length] = new Option("");
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
-				//currentOption = new Option(positionList[i]["playerName"] + " (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+				//Set attributes:
+				//currentOption: set text and value of option
+				//currentSubtext: show metadata of team: "(<number of uses>)" e.g. (0)
 				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
-				select.options[select.options.length] = currentOption;
 				currentSubtext = "("+positionList[i]["timesUsed"]+")";
+				
+				//Set the option text and value
+				select.options[select.options.length] = currentOption;
+				
+				//data-subtext = Subtext
 				currentOption.setAttribute("data-subtext",currentSubtext);
+				
 				if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";
@@ -723,18 +730,27 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			}
 		}
 		else {
-			for(i = 0; i < positionList.length; i++) {
-				//select.options[select.options.length] = new Option(positionList[i]["playerName"] + " (" + positionList[i]["position"] + ", " + positionList[i]["team"] + ") (" + positionList[i]["timesUsed"] + ")", positionList[i]["playerName"]);
+			for(i = 0; i < positionList.length; i++) {			
+				//Set attributes:
+				//currentOption: set text and value of option
+				//currentSubtext: show metadata of player: "<position>, <school> (<number of uses>)" e.g. QB, UCLA (0)
+				//currentMetadata: searchable key words: "<player first name> <player last name> <school>" e.g. Josh Rosen UCLA
 				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
 				currentSubtext = positionList[i]["position"]+", "+positionList[i]["team"]+" ("+positionList[i]["timesUsed"]+")";
 				currentMetadata = positionList[i]["playerName"] + " " + positionList[i]["team"];
 				
-				
+				//Set the option text and value
 				select.options[select.options.length] = currentOption;
 				
+				//data-subtext = Subtext
+				//title = playerAbbr + currentSubtext
+				//data-tokens = currentMetadata
 				currentOption.setAttribute("data-subtext",currentSubtext);
-				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+' '+'<small class="text-muted">' + currentSubtext + '</small>');
+				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+' '+'<small class="text-muted" style="font-weight:100">' + currentSubtext + '</small>');
 				currentOption.setAttribute("data-tokens",currentMetadata);
+				currentOption.setAttribute("data-position",positionList[i]["position"]);
+				currentOption.setAttribute("data-school",positionList[i]["team"]);
+				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
 
 				if (positionList[i]["timesUsed"] >= 5) {
 					select.options[select.options.length-1].disabled = true;

@@ -117,11 +117,14 @@ select.selectpicker {
 .bootstrap-select.btn-group.bs-container .dropdown-menu {
   z-index: 1060;
 }
+
+/*This line changes the displayed player name*/
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
   display: inline-block;
   overflow: hidden;
   width: 100%;
   text-align: left;
+  font-weight:900;
 }
 .bootstrap-select.btn-group .dropdown-toggle .caret {
   position: absolute;
