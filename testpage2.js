@@ -458,10 +458,11 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			}
 			else {
 				var selectedPlayerTeam = "";
-				console.log("Input val: "+$('#input'+position.split("tophp")).val());
+				var newPosition = position.split("tophp");
+				console.log("Input val: "+$('#input'+newPosition).val());
 				for (var i = 0; i < phpResponse.length; i++) {
 					console.log("playerName: "+phpResponse[i]["playerName"]);
-					if ($('#input'+position.split("tophp")).val() == phpResponse[i]["playerName"]) {
+					if ($('#input'+newPosition).val() == phpResponse[i]["playerName"]) {
 						selectedPlayerTeam = phpResponse[i]["teamName"];
 						console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 					}
