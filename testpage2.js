@@ -169,32 +169,36 @@ function getFantasyPoints() {
 		  playerPoints = JSON.parse(response);
 		  //console.log("successfully got fantasyPoints from php!");
 	  
-		  if(	playerPoints[$('#inputQB').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputQB').val()]);
-			  $('#qbPoints').html(playerPoints[$('#inputQB').val()]);
-		  }
-		  else {
-			  if($('#inputQB').attr('disabled') == 'disabled') {
+		  if($('#inputQB').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputQB').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#qbPoints').html(playerPoints[$('#inputQB').val()]);
+			  }
+			  else {
 				  console.log("QB is disabled, so setting points to 0");
 				  $('#qbPoints').html("0");
-			  } else {
-				  console.log("QB is not disabled, so setting points to --");
-				  $('#qbPoints').html("--");
 			  }
+		  } else {
+			  console.log("QB is not disabled, so setting points to --");
+			  $('#qbPoints').html("--");
 		  }
-		  if(	playerPoints[$('#inputRB1').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputRB1').val()]);
-			  $('#rb1Points').html(playerPoints[$('#inputRB1').val()]);
-		  }
-		  else {
-			  if($('#inputRB1').attr('disabled') == 'disabled') {
+		  
+		  
+		  if($('#inputRB1').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputRB1').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#rb1Points').html(playerPoints[$('#inputRB1').val()]);
+			  }
+			  else {
 				  console.log("RB1 is disabled, so setting points to 0");
 				  $('#rb1Points').html("0");
-			  } else {
-				  console.log("RB1 is not disabled, so setting points to --");
-				  $('#rb1Points').html("--");
 			  }
+		  } else {
+			  console.log("RB1 is not disabled, so setting points to --");
+			  $('#rb1Points').html("--");
 		  }
+		  
+		  
 		  if(	playerPoints[$('#inputRB2').val()] != undefined	) {
 			  //console.log(playerPoints[$('#inputRB2').val()]);
 			  $('#rb2Points').html(playerPoints[$('#inputRB2').val()]);
