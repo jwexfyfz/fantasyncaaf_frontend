@@ -16,8 +16,8 @@ $( document ).ready(
 			window.location.href = "index.html" + window.location.search;
 		});
 		
-		$("#allMatchupsButton").click( function(event) {
-		  event.preventDefault();
+		//$("#allMatchupsButton").click( function(event) {
+		  //event.preventDefault();
 		  //console.log('clicked allMatchupsButton');
 		  //console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
 		  
@@ -27,7 +27,7 @@ $( document ).ready(
 		  allMatchupsFunction();
 		  
 		  //createMatchupTable("dummyTable1", 1, "dummyTeamName1", "dummyTeamName2", "dummyScore1", "dummyScore2");  
-		});
+		//});
 		
 		updatePage();	
 });

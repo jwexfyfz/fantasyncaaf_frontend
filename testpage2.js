@@ -519,7 +519,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
 			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 			
-			if (counts[selectedPlayerTeam] >= 1 && dupeTeams == numDupeTeamsAllowed) {  // If selected team is >= 2 uses
+			if (counts[selectedPlayerTeam] >= 1 && dupeTeams == numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				loadTeamRoster(week, fantasyID, false);
 				//return false;
