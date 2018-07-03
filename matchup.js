@@ -21,8 +21,8 @@ $( document ).ready(
 		  //console.log('clicked allMatchupsButton');
 		  //console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
 		  
-		  //$('#myTeamMatchupTable').hide();
-		  //console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
+		  $('#myTeamMatchupTable').hide();
+		  console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
 		  
 		  allMatchupsFunction();
 		  
