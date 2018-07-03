@@ -198,110 +198,117 @@ function getFantasyPoints() {
 			  $('#rb1Points').html("--");
 		  }
 		  
-		  
-		  if(	playerPoints[$('#inputRB2').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputRB2').val()]);
-			  $('#rb2Points').html(playerPoints[$('#inputRB2').val()]);
-		  }
-		  else {
-			  if($('#inputRB2').attr('disabled') == 'disabled') {
+		  if($('#inputRB2').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputRB2').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#rb2Points').html(playerPoints[$('#inputRB2').val()]);
+			  }
+			  else {
 				  console.log("RB2 is disabled, so setting points to 0");
 				  $('#rb2Points').html("0");
-			  } else {
-				  console.log("RB2 is not disabled, so setting points to --");
-				  $('#rb2Points').html("--");
 			  }
+		  } else {
+			  console.log("RB2 is not disabled, so setting points to --");
+			  $('#rb2Points').html("--");
 		  }
-		  if(	playerPoints[$('#inputWR1').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputWR1').val()]);
-			  $('#wr1Points').html(playerPoints[$('#inputWR1').val()]);
-		  }
-		  else {
-			  if($('#inputWR1').attr('disabled') == 'disabled') {
+		  
+		  
+		  if($('#inputWR1').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputWR1').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#wr1Points').html(playerPoints[$('#inputWR1').val()]);
+			  }
+			  else {
 				  console.log("WR1 is disabled, so setting points to 0");
 				  $('#wr1Points').html("0");
-			  } else {
-				  console.log("WR1 is not disabled, so setting points to --");
-				  $('#wr1Points').html("--");
 			  }
+		  } else {
+			  console.log("WR1 is not disabled, so setting points to --");
+			  $('#wr1Points').html("--");
 		  }
-		  if(	playerPoints[$('#inputWR2').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputWR2').val()]);
-			  $('#wr2Points').html(playerPoints[$('#inputWR2').val()]);
-		  }
-		  else {
-			  if($('#inputWR2').attr('disabled') == 'disabled') {
+		  
+		  if($('#inputWR2').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputWR2').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#wr2Points').html(playerPoints[$('#inputWR2').val()]);
+			  }
+			  else {
 				  console.log("WR2 is disabled, so setting points to 0");
 				  $('#wr2Points').html("0");
-			  } else {
-				  console.log("WR2 is not disabled, so setting points to --");
-				  $('#wr2Points').html("--");
 			  }
+		  } else {
+			  console.log("WR2 is not disabled, so setting points to --");
+			  $('#wr2Points').html("--");
 		  }
-		  if(	playerPoints[$('#inputWR3').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputWR3').val()]);
-			  $('#wr3Points').html(playerPoints[$('#inputWR3').val()]);
-		  }
-		  else {
-			  if($('#inputWR3').attr('disabled') == 'disabled') {
+		  
+		  if($('#inputWR3').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputWR3').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#wr3Points').html(playerPoints[$('#inputWR3').val()]);
+			  }
+			  else {
 				  console.log("WR3 is disabled, so setting points to 0");
 				  $('#wr3Points').html("0");
-			  } else {
-				  console.log("WR3 is not disabled, so setting points to --");
-				  $('#wr3Points').html("--");
 			  }
+		  } else {
+			  console.log("WR3 is not disabled, so setting points to --");
+			  $('#wr3Points').html("--");
 		  }
-		  if(	playerPoints[$('#inputTE').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputTE').val()]);
-			  $('#tePoints').html(playerPoints[$('#inputTE').val()]);
-		  }
-		  else {
-			  if($('#inputTE').attr('disabled') == 'disabled') {
+		  
+		  if($('#inputTE').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputTE').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#tePoints').html(playerPoints[$('#inputTE').val()]);
+			  }
+			  else {
 				  console.log("TE is disabled, so setting points to 0");
 				  $('#tePoints').html("0");
-			  } else {
-				  console.log("TE is not disabled, so setting points to --");
-				  $('#tePoints').html("--");
 			  }
+		  } else {
+			  console.log("TE is not disabled, so setting points to --");
+			  $('#tePoints').html("--");
 		  }
-		  if(	playerPoints[$('#inputDEF').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputDEF').val()]);
-			  $('#defPoints').html(playerPoints[$('#inputDEF').val()]);
-		  }
-		  else {
-			  if($('#inputDEF').attr('disabled') == 'disabled') {
+		  
+		  if($('#inputDEF').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputDEF').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#defPoints').html(playerPoints[$('#inputDEF').val()]);
+			  }
+			  else {
 				  console.log("DEF is disabled, so setting points to 0");
 				  $('#defPoints').html("0");
-			  } else {
-				  console.log("DEF is not disabled, so setting points to --");
-				  $('#defPoints').html("--");
 			  }
+		  } else {
+			  console.log("DEF is not disabled, so setting points to --");
+			  $('#defPoints').html("--");
 		  }
-		  if(	playerPoints[$('#inputK').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputK').val()]);
-			  $('#kPoints').html(playerPoints[$('#inputK').val()]);
-		  }
-		  else {
-			  if($('#inputK').attr('disabled') == 'disabled') {
+		  
+		  if($('#inputK').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputK').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#kPoints').html(playerPoints[$('#inputK').val()]);
+			  }
+			  else {
 				  console.log("K is disabled, so setting points to 0");
 				  $('#kPoints').html("0");
-			  } else {
-				  console.log("K is not disabled, so setting points to --");
-				  $('#kPoints').html("--");
 			  }
+		  } else {
+			  console.log("K is not disabled, so setting points to --");
+			  $('#kPoints').html("--");
 		  }
-		  if(	playerPoints[$('#inputFLEX').val()] != undefined	) {
-			  //console.log(playerPoints[$('#inputFLEX').val()]);
-			  $('#flexPoints').html(playerPoints[$('#inputFLEX').val()]);
-		  }
-		  else {
-			  if($('#inputFLEX').attr('disabled') == 'disabled') {
+		  
+		  if($('#inputFLEX').attr('disabled') == 'disabled') {
+			  if(	playerPoints[$('#inputFLEX').val()] != undefined	) {
+				  //console.log(playerPoints[$('#inputQB').val()]);
+				  $('#flexPoints').html(playerPoints[$('#inputFLEX').val()]);
+			  }
+			  else {
 				  console.log("FLEX is disabled, so setting points to 0");
 				  $('#flexPoints').html("0");
-			  } else {
-				  console.log("FLEX is not disabled, so setting points to --");
-				  $('#flexPoints').html("--");
 			  }
+		  } else {
+			  console.log("FLEX is not disabled, so setting points to --");
+			  $('#flexPoints').html("--");
 		  }
 	    }
 	});
