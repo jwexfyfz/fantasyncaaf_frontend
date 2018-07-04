@@ -37,7 +37,13 @@ $( document ).ready(
 		$("#headerTableColumn3").click( function(event) {
 			window.location.href = "matchup.html" + window.location.search;
 		});	
+		
+		
+		//fadeErrorFooter("hello world");
+		
 		$("#errorBannerExit").click( function(event) {
+			clearTimeout(myVar);
+			console.log("clearTimeout ran");
 			exitErrorFooter();
 		});	
 });
@@ -531,6 +537,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			
 			if (counts[selectedPlayerTeam] >= 1 && dupeTeams == numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
+				
+				//Display error message
+				fadeErrorFooter("Too many players from the same team!");
 				loadTeamRoster(week, fantasyID, false);
 				//return false;
 			}
@@ -844,11 +853,14 @@ function allMatchupsFunction() {
 	console.log("allMatchupsFunction() called");
 }
 
-function fadeErrorFooter() {
+function fadeErrorFooter(text) {
+	$('#errorBannerContent').html(text);
 	console.log("error found");
 	$('.bottomErrorBanner').fadeIn("fast");
-	$('.bottomErrorBanner').delay(3000);
-	exitErrorFooter();
+	
+	setTimeout(myVar = exitErrorFooter,3000);
+	//$('.bottomErrorBanner').delay(3000);
+	//exitErrorFooter();
 }
 
 function exitErrorFooter() {

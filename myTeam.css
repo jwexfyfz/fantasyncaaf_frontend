@@ -63,4 +63,31 @@
 	right: 0;
 	height: 70px;
 	z-index:999;
+	display: table;
+}
+
+#errorBannerContent {
+	line-height:70px;
+	margin: 20px;
+	vertical-align: middle;
+	display:table-cell;
+	padding-left: 20px;
+}
+
+#errorBannerExit {
+	float:right;
+    height: 20px;
+    width: 20px;
+    background-color: yellow;
+    border-radius: 2px;
+    font-size: 20px; 
+    color: #000;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid black;
+	margin: 5px;
+}
+
+#errorBannerExit:after {
+    content: '\d7';
 }
