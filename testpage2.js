@@ -188,7 +188,7 @@ function getFantasyPoints() {
 				  $('#qbPoints').html("0");
 			  }
 		  } else {
-			  console.log("QB is not disabled, so setting points to --");
+			  //console.log("QB is not disabled, so setting points to --");
 			  $('#qbPoints').html("--");
 		  }
 		  
@@ -203,7 +203,7 @@ function getFantasyPoints() {
 				  $('#rb1Points').html("0");
 			  }
 		  } else {
-			  console.log("RB1 is not disabled, so setting points to --");
+			  //console.log("RB1 is not disabled, so setting points to --");
 			  $('#rb1Points').html("--");
 		  }
 		  
@@ -217,7 +217,7 @@ function getFantasyPoints() {
 				  $('#rb2Points').html("0");
 			  }
 		  } else {
-			  console.log("RB2 is not disabled, so setting points to --");
+			  //console.log("RB2 is not disabled, so setting points to --");
 			  $('#rb2Points').html("--");
 		  }
 		  
@@ -232,7 +232,7 @@ function getFantasyPoints() {
 				  $('#wr1Points').html("0");
 			  }
 		  } else {
-			  console.log("WR1 is not disabled, so setting points to --");
+			  //console.log("WR1 is not disabled, so setting points to --");
 			  $('#wr1Points').html("--");
 		  }
 		  
@@ -246,7 +246,7 @@ function getFantasyPoints() {
 				  $('#wr2Points').html("0");
 			  }
 		  } else {
-			  console.log("WR2 is not disabled, so setting points to --");
+			  //console.log("WR2 is not disabled, so setting points to --");
 			  $('#wr2Points').html("--");
 		  }
 		  
@@ -260,7 +260,7 @@ function getFantasyPoints() {
 				  $('#wr3Points').html("0");
 			  }
 		  } else {
-			  console.log("WR3 is not disabled, so setting points to --");
+			  //console.log("WR3 is not disabled, so setting points to --");
 			  $('#wr3Points').html("--");
 		  }
 		  
@@ -274,7 +274,7 @@ function getFantasyPoints() {
 				  $('#tePoints').html("0");
 			  }
 		  } else {
-			  console.log("TE is not disabled, so setting points to --");
+			  //console.log("TE is not disabled, so setting points to --");
 			  $('#tePoints').html("--");
 		  }
 		  
@@ -288,7 +288,7 @@ function getFantasyPoints() {
 				  $('#defPoints').html("0");
 			  }
 		  } else {
-			  console.log("DEF is not disabled, so setting points to --");
+			  //console.log("DEF is not disabled, so setting points to --");
 			  $('#defPoints').html("--");
 		  }
 		  
@@ -302,7 +302,7 @@ function getFantasyPoints() {
 				  $('#kPoints').html("0");
 			  }
 		  } else {
-			  console.log("K is not disabled, so setting points to --");
+			  //console.log("K is not disabled, so setting points to --");
 			  $('#kPoints').html("--");
 		  }
 		  
@@ -316,7 +316,7 @@ function getFantasyPoints() {
 				  $('#flexPoints').html("0");
 			  }
 		  } else {
-			  console.log("FLEX is not disabled, so setting points to --");
+			  //console.log("FLEX is not disabled, so setting points to --");
 			  $('#flexPoints').html("--");
 		  }
 	    }
