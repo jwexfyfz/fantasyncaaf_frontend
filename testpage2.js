@@ -540,7 +540,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				//Display error message
 				fadeErrorFooter("Too many players from the same team!<br/><span style='font-size:0.8em'>Try removing one or more <b>" + selectedPlayerTeam + "</b> players.</span>");
-				loadTeamRoster(week, fantasyID, false);
+				loadTeamRoster(week, fantasyID, true);
 				//return false;
 			}
 			else {  // allow the change
