@@ -787,7 +787,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				//currentOption: set text and value of option
 				//currentSubtext: show metadata of team: "(<number of uses>)" e.g. (0)
 				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
-				currentSubtext = "("+positionList[i]["timesUsed"]+")";
+				currentSubtext = "<span style='font-weight:100'>("+positionList[i]["timesUsed"]+")</span>";
 				
 				//Set the option text and value
 				select.options[select.options.length] = currentOption;
