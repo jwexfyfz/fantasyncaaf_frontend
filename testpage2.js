@@ -39,7 +39,7 @@ $( document ).ready(
 		});	
 		
 		
-		//fadeErrorFooter("hello world");
+		//fadeErrorFooter("test test test test test test test test test test test test test test test ");
 		
 		$("#errorBannerExit").click( function(event) {
 			clearTimeout(myVar);
@@ -539,7 +539,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//Display error message
-				fadeErrorFooter("Too many players from the same team!");
+				fadeErrorFooter("Too many players from the same team! Try setting one or more " + selectedPlayerTeam + " players to <blank>");
 				loadTeamRoster(week, fantasyID, false);
 				//return false;
 			}

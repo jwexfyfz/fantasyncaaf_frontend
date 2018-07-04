@@ -67,11 +67,12 @@
 }
 
 #errorBannerContent {
-	line-height:70px;
+	/*line-height:70px;*/
 	margin: 20px;
 	vertical-align: middle;
 	display:table-cell;
 	padding-left: 20px;
+	width: calc(100% - 40px);
 }
 
 #errorBannerExit {
