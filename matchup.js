@@ -16,6 +16,7 @@ $( document ).ready(
 			window.location.href = "index.html" + window.location.search;
 		});
 		
+		/*
 		$("#allMatchupsButton").click( function(event) {
 		  event.preventDefault();
 		  console.log('clicked allMatchupsButton');
@@ -28,8 +29,10 @@ $( document ).ready(
 		  
 		  //createMatchupTable("dummyTable1", 1, "dummyTeamName1", "dummyTeamName2", "dummyScore1", "dummyScore2");  
 		});
+		*/
 		
 		updatePage();	
+		allMatchupsFunction();
 });
 
 function allMatchupsFunction() {

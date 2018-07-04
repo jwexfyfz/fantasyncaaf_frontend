@@ -37,6 +37,9 @@ $( document ).ready(
 		$("#headerTableColumn3").click( function(event) {
 			window.location.href = "matchup.html" + window.location.search;
 		});	
+		$("#errorBannerExit").click( function(event) {
+			exitErrorFooter();
+		});	
 });
 
 function updatePage() {
@@ -839,4 +842,15 @@ function confirmPlayer(position) {
 function allMatchupsFunction() {
 	//This is a dummy function because weekSelect.js calls allMatchupsFunction() when new week is selected
 	console.log("allMatchupsFunction() called");
+}
+
+function fadeErrorFooter() {
+	console.log("error found");
+	$('.bottomErrorBanner').fadeIn("fast");
+	$('.bottomErrorBanner').delay(3000);
+	exitErrorFooter();
+}
+
+function exitErrorFooter() {
+	$('.bottomErrorBanner').fadeOut("slow");
 }
