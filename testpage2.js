@@ -539,7 +539,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//Display error message
-				fadeErrorFooter("Too many players from the same team! Try setting one or more " + selectedPlayerTeam + " players to <blank>");
+				fadeErrorFooter("Too many players from the same team!<br/><span style='font-size:0.8em'>Try removing one or more <b>" + selectedPlayerTeam + "</b> players.</span>");
 				loadTeamRoster(week, fantasyID, false);
 				//return false;
 			}
