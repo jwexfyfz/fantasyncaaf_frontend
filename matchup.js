@@ -79,7 +79,7 @@ function getMatchups(convertTeam) {
 			for(i = 0; i < phpResponse.length; i++) {
 				if (i % maxNumColumn == 0) {
 					var tableStructure = "<tr>";
-					for (int colNum = 0; colNum < maxNumColumn; colNum++) {
+					for (var colNum = 0; colNum < maxNumColumn; colNum++) {
 						tableStructure += "<td id='row"+rowNum+"col"+colNum+"'></td>";
 					}
 					tableStructure +="</tr>";
