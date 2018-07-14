@@ -688,7 +688,7 @@ class FGMembersite
         return true;
     }
     
-    function SaveToDatabase(&$formvars)
+    function SaveToDatabase($formvars)
     {
         if(!$this->DBLogin())
         {
@@ -784,7 +784,7 @@ class FGMembersite
         return true;
     }
     
-    function InsertIntoDB(&$formvars)
+    function InsertIntoDB($formvars)
     {
     
         $confirmcode = $this->MakeConfirmationMd5($formvars['email']);
