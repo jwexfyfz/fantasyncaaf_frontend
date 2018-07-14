@@ -737,7 +737,7 @@ class FGMembersite
             $this->HandleDBError("Database Login failed! Please make sure that the DB login credentials provided are correct");
             return false;
         }
-        if(!mysqli_select_db($this->database, $this->connection))
+        if(!mysqli_select_db($this->connection, $this->database))
         {
             $this->HandleDBError('Failed to select database: '.$this->database.' Please make sure that the database name provided is correct');
             return false;
