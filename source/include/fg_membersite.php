@@ -617,7 +617,7 @@ class FGMembersite
         $formvars['email'] = $this->Sanitize($_POST['email']);
         $formvars['username'] = $this->Sanitize($_POST['username']);
         $formvars['password'] = $this->Sanitize($_POST['password']);
-		$this->HandleDBError($formvars);
+		$this->HandleDBError($_POST['username']);
 		return $formvars;
     }
     
