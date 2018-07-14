@@ -742,7 +742,7 @@ class FGMembersite
             $this->HandleDBError('Failed to select database: '.$this->database.' Please make sure that the database name provided is correct');
             return false;
         }
-        if(!mysqli_query("SET NAMES 'UTF8'",$this->connection))
+        if(!mysqli_query($this->connection,"SET NAMES 'UTF8'"))
         {
             $this->HandleDBError('Error setting utf8 encoding');
             return false;
