@@ -624,8 +624,6 @@ class FGMembersite
     function SendUserConfirmationEmail($formvars)
     {
         $mailer = new PHPMailer();
-        
-		$mailer->IsSMTP();
 		
         $mailer->CharSet = 'utf-8';
         
