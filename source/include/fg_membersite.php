@@ -790,7 +790,7 @@ class FGMembersite
     
     function InsertIntoDB($formvars)
     {
-		$temp2 = $formvars['username'];
+		$temp2 = $this->SanitizeForSQL($formvars['username']);
 		$this->HandleDBError("InsertIntoDB: '$temp2'");
         $confirmcode = $this->MakeConfirmationMd5($formvars['email']);
         
@@ -829,7 +829,7 @@ class FGMembersite
     {
         if( function_exists( "mysqli_real_escape_string" ) )
         {
-              $ret_str = mysqli_real_escape_string( $str );
+              $ret_str = mysqli_real_escape_string( $this->connection,$str );
         }
         else
         {
