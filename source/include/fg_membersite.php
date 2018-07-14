@@ -360,7 +360,7 @@ class FGMembersite
         $pwdmd5 = md5($password);
         $qry = "Select name, email from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
         
-        $result = mysqli_query($qry,$this->connection);
+        $result = mysqli_query($this->connection,$qry);
         
         if(!$result || mysqli_num_rows($result) <= 0)
         {
@@ -386,7 +386,7 @@ class FGMembersite
         }   
         $confirmcode = $this->SanitizeForSQL($_GET['code']);
         
-        $result = mysqli_query("Select name, email from $this->tablename where confirmcode='$confirmcode'",$this->connection);   
+        $result = mysqli_query($this->connection,"Select name, email from $this->tablename where confirmcode='$confirmcode'");   
         if(!$result || mysqli_num_rows($result) <= 0)
         {
             $this->HandleError("Wrong confirm code.");
@@ -398,7 +398,7 @@ class FGMembersite
         
         $qry = "Update $this->tablename Set confirmcode='y' Where  confirmcode='$confirmcode'";
         
-        if(!mysqli_query( $qry ,$this->connection))
+        if(!mysqli_query( $this->connection,$qry ))
         {
             $this->HandleDBError("Error inserting data to the table\nquery:$qry");
             return false;
@@ -423,7 +423,7 @@ class FGMembersite
         
         $qry = "Update $this->tablename Set password='".md5($newpwd)."' Where  id_user=".$user_rec['id_user']."";
         
-        if(!mysqli_query( $qry ,$this->connection))
+        if(!mysqli_query( $this->connection,$qry ))
         {
             $this->HandleDBError("Error updating the password \nquery:$qry");
             return false;
@@ -440,7 +440,7 @@ class FGMembersite
         }   
         $email = $this->SanitizeForSQL($email);
         
-        $result = mysqli_query("Select * from $this->tablename where email='$email'",$this->connection);  
+        $result = mysqli_query($this->connection,"Select * from $this->tablename where email='$email'");  
 
         if(!$result || mysqli_num_rows($result) <= 0)
         {
@@ -719,7 +719,7 @@ class FGMembersite
     {
         $field_val = $this->SanitizeForSQL($formvars[$fieldname]);
         $qry = "select username from $this->tablename where $fieldname='".$field_val."'";
-        $result = mysqli_query($qry,$this->connection);   
+        $result = mysqli_query($this->connection,$qry);   
         if($result && mysqli_num_rows($result) > 0)
         {
             return false;
@@ -773,7 +773,7 @@ class FGMembersite
                 "PRIMARY KEY ( id_user )".
                 ")";
                 
-        if(!mysqli_query($qry,$this->connection))
+        if(!mysqli_query($this->connection,$qry))
         {
             $this->HandleDBError("Error creating the table \nquery was\n $qry");
             return false;
@@ -803,7 +803,7 @@ class FGMembersite
                 "' . md5($formvars['password']) . '",
                 "' . $confirmcode . '"
                 )';      
-        if(!mysqli_query( $insert_query ,$this->connection))
+        if(!mysqli_query( $this->connection,$insert_query ))
         {
             $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
             return false;
