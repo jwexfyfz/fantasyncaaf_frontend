@@ -691,7 +691,7 @@ class FGMembersite
     
     function SaveToDatabase($formvars)
     {
-		$temp2 = $formvars['username'];
+		$temp2 = $formvars['email'];
 		$this->HandleDBError("SaveToDatabase: '$temp2'");
 		
         if(!$this->DBLogin())
@@ -790,7 +790,8 @@ class FGMembersite
     
     function InsertIntoDB($formvars)
     {
-    
+		$temp2 = $formvars['username'];
+		$this->HandleDBError("InsertIntoDB: '$temp2'");
         $confirmcode = $this->MakeConfirmationMd5($formvars['email']);
         
         $formvars['confirmcode'] = $confirmcode;
