@@ -716,8 +716,8 @@ class FGMembersite
             $this->HandleError("Inserting to Database failed!");
             return false;
         }
-		//var $temp2 = $formvars['username'];
-		//$this->HandleDBError("SaveToDatabase: '$temp2'");
+		$temp2 = $formvars['username'];
+		$this->HandleDBError("SaveToDatabase: '$temp2'");
         return true;
     }
     
