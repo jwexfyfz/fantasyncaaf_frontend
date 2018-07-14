@@ -74,14 +74,14 @@ class FGMembersite
            return false;
         }
         
-        $formvars = array();
+        //$formvars = array();
         
         if(!$this->ValidateRegistrationSubmission())
         {
             return false;
         }
         
-        $this->CollectRegistrationSubmission($formvars);
+        var $formvars = $this->CollectRegistrationSubmission();
         
         if(!$this->SaveToDatabase($formvars))
         {
@@ -610,12 +610,15 @@ class FGMembersite
         return true;
     }
     
-    function CollectRegistrationSubmission(&$formvars)
+    function CollectRegistrationSubmission()
     {
-        $formvars['name'] = $this->Sanitize($_POST['name']);
+        var $formvars;
+		$formvars['name'] = $this->Sanitize($_POST['name']);
         $formvars['email'] = $this->Sanitize($_POST['email']);
         $formvars['username'] = $this->Sanitize($_POST['username']);
         $formvars['password'] = $this->Sanitize($_POST['password']);
+		
+		return $formvars;
     }
     
     function SendUserConfirmationEmail(&$formvars)
