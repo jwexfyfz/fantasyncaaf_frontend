@@ -83,7 +83,7 @@ class FGMembersite
         
         $formvars = $this->CollectRegistrationSubmission();
 		var $temp = $formvars['username'];
-        $this->HandleDBError("After CollectRegistrationSubmission: $temp");
+        $this->HandleDBError("After CollectRegistrationSubmission: ".$temp."");
         if(!$this->SaveToDatabase($formvars))
         {
             return false;
@@ -717,7 +717,7 @@ class FGMembersite
             return false;
         }
 		var $temp2 = $formvars['username'];
-		$this->HandleDBError("SaveToDatabase: $temp2");
+		$this->HandleDBError("SaveToDatabase: ".$temp2."");
         return true;
     }
     
