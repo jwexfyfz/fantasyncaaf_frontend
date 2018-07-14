@@ -752,7 +752,7 @@ class FGMembersite
     
     function Ensuretable()
     {
-        $result = mysqli_query("SHOW COLUMNS FROM $this->tablename");   
+        $result = mysqli_query($this->connection,"SHOW COLUMNS FROM $this->tablename");   
         if(!$result || mysqli_num_rows($result) <= 0)
         {
             return $this->CreateTable();
