@@ -82,7 +82,7 @@ class FGMembersite
         }
         
         $formvars = $this->CollectRegistrationSubmission();
-		var $temp = $formvars['username'];
+		//var $temp = $formvars['username'];
         //$this->HandleDBError("After CollectRegistrationSubmission: '$temp'");
         if(!$this->SaveToDatabase($formvars))
         {
