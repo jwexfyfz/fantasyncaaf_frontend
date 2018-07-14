@@ -691,6 +691,9 @@ class FGMembersite
     
     function SaveToDatabase($formvars)
     {
+		$temp2 = $formvars['username'];
+		$this->HandleDBError("SaveToDatabase: '$temp2'");
+		
         if(!$this->DBLogin())
         {
             $this->HandleError("Database login failed!");
@@ -716,8 +719,6 @@ class FGMembersite
             $this->HandleError("Inserting to Database failed!");
             return false;
         }
-		$temp2 = $formvars['username'];
-		$this->HandleDBError("SaveToDatabase: '$temp2'");
         return true;
     }
     
