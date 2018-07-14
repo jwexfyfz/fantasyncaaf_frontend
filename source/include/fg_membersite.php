@@ -621,7 +621,7 @@ class FGMembersite
 		return $formvars;
     }
     
-    function SendUserConfirmationEmail(&$formvars)
+    function SendUserConfirmationEmail($formvars)
     {
         $mailer = new PHPMailer();
         
