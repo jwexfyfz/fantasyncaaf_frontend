@@ -810,7 +810,10 @@ class FGMembersite
         {
             $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
             return false;
-        }        
+        }    
+		else {
+			$this->HandleDBError($insert_query);
+		}
         return true;
     }
     function MakeConfirmationMd5($email)
