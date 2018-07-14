@@ -81,7 +81,7 @@ class FGMembersite
             return false;
         }
         
-        var $formvars = $this->CollectRegistrationSubmission();
+        $formvars = $this->CollectRegistrationSubmission();
         
         if(!$this->SaveToDatabase($formvars))
         {
@@ -612,7 +612,7 @@ class FGMembersite
     
     function CollectRegistrationSubmission()
     {
-        var $formvars;
+        //var $formvars;
 		$formvars['name'] = $this->Sanitize($_POST['name']);
         $formvars['email'] = $this->Sanitize($_POST['email']);
         $formvars['username'] = $this->Sanitize($_POST['username']);
