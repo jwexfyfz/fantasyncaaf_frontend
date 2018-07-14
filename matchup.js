@@ -75,7 +75,40 @@ function getMatchups(convertTeam) {
 			phpResponse = JSON.parse(response);	//This should output a list of matchups (3d array)
 			//console.log("getMatchups printed: "+phpResponse[0]["homeTeam"] + " " + phpResponse[0]["awayTeam"]);
 		  
-			//Iterate through list of matchups, get the fantasy points of both home and away teams
+			//Iterate through list of matchups, create table structure, get the fantasy points of both home and away teams
+			
+			/** <table id="hiddenMatchupsTable">
+					<tr>
+						<td id="row0col0">
+							<table>
+								<tr>
+									<td id="table0homeTeamName" />
+									<td id="table0homeTeamScore" />
+								</tr>
+								<tr>
+									<td id="table0awayTeamName" />
+									<td id="table0awayTeamScore" />
+								</tr>
+							</table>
+						</td>
+						<td id="row0col1">
+							<table>
+								<tr>
+									<td id="table1homeTeamName" />
+									<td id="table1homeTeamScore" />
+								</tr>
+								<tr>
+									<td id="table1awayTeamName" />
+									<td id="table1awayTeamScore" />
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table> etc
+			
+			**/
+			
+			// Create table structure
 			for(i = 0; i < phpResponse.length; i++) {
 				if (i % maxNumColumn == 0) {
 					var tableStructure = "<tr>";
@@ -87,9 +120,10 @@ function getMatchups(convertTeam) {
 					$('#hiddenMatchupsTable').append(tableStructure);
 				}
 			
-			
+				// Add matchup to table
 				createMatchupTable("table"+i, i, convertTeam[phpResponse[i]["homeTeam"]], convertTeam[phpResponse[i]["awayTeam"]], "dummyScore1", "dummyScore2", rowNum-1, maxNumColumn);
 			  
+				// Calculate scores
 				getTeamTotalPoints(week, phpResponse[i]["homeTeam"], "home", i);
 				getTeamTotalPoints(week, phpResponse[i]["awayTeam"], "away", i);
 			}
@@ -306,10 +340,9 @@ function populatePoints(homeOrAway, playerPoints, playerName, position) {
 
 function createMatchupTable(idName, matchupIteration, homeTeam1, awayTeam1, homeTeamScore1, awayTeamScore1, rowNum, maxNumColumn) {
   //var createdTable = "<table class='matchupTableList' id='"+idName+"'> <tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table>";
-	var createdRow = "<table><tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table>";
+	var createdRow = "<button><table><tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></button>";
   //var createdRow = "<tr><table><tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></tr>";
   //console.log(createdTable);
-  //if (matchupIteration % 2 == 1)
   //$('#hiddenMatchupsTable').append(createdRow);
 	$('#row'+rowNum+'col'+(matchupIteration%maxNumColumn)).append(createdRow);
   //document.body.innerHTML += createdTable;
