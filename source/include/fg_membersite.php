@@ -625,6 +625,8 @@ class FGMembersite
     {
         $mailer = new PHPMailer();
         
+		$mailer->IsSMTP();
+		
         $mailer->CharSet = 'utf-8';
         
         $mailer->AddAddress($formvars['email'],$formvars['name']);
