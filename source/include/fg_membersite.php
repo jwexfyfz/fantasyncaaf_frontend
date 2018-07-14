@@ -617,7 +617,7 @@ class FGMembersite
         $formvars['email'] = $this->Sanitize($_POST['email']);
         $formvars['username'] = $this->Sanitize($_POST['username']);
         $formvars['password'] = $this->Sanitize($_POST['password']);
-		
+		$this->HandleDBError($formvars);
 		return $formvars;
     }
     
@@ -811,9 +811,7 @@ class FGMembersite
             $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
             return false;
         }    
-		else {
-			$this->HandleDBError($insert_query);
-		}
+		
         return true;
     }
     function MakeConfirmationMd5($email)
