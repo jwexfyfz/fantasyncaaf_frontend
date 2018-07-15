@@ -35,11 +35,14 @@ $mail->AuthType = 'XOAUTH2';
 //Fill in authentication details here
 //Either the gmail account owner, or the user that gave consent
 $email = 'ncaaf.fantasy@gmail.com';
-$clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
-$clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
+//$clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
+$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+//$clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
+$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
 //Obtained by configuring and running get_oauth_token.php
 //after setting up an app in Google Developer Console.
-$refreshToken = 'RANDOMCHARS-----DWxgOvPT003r-yFUV49TQYag7_Aod7y0';
+//$refreshToken = 'RANDOMCHARS-----DWxgOvPT003r-yFUV49TQYag7_Aod7y0';
+$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
 //Create a new OAuth2 provider instance
 $provider = new Google(
     [
