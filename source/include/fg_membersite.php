@@ -723,9 +723,9 @@ class FGMembersite
 		
 		$mail->CharSet = 'utf-8';
 		
-		$mail->msgHTML(file_get_contents('contentsutf8.html'), __DIR__);
+		//$mail->msgHTML(file_get_contents('contentsutf8.html'), __DIR__);
 		//Replace the plain text body with one created manually
-		$mail->AltBody = 'This is a plain-text message body';
+		//$mail->AltBody = 'This is a plain-text message body';
 
         //$mailer->From = $this->GetFromAddress();  
 		
