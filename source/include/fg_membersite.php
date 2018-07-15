@@ -882,7 +882,7 @@ class FGMembersite
         return true;
     }
     
-    function InsertIntoDB($formvars)
+    function InsertIntoDB(&$formvars)
     {
 
         $confirmcode = $this->MakeConfirmationMd5($formvars['email']);
