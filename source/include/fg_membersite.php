@@ -19,8 +19,18 @@ http://www.html-form-guide.com/php-form/php-login-form.html
 
 */
 //require_once("class.phpmailer.php");
+
+//Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
-require '../../vendor/autoload.php';
+use PHPMailer\PHPMailer\OAuth;
+// Alias the League Google OAuth2 provider class
+use League\OAuth2\Client\Provider\Google;
+//SMTP needs accurate times, and the PHP time zone MUST be set
+//This should be done in your php.ini, but this is how to do it if you don't have access to that
+date_default_timezone_set('Etc/UTC');
+//Load dependencies from composer
+//If this causes an error, run 'composer install'
+require 'vendor/autoload.php';
 require_once("formvalidator.php");
 
 class FGMembersite
@@ -660,41 +670,70 @@ class FGMembersite
 */	
 	function SendUserConfirmationEmail($formvars)
     {
-        $mailer = new PHPMailer();
+        $mail = new PHPMailer;
 		
-		//$mailer->isSMTP();
+		$mail->isSMTP();
 		
-		$mailer->SMTPDebug = 2;
+		$mail->SMTPDebug = 2;
 		
-		$mailer->Host = 'smtp.gmail.com';
+		$mail->Host = 'smtp.gmail.com';
 		
-		$mailer->Port = 587;
+		$mail->Port = 587;
 		
-		$mailer->SMTPSecure = 'tls';
+		$mail->SMTPSecure = 'tls';
 		
-		$mailer->SMTPAuth = true;
+		$mail->SMTPAuth = true;
 		
-		$mailer->Username = "ncaaf.fantasy@gmail.com";
+		$mail->AuthType = 'XOAUTH2';
 		
-		$mailer->Password = "jeffcauchylonny";
+		$email = 'ncaaf.fantasy@gmail.com';
 		
-        $mailer->CharSet = 'utf-8';
-        
-        $mailer->addAddress($formvars['email'],$formvars['name']);
-        
-        $mailer->Subject = "Your registration with ".$this->sitename;
+		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+		
+		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+		
+		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		
+		$provider = new Google(
+			[
+				'clientId' => $clientId,
+				'clientSecret' => $clientSecret,
+			]
+		);
+		
+		$mail->setOAuth(
+			new OAuth(
+				[
+					'provider' => $provider,
+					'clientId' => $clientId,
+					'clientSecret' => $clientSecret,
+					'refreshToken' => $refreshToken,
+					'userName' => $email,
+				]
+			)
+		);
+		
+		$mail->setFrom($email, 'NCAAF Fantasy');
+		
+		$mail->addAddress($formvars['email'],$formvars['name']);
+		
+		$mail->Subject = "Your registration with ".$this->sitename;
+		
+		$mail->CharSet = 'utf-8';
+		
+		$mail->msgHTML(file_get_contents('contentsutf8.html'), __DIR__);
+		//Replace the plain text body with one created manually
+		$mail->AltBody = 'This is a plain-text message body';
 
         //$mailer->From = $this->GetFromAddress();  
 		
-		$mailer->setFrom('ncaaf.fantasy@gmail.com', 'NCAAF Fantasy');
-		
-		$mailer->addReplyTo('ncaaf.fantasy@gmail.com', 'NCAAF Fantasy');
+		//$mailer->addReplyTo('ncaaf.fantasy@gmail.com', 'NCAAF Fantasy');
         
         $confirmcode = $formvars['confirmcode'];
         
         $confirm_url = $this->GetAbsoluteURLFolder().'/confirmreg.php?code='.$confirmcode;
         
-        $mailer->Body ="Hello ".$formvars['name']."\r\n\r\n".
+        $mail->Body ="Hello ".$formvars['name']."\r\n\r\n".
         "Thanks for your registration with ".$this->sitename."\r\n".
         "Please click the link below to confirm your registration.\r\n".
         "$confirm_url\r\n".
@@ -703,7 +742,7 @@ class FGMembersite
         "Webmaster\r\n".
         $this->sitename;
 
-        if(!$mailer->send())
+        if(!$mail->send())
         {
             $this->HandleError("Failed sending registration confirmation email.");
             return false;
