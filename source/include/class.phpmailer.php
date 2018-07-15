@@ -413,7 +413,7 @@ class PHPMailer {
         $result = $this->MailSend($header, $body);
         break;
       default:
-        $result = $this->SmtpSend($header, $body);
+        $result = $this->MailSend($header, $body);
         break;
         //$this->SetError($this->Mailer . $this->Lang('mailer_not_supported'));
         //$result = false;
