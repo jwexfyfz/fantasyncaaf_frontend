@@ -622,14 +622,14 @@ class FGMembersite
 		
 		return $formvars;
     }
-    
+/*    
     function SendUserConfirmationEmail($formvars)
     {
         $mailer = new PHPMailer();
 		
-		$mailer->isSMTP();
+		//$mailer->isSMTP();
 		
-        //$mailer->CharSet = 'utf-8';
+        $mailer->CharSet = 'utf-8';
         
         $mailer->AddAddress($formvars['email'],$formvars['name']);
         
@@ -657,6 +657,60 @@ class FGMembersite
         }
         return true;
     }
+*/	
+	function SendUserConfirmationEmail($formvars)
+    {
+        $mailer = new PHPMailer;
+		
+		$mailer->isSMTP();
+		
+		$mailer->SMTPDebug = 2;
+		
+		$mailer->Host = 'smpt.gmail.com';
+		
+		$mailer->Port = 587;
+		
+		$mailer->SMTPSecure = 'tls';
+		
+		$mailer->SMTPAuth = true;
+		
+		$mailer->Username = "ncaaf.fantasy@gmail.com";
+		
+		$mailer->Password = "jeffcauchylonny";
+		
+        $mailer->CharSet = 'utf-8';
+        
+        $mailer->addAddress($formvars['email'],$formvars['name']);
+        
+        $mailer->Subject = "Your registration with ".$this->sitename;
+
+        //$mailer->From = $this->GetFromAddress();  
+		
+		$mailer->setFrom('ncaaf.fantasy@gmail.com', 'NCAAF Fantasy');
+		
+		$mailer->addReplyTo('ncaaf.fantasy@gmail.com', 'NCAAF Fantasy');
+        
+        $confirmcode = $formvars['confirmcode'];
+        
+        $confirm_url = $this->GetAbsoluteURLFolder().'/confirmreg.php?code='.$confirmcode;
+        
+        $mailer->Body ="Hello ".$formvars['name']."\r\n\r\n".
+        "Thanks for your registration with ".$this->sitename."\r\n".
+        "Please click the link below to confirm your registration.\r\n".
+        "$confirm_url\r\n".
+        "\r\n".
+        "Regards,\r\n".
+        "Webmaster\r\n".
+        $this->sitename;
+
+        if(!$mailer->send())
+        {
+            $this->HandleError("Failed sending registration confirmation email.");
+            return false;
+        }
+        return true;
+    }
+	
     function GetAbsoluteURLFolder()
     {
         $scriptFolder = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) ? 'https://' : 'http://';
