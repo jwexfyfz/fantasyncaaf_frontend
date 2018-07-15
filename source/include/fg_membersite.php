@@ -21,10 +21,10 @@ http://www.html-form-guide.com/php-form/php-login-form.html
 //require_once("class.phpmailer.php");
 
 //Import PHPMailer classes into the global namespace
-//use PHPMailer\PHPMailer\PHPMailer;
-//use PHPMailer\PHPMailer\OAuth;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\OAuth;
 // Alias the League Google OAuth2 provider class
-//use League\OAuth2\Client\Provider\Google;
+use League\OAuth2\Client\Provider\Google;
 //SMTP needs accurate times, and the PHP time zone MUST be set
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
 date_default_timezone_set('Etc/UTC');
