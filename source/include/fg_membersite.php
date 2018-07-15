@@ -660,7 +660,7 @@ class FGMembersite
 */	
 	function SendUserConfirmationEmail($formvars)
     {
-        $mailer = new PHPMailer;
+        $mailer = new PHPMailer();
 		
 		//$mailer->isSMTP();
 		
