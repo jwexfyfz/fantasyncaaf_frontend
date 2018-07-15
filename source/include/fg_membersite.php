@@ -900,7 +900,7 @@ class FGMembersite
                 "' . $this->SanitizeForSQL($formvars['email']) . '",
                 "' . $this->SanitizeForSQL($formvars['username']) . '",
                 "' . md5($formvars['password']) . '",
-                "' . $confirmcode . '"
+                "' . $formvars['confirmcode'] . '"
                 )';      
         if(!mysqli_query( $this->connection,$insert_query ))
         {
