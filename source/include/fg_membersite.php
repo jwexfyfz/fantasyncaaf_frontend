@@ -666,7 +666,7 @@ class FGMembersite
 		
 		$mailer->SMTPDebug = 2;
 		
-		$mailer->Host = 'smpt.gmail.com';
+		$mailer->Host = 'smtp.gmail.com';
 		
 		$mailer->Port = 587;
 		
