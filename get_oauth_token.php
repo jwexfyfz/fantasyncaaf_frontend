@@ -74,11 +74,14 @@ if (!in_array($providerName, ['Google', 'Microsoft', 'Yahoo'])) {
 
 //These details are obtained by setting up an app in the Google developer console,
 //or whichever provider you're using.
-$clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
-$clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
+//$clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
+$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+//$clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
+$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
 
 //If this automatic URL doesn't work, set it yourself manually to the URL of this script
-$redirectUri = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+//$redirectUri = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+$redirectUri = 'https://salty-citadel-97816.herokuapp.com/get_oauth_token.php';
 //$redirectUri = 'http://localhost/PHPMailer/redirect';
 
 $params = [
