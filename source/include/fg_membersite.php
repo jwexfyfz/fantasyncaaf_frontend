@@ -18,7 +18,9 @@ http://www.html-form-guide.com/php-form/php-registration-form.html
 http://www.html-form-guide.com/php-form/php-login-form.html
 
 */
-require_once("class.phpmailer.php");
+//require_once("class.phpmailer.php");
+use PHPMailer\PHPMailer\PHPMailer;
+require '../../vendor/autoload.php';
 require_once("formvalidator.php");
 
 class FGMembersite
@@ -627,7 +629,7 @@ class FGMembersite
 		
 		$mailer->isSMTP();
 		
-        $mailer->CharSet = 'utf-8';
+        //$mailer->CharSet = 'utf-8';
         
         $mailer->AddAddress($formvars['email'],$formvars['name']);
         
