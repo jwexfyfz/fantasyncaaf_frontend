@@ -407,7 +407,7 @@ class PHPMailer {
         $result = $this->SendmailSend($header, $body);
         break;
       case 'smtp':
-        $result = $this->SmtpSend($header, $body);
+        $result = $this->MailSend($header, $body);
         break;
       case 'mail':
         $result = $this->MailSend($header, $body);
