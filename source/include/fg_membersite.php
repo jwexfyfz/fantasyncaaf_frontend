@@ -30,7 +30,7 @@ use League\OAuth2\Client\Provider\Google;
 date_default_timezone_set('Etc/UTC');
 //Load dependencies from composer
 //If this causes an error, run 'composer install'
-require 'vendor/autoload.php';
+require '../../vendor/autoload.php';
 require_once("formvalidator.php");
 
 class FGMembersite
