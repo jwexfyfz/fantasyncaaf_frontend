@@ -662,7 +662,7 @@ class FGMembersite
     {
         $mailer = new PHPMailer;
 		
-		$mailer->isSMTP();
+		//$mailer->isSMTP();
 		
 		$mailer->SMTPDebug = 2;
 		
