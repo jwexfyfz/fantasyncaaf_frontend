@@ -171,6 +171,11 @@ class FGMembersite
          return true;
     }
     
+	function FantasyID()
+	{
+		return isset($_SESSION['fantasyID'])?$_SESSION['fantasyID']:'';
+	}
+	
     function UserFullName()
     {
         return isset($_SESSION['name_of_user'])?$_SESSION['name_of_user']:'';
@@ -385,6 +390,7 @@ class FGMembersite
         
         $_SESSION['name_of_user']  = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
+		$_SESSION['fantasyID'] = $row['id_user'];
         
         return true;
     }
