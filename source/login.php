@@ -5,7 +5,8 @@ if(isset($_POST['submitted']))
 {
    if($fgmembersite->Login())
    {
-        $fgmembersite->RedirectToURL("login-home.php");
+        //$fgmembersite->RedirectToURL("login-home.php");
+		$fgmembersite->RedirectToURL("../index.php");
    }
 }
 
