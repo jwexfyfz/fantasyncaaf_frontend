@@ -241,7 +241,7 @@ if(!$fgmembersite->CheckLogin())
 	<button id="refreshPoints">Refresh</button>
 	
 	<p><a href='logout.php'>Logout</a></p>
-	teamID: <?= $fgmembersite->getTeamName(); ?>
+	teamName: <?= $fgmembersite->getTeamName(); ?>
 	Query sent to testpage2.php: <br/>
 	<div id="result"></div><br/>
 	Results from loadTeamRoster.php: <br/>
