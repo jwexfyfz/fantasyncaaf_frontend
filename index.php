@@ -239,7 +239,7 @@ if(!$fgmembersite->CheckLogin())
 	
 	<button id="refreshPoints">Refresh</button>
 	
-	<p><a href='source/logout.php'>Logout</a></p>
+	<p><a href='logout.php'>Logout</a></p>
 	teamID: <?= $fgmembersite->getFantasyID(); ?>
 	Query sent to testpage2.php: <br/>
 	<div id="result"></div><br/>
