@@ -6,7 +6,7 @@ if(!$fgmembersite->CheckLogin())
     $fgmembersite->RedirectToURL("login.php");
     exit;
 }
-
+echo json_encode($fgmembersite->getFantasyID());
 header( 'Location: /index.html' ) ;  
 
     $host		= "us-cdbr-iron-east-05.cleardb.net"; // Use Local Host Only      
