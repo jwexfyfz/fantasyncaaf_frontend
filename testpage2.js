@@ -521,15 +521,18 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			
 			$('#result2').html(response);
 			console.log("successfully sent query to tell php to provide list of schools");	//For testing
-			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a (playerName, team) pair
+			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [position, playerName, team] array
 			//console.log("Response from getPlayerSchools.php: "+phpResponse);
 			
 			var counts = {};
+			var positionToTeam = {};
 			for (var i = 0; i < phpResponse.length; i++) {
 				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
 				//console.log("Response from getPlayerSchools.php: "+counts[i]);
+				positionToTeam[phpResponse[i]["position"]] = phpResponse[i]["teamName"];
 			}
 			console.log("Counts array: "+JSON.stringify(counts));
+			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
 			
 			for (var key in counts) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
@@ -543,7 +546,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
 			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 			
-			if (counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
+			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//Display error message
