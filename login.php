@@ -25,7 +25,7 @@ if(isset($_POST['submitted']))
 <div id='fg_membersite'>
 <form id='login' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
-<legend>Login</legend>
+<legend>NCAAF Fantasy Login</legend>
 
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
