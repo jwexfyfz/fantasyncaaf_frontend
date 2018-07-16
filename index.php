@@ -22,6 +22,7 @@ if(!$fgmembersite->CheckLogin())
 	<script src="dist/js/bootstrap-select.js" defer></script>
 	
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
+	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
     <script type="text/javascript" src="testpage2.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="myTeam.css" media="screen" />

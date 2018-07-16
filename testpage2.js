@@ -21,7 +21,8 @@ $( document ).ready(
 		console.log("teamID: "+teamID);
 		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		
-		var teamName=	urlArray["teamName"];
+		//var teamName=	urlArray["teamName"];
+		var teamName = $("#teamName").val();
 		//$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
@@ -336,8 +337,10 @@ function sendToPhp(position) {
 	console.log('------position set: ' + position);
 	var week=$("#currentWeekNum").val();	//Get week # from page	TODO: jeffwang to figure out how to dynamically change week	
 	var urlArray = getUrlVars();
-	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
-	var teamName = urlArray["teamName"];
+	//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+	var teamID	=	$("#teamID").val();
+	//var teamName = urlArray["teamName"];
+	var teamName = $("#teamName").val();
 	
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
