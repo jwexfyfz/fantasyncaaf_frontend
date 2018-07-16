@@ -9,7 +9,7 @@ $( document ).ready(
 		//currentWeek.value = 12;	//This is hardcoded right now TODO: jeffwang to figure out how to make this change based on the current week
 
 		$("#headerTableColumn1").click( function(event) {
-			window.location.href = "league.html" + window.location.search;
+			window.location.href = "league.php" + window.location.search;
 		});
 		
 		$("#headerTableColumn2").click( function(event) {

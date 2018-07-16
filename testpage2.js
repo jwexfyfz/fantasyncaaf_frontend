@@ -35,7 +35,7 @@ $( document ).ready(
 		});
 		
 		$("#headerTableColumn1").click( function(event) {
-			window.location.href = "league.html" + window.location.search;
+			window.location.href = "league.php" + window.location.search;
 		});
 		$("#headerTableColumn3").click( function(event) {
 			window.location.href = "matchup.php" + window.location.search;
