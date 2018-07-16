@@ -1,5 +1,5 @@
 <?php 
-require_once("./source/include/membersite_config.php");
+require_once("source/include/membersite_config.php");
 
 if(!$fgmembersite->CheckLogin())
 {
