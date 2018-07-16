@@ -17,7 +17,8 @@ $( document ).ready(
 		var urlArray = getUrlVars();
 		//console.log(urlArray);
 		var week	=	$("#currentWeekNum").val();
-		var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+		var teamID	=	<?php echo $fgmembersite->getFantasyID() ?>;
+		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		
 		var teamName=	urlArray["teamName"];
 		//$('#currentTeamName').html(teamName);
