@@ -21,7 +21,7 @@ if(!$fgmembersite->CheckLogin())
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" defer></script>
 	<script src="dist/js/bootstrap-select.js" defer></script>
 	
-	<script type="text/javascript">var teamID = "<?= $fgmembersite->getFantasyID(); ?>";</script>
+	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
     <script type="text/javascript" src="testpage2.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="myTeam.css" media="screen" />
