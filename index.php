@@ -1,4 +1,12 @@
 <?php 
+require_once("./source/include/membersite_config.php");
+
+if(!$fgmembersite->CheckLogin())
+{
+    $fgmembersite->RedirectToURL("source/login.php");
+    exit;
+}
+
 header( 'Location: /index.html' ) ;  
 
     $host		= "us-cdbr-iron-east-05.cleardb.net"; // Use Local Host Only      
