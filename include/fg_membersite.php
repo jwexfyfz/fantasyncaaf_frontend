@@ -176,9 +176,9 @@ class FGMembersite
 		return isset($_SESSION['fantasyID'])?$_SESSION['fantasyID']:'';
 	}
 	
-	function getUsername()
+	function getTeamName()
 	{
-		return isset($_SESSION['username'])?$_SESSION['username']:'';
+		return isset($_SESSION['teamname'])?$_SESSION['teamname']:'';
 	}
 	
     function UserFullName()
@@ -396,6 +396,7 @@ class FGMembersite
         $_SESSION['name_of_user']  = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
 		$_SESSION['fantasyID'] = $row['id_user'];
+		$_SESSION['teamName'] = $row['username'];
         
         return true;
     }
