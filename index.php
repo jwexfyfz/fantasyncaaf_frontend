@@ -1,9 +1,9 @@
 <?php 
-require_once("source/include/membersite_config.php");
+require_once("./include/membersite_config.php");
 
 if(!$fgmembersite->CheckLogin())
 {
-    $fgmembersite->RedirectToURL("source/login.php");
+    $fgmembersite->RedirectToURL("login.php");
     exit;
 }
 
