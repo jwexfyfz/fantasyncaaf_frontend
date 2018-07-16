@@ -171,9 +171,14 @@ class FGMembersite
          return true;
     }
     
-	function FantasyID()
+	function getFantasyID()
 	{
 		return isset($_SESSION['fantasyID'])?$_SESSION['fantasyID']:'';
+	}
+	
+	function getUsername()
+	{
+		return isset($_SESSION['username'])?$_SESSION['username']:'';
 	}
 	
     function UserFullName()
