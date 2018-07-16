@@ -178,7 +178,7 @@ class FGMembersite
 	
 	function getTeamName()
 	{
-		return isset($_SESSION['teamname'])?$_SESSION['teamname']:'';
+		return isset($_SESSION['teamName'])?$_SESSION['teamName']:'';
 	}
 	
     function UserFullName()
