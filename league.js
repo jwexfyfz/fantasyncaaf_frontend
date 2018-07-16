@@ -16,7 +16,7 @@ $( document ).ready(
 		});
 		
 		$("#headerTableColumn3").click( function(event) {
-			window.location.href = "matchup.html" + window.location.search;
+			window.location.href = "matchup.php" + window.location.search;
 		});	
 		
 		getTeamNameFromTeamID(teamID);
