@@ -377,7 +377,9 @@ class FGMembersite
         {
             $this->HandleError("Database login failed!");
             return false;
-        }          
+        }
+			
+		$_SESSION['teamName'] = $username;
         $username = $this->SanitizeForSQL($username);
         $pwdmd5 = md5($password);
         $qry = "Select id_user, name, email from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
@@ -396,7 +398,7 @@ class FGMembersite
         $_SESSION['name_of_user']  = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
 		$_SESSION['fantasyID'] = $row['id_user'];
-		$_SESSION['teamName'] = $username;
+		
         
         return true;
     }
