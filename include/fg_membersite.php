@@ -381,7 +381,7 @@ class FGMembersite
 			
         $username = $this->SanitizeForSQL($username);
         $pwdmd5 = md5($password);
-        $qry = "Select id_user, name, email from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
+        $qry = "Select id_user, name, email, username from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
         
         $result = mysqli_query($this->connection,$qry);
         
@@ -397,7 +397,7 @@ class FGMembersite
         $_SESSION['name_of_user']  = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
 		$_SESSION['fantasyID'] = $row['id_user'];
-		$_SESSION['teamName'] = $_POST['username'];
+		$_SESSION['teamName'] = $row['username'];
         
         return true;
     }
