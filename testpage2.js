@@ -17,7 +17,7 @@ $( document ).ready(
 		var urlArray = getUrlVars();
 		//console.log(urlArray);
 		var week	=	$("#currentWeekNum").val();
-		var teamID	=	this.responseText;
+		//var teamID	=	this.responseText;
 		console.log("teamID: "+teamID);
 		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		
@@ -55,7 +55,7 @@ function updatePage() {
 	var urlArray = getUrlVars();
 	var week	=	$("#currentWeekNum").val();
 	//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
-	var teamID	=	this.responseText;
+	//var teamID	=	this.responseText;
 	console.log("updatePage teamID: "+teamID);
 	
 	//var teamName=	urlArray["teamName"];
