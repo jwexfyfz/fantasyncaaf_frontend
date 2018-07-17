@@ -755,8 +755,9 @@ function getUnique(inputArray)
 function disablePlayers(position, teamsPlayed) {
 	$('#input'+position+' option').each(function(i){
 	    for (j = 0; j < teamsPlayed.length; j++) {
-			if(this.getAttribute('data-teamID') == teamsPlayed[j]) {
-				this.setAttribute('disabled', 'disabled');
+			console.log("option's data-teamid: "+this.dataset.teamid+", teamsPlayed: "+teamsPlayed[j]);
+			if(this.dataset.teamid == teamsPlayed[j]) {
+				this.setAttribute('disabled', 'true');
 			}
 		}
 	});
