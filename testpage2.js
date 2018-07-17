@@ -768,7 +768,7 @@ function disablePlayers(position, teamsPlayed) {
 
 //cauchychoi 6/12/18: Update timesplayerused table
 function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
-	var phpResponse;
+	var usedUpPlayer;
 	
 	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID+'&weekNum='+week+'&position='+position;
 	
@@ -778,8 +778,31 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 		data: dataString,
 		success: function(response) {
 			console.log("timesplayerused updated");
+			usedUpPlayer = JSON.parse(response);  // Returns the playerName if the player hits 5 uses, otherwise returns null
+			
+			removeFutureUses(week, fantasyID, usedUpPlayer);
 		}
 	});
+}
+
+//cauchychoi 7/17/18: Removes future uses after (week)
+function removeFutureUses(week, fantasyID, usedUpPlayer) {
+	if (usedUpPlayer != null) {
+		for (var i = 0; i < usedUpPlayer.length; i++) {	 // usedUpPlayer always has a length of 1
+			for (var j = week+1; j <= 13; j++) {  // start week 1 after the current and go up to 13 weeks.
+				var dataString = 'weekNum='+j+'&fantasyID='+fantasyID+'&playerName='+usedUpPlayer[i];
+				
+				$.ajax({
+					type: "POST",
+					url: "removeFutureUses.php",
+					data: dataString,
+					success: function(response) {
+						console.log(usedUpPlayer[i]+" removed for week "+j);
+					}
+				});	
+			}
+		}
+	}
 }
 
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
