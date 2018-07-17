@@ -658,13 +658,23 @@ function checkGameStarted(week, fantasyID) {
 		  //Iterate through game times and disable selector for players whose games have started
 		  
 		  var i;
+		  document.getElementById("inputQB").disabled = false;
+		  document.getElementById("inputRB1").disabled = false;
+		  document.getElementById("inputRB2").disabled = false;
+		  document.getElementById("inputWR1").disabled = false;
+		  document.getElementById("inputWR2").disabled = false;
+		  document.getElementById("inputWR3").disabled = false;
+		  document.getElementById("inputTE").disabled = false;
+		  document.getElementById("inputDEF").disabled = false;
+		  document.getElementById("inputK").disabled = false;
+		  document.getElementById("inputFLEX").disabled = false;
+		  
 		  for (i = 0; i < phpResponse.length; i++) {
 			  console.log("checkGameStarted response: "+phpResponse[i]["position"] + " " + document.getElementById("input"+phpResponse[i]["position"]).disabled);
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  if (Date.now() > gametime.getTime()) {
 				  if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 					//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
-					//document.getElementById("input"+phpResponse[i]["position"]).setAttribute("disabled","disabled");
 					document.getElementById("input"+phpResponse[i]["position"]).disabled = true;
 					disabledPositions.push("input"+phpResponse[i]["position"]);
 					if (phpResponse[i]["hasPlayed"] == 0) {
@@ -677,11 +687,6 @@ function checkGameStarted(week, fantasyID) {
 					}
 				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
-			  }
-			  else {
-				//if (document.getElementById("input"+phpResponse[i]["position"]).disabled) {
-					document.getElementById("input"+phpResponse[i]["position"]).disabled = false;
-				//}
 			  }
 		  }
 		  console.log("finished checking if games are started");	//For testing
