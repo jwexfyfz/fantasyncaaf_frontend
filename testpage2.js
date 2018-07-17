@@ -23,7 +23,7 @@ $( document ).ready(
 		//$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
-		//checkGameStarted(week, teamID);  //uncomment when ready
+		checkGameStarted(week, teamID);  //uncomment when ready
 		
 		$("#refreshPoints").click( function(event) {
 		  event.preventDefault();
@@ -59,7 +59,7 @@ function updatePage() {
 	//var teamName=	urlArray["teamName"];
 	
 	loadTeamRoster(week, teamID, true);	//Populate select lists based on the week, set rosters that have already been chosen
-	//checkGameStarted(week, teamID);  //Uncomment when ready
+	checkGameStarted(week, teamID);  //Uncomment when ready
 	
 }
 
