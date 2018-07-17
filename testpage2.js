@@ -657,7 +657,7 @@ function checkGameStarted(week, fantasyID) {
 		  console.log(JSON.stringify(phpResponse));
 		  //Iterate through game times and disable selector for players whose games have started
 		  
-		  var i;
+
 		  document.getElementById("inputQB").disabled = false;
 		  document.getElementById("inputRB1").disabled = false;
 		  document.getElementById("inputRB2").disabled = false;
@@ -669,6 +669,7 @@ function checkGameStarted(week, fantasyID) {
 		  document.getElementById("inputK").disabled = false;
 		  document.getElementById("inputFLEX").disabled = false;
 		  
+		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
 			  console.log("checkGameStarted response: "+phpResponse[i]["position"] + " " + document.getElementById("input"+phpResponse[i]["position"]).disabled);
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
