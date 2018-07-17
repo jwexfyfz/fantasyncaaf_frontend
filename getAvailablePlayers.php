@@ -52,22 +52,22 @@
 	
 	//FLEX:	Allow RB, FB, WR, and TE positions 
 	if(isset($_POST['FLEXtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB','WR','TE') order by team, PlayerName;";
+	    $sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB','WR','TE') order by team, PlayerName;";
 	} 
 	//TE:	Allow TE and WR positions
 	else if(isset($_POST['TEtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position in ('WR','TE') order by team, PlayerName;";
+	    $sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('WR','TE') order by team, PlayerName;";
 	} 
 	//RB1:	Allow RB and FB positions
 	else if(isset($_POST['RBtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB') order by team, PlayerName;";
+	    $sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB') order by team, PlayerName;";
 	} 
 	//DEF:	Select from collegeTeams table
 	else if(isset($_POST['DEFtophp'])) {
 	    $sql = "SELECT teamName, teamID FROM collegeTeams order by teamName;";
 	} else {
     	//Query to get team rosters
-    	$sql = "SELECT playerName, playerID, team, position, PlayerAbbr FROM collegeTeamRoster where position='$qPosition' order by team, PlayerName;";
+    	$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position='$qPosition' order by team, PlayerName;";
 	}
 	//echo $sql;
     $result = $conn->query($sql);
@@ -80,12 +80,14 @@
 				if(isset($usedPlayerTable[$row["teamID"]])) {
 					$playerArray[$index] = array(
 						"playerName"=>$row["teamName"],
+						"teamID"=>$row["teamID"],
 						"timesUsed"=>$usedPlayerTable[$row["teamID"]]
 					);
 				}
 				else {
 					$playerArray[$index] = array(
 						"playerName"=>$row["teamName"],
+						"teamID"=>$row["teamID"],
 						"timesUsed"=>0
 					);
 				}
@@ -97,6 +99,7 @@
 						"playerAbbr"=>$row["PlayerAbbr"],
 						"position"=>$row["position"],
 						"team"=>$row["team"],
+						"teamID"=>$row["teamID"],
 						"timesUsed"=>$usedPlayerTable[$row["playerID"]]
 					);
 				}
@@ -106,6 +109,7 @@
 						"playerAbbr"=>$row["PlayerAbbr"],
 						"position"=>$row["position"],
 						"team"=>$row["team"],
+						"teamID"=>$row["teamID"],
 						"timesUsed"=>0
 					);
 				}
