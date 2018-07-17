@@ -721,36 +721,34 @@ function disableAlreadyPlayedPlayers(playerArray) {
   }
   console.log("uniqueSchools length: "+uniqueSchools.length + ", nonUniqueSchools length: "+nonUniqueSchools.length);
   
+ 
+  uniqueSchools = getUnique(nonUniqueSchools)
+  console.log("uniqueSchools length: "+uniqueSchools.length + ", nonUniqueSchools length: "+nonUniqueSchools.length);
   
-  
-  Array.prototype.unique = function() {
-    return this.filter(function (value, index, self) { 
-      return self.indexOf(value) === index;
-    });
-  }
-  
-  nonUniqueSchools.unique();
 
-  //Uniquify school names into array (uniqueSchools)
-  for (i = 0; i < nonUniqueSchools.length; i++) {
-	  for (j = 0; j < uniqueSchools.length; j++) {
-		  if(nonUniqueSchools[i] != uniqueSchools[j]) {
-			  uniqueSchools.push(nonUniqueSchools[i]);
-			  console.log("added "+nonUniqueSchools[i]+" to uniqueSchools array");
-		  }
-		  else {
-		  	console.log(nonUniqueSchools[i]+" already exists in uniqueSchools array");
-		  }
-	  }
-  }
   
-  for (j = 0; j < nonUniqueSchools.length; j++) {
-	  console.log("nonUniqueSchools["+j+"] = "+uniqueSchools[j]);
+  for (j = 0; j < uniqueSchools.length; j++) {
+	  console.log("uniqueSchools["+j+"] = "+uniqueSchools[j]);
   }
   
   //Disable players on teams that have already played
   disablePlayers("QB",uniqueSchools);
   
+}
+
+function getUnique(inputArray)
+{
+    var outputArray = [];
+    
+    for (var i = 0; i < inputArray.length; i++)
+    {
+        if ((jQuery.inArray(inputArray[i], outputArray)) == -1)
+        {
+            outputArray.push(inputArray[i]);
+        }
+    }
+   
+    return outputArray;
 }
 
 
