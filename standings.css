@@ -33,3 +33,15 @@
 .currentTeam {
 	color: #3CB371;
 }
+
+.test {
+	color: #ffffff;
+	  padding: 8px 8px 8px 16px;
+	  border: 1px solid transparent;
+	  border-color: transparent;
+	  cursor: pointer;
+	  user-select: none;
+	  font-size: 0.9em;
+	      text-align: left;
+	      font-weight: 100;
+}

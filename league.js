@@ -2,8 +2,8 @@ $( document ).ready(
 	function startPage() {
 		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
 		var currentWeek = 1;
-		$("#currentWeekNum").val(currentWeek);
-		console.log("Current week is now set to "+$("#currentWeekNum").val());
+		$(".test").html("Week "+currentWeek);
+		console.log("Current week is now set to "+$(".test").html());
 		
 		var urlArray = getUrlVars();
 		
