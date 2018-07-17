@@ -688,6 +688,7 @@ function checkGameStarted(week, fantasyID) {
 
 //Disable all players from select dropdown for teams that have already played
 function disableAlreadyPlayedPlayers(playerArray) {
+	console.log("called disableAlreadyPlayedPlayers");
   var nonUniqueSchools = new Array();
   var uniqueSchools = new Array();
   
@@ -698,6 +699,10 @@ function disableAlreadyPlayedPlayers(playerArray) {
 	  //Check if current time > when the team played. If yes, add to array.
 	  if (Date.now() > gametime.getTime()) {
 		  nonUniqueSchools.push(playerArray[i]["teamID"]);
+		  console.log("added "+playerArray[i]["teamID"]+" to nonUniqueSchools");
+	  }
+	  else {
+		  console.log("now: "+Date.now()+", gametime of "+playerArray[i]+ ": "+gametime.getTime());
 	  }
   }
   
@@ -706,6 +711,10 @@ function disableAlreadyPlayedPlayers(playerArray) {
 	  for (j = 0; j < uniqueSchools.length; j++) {
 		  if(nonUniqueSchools[i] != uniqueSchools[j]) {
 			  uniqueSchools.push(nonUniqueSchools[i]);
+			  console.log("added "+nonUniqueSchools[i]+" to uniqueSchools array");
+		  }
+		  else {
+		  	console.log(nonUniqueSchools[i]+" already exists in uniqueSchools array");
 		  }
 	  }
   }
