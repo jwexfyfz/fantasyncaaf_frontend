@@ -659,6 +659,7 @@ function checkGameStarted(week, fantasyID) {
 		  
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
+			  console.log("checkGameStarted response: "+phpResponse[i]["position"] + " " + 
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  if (Date.now() > gametime.getTime()) {
 				  if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
@@ -677,9 +678,9 @@ function checkGameStarted(week, fantasyID) {
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 			  else {
-				  if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
+				  //if (document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 					document.getElementById("input"+phpResponse[i]["position"]).removeAttribute("disabled");
-				  }
+				 //}
 			  }
 		  }
 		  console.log("finished checking if games are started");	//For testing
