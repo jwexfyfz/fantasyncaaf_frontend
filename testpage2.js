@@ -702,13 +702,24 @@ function disableAlreadyPlayedPlayers(playerArray) {
 	  //Check if current time > when the team played. If yes, add to array.
 	  if (Date.now() > gametime.getTime()) {
 		  nonUniqueSchools.push(playerArray[i]["teamID"]);
-		  console.log("added "+playerArray[i]["teamID"]+" to nonUniqueSchools");
+		  console.log(i+ ": added "+playerArray[i]["teamID"]+" to nonUniqueSchools");
 	  }
 	  else {
 		  console.log("now: "+Date.now()+", gametime of "+playerArray[i]+ ": "+gametime.getTime());
 	  }
   }
+  console.log("uniqueSchools length: "+uniqueSchools.length + ", nonUniqueSchools length: "+nonUniqueSchools.length);
   
+  
+  
+  Array.prototype.unique = function() {
+    return this.filter(function (value, index, self) { 
+      return self.indexOf(value) === index;
+    });
+  }
+  
+  nonUniqueSchools.unique();
+
   //Uniquify school names into array (uniqueSchools)
   for (i = 0; i < nonUniqueSchools.length; i++) {
 	  for (j = 0; j < uniqueSchools.length; j++) {
@@ -722,12 +733,12 @@ function disableAlreadyPlayedPlayers(playerArray) {
 	  }
   }
   
-  for (j = 0; j < uniqueSchools.length; j++) {
-	  console.log("uniqueSchools["+j+"] = "+uniqueSchools[j]);
+  for (j = 0; j < nonUniqueSchools.length; j++) {
+	  console.log("nonUniqueSchools["+j+"] = "+uniqueSchools[j]);
   }
   
   //Disable players on teams that have already played
-  //disablePlayers("QB",uniqueSchools);
+  disablePlayers("QB",uniqueSchools);
   
 }
 
@@ -736,7 +747,7 @@ function disableAlreadyPlayedPlayers(playerArray) {
 function disablePlayers(position, teamsPlayed) {
 	$('#input'+position+' option').each(function(i){
 	    for (j = 0; j < teamsPlayed.length; j++) {
-			if(this.getAttribute('data-school') == teamsPlayed[j]) {
+			if(this.getAttribute('data-teamID') == teamsPlayed[j]) {
 				this.setAttribute('disabled', 'disabled');
 			}
 		}
@@ -865,6 +876,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				currentOption.setAttribute("data-position","DEF");
 				currentOption.setAttribute("data-school",positionList[i]["playerName"]);
 				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
+				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
 								
 				if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 					select.options[select.options.length-1].disabled = true;
@@ -897,6 +909,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				currentOption.setAttribute("data-position",positionList[i]["position"]);
 				currentOption.setAttribute("data-school",positionList[i]["team"]);
 				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
+				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
 
 				if (positionList[i]["timesUsed"] >= 5) {
 					select.options[select.options.length-1].disabled = true;
