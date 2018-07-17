@@ -81,7 +81,7 @@ $clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
 
 //If this automatic URL doesn't work, set it yourself manually to the URL of this script
 //$redirectUri = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-$redirectUri = 'https://salty-citadel-97816.herokuapp.com/get_oauth_token.php';
+$redirectUri = 'https://ncaaf-fantasy.herokuapp.com/get_oauth_token.php';
 //$redirectUri = 'http://localhost/PHPMailer/redirect';
 
 $params = [

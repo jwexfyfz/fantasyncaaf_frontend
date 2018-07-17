@@ -4,7 +4,7 @@ require_once("./include/fg_membersite.php");
 $fgmembersite = new FGMembersite();
 
 //Provide your site name here
-$fgmembersite->SetWebsiteName('salty-citadel-97816.herokuapp.com');
+$fgmembersite->SetWebsiteName('ncaaf-fantasy.herokuapp.com');
 
 //Provide the email address where you want to get notifications
 $fgmembersite->SetAdminEmail('ncaaf.fantasy@gmail.com');
