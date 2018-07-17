@@ -718,15 +718,13 @@ function disableAlreadyPlayedPlayers(playerArray) {
 
 //Disable players from schools that have already played
 function disablePlayers(position, teamsPlayed) {
-		
-	    $('#input'+position+' option').each(function(i){
-		    for (j = 0; j < teamsPlayed.length; j++) {
-				if(this.getAttribute('data-school') == teamsPlayed[j]) {
-					this.setAttribute('disabled', 'disabled');
-				}
+	$('#input'+position+' option').each(function(i){
+	    for (j = 0; j < teamsPlayed.length; j++) {
+			if(this.getAttribute('data-school') == teamsPlayed[j]) {
+				this.setAttribute('disabled', 'disabled');
 			}
-	    });
-    }
+		}
+	});
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
