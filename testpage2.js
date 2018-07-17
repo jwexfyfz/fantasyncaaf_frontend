@@ -753,13 +753,16 @@ function getUnique(inputArray)
 
 //Disable players from schools that have already played
 function disablePlayers(position, teamsPlayed) {
+	console.log('teamsPlayed length: '+teamsPlayed.length);
 	$('#input'+position+' option').each(function(i){
 	    for (j = 0; j < teamsPlayed.length; j++) {
 			console.log("option's data-teamid: "+this.dataset.teamid+", teamsPlayed: "+teamsPlayed[j]);
 			if(this.dataset.teamid == teamsPlayed[j]) {
+				console.log()
 				this.setAttribute('disabled', 'true');
 			}
 		}
+		console.log("finished going through for loop");
 	});
 }
 
