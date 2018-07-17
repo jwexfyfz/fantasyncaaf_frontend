@@ -700,6 +700,7 @@ function disableAlreadyPlayedPlayers(playerArray) {
   
   //Iterate through playerArray to extract teams that have already played
   for (i = 0; i < playerArray.length; i++) {
+	  console.log("iterating through playerArray: "+playerArray[i]["teamID"]+" "+playerArray[i]["position"]+" "+playerArray[i]["hasPlayed"]+" "+playerArray[i]["gametime"]);
 	  var gametime = new Date(playerArray[i]["gametime"] + " UTC");
 	  
 	  //Check if current time > when the team played. If yes, add to array.
