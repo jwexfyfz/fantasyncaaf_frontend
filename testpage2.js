@@ -676,6 +676,9 @@ function checkGameStarted(week, fantasyID) {
 				  }
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
+			  else {
+				  document.getElementById("input"+phpResponse[i]["position"]).disabled = false;
+			  }
 		  }
 		  console.log("finished checking if games are started");	//For testing
 		  
