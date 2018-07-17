@@ -678,9 +678,55 @@ function checkGameStarted(week, fantasyID) {
 			  }
 		  }
 		  console.log("finished checking if games are started");	//For testing
+		  
+		  //Call function to disable all players that have already played
+		  disableAlreadyPlayedPlayers(phpResponse);
 	    }
 	});
 	return disabledPositions;
+}
+
+//Disable all players from select dropdown for teams that have already played
+function disableAlreadyPlayedPlayers(playerArray) {
+  var nonUniqueSchools = new Array();
+  var uniqueSchools = new Array();
+  
+  //Iterate through playerArray to extract teams that have already played
+  for (i = 0; i < playerArray.length; i++) {
+	  var gametime = new Date(playerArray[i]["gametime"] + " UTC");
+	  
+	  //Check if current time > when the team played. If yes, add to array.
+	  if (Date.now() > gametime.getTime()) {
+		  nonUniqueSchools.push(playerArray[i]["teamID"]);
+	  }
+  }
+  
+  //Uniquify school names into array (uniqueSchools)
+  for (i = 0; i < nonUniqueSchools.length; i++) {
+	  for (j = 0; j < uniqueSchools.length; j++) {
+		  if(nonUniqueSchools[i] != uniqueSchools[j]) {
+			  uniqueSchools.push(nonUniqueSchools[i]);
+		  }
+	  }
+  }
+  
+  //Disable players on teams that have already played
+  disablePlayers("QB",uniqueSchools);
+  
+}
+
+
+//Disable players from schools that have already played
+function disablePlayers(position, teamsPlayed) {
+		
+	    $('#input'+position+' option').each(function(i){
+		    for (j = 0; j < teamsPlayed.length; j++) {
+				if(this.getAttribute('data-school') == teamsPlayed[j]) {
+					this.setAttribute('disabled', 'disabled');
+				}
+			}
+	    });
+    }
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
@@ -869,7 +915,7 @@ function fadeErrorFooter(text) {
 	console.log("error found");
 	$('.bottomErrorBanner').fadeIn("fast");
 	
-	setTimeout(myVar = exitErrorFooter,3000);
+	setTimeout(myVar = exitErrorFooter,6000);
 	//$('.bottomErrorBanner').delay(3000);
 	//exitErrorFooter();
 }
