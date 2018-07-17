@@ -659,11 +659,12 @@ function checkGameStarted(week, fantasyID) {
 		  
 		  var i;
 		  for (i = 0; i < phpResponse.length; i++) {
+			  console.log("checkGameStarted response: "+phpResponse[i]["position"] + " " + document.getElementById("input"+phpResponse[i]["position"]).disabled);
 			  var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
 			  if (Date.now() > gametime.getTime()) {
 				  if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 					//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
-					document.getElementById("input"+phpResponse[i]["position"]).disabled = true;
+					document.getElementById("input"+phpResponse[i]["position"]).setAttribute("disabled","disabled");
 					disabledPositions.push("input"+phpResponse[i]["position"]);
 					if (phpResponse[i]["hasPlayed"] == 0) {
 						if (phpResponse[i]["position"].localeCompare("DEF") == 0) {  // if DEF, grab teamID
@@ -677,7 +678,9 @@ function checkGameStarted(week, fantasyID) {
 				//$('#checkGameStartedLength').html(phpResponse[i]["gametime"]);
 			  }
 			  else {
-				  document.getElementById("input"+phpResponse[i]["position"]).disabled = false;
+				if (document.getElementById("input"+phpResponse[i]["position"]).disabled) {
+					document.getElementById("input"+phpResponse[i]["position"]).removeAttribute("disabled");
+				}
 			  }
 		  }
 		  console.log("finished checking if games are started");	//For testing
