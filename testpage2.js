@@ -710,8 +710,12 @@ function disableAlreadyPlayedPlayers(playerArray) {
 	  }
   }
   
+  for (j = 0; j < uniqueSchools.length; j++) {
+	  console.log("uniqueSchools["+j+"] = "+uniqueSchools[j]);
+  }
+  
   //Disable players on teams that have already played
-  disablePlayers("QB",uniqueSchools);
+  //disablePlayers("QB",uniqueSchools);
   
 }
 
