@@ -6,13 +6,10 @@
 $( document ).ready(
 	function sendTeamRosterToPhp() {
 		//Set default week value 
-		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
+		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK TODO: jeffwang to figure out how to make this change based on the current week
 		var currentWeek = 1;
 		$("#currentWeekNum").val(currentWeek);
 		console.log("Current week is now set to "+$("#currentWeekNum").val());
-		
-		//var currentWeek = document.getElementById("currentWeekNum");
-		//currentWeek.value = 12;	//This is hardcoded right now TODO: jeffwang to figure out how to make this change based on the current week
 		
 		var urlArray = getUrlVars();
 		//console.log(urlArray);
@@ -805,7 +802,10 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				
 				//data-subtext = Subtext
 				currentOption.setAttribute("data-subtext",currentSubtext);
-				
+				currentOption.setAttribute("data-position","DEF");
+				currentOption.setAttribute("data-school",positionList[i]["playerName"]);
+				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
+								
 				if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";
