@@ -17,9 +17,12 @@ $( document ).ready(
 		var urlArray = getUrlVars();
 		//console.log(urlArray);
 		var week	=	$("#currentWeekNum").val();
-		var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+		var teamID	=	$("#teamID").val()
+		console.log("teamID: "+teamID);
+		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		
-		var teamName=	urlArray["teamName"];
+		//var teamName=	urlArray["teamName"];
+		var teamName = $("#teamName").val();
 		//$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
@@ -32,10 +35,10 @@ $( document ).ready(
 		});
 		
 		$("#headerTableColumn1").click( function(event) {
-			window.location.href = "league.html" + window.location.search;
+			window.location.href = "league.php" + window.location.search;
 		});
 		$("#headerTableColumn3").click( function(event) {
-			window.location.href = "matchup.html" + window.location.search;
+			window.location.href = "matchup.php" + window.location.search;
 		});	
 		
 		
@@ -52,8 +55,11 @@ function updatePage() {
 	console.log("week changed to "+$('#currentWeekNum').val());
 	var urlArray = getUrlVars();
 	var week	=	$("#currentWeekNum").val();
-	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
-	var teamName=	urlArray["teamName"];
+	//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+	var teamID	=	$("#teamID").val();
+	console.log("updatePage teamID: "+teamID);
+	
+	//var teamName=	urlArray["teamName"];
 	
 	loadTeamRoster(week, teamID, true);	//Populate select lists based on the week, set rosters that have already been chosen
 	//checkGameStarted(week, teamID);  //Uncomment when ready
@@ -331,8 +337,10 @@ function sendToPhp(position) {
 	console.log('------position set: ' + position);
 	var week=$("#currentWeekNum").val();	//Get week # from page	TODO: jeffwang to figure out how to dynamically change week	
 	var urlArray = getUrlVars();
-	var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
-	var teamName = urlArray["teamName"];
+	//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+	var teamID	=	$("#teamID").val();
+	//var teamName = urlArray["teamName"];
+	var teamName = $("#teamName").val();
 	
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
@@ -513,15 +521,18 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			
 			$('#result2').html(response);
 			console.log("successfully sent query to tell php to provide list of schools");	//For testing
-			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a (playerName, team) pair
+			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [position, playerName, team] array
 			//console.log("Response from getPlayerSchools.php: "+phpResponse);
 			
 			var counts = {};
+			var positionToTeam = {};
 			for (var i = 0; i < phpResponse.length; i++) {
 				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
 				//console.log("Response from getPlayerSchools.php: "+counts[i]);
+				positionToTeam[phpResponse[i]["position"]] = phpResponse[i]["teamName"];
 			}
 			console.log("Counts array: "+JSON.stringify(counts));
+			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
 			
 			for (var key in counts) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
@@ -535,7 +546,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
 			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 			
-			if (counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
+			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//Display error message

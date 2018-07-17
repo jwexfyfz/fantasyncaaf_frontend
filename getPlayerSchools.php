@@ -13,7 +13,7 @@
 	
 	// Counting later so I can use the (playerName, team) for the dupe teams check
 	//$sql = "select C.team, count(*) as teamCount from (select distinct A.playerName, B.team from (select playerName from teamroster where teamID=$fantasyID and week=$weekNum) as A inner join collegeTeamRoster as B on A.playerName=B.PlayerName or A.PlayerName = B.team) as C group by team;";
-	$sql = "select distinct A.playerName, B.team from (select playerName from teamroster where teamID=$fantasyID and week=$weekNum) as A inner join collegeTeamRoster as B on A.playerName=B.PlayerName or A.PlayerName = B.team";
+	$sql = "select distinct A.position, A.playerName, B.team from (select position, playerName from teamroster where teamID=$fantasyID and week=$weekNum) as A inner join collegeTeamRoster as B on A.playerName=B.PlayerName or A.PlayerName = B.team";
 	
 	$result = $conn->query($sql);
 
@@ -23,6 +23,7 @@
         while($row = $result->fetch_assoc()) {
             //$teamName = $row["team"];
 			//$teamCount = $row["teamCount"];
+			$position = $row["position"];
             $playerName = $row["playerName"];
 			$teamName = $row["team"];
 			
@@ -30,6 +31,7 @@
 			$teamCounts[$index] = array(
 				//"teamName"=>$teamName,
 				//"teamCount"=>$teamCount
+				"position"=>$position,
 				"playerName"=>$playerName,
 				"teamName"=>$teamName
 			);
@@ -41,6 +43,7 @@
 		$teamCounts[0] = array(
 			//"teamName"=>null,
 			//"teamCount"=>null
+			"position"=>null,
 			"playerName"=>null,
 			"teamName"=>null
 		);

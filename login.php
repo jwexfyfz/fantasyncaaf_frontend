@@ -1,42 +1,75 @@
-<?php    
-    $host		= "us-cdbr-iron-east-05.cleardb.net"; // Use Local Host Only      
-    $username	= "b4078336a46f7e"; //DB User
-    $password	= "10f5241c";  //Password
-    $db_name	= "heroku_28ca4c386152c4f";  //DB Name
-    
-    //Connect to database
-    $conn=mysqli_connect($host, $username, $password, $db_name);
+<?PHP
+require_once("./include/membersite_config.php");
 
-	$userName	=	$_POST["teamName"];
-	$password	=	$_POST["teamPassword"];
-	
-	$incorrectArray["id"]="incorrectPassword";
+if(isset($_POST['submitted']))
+{
+   if($fgmembersite->Login())
+   {
+        //$fgmembersite->RedirectToURL("login-home.php");
+		$fgmembersite->RedirectToURL("index.php");
+   }
+}
 
-	$sql = "select teamName, teamID from teamRoster where teamName = '$userName' group by 1,2;";
-	$result = $conn->query($sql);
-	
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-        	$actualPassword["id"] = $row["teamID"];
-			$actualPassword["name"] = $row["teamName"];
-        }
-		
-		if($password == $actualPassword["id"]) {
-			echo json_encode($actualPassword);		//TODO: jeffwang to figure out actual password system. Right now it's just the teamID
-		}
-		else {
-	        echo json_encode($incorrectArray);
-		}
-    } else {
-        echo json_encode($incorrectArray);
-    }
-	
-	
-	
-    
-	
-	
-    
-    $conn->close();
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+      <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+      <title>Login</title>
+      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css" />
+      <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
+</head>
+<body>
+
+<!-- Form Code Start -->
+<div id='fg_membersite'>
+<form id='login' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+<fieldset >
+<legend>NCAAF Fantasy Login</legend>
+
+<input type='hidden' name='submitted' id='submitted' value='1'/>
+
+<div class='short_explanation'>* required fields</div>
+
+<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div class='container'>
+    <label for='username' >UserName*:</label><br/>
+    <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="50" /><br/>
+    <span id='login_username_errorloc' class='error'></span>
+</div>
+<div class='container'>
+    <label for='password' >Password*:</label><br/>
+    <input type='password' name='password' id='password' maxlength="50" /><br/>
+    <span id='login_password_errorloc' class='error'></span>
+</div>
+
+<div class='container'>
+    <input type='submit' name='Submit' value='Submit' />
+</div>
+<div class='short_explanation'><a href='register.php'>Create account</div>
+<div class='short_explanation'><a href='reset-pwd-req.php'>Forgot Password?</a></div>
+</fieldset>
+</form>
+<!-- client-side Form Validations:
+Uses the excellent form validation script from JavaScript-coder.com-->
+
+<script type='text/javascript'>
+// <![CDATA[
+
+    var frmvalidator  = new Validator("login");
+    frmvalidator.EnableOnPageErrorDisplay();
+    frmvalidator.EnableMsgsTogether();
+
+    frmvalidator.addValidation("username","req","Please provide your username");
+    
+    frmvalidator.addValidation("password","req","Please provide the password");
+
+// ]]>
+</script>
+</div>
+<!--
+Form Code End (see html-form-guide.com for more info.)
+-->
+
+</body>
+</html>

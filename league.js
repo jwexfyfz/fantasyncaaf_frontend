@@ -8,15 +8,15 @@ $( document ).ready(
 		var urlArray = getUrlVars();
 		
 		var week	=	$("#currentWeekNum").val();
-		var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
-		
+		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+		var teamID	=	$("#teamID").val();
 				
 		$("#headerTableColumn2").click( function(event) {
-			window.location.href = "index.html" + window.location.search;
+			window.location.href = "index.php" + window.location.search;
 		});
 		
 		$("#headerTableColumn3").click( function(event) {
-			window.location.href = "matchup.html" + window.location.search;
+			window.location.href = "matchup.php" + window.location.search;
 		});	
 		
 		getTeamNameFromTeamID(teamID);
