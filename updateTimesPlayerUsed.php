@@ -18,5 +18,27 @@
 	$sql = "UPDATE teamroster set hasPlayed = 1 where week = $weekNum and teamID = $fantasyID and position = \"$position\"";
 	$result = $conn->query($sql);
     
+	$sql = "select B.PlayerName, A.timesUsed from (select playerID, timesUsed from timesplayerused where playerID=$playerID and teamID=$fantasyID) as A inner join collegeteamroster as B on A.playerID=B.playerID";
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) {
+		// output data of each row
+        $index = 0;
+		while($row = $result->fetch_assoc()) {
+			if ($row["timesUsed" >= 5) {
+				$usedUpPlayers[$index] = $row["PlayerName"];
+				$index++;
+			}
+			else {
+				$usedUpPlayers = null;
+			}
+		}	
+	}
+	else {
+		$usedUpPlayers = null;
+	}
+	
+	echo json_encode($usedUpPlayers);
+	
     $conn->close();
 ?>
