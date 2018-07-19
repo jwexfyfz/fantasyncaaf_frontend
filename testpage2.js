@@ -768,7 +768,7 @@ function disablePlayers(position, teamsPlayed) {
 	    for (j = 0; j < teamsPlayed.length; j++) {
 			console.log("option's data-teamid: "+this.dataset.teamid+", teamsPlayed: "+teamsPlayed[j]);
 			if(this.dataset.teamid == teamsPlayed[j]) {
-				console.log("team has played: "+this.data.set.teamid);
+				console.log("team has played: "+this.dataset.teamid);
 				this.setAttribute('disabled', 'true');
 			}
 		}
