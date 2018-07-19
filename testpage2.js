@@ -732,7 +732,16 @@ function disableAlreadyPlayedPlayers(playerArray) {
   
   //Disable players on teams that have already played
   disablePlayers("QB",uniqueSchools);
-  
+  disablePlayers("RB1",uniqueSchools);
+  disablePlayers("RB2",uniqueSchools);
+  disablePlayers("WR1",uniqueSchools);
+  disablePlayers("WR2",uniqueSchools);
+  disablePlayers("WR3",uniqueSchools);
+  disablePlayers("TE",uniqueSchools);
+  disablePlayers("DEF",uniqueSchools);
+  disablePlayers("K",uniqueSchools);
+  disablePlayers("FLEX",uniqueSchools);
+  updatePage();
 }
 
 function getUnique(inputArray)
@@ -758,12 +767,12 @@ function disablePlayers(position, teamsPlayed) {
 	    for (j = 0; j < teamsPlayed.length; j++) {
 			console.log("option's data-teamid: "+this.dataset.teamid+", teamsPlayed: "+teamsPlayed[j]);
 			if(this.dataset.teamid == teamsPlayed[j]) {
-				console.log()
-				this.setAttribute('disabled', 'true');
+				console.log("team has played: "+this.data.set.teamid);
+				this.disabled = true;
 			}
 		}
-		console.log("finished going through for loop");
 	});
+	console.log("finished going through for loop");
 }
 
 //cauchychoi 6/12/18: Update timesplayerused table
