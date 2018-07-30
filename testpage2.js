@@ -692,7 +692,7 @@ function checkGameStarted(week, fantasyID) {
 			console.log("finished checking if games are started");	//For testing
 		  
 			//Call function to disable all players that have already played
-			disableAlreadyPlayedPlayers(phpResponse);
+			//disableAlreadyPlayedPlayers(phpResponse);	//Currently commented out because this method takes too long
 		}
 	});
 	return disabledPositions;
@@ -700,6 +700,10 @@ function checkGameStarted(week, fantasyID) {
 
 //Disable all players from select dropdown for teams that have already played
 function disableAlreadyPlayedPlayers(playerArray) {
+
+
+/*	
+	//THIS METHOD TAKES TOO LONG, SO ITS COMMENTED OUT.
 	console.log("called disableAlreadyPlayedPlayers");
   var nonUniqueSchools = new Array();
   var uniqueSchools = new Array();
@@ -741,6 +745,7 @@ function disableAlreadyPlayedPlayers(playerArray) {
   disablePlayers("DEF",uniqueSchools);
   disablePlayers("K",uniqueSchools);
   disablePlayers("FLEX",uniqueSchools);
+	*/
   updatePage();
 }
 
@@ -884,6 +889,10 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		select.options[select.options.length] = new Option("");
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
+				
+  		  	  var gametime = new Date(positionList[i]["gametime"] + " UTC");
+				
+				
 				//Set attributes:
 				//currentOption: set text and value of option
 				//currentSubtext: show metadata of team: "(<number of uses>)" e.g. (0)
@@ -900,13 +909,19 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
 				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
 								
-				if (positionList[i]["timesUsed"] >= 5) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
+				if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";
 				}
 				else if (positionList[i]["timesUsed"] == 4) {
 					select.options[select.options.length-1].style.color="#FFA500";
 				}
+				
+	  
+		  	  //Check if current time > when the team played. If yes, add to array.
+		  	  if () {
+				  
+			  }
 			}
 		}
 		else {

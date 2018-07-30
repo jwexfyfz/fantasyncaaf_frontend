@@ -52,22 +52,32 @@
 	
 	//FLEX:	Allow RB, FB, WR, and TE positions 
 	if(isset($_POST['FLEXtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB','WR','TE') order by team, PlayerName;";
+	    //$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB','WR','TE') order by team, PlayerName;";
+		$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime FROM collegeTeamRoster as C
+inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position in ('RB','FB','WR','TE') order by team, PlayerName;";
 	} 
 	//TE:	Allow TE and WR positions
 	else if(isset($_POST['TEtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('WR','TE') order by team, PlayerName;";
+	    //$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('WR','TE') order by team, PlayerName;";
+		$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime FROM collegeTeamRoster as C
+inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position in ('WR','TE') order by team, PlayerName;";
 	} 
 	//RB1:	Allow RB and FB positions
 	else if(isset($_POST['RBtophp'])) {
-	    $sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB') order by team, PlayerName;";
+	    //$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB') order by team, PlayerName;";
+		$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime FROM collegeTeamRoster as C
+inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position in ('RB','FB') order by team, PlayerName;";
 	} 
 	//DEF:	Select from collegeTeams table
 	else if(isset($_POST['DEFtophp'])) {
-	    $sql = "SELECT teamName, teamID FROM collegeTeams order by teamName;";
+	    //$sql = "SELECT teamName, teamID FROM collegeTeams order by teamName;";
+		$sql = "SELECT C.teamName as teamName, C.teamID as teamID, D.gametime as gametime FROM collegeTeams as C
+inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) order by teamName;";
 	} else {
     	//Query to get team rosters
-    	$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position='$qPosition' order by team, PlayerName;";
+    	//$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position='$qPosition' order by team, PlayerName;";
+    	$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime as gametime FROM collegeTeamRoster as C
+inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position='$qPosition' order by team, PlayerName;";
 	}
 	//echo $sql;
     $result = $conn->query($sql);
@@ -81,16 +91,19 @@
 					$playerArray[$index] = array(
 						"playerName"=>$row["teamName"],
 						"teamID"=>$row["teamID"],
-						"timesUsed"=>$usedPlayerTable[$row["teamID"]]
+						"timesUsed"=>$usedPlayerTable[$row["teamID"]],
+						"gametime"=>$row["gametime"]
 					);
 				}
 				else {
 					$playerArray[$index] = array(
 						"playerName"=>$row["teamName"],
 						"teamID"=>$row["teamID"],
-						"timesUsed"=>0
+						"timesUsed"=>0,
+						"gametime"=>$row["gametime"]
 					);
 				}
+				
 			}
 			else {
 				if(isset($usedPlayerTable[$row["playerID"]])) {
@@ -100,7 +113,8 @@
 						"position"=>$row["position"],
 						"team"=>$row["team"],
 						"teamID"=>$row["teamID"],
-						"timesUsed"=>$usedPlayerTable[$row["playerID"]]
+						"timesUsed"=>$usedPlayerTable[$row["playerID"]],
+						"gametime"=>$row["gametime"]
 					);
 				}
 				else {
@@ -110,7 +124,8 @@
 						"position"=>$row["position"],
 						"team"=>$row["team"],
 						"teamID"=>$row["teamID"],
-						"timesUsed"=>0
+						"timesUsed"=>0,
+						"gametime"=>$row["gametime"]
 					);
 				}
 			}
