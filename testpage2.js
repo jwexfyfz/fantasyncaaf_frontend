@@ -890,8 +890,8 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
 				
-  		  	  var gametime = new Date(positionList[i]["gametime"] + " UTC");
-				
+				//Convert positionList's gametime to UTC time format
+				var gametime = new Date(positionList[i]["gametime"] + " UTC");
 				
 				//Set attributes:
 				//currentOption: set text and value of option
@@ -916,12 +916,6 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				else if (positionList[i]["timesUsed"] == 4) {
 					select.options[select.options.length-1].style.color="#FFA500";
 				}
-				
-	  
-		  	  //Check if current time > when the team played. If yes, add to array.
-		  	  if () {
-				  
-			  }
 			}
 		}
 		else {
