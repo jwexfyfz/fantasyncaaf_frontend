@@ -886,13 +886,14 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	
 	//If we just changed the week, then we don't want to re-populate the rosters
 	if(!weekChanged) {
+				
 		select.options[select.options.length] = new Option("");
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
-				
 				//Convert positionList's gametime to UTC time format
 				var gametime = new Date(positionList[i]["gametime"] + " UTC");
 				
+
 				//Set attributes:
 				//currentOption: set text and value of option
 				//currentSubtext: show metadata of team: "(<number of uses>)" e.g. (0)
@@ -912,14 +913,19 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";
+					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
 				}
 				else if (positionList[i]["timesUsed"] == 4) {
 					select.options[select.options.length-1].style.color="#FFA500";
+					console.log("didn't disable "+positionList[i]["playerName"]);
 				}
 			}
 		}
 		else {
-			for(i = 0; i < positionList.length; i++) {			
+			for(i = 0; i < positionList.length; i++) {	
+				//Convert positionList's gametime to UTC time format
+				var gametime = new Date(positionList[i]["gametime"] + " UTC");
+						
 				//Set attributes:
 				//currentOption: set text and value of option
 				//currentSubtext: show metadata of player: "<position>, <school> (<number of uses>)" e.g. QB, UCLA (0)
@@ -942,12 +948,14 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
 				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
 
-				if (positionList[i]["timesUsed"] >= 5) {
+				if (	(positionList[i]["timesUsed"] >= 5)		||	(Date.now() > gametime.getTime())	) {
 					select.options[select.options.length-1].disabled = true;
 					select.options[select.options.length-1].style.color="red";
+					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
 				}
 				else if (positionList[i]["timesUsed"] == 4) {
 					select.options[select.options.length-1].style.color="#FFA500";
+					console.log("didn't disable "+positionList[i]["playerName"]);
 				}
 			}
 		}
