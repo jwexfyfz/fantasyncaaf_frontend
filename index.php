@@ -37,6 +37,7 @@ if(!$fgmembersite->CheckLogin())
 				<!--<th class="headerTableColumn" id="avatarBox"></th>-->
 				<th class="headerTableColumn" id="avatarBox">
 					<div id="welcomeBox">
+						<span style="font-size: 0.8em">Team: </span>
 						<?php echo $fgmembersite->getTeamName() ?>
 					</div>
 				</th>
@@ -245,8 +246,13 @@ if(!$fgmembersite->CheckLogin())
 	
 	<button id="refreshPoints">Refresh</button>
 	
-	<p><a href='logout.php'>Logout</a></p>
-	teamName: <?= $fgmembersite->getTeamName(); ?>
+	
+		<a href='logout.php'>
+			<div id="logout">
+				Logout
+			</div>
+		</a>
+	</div>
 	Query sent to testpage2.php: <br/>
 	<div id="result"></div><br/>
 	Results from loadTeamRoster.php: <br/>
