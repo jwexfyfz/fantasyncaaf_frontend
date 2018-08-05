@@ -38,6 +38,7 @@
 			$teamRoster[$row["week"]]["week"] = $row["week"];
 			//$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
 			$teamRoster[$row["week"]]["teamID"] = $row["teamID"];
+			$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
 			
             //echo "Finished reading row ".$index."<br>";
             
@@ -71,6 +72,7 @@
             "week"=>$weekNum, 
 			//"teamName"=>$teamName,
             "teamID"=>$teamID, 
+			"teamName"=>null,
             "QB"=>null,
             "RB1"=>null, 
             "RB2"=>null, 
