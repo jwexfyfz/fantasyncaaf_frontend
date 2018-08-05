@@ -92,3 +92,7 @@
 #errorBannerExit:after {
     content: '\d7';
 }
+
+a {
+	text-decoration: none;
+}

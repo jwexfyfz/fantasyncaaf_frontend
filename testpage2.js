@@ -887,7 +887,15 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	//If we just changed the week, then we don't want to re-populate the rosters
 	if(!weekChanged) {
 				
-		select.options[select.options.length] = new Option("");
+		//This adds a blank option
+		currentOption = new Option("-- Clear Selection --","");
+		select.options[select.options.length] = currentOption;
+		
+		//Make the empty option show as "clear selection" in dropdown
+		currentOption.setAttribute("title", "");
+		currentOption.setAttribute("data-tokens", "clear selection");
+		
+		
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
 				//Convert positionList's gametime to UTC time format
