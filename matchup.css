@@ -1,4 +1,15 @@
 .position {
-	text-color: #bfbfbf;
+	color: #bfbfbf;
 	font-size: 0.8em;
+	text-align: center;
+	padding: 0px 5px;
+}
+
+.homeSide {
+	color: #A2A2A2;
+	text-align: right;
+}
+
+.chosenPosition {
+	padding: 0px 5px;
 }
