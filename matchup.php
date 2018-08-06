@@ -25,6 +25,7 @@ if(!$fgmembersite->CheckLogin())
     <script type="text/javascript" src="matchup.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="matchup.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 	<body>
@@ -98,72 +99,72 @@ if(!$fgmembersite->CheckLogin())
 				<th id="awayTeamName" colspan="2"></th>
 			</tr>
 			<tr>
-				<td class="position">QB</td>
-				<td class="chosenQB" id="homeQB"></td>
 				<td class="chosenQBPoints" id="homeQBPoints"></td>
+				<td class="chosenQB" id="homeQB"></td>
+				<td class="position">QB</td>
 				<td class="chosenQB" id="awayQB"></td>
 				<td class="chosenQBPoints" id="awayQBPoints"></td>
 			</tr>
 			<tr>
-				<td class="position">RB1</td>
-				<td class="chosenRB1" id="homeRB1"></td>
 				<td class="chosenRB1Points" id="homeRB1Points"></td>
+				<td class="chosenRB1" id="homeRB1"></td>
+				<td class="position">RB1</td>
 				<td class="chosenRB1" id="awayRB1"></td>
 				<td class="chosenRB1Points" id="awayRB1Points"></td>
 			</tr>
 			<tr>
-				<td class="position">RB2</td>
-				<td class="chosenRB2" id="homeRB2"></td>
 				<td class="chosenRB2Points" id="homeRB2Points"></td>
+				<td class="chosenRB2" id="homeRB2"></td>
+				<td class="position">RB2</td>
 				<td class="chosenRB2" id="awayRB2"></td>
 				<td class="chosenRB2Points" id="awayRB2Points"></td>
 			</tr>
 			<tr>
-				<td class="position">WR1</td>
-				<td class="chosenWR1" id="homeWR1"></td>
 				<td class="chosenWR1Points" id="homeWR1Points"></td>
+				<td class="chosenWR1" id="homeWR1"></td>
+				<td class="position">WR1</td>
 				<td class="chosenWR1" id="awayWR1"></td>
 				<td class="chosenWR1Points" id="awayWR1Points"></td>
 			</tr>
 			<tr>
-				<td class="position">WR2</td>
-				<td class="chosenWR2" id="homeWR2"></td>
 				<td class="chosenWR2Points" id="homeWR2Points"></td>
+				<td class="chosenWR2" id="homeWR2"></td>
+				<td class="position">WR2</td>
 				<td class="chosenWR2" id="awayWR2"></td>
 				<td class="chosenWR2Points" id="awayWR2Points"></td>
 			</tr>
 			<tr>
-				<td class="position">WR3</td>
-				<td class="chosenWR3" id="homeWR3"></td>
 				<td class="chosenWR3Points" id="homeWR3Points"></td>
+				<td class="chosenWR3" id="homeWR3"></td>
+				<td class="position">WR3</td>
 				<td class="chosenWR3" id="awayWR3"></td>
 				<td class="chosenWR3Points" id="awayWR3Points"></td>
 			</tr>
 			<tr>
-				<td class="position">TE</td>
-				<td class="chosenTE" id="homeTE"></td>
 				<td class="chosenTEPoints" id="homeTEPoints"></td>
+				<td class="chosenTE" id="homeTE"></td>
+				<td class="position">TE</td>
 				<td class="chosenTE" id="awayTE"></td>
 				<td class="chosenTEPoints" id="awayTEPoints"></td>
 			</tr>
 			<tr>
-				<td class="position">DEF</td>
-				<td class="chosenDEF" id="homeDEF"></td>
 				<td class="chosenDEFPoints" id="homeDEFPoints"></td>
+				<td class="chosenDEF" id="homeDEF"></td>
+				<td class="position">DEF</td>
 				<td class="chosenDEF" id="awayDEF"></td>
 				<td class="chosenDEFPoints" id="awayDEFPoints"></td>
 			</tr>
 			<tr>
-				<td class="position">K</td>
-				<td class="chosenK" id="homeK"></td>
 				<td class="chosenKPoints" id="homeKPoints"></td>
+				<td class="chosenK" id="homeK"></td>
+				<td class="position">K</td>
 				<td class="chosenK" id="awayK"></td>
 				<td class="chosenKPoints" id="awayKPoints"></td>
 			</tr>
 			<tr>
-				<td class="position">FLEX</td>
-				<td class="chosenFLEX" id="homeFLEX"></td>
 				<td class="chosenFLEXPoints" id="homeFLEXPoints"></td>
+				<td class="chosenFLEX" id="homeFLEX"></td>
+				<td class="position">FLEX</td>
 				<td class="chosenFLEX" id="awayFLEX"></td>
 				<td class="chosenFLEXPoints" id="awayFLEXPoints"></td>
 			</tr>
