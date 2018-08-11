@@ -36,10 +36,10 @@ if(!$fgmembersite->CheckLogin())
 			<tr>
 				<!--<th class="headerTableColumn" id="avatarBox"></th>-->
 				<th class="headerTableColumn" id="avatarBox">
-					<div id="welcomeBox">
+					<!--<div id="welcomeBox">
 						<span style="font-size: 0.8em">Team: </span>
 						<?php echo $fgmembersite->getTeamName() ?>
-					</div>
+					</div>-->
 				</th>
 				<th class="headerTableColumn" style="text-align: left" id="currentWeekBox">
 					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right">
