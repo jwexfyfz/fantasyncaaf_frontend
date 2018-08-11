@@ -3,13 +3,29 @@
 	font-size: 0.8em;
 	text-align: center;
 	padding: 0px 5px;
+	line-height: 20px;
+	vertical-align: center;
 }
 
 .homeSide {
-	color: #A2A2A2;
 	text-align: right;
 }
 
 .chosenPosition {
+	color: #4D4D4D;
 	padding: 0px 5px;
+}
+
+.matchupHeading {
+	text-align: center;
+	color: #353535;
+}
+
+#myTeamMatchupTable {
+	padding-bottom: 30px;
+}
+
+#hiddenMatchupsTable {
+	max-width: 600px;
+	width: 100%;
 }

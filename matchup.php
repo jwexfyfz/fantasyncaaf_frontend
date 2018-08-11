@@ -90,13 +90,13 @@ if(!$fgmembersite->CheckLogin())
 		<table id="myTeamMatchupTable">
 			<tr>
 				<th></td>
-				<th class="matchupTotalScore" id="homeTeamScore" colspan="2"></th>
-				<th class="matchupTotalScore" id="awayTeamScore" colspan="2"></th>
+				<th class="matchupTotalScore matchupHeading" id="homeTeamScore" colspan="2"></th>
+				<th class="matchupTotalScore matchupHeading" id="awayTeamScore" colspan="2"></th>
 			</tr>
 			<tr>
 				<th></td>
-				<th id="homeTeamName" colspan="2"></th>
-				<th id="awayTeamName" colspan="2"></th>
+				<th class="matchupHeading" id="homeTeamName" colspan="2"></th>
+				<th class="matchupHeading" id="awayTeamName" colspan="2"></th>
 			</tr>
 			<tr>
 				<td class="chosenQBPoints homeSide" id="homeQBPoints"></td>
