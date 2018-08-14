@@ -116,7 +116,7 @@ function getMatchups(convertTeam) {
 				if (i % maxNumColumn == 0) {
 					var tableStructure = "<tr>";
 					for (var colNum = 0; colNum < maxNumColumn; colNum++) {
-						tableStructure += "<td id='row"+rowNum+"col"+colNum+"'></td>";
+						tableStructure += "<td id='row"+rowNum+"col"+colNum+"' style='width: 50%'></td>";
 					}
 					tableStructure +="</tr>";
 					rowNum++;
@@ -339,7 +339,7 @@ function populatePoints(homeOrAway, playerPoints, playerName, position) {
 
 function createMatchupTable(idName, matchupIteration, homeTeam1, awayTeam1, homeTeamScore1, awayTeamScore1, rowNum, maxNumColumn, convertTeam) {
   //var createdTable = "<table class='matchupTableList' id='"+idName+"'> <tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table>";
-	var createdRow = "<div class='flexCard'><button class='centerTable' onClick=updatePage("+homeTeam1+")><table><tr><td id='"+idName+"homeTeamName'>"+convertTeam[homeTeam1]+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+convertTeam[awayTeam1]+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></button></div>";
+	var createdRow = "<div class='flexCard'><button class='centerTable fullWidth noStyle' onClick=updatePage("+homeTeam1+")><table class='fullWidth'><tr><td id='"+idName+"homeTeamName'>"+convertTeam[homeTeam1]+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+convertTeam[awayTeam1]+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></button></div>";
   //var createdRow = "<tr><table><tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></tr>";
   //console.log(createdTable);
   //$('#hiddenMatchupsTable').append(createdRow);

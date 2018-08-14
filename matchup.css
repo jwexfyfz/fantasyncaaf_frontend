@@ -42,3 +42,12 @@
 .centerTable {
 	margin: 0 auto;
 }
+
+.fullWidth {
+	width: 100%;
+}
+
+.noStyle {
+	padding: 0px;
+	border: 0px;
+}
