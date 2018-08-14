@@ -21,6 +21,10 @@
 	color: #353535;
 }
 
+.matchupHeadingTeamName {
+	padding-bottom: 15px;
+}
+
 #myTeamMatchupTable {
 	padding-bottom: 30px;
 	margin: 0 auto;
@@ -50,4 +54,5 @@
 .noStyle {
 	padding: 0px;
 	border: 0px;
+	background-color: #FFFFFF;
 }

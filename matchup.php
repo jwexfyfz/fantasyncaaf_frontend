@@ -90,14 +90,12 @@ if(!$fgmembersite->CheckLogin())
 		<div class="flexCard">
 			<table id="myTeamMatchupTable">
 			<tr>
-				<th></th>
 				<th class="matchupTotalScore matchupHeading" id="homeTeamScore" colspan="5"></th>
 				<th class="matchupTotalScore matchupHeading" id="awayTeamScore" colspan="5"></th>
 			</tr>
 			<tr>
-				<th></th>
-				<th class="matchupHeading" id="homeTeamName" colspan="5"></th>
-				<th class="matchupHeading" id="awayTeamName" colspan="5"></th>
+				<th class="matchupHeadingTeamName matchupHeading" id="homeTeamName" colspan="5"></th>
+				<th class="matchupHeadingTeamName matchupHeading" id="awayTeamName" colspan="5"></th>
 			</tr>
 			<tr>
 				<td class="chosenQB homeSide chosenPosition" id="homeQB" colspan="2"></td>
