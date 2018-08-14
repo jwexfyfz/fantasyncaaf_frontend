@@ -87,7 +87,7 @@ if(!$fgmembersite->CheckLogin())
 			<tr style="height:25px"></tr>
 		</table>
 	
-		<div class="flexCard">
+		<div class="flexCard" id="matchupCard">
 			<table id="myTeamMatchupTable">
 			<tr>
 				<th class="matchupTotalScore matchupHeading" id="homeTeamScore" colspan="5"></th>
