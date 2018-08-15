@@ -142,7 +142,7 @@ if(!$fgmembersite->CheckLogin())
 			<tr>
 				<td class="chosenTE homeSide chosenPosition" id="homeTE" colspan="2"></td>
 				<td class="chosenTEPoints homeSide" id="homeTEPoints" colspan="2"></td>
-				<td class="position" colspan="2">TE</td>
+				<td class="position" colspan="2">WR/TE</td>
 				<td class="chosenTEPoints" id="awayTEPoints" colspan="2"></td>
 				<td class="chosenTE chosenPosition" id="awayTE" colspan="2"></td>
 			</tr>
