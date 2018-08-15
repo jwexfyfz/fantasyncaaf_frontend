@@ -779,21 +779,68 @@ class FGMembersite
             return false;
         }
         $mailer = new PHPMailer();
+		
+		$mailer->isSMTP();
+		
+		$mailer->SMTPDebug = 2;
+		
+		$mailer->Host = 'smtp.gmail.com';
+		
+		$mailer->Port = 587;
+		
+		$mailer->SMTPSecure = 'tls';
+		
+		$mailer->SMTPAuth = true;
+		
+		$mailer->AuthType = 'XOAUTH2';
+		
+		$email = 'ncaaf.fantasy@gmail.com';
         
+		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+		
+		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+		
+		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		
+		$provider = new Google(
+			[
+				'clientId' => $clientId,
+				'clientSecret' => $clientSecret,
+			]
+		);
+		
+		$mailer->setOAuth(
+			new OAuth(
+				[
+					'provider' => $provider,
+					'clientId' => $clientId,
+					'clientSecret' => $clientSecret,
+					'refreshToken' => $refreshToken,
+					'userName' => $email,
+				]
+			)
+		);
+		
+		$mailer->setFrom($email, 'NCAAF Fantasy');
+		
+		$mailer->addAddress($this->admin_email);
+		
+		//$mail->Subject = "Your registration with ".$this->sitename;
+		
         $mailer->CharSet = 'utf-8';
         
-        $mailer->AddAddress($this->admin_email);
+        //$mailer->AddAddress($this->admin_email);
         
         $mailer->Subject = "New registration: ".$formvars['name'];
 
-        $mailer->From = $this->GetFromAddress();         
+        //$mailer->From = $this->GetFromAddress();         
         
         $mailer->Body ="A new user registered at ".$this->sitename."\r\n".
         "Name: ".$formvars['name']."\r\n".
         "Email address: ".$formvars['email']."\r\n".
         "UserName: ".$formvars['username'];
         
-        if(!$mailer->Send())
+        if(!$mailer->send())
         {
             return false;
         }
