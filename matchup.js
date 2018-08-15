@@ -211,7 +211,7 @@ function updatePage(teamID) {
 	
 	//only need week and teamID to retrieve a user's roster
 	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
-	console.log(dataString);
+	console.log("updatePage: "+dataString);
 	$.ajax({
 	    type: "POST",
 	    url: "getMatchup.php",
