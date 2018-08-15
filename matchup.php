@@ -37,7 +37,7 @@ if(!$fgmembersite->CheckLogin())
 					<th class="headerTableColumn" id="avatarBox"></th>
 					<th class="headerTableColumn" id="currentWeekBox">
 					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right">
-							<select id="currentWeekNum">
+							<select id="currentWeekNum" onchange="updatePage(<?php echo $fgmembersite->getFantasyID() ?>); allMatchupsFunction();">
 								<option value="1">Week 1</option>
 								<option value="2">Week 2</option>
 								<option value="3">Week 3</option>
