@@ -481,14 +481,57 @@ class FGMembersite
     function SendUserWelcomeEmail(&$user_rec)
     {
         $mailer = new PHPMailer();
+		
+		$mailer->isSMTP();
+		
+		$mailer->SMTPDebug = 2;
+		
+		$mailer->Host = 'smtp.gmail.com';
+		
+		$mailer->Port = 587;
+		
+		$mailer->SMTPSecure = 'tls';
+		
+		$mailer->SMTPAuth = true;
+		
+		$mailer->AuthType = 'XOAUTH2';
+		
+		$email = 'ncaaf.fantasy@gmail.com';
+        
+		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+		
+		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+		
+		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		
+		$provider = new Google(
+			[
+				'clientId' => $clientId,
+				'clientSecret' => $clientSecret,
+			]
+		);
+		
+		$mailer->setOAuth(
+			new OAuth(
+				[
+					'provider' => $provider,
+					'clientId' => $clientId,
+					'clientSecret' => $clientSecret,
+					'refreshToken' => $refreshToken,
+					'userName' => $email,
+				]
+			)
+		);
+		
+		$mailer->setFrom($email, 'NCAAF Fantasy');
+		
+		$mailer->addAddress($user_rec['email'],$user_rec['name']);
         
         $mailer->CharSet = 'utf-8';
         
-        $mailer->AddAddress($user_rec['email'],$user_rec['name']);
-        
         $mailer->Subject = "Welcome to ".$this->sitename;
 
-        $mailer->From = $this->GetFromAddress();        
+        //$mailer->From = $this->GetFromAddress();        
         
         $mailer->Body ="Hello ".$user_rec['name']."\r\n\r\n".
         "Welcome! Your registration  with ".$this->sitename." is completed.\r\n".
@@ -497,7 +540,7 @@ class FGMembersite
         "Webmaster\r\n".
         $this->sitename;
 
-        if(!$mailer->Send())
+        if(!$mailer->send())
         {
             $this->HandleError("Failed sending user welcome email.");
             return false;
@@ -513,19 +556,64 @@ class FGMembersite
         }
         $mailer = new PHPMailer();
         
-        $mailer->CharSet = 'utf-8';
+        $mailer->isSMTP();
+		
+		$mailer->SMTPDebug = 2;
+		
+		$mailer->Host = 'smtp.gmail.com';
+		
+		$mailer->Port = 587;
+		
+		$mailer->SMTPSecure = 'tls';
+		
+		$mailer->SMTPAuth = true;
+		
+		$mailer->AuthType = 'XOAUTH2';
+		
+		$email = 'ncaaf.fantasy@gmail.com';
         
-        $mailer->AddAddress($this->admin_email);
+		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+		
+		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+		
+		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		
+		$provider = new Google(
+			[
+				'clientId' => $clientId,
+				'clientSecret' => $clientSecret,
+			]
+		);
+		
+		$mailer->setOAuth(
+			new OAuth(
+				[
+					'provider' => $provider,
+					'clientId' => $clientId,
+					'clientSecret' => $clientSecret,
+					'refreshToken' => $refreshToken,
+					'userName' => $email,
+				]
+			)
+		);
+		
+		$mailer->setFrom($email, 'NCAAF Fantasy');
+		
+		$mailer->addAddress($this->admin_email);
+		
+		$mailer->CharSet = 'utf-8';
+        
+        //$mailer->AddAddress($this->admin_email);
         
         $mailer->Subject = "Registration Completed: ".$user_rec['name'];
 
-        $mailer->From = $this->GetFromAddress();         
+        //$mailer->From = $this->GetFromAddress();         
         
         $mailer->Body ="A new user registered at ".$this->sitename."\r\n".
         "Name: ".$user_rec['name']."\r\n".
         "Email address: ".$user_rec['email']."\r\n";
         
-        if(!$mailer->Send())
+        if(!$mailer->send())
         {
             return false;
         }
@@ -542,14 +630,59 @@ class FGMembersite
         $email = $user_rec['email'];
         
         $mailer = new PHPMailer();
+		
+		$mailer->isSMTP();
+		
+		$mailer->SMTPDebug = 2;
+		
+		$mailer->Host = 'smtp.gmail.com';
+		
+		$mailer->Port = 587;
+		
+		$mailer->SMTPSecure = 'tls';
+		
+		$mailer->SMTPAuth = true;
+		
+		$mailer->AuthType = 'XOAUTH2';
+		
+		$admin_email = 'ncaaf.fantasy@gmail.com';
+        
+		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+		
+		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+		
+		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		
+		$provider = new Google(
+			[
+				'clientId' => $clientId,
+				'clientSecret' => $clientSecret,
+			]
+		);
+		
+		$mailer->setOAuth(
+			new OAuth(
+				[
+					'provider' => $provider,
+					'clientId' => $clientId,
+					'clientSecret' => $clientSecret,
+					'refreshToken' => $refreshToken,
+					'userName' => $admin_email,
+				]
+			)
+		);
+		
+		$mailer->setFrom($admin_email, 'NCAAF Fantasy');
+		
+		$mailer->addAddress($email,$user_rec['name']);
         
         $mailer->CharSet = 'utf-8';
         
-        $mailer->AddAddress($email,$user_rec['name']);
+        //$mailer->AddAddress($email,$user_rec['name']);
         
         $mailer->Subject = "Your reset password request at ".$this->sitename;
 
-        $mailer->From = $this->GetFromAddress();
+        //$mailer->From = $this->GetFromAddress();
         
         $link = $this->GetAbsoluteURLFolder().
                 '/resetpwd.php?email='.
@@ -563,7 +696,7 @@ class FGMembersite
         "Webmaster\r\n".
         $this->sitename;
         
-        if(!$mailer->Send())
+        if(!$mailer->send())
         {
             return false;
         }
@@ -575,14 +708,59 @@ class FGMembersite
         $email = $user_rec['email'];
         
         $mailer = new PHPMailer();
+		
+		$mailer->isSMTP();
+		
+		$mailer->SMTPDebug = 2;
+		
+		$mailer->Host = 'smtp.gmail.com';
+		
+		$mailer->Port = 587;
+		
+		$mailer->SMTPSecure = 'tls';
+		
+		$mailer->SMTPAuth = true;
+		
+		$mailer->AuthType = 'XOAUTH2';
+		
+		$admin_email = 'ncaaf.fantasy@gmail.com';
+        
+		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+		
+		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+		
+		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		
+		$provider = new Google(
+			[
+				'clientId' => $clientId,
+				'clientSecret' => $clientSecret,
+			]
+		);
+		
+		$mailer->setOAuth(
+			new OAuth(
+				[
+					'provider' => $provider,
+					'clientId' => $clientId,
+					'clientSecret' => $clientSecret,
+					'refreshToken' => $refreshToken,
+					'userName' => $admin_email,
+				]
+			)
+		);
+		
+		$mailer->setFrom($admin_email, 'NCAAF Fantasy');
+		
+		$mailer->addAddress($email,$user_rec['name']);
         
         $mailer->CharSet = 'utf-8';
         
-        $mailer->AddAddress($email,$user_rec['name']);
+        //$mailer->AddAddress($email,$user_rec['name']);
         
         $mailer->Subject = "Your new password for ".$this->sitename;
 
-        $mailer->From = $this->GetFromAddress();
+        //$mailer->From = $this->GetFromAddress();
         
         $mailer->Body ="Hello ".$user_rec['name']."\r\n\r\n".
         "Your password is reset successfully. ".
@@ -596,7 +774,7 @@ class FGMembersite
         "Webmaster\r\n".
         $this->sitename;
         
-        if(!$mailer->Send())
+        if(!$mailer->send())
         {
             return false;
         }
