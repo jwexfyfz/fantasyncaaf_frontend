@@ -41,7 +41,7 @@ for (i = 0; i < x.length; i++) {
         }
         h.click();
 		console.log("new select value chosen, calling updatePage()");
-		updatePage();
+		updatePage($("#teamID").val());
 		allMatchupsFunction();
     });
     b.appendChild(c);
