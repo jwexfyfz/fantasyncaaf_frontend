@@ -187,7 +187,7 @@ if(!$fgmembersite->CheckLogin())
 	        </tr>
 	        <tr>
 	            <td class="myTeamTableRow">
-	                <label class="positionLabel">TE</label>
+	                <label class="positionLabel">WR/TE</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
 	                <select class="selectpicker" id="inputTE" name="TEtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
