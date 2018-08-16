@@ -13,7 +13,7 @@ $( document ).ready(
 		$("#currentWeekCircle").html(currentWeek);
 		console.log("setting #week"+week+"Circle to #A0A0A0");
 		$("#week"+week+"Circle").css('background-color','#A0A0A0');
-		console.log("#week"+week+"Circle is now "+$("#week"+week+"Circle").css());
+		console.log("#week"+week+"Circle is now "+$("#week"+week+"Circle").css('background-color'));
 		
 		
 		var urlArray = getUrlVars();
