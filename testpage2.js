@@ -10,6 +10,8 @@ $( document ).ready(
 		var currentWeek = 1;
 		$("#currentWeekNum").val(currentWeek);
 		console.log("Current week is now set to "+$("#currentWeekNum").val());
+		$("#currentWeekCircle").html(currentWeek);
+		$("#week"+week+"Circle").css('background-color','#A0A0A0');
 		
 		var urlArray = getUrlVars();
 		//console.log(urlArray);
