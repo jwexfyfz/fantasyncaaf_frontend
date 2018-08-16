@@ -10,90 +10,67 @@ $( document ).ready(
 		
 		//When user selects a week number, hide the week drop-up
 		$( "#week13Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-			console.log($('#week13Circle').html());
-			
-			var prevWeek = $('#currentWeekNum option:selected').val();
-			$("#week"+prevWeek+"Circle").css('background-color','transparent');
-			console.log("setting previous week, "+prevWeek+", to "+$("#week"+prevWeek+"Circle").css('background-color'));
-
-			$("#currentWeekNum option:selected").removeAttr("selected");			
-			$('#currentWeekNum option[value=13]').attr('selected','selected');
-			console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
-			
-			$("#currentWeekCircle").html(13);
-			$("#week13Circle").css('background-color','#A0A0A0');
-			
-			updatePage($("#teamID").val());
-			allMatchupsFunction();
+			selectWeek(13);
 		});
 		$( "#week12Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(12);
 		});
 		$( "#week11Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(11);
 		});
 		$( "#week10Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(10);
 		});
 		$( "#week9Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(9);
 		});
 		$( "#week8Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(8);
 		});
 		$( "#week7Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(7);
 		});
 		$( "#week6Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(6);
 		});
 		$( "#week5Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(5);
 		});
 		$( "#week4Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(4);
 		});
 		$( "#week3Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(3);
 		});
 		$( "#week2Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
+			selectWeek(2);
 		});
 		$( "#week1Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-			console.log($('#week1Circle').html());
-			
-			var prevWeek = $('#currentWeekNum option:selected').val();
-			$("#week"+prevWeek+"Circle").css('background-color','transparent');
-			console.log("setting previous week, "+prevWeek+", to "+$("#week"+prevWeek+"Circle").css('background-color'));
-			
-			$("#currentWeekNum option:selected").removeAttr("selected");			
-			$('#currentWeekNum option[value=1]').attr('selected','selected');
-			console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
-			
-			$("#currentWeekCircle").html(1);
-			$("#week1Circle").css('background-color','#A0A0A0');
-			
-			updatePage($("#teamID").val());
-			allMatchupsFunction();
+			selectWeek(1);
 		});
 		
 
 });
+
+function selectWeek(weekNum) {
+	console.log("clicked to hide");
+	$("#weekScrollContainer").css('display','none');
+	console.log($('#week'+weekNum+'Circle').html());
+	
+	var prevWeek = $('#currentWeekNum option:selected').val();
+	$("#week"+prevWeek+"Circle").css('background-color','transparent');
+	console.log("setting previous week, "+prevWeek+", to "+$("#week"+prevWeek+"Circle").css('background-color'));
+	
+	$("#currentWeekNum option:selected").removeAttr("selected");			
+	$('#currentWeekNum option[value='+weekNum+']').attr('selected','selected');
+	console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
+	
+	$("#currentWeekCircle").html(weekNum);
+	$("#week"+weekNum+"Circle").css('background-color','#A0A0A0');
+	
+	updatePage($("#teamID").val());
+	allMatchupsFunction();
+}
 
 
 var x, i, j, selElmnt, a, b, c;
