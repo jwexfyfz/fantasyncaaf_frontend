@@ -66,7 +66,7 @@ function selectWeek(weekNum) {
 	console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
 	
 	$("#currentWeekCircle").html(weekNum);
-	$("#week"+weekNum+"Circle").css('background-color','#A0A0A0');
+	$("#week"+weekNum+"Circle").css('background-color','#6495ED');
 	
 	updatePage($("#teamID").val());
 	allMatchupsFunction();

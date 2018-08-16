@@ -10,9 +10,10 @@ $( document ).ready(
 		var currentWeek = 1;
 		$("#currentWeekNum").val(currentWeek);
 		console.log("Current week is now set to "+$("#currentWeekNum").val());
+		
 		$("#currentWeekCircle").html(currentWeek);
-		console.log("setting #week"+currentWeek+"Circle to #A0A0A0");
-		$("#week"+currentWeek+"Circle").css('background-color','#A0A0A0');
+		console.log("setting #week"+currentWeek+"Circle to #6495ED");
+		$("#week"+currentWeek+"Circle").css('background-color','#6495ED');
 		console.log("#week"+currentWeek+"Circle is now "+$("#week"+currentWeek+"Circle").css('background-color'));
 		
 		

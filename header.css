@@ -110,47 +110,53 @@ tr p {
 }
 
 .circle {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background-color: blue;
+  background-color: #4169E1;
   text-align: center;
-  line-height: 50px;
+  line-height: 70px;
   color: #ffffff;
   list-style-type:none;
 }
 
 #weekScrollContainer {
-  width: 50px;
-  height: 400px;
+  width: 70px;
+  height: 560px;
   background-color: transparent;
   display: none;
   z-index: 90;
 }
 
 #scrollable {
-  width: 50px;
-  height: 400px;
+  width: 70px;
+  height: 560px;
   background-color: transparent;
   overflow: scroll;
 }
 
 .fixedPosition {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 30px;
 }
 
 #weekSelectBackground {
 	position: absolute;
-	width: 50px;
-	height: 350px;
-	bottom: 25px;
-	background-color: blue;
+	width: 70px;
+	height: 490px;
+	bottom: 35px;
+	background-color: #4169E1;
 	vertical-align: bottom;
 }
 
 .weekSelectCircle {
 	position: relative !important;
 	background-color: transparent;
+}
+
+#currentWeekCircle {
+	background-color: blue;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	z-index:9;
 }

@@ -286,7 +286,7 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 
 	<a href="#">
-		<div class="fixedPosition circle" id ="currentWeekCircle" style="background-color: red; z-index:9;"></div>
+		<div class="fixedPosition circle" id ="currentWeekCircle"></div>
 	</a>
 	
 	<div class="bottomErrorBanner" style="display:none">
