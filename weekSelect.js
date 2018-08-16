@@ -57,6 +57,7 @@ $( document ).ready(
 	        if(e.target.id != subject.attr('id'))
 	        {
 	            subject.css('display','none');
+				$( "#currentWeekCircle" ).css('display','block');
 	        }
 	    });
 
