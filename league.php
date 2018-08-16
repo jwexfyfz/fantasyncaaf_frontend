@@ -21,11 +21,12 @@ if(!$fgmembersite->CheckLogin())
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" defer></script>
 	<script src="dist/js/bootstrap-select.js" defer></script>
 	
+	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
     <script type="text/javascript" src="league.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="standings.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 	<body>
@@ -92,6 +93,6 @@ if(!$fgmembersite->CheckLogin())
 		</table>
 		
 		
-	    <script type="text/javascript" src="weekSelect.js" ></script>
+	    <!--<script type="text/javascript" src="weekSelect.js" ></script>-->
 	</body>
 </html>

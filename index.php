@@ -27,6 +27,7 @@ if(!$fgmembersite->CheckLogin())
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="myTeam.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
 	<div id="headerWrapper">

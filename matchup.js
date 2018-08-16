@@ -1,9 +1,15 @@
 $( document ).ready(
 	function startPage() {
-		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
+		//Set default week value 
+		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK TODO: jeffwang to figure out how to make this change based on the current week
 		var currentWeek = 1;
 		$("#currentWeekNum").val(currentWeek);
 		console.log("Current week is now set to "+$("#currentWeekNum").val());
+		
+		$("#currentWeekCircle").html(currentWeek);
+		console.log("setting #week"+currentWeek+"Circle to #6495ED");
+		$("#week"+currentWeek+"Circle").css('background-color','#6495ED');
+		console.log("#week"+currentWeek+"Circle is now "+$("#week"+currentWeek+"Circle").css('background-color'));
 	    
 		//var currentWeek = document.getElementById("currentWeekNum");
 		//currentWeek.value = 12;	//This is hardcoded right now TODO: jeffwang to figure out how to make this change based on the current week

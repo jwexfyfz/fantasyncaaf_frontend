@@ -21,11 +21,12 @@ if(!$fgmembersite->CheckLogin())
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" defer></script>
 	<script src="dist/js/bootstrap-select.js" defer></script>
 	
+	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
     <script type="text/javascript" src="matchup.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="matchup.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 	<body>
@@ -34,9 +35,18 @@ if(!$fgmembersite->CheckLogin())
 				<tr style="height:20px">
 				</tr>
 				<tr>
-					<th class="headerTableColumn" id="avatarBox"></th>
+					<th class="headerTableColumn"></th>
+					<th class="headerTableColumn" id="gameLogoBox"></th>
 					<th class="headerTableColumn" id="currentWeekBox">
-					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
+						<div id="accountAvatar">
+							<?php 
+								$string = $fgmembersite->getTeamName(); 
+								preg_match('/(^\w)/', $string, $match);
+								$output = strtolower($match[1][0]);
+								echo $output;
+							?>
+						</div>
+						<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
 							<select id="currentWeekNum">
 								<option value="1">Week 1</option>
 								<option value="2">Week 2</option>
