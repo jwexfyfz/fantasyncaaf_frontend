@@ -31,12 +31,12 @@ if(!$fgmembersite->CheckLogin())
 	<body>
 		<div id="headerWrapper">
 			<table class="headerTable" id="currentWeekDisplayTable">
-				<tr style="height:10px">
+				<tr style="height:20px">
 				</tr>
 				<tr>
 					<th class="headerTableColumn" id="avatarBox"></th>
 					<th class="headerTableColumn" id="currentWeekBox">
-					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right">
+					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
 							<select id="currentWeekNum">
 								<option value="1">Week 1</option>
 								<option value="2">Week 2</option>
@@ -74,7 +74,7 @@ if(!$fgmembersite->CheckLogin())
 		<!--Have a blank row so that content at top gets pushed underneath header-->
 
 		<table class="headerTable">
-			<tr style="height: 114px"></tr>
+			<tr style="height: 121px"></tr>
 <!--
 			<tr>
 				<td class="leftAlignTableCell">
@@ -170,6 +170,34 @@ if(!$fgmembersite->CheckLogin())
 		</table>
 	</div>
 		<table id="hiddenMatchupsTable"></table>
+		
+		<div class="fixedPosition" id="weekScrollContainer">
+			<div id="weekSelectBackground"></div>
+		  <div class="circle" style="position: absolute; top:0;"></div>
+		  <div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
+		
+		  <div id="scrollable">
+			  <div class="circle weekSelectCircle" id="week13Circle">13</div>
+			  <div class="circle weekSelectCircle" id="week12Circle">12</div>
+			  <div class="circle weekSelectCircle" id="week11Circle">11</div>
+			  <div class="circle weekSelectCircle" id="week10Circle">10</div>
+			  <div class="circle weekSelectCircle" id="week9Circle">9</div>
+			  <div class="circle weekSelectCircle" id="week8Circle">8</div>
+			  <div class="circle weekSelectCircle" id="week7Circle">7</div>
+			  <div class="circle weekSelectCircle" id="week6Circle">6</div>
+			  <div class="circle weekSelectCircle" id="week5Circle">5</div>
+			  <div class="circle weekSelectCircle" id="week4Circle">4</div>
+			  <div class="circle weekSelectCircle" id="week3Circle">3</div>
+			  <div class="circle weekSelectCircle" id="week2Circle">2</div>
+			  <div class="circle weekSelectCircle" id="week1Circle">1</div>
+		 </div>
+
+		</div>
+
+		<a href="#">
+			<p id="weekLabel">WEEK</p>
+			<div class="fixedPosition circle" id ="currentWeekCircle"></div>
+		</a>
 		
 	    <script type="text/javascript" src="weekSelect.js" ></script>
 	</body>

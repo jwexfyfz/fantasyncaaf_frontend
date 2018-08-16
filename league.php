@@ -31,12 +31,12 @@ if(!$fgmembersite->CheckLogin())
 	<body>
 		<div id="headerWrapper">
 			<table class="headerTable" id="currentWeekDisplayTable">
-				<tr style="height:10px">
+				<tr style="height:20px">
 				</tr>
 				<tr>
 					<th class="headerTableColumn" id="avatarBox"></th>
 					<th class="headerTableColumn" id="currentWeekBox">
-					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right">
+					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
 							<select id="currentWeekNum">
 								<option value="1">Week 1</option>
 								<option value="2">Week 2</option>
@@ -75,7 +75,7 @@ if(!$fgmembersite->CheckLogin())
 		<!--Have a blank row so that content at top gets pushed underneath header-->
 		<table id="standingsTable">
 			<!--Leave space for the top header-->
-			<tr style="height: 114px"></tr>
+			<tr style="height: 121px"></tr>
 			<!--Leave space between header and first table-->
 			<tr style="height: 10px"></tr>
 			<tr>

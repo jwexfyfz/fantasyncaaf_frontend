@@ -81,10 +81,11 @@ tr p {
   height: 0; 
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 15px solid white;
+  border-bottom: 15px solid #ffffff;
   top: 0px;
   margin: 0 auto;
   position: relative;  
+  box-shadow: 0px 5px 5px -5px white
 }
 
 .hidden-arrow {
@@ -164,7 +165,7 @@ tr p {
 	background-color: #4169E1;
 	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 	z-index:9;
-	height: 58px;
+	height: 70px;
 	font-size: 2em;
 	line-height: 60px;
 	text-align: center;
