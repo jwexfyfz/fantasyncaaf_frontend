@@ -167,8 +167,7 @@ tr p {
 	height: 50px;
 	border-radius: 50%;
 	background-color: #7B68EE;
-	border: 2px solid white;
-	position: relative;
+	position: absolute;
 	right: 30px;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	top: 0px;
 }

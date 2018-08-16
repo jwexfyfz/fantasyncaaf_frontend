@@ -50,6 +50,15 @@ $( document ).ready(
 			selectWeek(1);
 		});
 		
+	$("#myTeamTable").mouseup(function(e)
+	    {
+	        var subject = $("#scrollable"); 
+
+	        if(e.target.id != subject.attr('id'))
+	        {
+	            subject.css('display','none');
+	        }
+	    });
 
 });
 
