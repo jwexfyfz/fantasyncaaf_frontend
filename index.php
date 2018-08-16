@@ -31,7 +31,7 @@ if(!$fgmembersite->CheckLogin())
 <body>
 	<div id="headerWrapper">
 		<table class="headerTable" id="currentWeekDisplayTable">
-			<tr style="height:10px">
+			<tr style="height:20px">
 			</tr>
 			<tr>
 				<!--<th class="headerTableColumn" id="avatarBox"></th>-->
@@ -83,7 +83,7 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	<table>
-		<tr style="height: 111px"></tr>
+		<tr style="height: 121px"></tr>
 			<!--Leave space between header and first table-->
 			<tr style="height: 10px"></tr>
 	</table>

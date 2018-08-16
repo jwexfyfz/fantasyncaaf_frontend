@@ -1,5 +1,5 @@
 :root {
-    --headerHeight: 111px; 
+    --headerHeight: 121px; 
 }
 
 body {
@@ -135,6 +135,10 @@ tr p {
   overflow: scroll;
 }
 
+#scrollable *, #currentWeekCircle * {
+	font-size: 1.2em;
+}
+
 .fixedPosition {
   position: fixed;
   bottom: 30px;
@@ -168,7 +172,7 @@ tr p {
 	border-radius: 50%;
 	background-color: #7B68EE;
 	position: absolute;
-	right: 30px;
+	right: 20px;
 	top: 0px;
 	color: #ffffff;
 	line-height: 50px;
