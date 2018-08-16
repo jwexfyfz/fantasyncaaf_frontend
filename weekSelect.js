@@ -15,6 +15,10 @@ $( document ).ready(
 			console.log($('#week13Circle').html());
 			$('#currentWeekNum option[value=13]').attr('selected','selected');
 			console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
+			
+			$("#currentWeekCircle").html(13);
+			$("#week13Circle").css('background-color','#A0A0A0');
+			
 			updatePage($("#teamID").val());
 			allMatchupsFunction();
 		});
