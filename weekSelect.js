@@ -3,7 +3,7 @@ $( document ).ready(
 		//TODO: jeffwang to add section on how to scroll to the bottom on click
 		
 		//When user clicks the current week number, show the week drop-up
-		$( "#week" ).click(function() {					
+		$( "#currentWeekCircle" ).click(function() {					
 			console.log("clicked to display");
 			$("#weekScrollContainer").css('display','block');
 		});
