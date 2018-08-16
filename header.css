@@ -152,5 +152,5 @@ tr p {
 
 .weekSelectCircle {
 	position: relative !important;
-	background-color: transparent !important;
+	background-color: transparent;
 }
