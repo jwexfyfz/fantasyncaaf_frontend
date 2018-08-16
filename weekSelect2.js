@@ -1,73 +1,24 @@
+window.onload=function () {
+     var objDiv = document.getElementById("scrollable");
+     objDiv.scrollTop = objDiv.scrollHeight;
+}
+
 $( document ).ready(
-	function addWeekBubble() {
-		//TODO: jeffwang to add section on how to scroll to the bottom on click
+	function startPage() {
 		
-		//When user clicks the current week number, show the week drop-up
-		$( "#week" ).click(function() {					
+		
+
+		$( "#week" ).click(function() {
 			console.log("clicked to display");
-			$("#weekScrollContainer").css('display','block');
+			$("#scrollable").css('display','block');
+			$("#weekSelectBackground").css('display','block');
 		});
 		
-		//When user selects a week number, hide the week drop-up
-		$( "#week13Circle" ).click(function() {
+		$( ".weekSelect" ).click(function() {
 			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-			console.log($('#week13Circle').html());
-			$('#currentWeekNum option[value=13]').attr('selected','selected');
-			console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
-			updatePage($("#teamID").val());
-			allMatchupsFunction();
+			$("#scrollable").css('display','none');
+			$("#weekSelectBackground").css('display','none');
 		});
-		$( "#week12Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week11Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week10Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week9Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week8Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week7Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week6Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week5Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week4Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week3Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week2Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-		});
-		$( "#week1Circle" ).click(function() {
-			console.log("clicked to hide");
-			$("#weekScrollContainer").css('display','none');
-			console.log($('#week1Circle').html());
-		});
-		
 
 });
 
@@ -81,7 +32,7 @@ for (i = 0; i < x.length; i++) {
   a = document.createElement("DIV");
   a.setAttribute("class", "select-selected");
   a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
+  x[i].insertBefore(a,);
   /*for each element, create a new DIV that will contain the option list:*/
   b = document.createElement("DIV");
   b.setAttribute("class", "select-items select-hide");
@@ -115,7 +66,7 @@ for (i = 0; i < x.length; i++) {
         }
         h.click();
 		console.log("new select value chosen, calling updatePage()");
-		updatePage($("#teamID").val());
+		updatePage();
 		allMatchupsFunction();
     });
     b.appendChild(c);

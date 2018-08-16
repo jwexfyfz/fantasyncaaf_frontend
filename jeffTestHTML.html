@@ -1,14 +1,3 @@
-<?php 
-require_once("./include/membersite_config.php");
-
-if(!$fgmembersite->CheckLogin())
-{
-    $fgmembersite->RedirectToURL("login.php");
-    exit;
-}
-?>
-
-<!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +31,7 @@ if(!$fgmembersite->CheckLogin())
 					</div>-->
 				</th>
 				<th class="headerTableColumn" style="text-align: left" id="currentWeekBox">
-					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right;">
+					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right">
 						<select id="currentWeekNum">
 							<option value="1">Week 1</option>
 							<option value="2">Week 2</option>
@@ -262,24 +251,16 @@ if(!$fgmembersite->CheckLogin())
 	</div>  
 	
 	
-	<div class="fixedPosition" id="weekScrollContainer">
+	<div class="fixedPosition" id="scrollable">
 		<div id="weekSelectBackground"></div>
-	  <div class="circle" style="position: absolute; top:0"></div>
-	  <div class="circle" style="position: absolute; bottom:0"></div>
-		
-	  <div class="scrollable">
-		  <div class="circle weekSelectCircle">8</div>
-		  <div class="circle weekSelectCircle">8</div>
-		  <div class="circle weekSelectCircle">8</div>
-		  <div class="circle weekSelectCircle">7</div>
-		  <div class="circle weekSelectCircle">6</div>
-		  <div class="circle weekSelectCircle">5</div>
-		  <div class="circle weekSelectCircle">4</div>
-		  <div class="circle weekSelectCircle">3</div>
-		  <div class="circle weekSelectCircle">2</div>
-		  <div class="circle weekSelectCircle" id="lastWSC">1</div>
-	 </div>
-
+	  <div class="circle weekSelectCircle">8</div>
+	  <div class="circle weekSelectCircle">7</div>
+	  <div class="circle weekSelectCircle">6</div>
+	  <div class="circle weekSelectCircle">5</div>
+	  <div class="circle weekSelectCircle">4</div>
+	  <div class="circle weekSelectCircle">3</div>
+	  <div class="circle weekSelectCircle">2</div>
+	  <div class="circle weekSelectCircle">1</div>
 	</div>
 
 	<a href="#">

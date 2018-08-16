@@ -108,3 +108,49 @@ tr p {
 	background-color: #808080;
 	text-color: ;
 }
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: blue;
+  text-align: center;
+  line-height: 50px;
+  color: #ffffff;
+  list-style-type:none;
+}
+
+#weekScrollContainer {
+  width: 50px;
+  height: 400px;
+  background-color: transparent;
+  display: none;
+  z-index: 90;
+}
+
+#scrollable {
+  width: 50px;
+  height: 400px;
+  background-color: transparent;
+  overflow: scroll;
+}
+
+.fixedPosition {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+#weekSelectBackground {
+	position: absolute;
+	width: 50px;
+	height: 350px;
+	bottom: 25px;
+	background-color: blue;
+	vertical-align: bottom;
+}
+
+.weekSelectCircle {
+	position: relative !important;
+	background-color: transparent !important;
+}

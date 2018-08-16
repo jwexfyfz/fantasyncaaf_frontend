@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+	
+	
+    <script type="text/javascript" src="matchup.js" ></script>
+	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="matchup.css" media="screen" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
 <body>
 	<style>
 		.flexCard {
@@ -9,7 +21,62 @@
 		}
 	</style>
 	
-	<div class="flexCard" style="width: 50px; height: 50px">
+	<div class="flexCard" style="width: 50px; height: 50px; position:fixed;right: 0; top: 0;">
 	</div>
+	
+	<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right;">
+		<select id="currentWeekNum">
+			<option value="1">Week 1</option>
+			<option value="2">Week 2</option>
+			<option value="3">Week 3</option>
+			<option value="4">Week 4</option>
+			<option value="5">Week 5</option>
+			<option value="6">Week 6</option>
+			<option value="7">Week 7</option>
+			<option value="8">Week 8</option>
+			<option value="9">Week 9</option>
+			<option value="10">Week 10</option>
+			<option value="11">Week 11</option>
+			<option value="12">Week 12</option>
+			<option value="13">Week 13</option>
+		</select>
+	</div>
+		
+		<div class="circle">
+		</div>
+		
+
+
+		<div class="fixedPosition" id="weekScrollContainer">
+			<div id="weekSelectBackground"></div>
+  		  <div class="circle" style="position: absolute; top:0"></div>
+  		  <div class="circle" style="position: absolute; bottom:0"></div>
+			
+		  <div id="scrollable">
+			  <div class="circle weekSelectCircle" id="week13Circle">13</div>
+			  <div class="circle weekSelectCircle" id="week12Circle">12</div>
+			  <div class="circle weekSelectCircle" id="week11Circle">11</div>
+			  <div class="circle weekSelectCircle" id="week10Circle">10</div>
+			  <div class="circle weekSelectCircle" id="week9Circle">9</div>
+			  <div class="circle weekSelectCircle" id="week8Circle">8</div>
+			  <div class="circle weekSelectCircle" id="week7Circle">7</div>
+			  <div class="circle weekSelectCircle" id="week6Circle">6</div>
+			  <div class="circle weekSelectCircle" id="week5Circle">5</div>
+			  <div class="circle weekSelectCircle" id="week4Circle">4</div>
+			  <div class="circle weekSelectCircle" id="week3Circle">3</div>
+			  <div class="circle weekSelectCircle" id="week2Circle">2</div>
+			  <div class="circle weekSelectCircle" id="week1Circle">1</div>
+		 </div>
+
+		</div>
+
+		<a href="#">
+			<div class="fixedPosition circle" id ="week" style="background-color: red; z-index:9;"></div>
+		</a>
+	
+	
+	
+    <script type="text/javascript" src="weekSelect.js" ></script>
+	
 </body>
 </html>
