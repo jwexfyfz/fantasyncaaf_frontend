@@ -148,6 +148,7 @@ tr p {
 	bottom: 35px;
 	background-color: #4169E1;
 	vertical-align: bottom;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .weekSelectCircle {
@@ -159,4 +160,12 @@ tr p {
 	background-color: blue;
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 	z-index:9;
+}
+
+#accountAvatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background-color: black;
+	border: 2px solid white;
 }

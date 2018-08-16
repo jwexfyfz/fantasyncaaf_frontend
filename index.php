@@ -42,7 +42,8 @@ if(!$fgmembersite->CheckLogin())
 					</div>-->
 				</th>
 				<th class="headerTableColumn" style="text-align: left" id="currentWeekBox">
-					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right;">
+					<div id="accountAvatar"></div>
+					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display: none;">
 						<select id="currentWeekNum">
 							<option value="1">Week 1</option>
 							<option value="2">Week 2</option>
@@ -264,8 +265,8 @@ if(!$fgmembersite->CheckLogin())
 	
 	<div class="fixedPosition" id="weekScrollContainer">
 		<div id="weekSelectBackground"></div>
-	  <div class="circle" style="position: absolute; top:0"></div>
-	  <div class="circle" style="position: absolute; bottom:0"></div>
+	  <div class="circle" style="position: absolute; top:0;"></div>
+	  <div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);"></div>
 		
 	  <div id="scrollable">
 		  <div class="circle weekSelectCircle" id="week13Circle">13</div>

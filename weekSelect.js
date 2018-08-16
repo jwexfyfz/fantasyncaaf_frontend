@@ -6,6 +6,7 @@ $( document ).ready(
 		$( "#currentWeekCircle" ).click(function() {					
 			console.log("clicked to display");
 			$("#weekScrollContainer").css('display','block');
+			$("#currentWeekCircle").css('display','none');
 		});
 		
 		//When user selects a week number, hide the week drop-up
@@ -66,6 +67,7 @@ function selectWeek(weekNum) {
 	console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
 	
 	$("#currentWeekCircle").html(weekNum);
+	$("#currentWeekCircle").css('display','block');
 	$("#week"+weekNum+"Circle").css('background-color','#6495ED');
 	
 	updatePage($("#teamID").val());
