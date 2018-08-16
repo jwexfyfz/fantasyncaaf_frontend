@@ -16,8 +16,9 @@ $( document ).ready(
 			
 			var prevWeek = $('#currentWeekNum option:selected').val();
 			$("#week"+prevWeek+"Circle").css('background-color','transparent');
-			
-			
+			console.log("setting previous week, "+prevWeek+", to "+$("#week"+prevWeek+"Circle").css('background-color'));
+
+			$("#currentWeekNum option:selected").removeAttr("selected");			
 			$('#currentWeekNum option[value=13]').attr('selected','selected');
 			console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
 			
@@ -78,8 +79,9 @@ $( document ).ready(
 			
 			var prevWeek = $('#currentWeekNum option:selected').val();
 			$("#week"+prevWeek+"Circle").css('background-color','transparent');
+			console.log("setting previous week, "+prevWeek+", to "+$("#week"+prevWeek+"Circle").css('background-color'));
 			
-			
+			$("#currentWeekNum option:selected").removeAttr("selected");			
 			$('#currentWeekNum option[value=1]').attr('selected','selected');
 			console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
 			
