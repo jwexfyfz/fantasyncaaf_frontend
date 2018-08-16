@@ -290,6 +290,7 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 
 	<a href="#">
+		<p id="weekLabel">WEEK</p>
 		<div class="fixedPosition circle" id ="currentWeekCircle"></div>
 	</a>
 	

@@ -135,7 +135,7 @@ tr p {
   overflow: scroll;
 }
 
-#scrollable *, #currentWeekCircle * {
+#scrollable *, #currentWeekCircle {
 	font-size: 1.2em;
 }
 
@@ -161,9 +161,19 @@ tr p {
 }
 
 #currentWeekCircle {
-	background-color: blue;
+	background-color: #4169E1;
 	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 	z-index:9;
+}
+
+#weekLabel {
+	position: fixed;
+	width: 70px;
+	height: 10px;
+	bottom: 50px;
+	right: 30px;
+	text-align: center;
+	color: #ffffff;
 }
 
 #accountAvatar {
