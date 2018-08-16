@@ -39,7 +39,12 @@ if(!$fgmembersite->CheckLogin())
 				<th class="headerTableColumn" id="gameLogoBox"></th>
 				<th class="headerTableColumn" id="currentWeekBox">
 					<div id="accountAvatar">
-						<?php $string = $fgmembersite->getTeamName(); preg_match_all('/[^\w]/',$string,$m); echo $m[1];?>
+						<?php 
+							$string = $fgmembersite->getTeamName(); 
+							preg_match('/(^\w)/', $string, $match);
+							$output = strtolower($match[1][0]);
+							echo $output;
+						?>
 					</div>
 					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display: none;">
 						<select id="currentWeekNum">

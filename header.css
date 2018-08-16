@@ -170,4 +170,8 @@ tr p {
 	position: absolute;
 	right: 30px;
 	top: 0px;
+	color: #ffffff;
+	line-height: 50px;
+	text-align: center;
+	font-size: 1.2em;
 }
