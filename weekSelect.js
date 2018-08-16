@@ -15,7 +15,7 @@ $( document ).ready(
 			console.log($('#week13Circle').html());
 			
 			var prevWeek = $('#currentWeekNum option:selected').val();
-			$("#week"+prevWeek+"Circle".css('background-color','transparent');
+			$("#week"+prevWeek+"Circle").css('background-color','transparent');
 			
 			
 			$('#currentWeekNum option[value=13]').attr('selected','selected');
