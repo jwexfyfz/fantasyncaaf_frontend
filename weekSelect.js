@@ -52,7 +52,7 @@ $( document ).ready(
 		
 	$("#myTeamTable").mouseup(function(e)
 	    {
-	        var subject = $("#scrollable"); 
+	        var subject = $("#weekScrollContainer"); 
 
 	        if(e.target.id != subject.attr('id'))
 	        {

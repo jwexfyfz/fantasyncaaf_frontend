@@ -35,15 +35,12 @@ if(!$fgmembersite->CheckLogin())
 			</tr>
 			<tr>
 				<!--<th class="headerTableColumn" id="avatarBox"></th>-->
-				<th class="headerTableColumn">
-					<!--<div id="welcomeBox">
-						<span style="font-size: 0.8em">Team: </span>
-						<?php echo $fgmembersite->getTeamName() ?>
-					</div>-->
-				</th>
+				<th class="headerTableColumn"></th>
 				<th class="headerTableColumn" id="gameLogoBox"></th>
 				<th class="headerTableColumn" id="currentWeekBox">
-					<div id="accountAvatar"></div>
+					<div id="accountAvatar">
+						<?php $string = $fgmembersite->getTeamName(); preg_match_all('/[^\w]/',$string,$m); echo $m;?>
+					</div>
 					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display: none;">
 						<select id="currentWeekNum">
 							<option value="1">Week 1</option>
