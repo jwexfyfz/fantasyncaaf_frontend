@@ -135,8 +135,8 @@ tr p {
   overflow: scroll;
 }
 
-#scrollable *, #currentWeekCircle {
-	font-size: 1.2em;
+#scrollable * {
+	font-size: 2em;
 }
 
 .fixedPosition {
@@ -164,16 +164,24 @@ tr p {
 	background-color: #4169E1;
 	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 	z-index:9;
+	height: 58px;
+	font-size: 2em;
+	line-height: 60px;
+	text-align: center;
+	padding-top: 12px;
 }
 
 #weekLabel {
 	position: fixed;
 	width: 70px;
-	height: 10px;
-	bottom: 50px;
+	height: 15px;
+	bottom: 61px;
 	right: 30px;
 	text-align: center;
 	color: #ffffff;
+	z-index:10;
+	display:block;
+	font-size: 0.7em;
 }
 
 #accountAvatar {
