@@ -148,7 +148,7 @@ tr p {
 	bottom: 35px;
 	background-color: #4169E1;
 	vertical-align: bottom;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .weekSelectCircle {
@@ -158,14 +158,17 @@ tr p {
 
 #currentWeekCircle {
 	background-color: blue;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 	z-index:9;
 }
 
 #accountAvatar {
-	width: 36px;
-	height: 36px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
-	background-color: black;
+	background-color: #7B68EE;
 	border: 2px solid white;
+	position: relative;
+	right: 30px;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
