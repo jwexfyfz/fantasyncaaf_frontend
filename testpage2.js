@@ -11,9 +11,9 @@ $( document ).ready(
 		$("#currentWeekNum").val(currentWeek);
 		console.log("Current week is now set to "+$("#currentWeekNum").val());
 		$("#currentWeekCircle").html(currentWeek);
-		console.log("setting #week"+week+"Circle to #A0A0A0");
-		$("#week"+week+"Circle").css('background-color','#A0A0A0');
-		console.log("#week"+week+"Circle is now "+$("#week"+week+"Circle").css('background-color'));
+		console.log("setting #week"+currentWeek+"Circle to #A0A0A0");
+		$("#week"+currentWeek+"Circle").css('background-color','#A0A0A0');
+		console.log("#week"+currentWeek+"Circle is now "+$("#week"+currentWeek+"Circle").css('background-color'));
 		
 		
 		var urlArray = getUrlVars();
