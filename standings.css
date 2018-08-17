@@ -23,8 +23,7 @@
 }
 
 #standingsTable {
-	width:100%;
-	max-width: 600px;
+	width:700px;
 	table-layout: fixed;	
 	border-bottom: 1px solid #ddd;
 	z-index:-1;
@@ -44,4 +43,10 @@
 	  font-size: 0.9em;
 	      text-align: left;
 	      font-weight: 100;
+}
+
+#standingsTableWindow {
+	width: 100%;
+	max-width: 600px;
+	overflow: scroll;
 }
