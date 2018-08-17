@@ -79,9 +79,9 @@ tr p {
 .arrow-up {
   width: 0; 
   height: 0; 
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 15px solid #ffffff;
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-bottom: 17px solid #ffffff;
   top: 0px;
   margin: 0 auto;
   position: relative;  
@@ -89,7 +89,9 @@ tr p {
 }
 
 .hidden-arrow {
-	border-bottom: 15px solid #808080;
+    border-left: 17px solid transparent;
+    border-right: 17px solid transparent;
+	border-bottom: 17px solid transparent;
     z-index:10;
 }
 
