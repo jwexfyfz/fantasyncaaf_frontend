@@ -96,7 +96,7 @@ if(!$fgmembersite->CheckLogin())
 						<th class="standingsTableHeader">
 							Rank
 						</th>
-						<th class="standingsTableHeader sticky">
+						<th class="standingsTableHeader" id="sticky">
 							Team Name
 						</th>
 						<th class="standingsTableHeader">
