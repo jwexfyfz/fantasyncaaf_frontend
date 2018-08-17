@@ -37,6 +37,7 @@ $( document ).ready(
 	        {
 	            subject.css('display','none');
 				$( "#accountAvatar" ).css('display','block');
+				$( "#unclickable" ).css('display','block');
 	        }
 	    });
 });
