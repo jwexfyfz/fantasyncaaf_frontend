@@ -32,9 +32,13 @@ $( document ).ready(
 				
 		        $('#sticky2').addClass('fixed');
 		        $('#sticky2').css('top',$('#sticky2').css('top'));
+				
+		        $('.stickyColumn').addClass('fixed');
+		        $('.stickyColumn').css('top',$('#sticky2').css('top'));
 		    } else {
+		        $('#sticky').removeClass('fixed');
 		        $('#sticky2').removeClass('fixed');
-		        $('#sticky2').removeClass('fixed');
+		        $('.stickyColumn').removeClass('fixed');
 		    }
 		});
 		

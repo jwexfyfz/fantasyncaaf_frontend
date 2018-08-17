@@ -67,3 +67,7 @@
 	background-color: #ffffff;
 	border-right: 1px solid #ddd;
 }
+
+.fixed:after {
+	border-right: 1px solid #ddd;
+}
