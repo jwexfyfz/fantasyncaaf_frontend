@@ -238,6 +238,17 @@ tr p {
 	display: none;
 }
 
+#unclickable {
+	width: 100%;
+	height: 100vh;
+	background-color: transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: none;
+}
+
 .accountMenuRow {
 	width: 200px;
 	height: 50px;
@@ -260,4 +271,8 @@ tr p {
 a, a:hover {
 	text-decoration: none;
 	color: #ffffff;
+}
+
+#content {
+	height: 100vh;
 }

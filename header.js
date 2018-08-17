@@ -4,9 +4,10 @@ $( document ).ready(
 			console.log("clicked to display accountAvatar menu");
 			$("#accountMenu").css('display','block');
 			$("#accountAvatar").css('display','none');
+			$("#unclickable").css('display','block');
 		});
 		
-		$("#myTeamTable").mouseup(function(e)
+		$("#headerWrapper").mouseup(function(e)
 	    {
 	        var subject = $("#accountMenu"); 
 
@@ -18,6 +19,17 @@ $( document ).ready(
 	    });
 		
 		$("#content").mouseup(function(e)
+	    {
+	        var subject = $("#accountMenu"); 
+
+	        if(e.target.id != subject.attr('id'))
+	        {
+	            subject.css('display','none');
+				$( "#accountAvatar" ).css('display','block');
+	        }
+	    });
+		
+		$("#unclickable").mouseup(function(e)
 	    {
 	        var subject = $("#accountMenu"); 
 

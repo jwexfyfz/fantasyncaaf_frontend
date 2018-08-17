@@ -31,6 +31,7 @@ if(!$fgmembersite->CheckLogin())
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
+	<div id="unclickable"></div>
 	<div id="headerWrapper">
 		<table class="headerTable" id="currentWeekDisplayTable">
 			<tr style="height:20px">
