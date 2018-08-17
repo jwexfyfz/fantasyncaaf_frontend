@@ -68,6 +68,6 @@
 	border-right: 1px solid #ddd;
 }
 
-.fixed:after {
+.fixed::after {
 	border-right: 1px solid #ddd;
 }
