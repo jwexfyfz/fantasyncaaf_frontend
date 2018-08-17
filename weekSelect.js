@@ -7,6 +7,7 @@ $( document ).ready(
 			console.log("clicked to display");
 			$("#weekScrollContainer").css('display','block');
 			$("#currentWeekCircle").css('display','none');
+			$("#unclickable").css('display','block');
 		});
 		
 		//When user selects a week number, hide the week drop-up
@@ -49,8 +50,9 @@ $( document ).ready(
 		$( "#week1Circle" ).click(function() {
 			selectWeek(1);
 		});
-		
-	$("#myTeamTable").mouseup(function(e)
+	
+	/*	
+	$("#content").mouseup(function(e)
 	    {
 	        var subject = $("#weekScrollContainer"); 
 
@@ -58,9 +60,21 @@ $( document ).ready(
 	        {
 	            subject.css('display','none');
 				$( "#currentWeekCircle" ).css('display','block');
+				$( "#unclickable" ).css('display','none');
 	        }
 	    });
+		*/
+	$("#unclickable").mouseup(function(e)
+    {
+        var subject = $("#weekScrollContainer"); 
 
+        if(e.target.id != subject.attr('id'))
+        {
+            subject.css('display','none');
+			$( "#currentWeekCircle" ).css('display','block');
+			$( "#unclickable" ).css('display','none');
+        }
+    });
 });
 
 function selectWeek(weekNum) {
