@@ -80,6 +80,7 @@ $( document ).ready(
 function selectWeek(weekNum) {
 	console.log("clicked to hide");
 	$("#weekScrollContainer").css('display','none');
+	$( "#unclickable" ).css('display','none');
 	console.log($('#week'+weekNum+'Circle').html());
 	
 	var prevWeek = $('#currentWeekNum option:selected').val();
