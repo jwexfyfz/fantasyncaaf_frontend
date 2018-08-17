@@ -17,7 +17,7 @@ $( document ).ready(
 	        }
 	    });
 		
-		$("#headerWrapper").mouseup(function(e)
+		$("#content").mouseup(function(e)
 	    {
 	        var subject = $("#accountMenu"); 
 

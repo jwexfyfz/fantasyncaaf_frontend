@@ -86,239 +86,241 @@ if(!$fgmembersite->CheckLogin())
 		</table>
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
-	<table>
-		<tr style="height: 121px"></tr>
-			<!--Leave space between header and first table-->
-			<tr style="height: 10px"></tr>
-	</table>
 	
-	<form method="POST">	
-	    <table id="myTeamTable">
-			<tr id="test1">
-				<th class="myTeamTableHeader" style="width: 60px"> <!--Try width:30 for "Pos"-->
-					Position
-				</th>
-				<th class="myTeamTableHeader">
-					Player
-				</th>
-				<th class="myTeamTableHeader" style="width: 10px; padding-left:0px">
-					<div style="width:10px; height:1em;"> </div>
-				</th>
-				<th class="myTeamTableHeader" style="width: 50px">
-					Points
-				</th>
-			</tr>
-	        <tr id="test2">
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">QB</label>
-	            </td>
-	            <td class="myTeamTableRowLong" id="test3">
-	                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)" style="position: relative;">
-	                </select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="qbConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="qbPoints">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">RB1</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputRB1" name="RB1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="rb1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="rb1Points">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">RB2</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputRB2" name="RB2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="rb2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="rb2Points">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">WR1</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputWR1" name="WR1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="wr1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="wr1Points">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">WR2</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputWR2" name="WR2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="wr2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="wr2Points">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">WR3</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputWR3" name="WR3tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="wr3Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="wr3Points">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">WR/TE</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputTE" name="TEtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="teConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="tePoints">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">DEF</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputDEF" name="DEFtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="defConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="defPoints">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">K</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputK" name="Ktophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="kConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="kPoints">--</p>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="myTeamTableRow">
-	                <label class="positionLabel">FLEX</label>
-	            </td>
-	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputFLEX" name="FLEXtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
-	            </td>
-				<td class="myTeamTableRow">
-					<img id="flexConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
-				</td>
-	            <td class="myTeamTableRow">
-	                <p id="flexPoints">--</p>
-	            </td>
-	        </tr>
-	    </table>
-	</form>
+	<div id="content">
+		<table>
+			<tr style="height: 121px"></tr>
+				<!--Leave space between header and first table-->
+				<tr style="height: 10px"></tr>
+		</table>
 	
-	<button id="refreshPoints">Refresh</button>
+		<form method="POST">	
+		    <table id="myTeamTable">
+				<tr id="test1">
+					<th class="myTeamTableHeader" style="width: 60px"> <!--Try width:30 for "Pos"-->
+						Position
+					</th>
+					<th class="myTeamTableHeader">
+						Player
+					</th>
+					<th class="myTeamTableHeader" style="width: 10px; padding-left:0px">
+						<div style="width:10px; height:1em;"> </div>
+					</th>
+					<th class="myTeamTableHeader" style="width: 50px">
+						Points
+					</th>
+				</tr>
+		        <tr id="test2">
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">QB</label>
+		            </td>
+		            <td class="myTeamTableRowLong" id="test3">
+		                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)" style="position: relative;">
+		                </select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="qbConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="qbPoints">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">RB1</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputRB1" name="RB1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="rb1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="rb1Points">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">RB2</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputRB2" name="RB2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="rb2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="rb2Points">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">WR1</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputWR1" name="WR1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="wr1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="wr1Points">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">WR2</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputWR2" name="WR2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="wr2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="wr2Points">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">WR3</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputWR3" name="WR3tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="wr3Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="wr3Points">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">WR/TE</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputTE" name="TEtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="teConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="tePoints">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">DEF</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputDEF" name="DEFtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="defConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="defPoints">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">K</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputK" name="Ktophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="kConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="kPoints">--</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="myTeamTableRow">
+		                <label class="positionLabel">FLEX</label>
+		            </td>
+		            <td class="myTeamTableRowLong">
+		                <select class="selectpicker" id="inputFLEX" name="FLEXtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
+		            </td>
+					<td class="myTeamTableRow">
+						<img id="flexConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
+					</td>
+		            <td class="myTeamTableRow">
+		                <p id="flexPoints">--</p>
+		            </td>
+		        </tr>
+		    </table>
+		</form>
+	
+		<button id="refreshPoints">Refresh</button>
 	
 	
-		<a href='logout.php'>
-			<div id="logout">
-				Logout
-			</div>
-		</a>
-	</div>
-	Query sent to testpage2.php: <br/>
-	<div id="result"></div><br/>
-	Results from loadTeamRoster.php: <br/>
-	<div id="result2"></div><br/>
-	<div id="errorOutput">
-		<p></p>
-	</div>  
-	
-	<!--This section is to show the week dropdown-->
-	<div class="fixedPosition" id="weekScrollContainer">
-		<div id="weekSelectBackground"></div>
-		<div class="circle" style="position: absolute; top:0;"></div>
-		<div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
-
-		<div id="scrollable">
-			<div class="circle weekSelectCircle" id="week13Circle">13</div>
-			<div class="circle weekSelectCircle" id="week12Circle">12</div>
-			<div class="circle weekSelectCircle" id="week11Circle">11</div>
-			<div class="circle weekSelectCircle" id="week10Circle">10</div>
-			<div class="circle weekSelectCircle" id="week9Circle">9</div>
-			<div class="circle weekSelectCircle" id="week8Circle">8</div>
-			<div class="circle weekSelectCircle" id="week7Circle">7</div>
-			<div class="circle weekSelectCircle" id="week6Circle">6</div>
-			<div class="circle weekSelectCircle" id="week5Circle">5</div>
-			<div class="circle weekSelectCircle" id="week4Circle">4</div>
-			<div class="circle weekSelectCircle" id="week3Circle">3</div>
-			<div class="circle weekSelectCircle" id="week2Circle">2</div>
-			<div class="circle weekSelectCircle" id="week1Circle">1</div>
+			<a href='logout.php'>
+				<div id="logout">
+					Logout
+				</div>
+			</a>
 		</div>
-	</div>
+		Query sent to testpage2.php: <br/>
+		<div id="result"></div><br/>
+		Results from loadTeamRoster.php: <br/>
+		<div id="result2"></div><br/>
+		<div id="errorOutput">
+			<p></p>
+		</div>  
+	
+		<!--This section is to show the week dropdown-->
+		<div class="fixedPosition" id="weekScrollContainer">
+			<div id="weekSelectBackground"></div>
+			<div class="circle" style="position: absolute; top:0;"></div>
+			<div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
 
-	<a href="#">
-		<p id="weekLabel">WEEK</p>
-		<div class="fixedPosition circle" id ="currentWeekCircle"></div>
-	</a>
-	
-	
-	<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
-	<div id="accountMenu">
-		<div class="accountMenuRow" id="avatarRow">
-			<?php 
-				$string = $fgmembersite->getTeamName(); 
-				echo $string;
-			?>
-		</div>
-		<a href="logout.php">
-			<div class="accountMenuRow" id="logoutRow">
-				Logout
+			<div id="scrollable">
+				<div class="circle weekSelectCircle" id="week13Circle">13</div>
+				<div class="circle weekSelectCircle" id="week12Circle">12</div>
+				<div class="circle weekSelectCircle" id="week11Circle">11</div>
+				<div class="circle weekSelectCircle" id="week10Circle">10</div>
+				<div class="circle weekSelectCircle" id="week9Circle">9</div>
+				<div class="circle weekSelectCircle" id="week8Circle">8</div>
+				<div class="circle weekSelectCircle" id="week7Circle">7</div>
+				<div class="circle weekSelectCircle" id="week6Circle">6</div>
+				<div class="circle weekSelectCircle" id="week5Circle">5</div>
+				<div class="circle weekSelectCircle" id="week4Circle">4</div>
+				<div class="circle weekSelectCircle" id="week3Circle">3</div>
+				<div class="circle weekSelectCircle" id="week2Circle">2</div>
+				<div class="circle weekSelectCircle" id="week1Circle">1</div>
 			</div>
+		</div>
+
+		<a href="#">
+			<p id="weekLabel">WEEK</p>
+			<div class="fixedPosition circle" id ="currentWeekCircle"></div>
 		</a>
+	
+	
+		<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
+		<div id="accountMenu">
+			<div class="accountMenuRow" id="avatarRow">
+				<?php 
+					$string = $fgmembersite->getTeamName(); 
+					echo $string;
+				?>
+			</div>
+			<a href="logout.php">
+				<div class="accountMenuRow" id="logoutRow">
+					Logout
+				</div>
+			</a>
+		</div>
+	
+		<div class="bottomErrorBanner" style="display:none">
+			<div id="errorBannerContent"></div>
+			<div id="errorBannerExit"></div>
+		</div>
+	
+	    <script type="text/javascript" src="weekSelect.js" ></script>
 	</div>
-	
-	<div class="bottomErrorBanner" style="display:none">
-		<div id="errorBannerContent"></div>
-		<div id="errorBannerExit"></div>
-	</div>
-	
-    <script type="text/javascript" src="weekSelect.js" ></script>
-	
 </body>
 </html>

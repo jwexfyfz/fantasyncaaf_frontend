@@ -83,148 +83,153 @@ if(!$fgmembersite->CheckLogin())
 			</table>
 		</div>
 		<!--Have a blank row so that content at top gets pushed underneath header-->
-
-		<table class="headerTable">
-			<tr style="height: 121px"></tr>
-<!--
-			<tr>
-				<td class="leftAlignTableCell">
-				</td>
-				<td class="rightAlignTableCell">
-					<button id="allMatchupsButton">All Matchups</button>
-				</td>
-			</tr>
--->
-			<tr style="height:25px"></tr>
-		</table>
+		
+		<div id="content">
+			<table class="headerTable">
+				<tr style="height: 121px"></tr>
+	<!--
+				<tr>
+					<td class="leftAlignTableCell">
+					</td>
+					<td class="rightAlignTableCell">
+						<button id="allMatchupsButton">All Matchups</button>
+					</td>
+				</tr>
+	-->
+				<tr style="height:25px"></tr>
+			</table>
 	
-		<div class="flexCard" id="matchupCard">
-			<table id="myTeamMatchupTable">
-			<tr>
-				<th class="matchupTotalScore matchupHeading" id="homeTeamScore" colspan="5"></th>
-				<th class="matchupTotalScore matchupHeading" id="awayTeamScore" colspan="5"></th>
-			</tr>
-			<tr>
-				<th class="matchupHeadingTeamName matchupHeading" id="homeTeamName" colspan="5"></th>
-				<th class="matchupHeadingTeamName matchupHeading" id="awayTeamName" colspan="5"></th>
-			</tr>
-			<tr>
-				<td class="chosenQB homeSide chosenPosition" id="homeQB" colspan="2"></td>
-				<td class="chosenQBPoints homeSide" id="homeQBPoints" colspan="2"></td>
-				<td class="position" colspan="2">QB</td>
-				<td class="chosenQBPoints" id="awayQBPoints" colspan="2"></td>
-				<td class="chosenQB chosenPosition" id="awayQB" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenRB1 homeSide chosenPosition" id="homeRB1" colspan="2"></td>
-				<td class="chosenRB1Points homeSide" id="homeRB1Points" colspan="2"></td>
-				<td class="position" colspan="2">RB1</td>
-				<td class="chosenRB1Points" id="awayRB1Points" colspan="2"></td>
-				<td class="chosenRB1 chosenPosition" id="awayRB1" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenRB2 homeSide chosenPosition" id="homeRB2" colspan="2"></td>
-				<td class="chosenRB2Points homeSide" id="homeRB2Points" colspan="2"></td>
-				<td class="position" colspan="2">RB2</td>
-				<td class="chosenRB2Points" id="awayRB2Points" colspan="2"></td>
-				<td class="chosenRB2 chosenPosition" id="awayRB2" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenWR1 homeSide chosenPosition" id="homeWR1" colspan="2"></td>
-				<td class="chosenWR1Points homeSide" id="homeWR1Points" colspan="2"></td>
-				<td class="position" colspan="2">WR1</td>
-				<td class="chosenWR1Points" id="awayWR1Points" colspan="2"></td>
-				<td class="chosenWR1 chosenPosition" id="awayWR1" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenWR2 homeSide chosenPosition" id="homeWR2" colspan="2"></td>
-				<td class="chosenWR2Points homeSide" id="homeWR2Points" colspan="2"></td>
-				<td class="position" colspan="2">WR2</td>
-				<td class="chosenWR2Points" id="awayWR2Points" colspan="2"></td>
-				<td class="chosenWR2 chosenPosition" id="awayWR2" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenWR3 homeSide chosenPosition" id="homeWR3" colspan="2"></td>
-				<td class="chosenWR3Points homeSide" id="homeWR3Points" colspan="2"></td>
-				<td class="position" colspan="2">WR3</td>
-				<td class="chosenWR3Points" id="awayWR3Points" colspan="2"></td>
-				<td class="chosenWR3 chosenPosition" id="awayWR3" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenTE homeSide chosenPosition" id="homeTE" colspan="2"></td>
-				<td class="chosenTEPoints homeSide" id="homeTEPoints" colspan="2"></td>
-				<td class="position" colspan="2">WR/TE</td>
-				<td class="chosenTEPoints" id="awayTEPoints" colspan="2"></td>
-				<td class="chosenTE chosenPosition" id="awayTE" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenDEF homeSide chosenPosition" id="homeDEF" colspan="2"></td>
-				<td class="chosenDEFPoints homeSide" id="homeDEFPoints" colspan="2"></td>
-				<td class="position" colspan="2">DEF</td>
-				<td class="chosenDEFPoints" id="awayDEFPoints" colspan="2"></td>
-				<td class="chosenDEF chosenPosition" id="awayDEF" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenK homeSide chosenPosition" id="homeK" colspan="2"></td>
-				<td class="chosenKPoints homeSide" id="homeKPoints" colspan="2"></td>
-				<td class="position" colspan="2">K</td>
-				<td class="chosenKPoints" id="awayKPoints" colspan="2"></td>
-				<td class="chosenK chosenPosition" id="awayK" colspan="2"></td>
-			</tr>
-			<tr>
-				<td class="chosenFLEX homeSide chosenPosition" id="homeFLEX" colspan="2"></td>
-				<td class="chosenFLEXPoints homeSide" id="homeFLEXPoints" colspan="2"></td>
-				<td class="position" colspan="2">FLEX</td>
-				<td class="chosenFLEXPoints" id="awayFLEXPoints" colspan="2"></td>
-				<td class="chosenFLEX chosenPosition" id="awayFLEX" colspan="2"></td>
-			</tr>
-		</table>
-	</div>
-		<table id="hiddenMatchupsTable"></table>
-		
-		<div class="fixedPosition" id="weekScrollContainer">
-			<div id="weekSelectBackground"></div>
-		  <div class="circle" style="position: absolute; top:0;"></div>
-		  <div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
-		
-		  <div id="scrollable">
-			  <div class="circle weekSelectCircle" id="week13Circle">13</div>
-			  <div class="circle weekSelectCircle" id="week12Circle">12</div>
-			  <div class="circle weekSelectCircle" id="week11Circle">11</div>
-			  <div class="circle weekSelectCircle" id="week10Circle">10</div>
-			  <div class="circle weekSelectCircle" id="week9Circle">9</div>
-			  <div class="circle weekSelectCircle" id="week8Circle">8</div>
-			  <div class="circle weekSelectCircle" id="week7Circle">7</div>
-			  <div class="circle weekSelectCircle" id="week6Circle">6</div>
-			  <div class="circle weekSelectCircle" id="week5Circle">5</div>
-			  <div class="circle weekSelectCircle" id="week4Circle">4</div>
-			  <div class="circle weekSelectCircle" id="week3Circle">3</div>
-			  <div class="circle weekSelectCircle" id="week2Circle">2</div>
-			  <div class="circle weekSelectCircle" id="week1Circle">1</div>
-		 </div>
-
-		</div>
-
-		<a href="#">
-			<p id="weekLabel">WEEK</p>
-			<div class="fixedPosition circle" id ="currentWeekCircle"></div>
-		</a>
-		
-		<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
-		<div id="accountMenu">
-			<div class="accountMenuRow" id="avatarRow">
-				<?php 
-					$string = $fgmembersite->getTeamName(); 
-					echo $string;
-				?>
-			</div>
-			<a href="logout.php">
-				<div class="accountMenuRow" id="logoutRow">
-					Logout
+			<div id="flexCardContainer">
+				<div class="flexCard" id="matchupCard">
+					<table id="myTeamMatchupTable">
+						<tr>
+							<th class="matchupTotalScore matchupHeading" id="homeTeamScore" colspan="5"></th>
+							<th class="matchupTotalScore matchupHeading" id="awayTeamScore" colspan="5"></th>
+						</tr>
+						<tr>
+							<th class="matchupHeadingTeamName matchupHeading" id="homeTeamName" colspan="5"></th>
+							<th class="matchupHeadingTeamName matchupHeading" id="awayTeamName" colspan="5"></th>
+						</tr>
+						<tr>
+							<td class="chosenQB homeSide chosenPosition" id="homeQB" colspan="2"></td>
+							<td class="chosenQBPoints homeSide" id="homeQBPoints" colspan="2"></td>
+							<td class="position" colspan="2">QB</td>
+							<td class="chosenQBPoints" id="awayQBPoints" colspan="2"></td>
+							<td class="chosenQB chosenPosition" id="awayQB" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenRB1 homeSide chosenPosition" id="homeRB1" colspan="2"></td>
+							<td class="chosenRB1Points homeSide" id="homeRB1Points" colspan="2"></td>
+							<td class="position" colspan="2">RB1</td>
+							<td class="chosenRB1Points" id="awayRB1Points" colspan="2"></td>
+							<td class="chosenRB1 chosenPosition" id="awayRB1" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenRB2 homeSide chosenPosition" id="homeRB2" colspan="2"></td>
+							<td class="chosenRB2Points homeSide" id="homeRB2Points" colspan="2"></td>
+							<td class="position" colspan="2">RB2</td>
+							<td class="chosenRB2Points" id="awayRB2Points" colspan="2"></td>
+							<td class="chosenRB2 chosenPosition" id="awayRB2" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenWR1 homeSide chosenPosition" id="homeWR1" colspan="2"></td>
+							<td class="chosenWR1Points homeSide" id="homeWR1Points" colspan="2"></td>
+							<td class="position" colspan="2">WR1</td>
+							<td class="chosenWR1Points" id="awayWR1Points" colspan="2"></td>
+							<td class="chosenWR1 chosenPosition" id="awayWR1" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenWR2 homeSide chosenPosition" id="homeWR2" colspan="2"></td>
+							<td class="chosenWR2Points homeSide" id="homeWR2Points" colspan="2"></td>
+							<td class="position" colspan="2">WR2</td>
+							<td class="chosenWR2Points" id="awayWR2Points" colspan="2"></td>
+							<td class="chosenWR2 chosenPosition" id="awayWR2" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenWR3 homeSide chosenPosition" id="homeWR3" colspan="2"></td>
+							<td class="chosenWR3Points homeSide" id="homeWR3Points" colspan="2"></td>
+							<td class="position" colspan="2">WR3</td>
+							<td class="chosenWR3Points" id="awayWR3Points" colspan="2"></td>
+							<td class="chosenWR3 chosenPosition" id="awayWR3" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenTE homeSide chosenPosition" id="homeTE" colspan="2"></td>
+							<td class="chosenTEPoints homeSide" id="homeTEPoints" colspan="2"></td>
+							<td class="position" colspan="2">WR/TE</td>
+							<td class="chosenTEPoints" id="awayTEPoints" colspan="2"></td>
+							<td class="chosenTE chosenPosition" id="awayTE" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenDEF homeSide chosenPosition" id="homeDEF" colspan="2"></td>
+							<td class="chosenDEFPoints homeSide" id="homeDEFPoints" colspan="2"></td>
+							<td class="position" colspan="2">DEF</td>
+							<td class="chosenDEFPoints" id="awayDEFPoints" colspan="2"></td>
+							<td class="chosenDEF chosenPosition" id="awayDEF" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenK homeSide chosenPosition" id="homeK" colspan="2"></td>
+							<td class="chosenKPoints homeSide" id="homeKPoints" colspan="2"></td>
+							<td class="position" colspan="2">K</td>
+							<td class="chosenKPoints" id="awayKPoints" colspan="2"></td>
+							<td class="chosenK chosenPosition" id="awayK" colspan="2"></td>
+						</tr>
+						<tr>
+							<td class="chosenFLEX homeSide chosenPosition" id="homeFLEX" colspan="2"></td>
+							<td class="chosenFLEXPoints homeSide" id="homeFLEXPoints" colspan="2"></td>
+							<td class="position" colspan="2">FLEX</td>
+							<td class="chosenFLEXPoints" id="awayFLEXPoints" colspan="2"></td>
+							<td class="chosenFLEX chosenPosition" id="awayFLEX" colspan="2"></td>
+						</tr>
+					</table>
 				</div>
-			</a>
-		</div>
+			</div>
+			<table id="hiddenMatchupsTable"></table>
 		
-	    <script type="text/javascript" src="weekSelect.js" ></script>
+			<!--This section is to show the week dropdown-->
+			<div class="fixedPosition" id="weekScrollContainer">
+				<div id="weekSelectBackground"></div>
+			  <div class="circle" style="position: absolute; top:0;"></div>
+			  <div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
+		
+			  <div id="scrollable">
+				  <div class="circle weekSelectCircle" id="week13Circle">13</div>
+				  <div class="circle weekSelectCircle" id="week12Circle">12</div>
+				  <div class="circle weekSelectCircle" id="week11Circle">11</div>
+				  <div class="circle weekSelectCircle" id="week10Circle">10</div>
+				  <div class="circle weekSelectCircle" id="week9Circle">9</div>
+				  <div class="circle weekSelectCircle" id="week8Circle">8</div>
+				  <div class="circle weekSelectCircle" id="week7Circle">7</div>
+				  <div class="circle weekSelectCircle" id="week6Circle">6</div>
+				  <div class="circle weekSelectCircle" id="week5Circle">5</div>
+				  <div class="circle weekSelectCircle" id="week4Circle">4</div>
+				  <div class="circle weekSelectCircle" id="week3Circle">3</div>
+				  <div class="circle weekSelectCircle" id="week2Circle">2</div>
+				  <div class="circle weekSelectCircle" id="week1Circle">1</div>
+			 </div>
+
+			</div>
+
+			<a href="#">
+				<p id="weekLabel">WEEK</p>
+				<div class="fixedPosition circle" id ="currentWeekCircle"></div>
+			</a>
+		
+			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
+			<div id="accountMenu">
+				<div class="accountMenuRow" id="avatarRow">
+					<?php 
+						$string = $fgmembersite->getTeamName(); 
+						echo $string;
+					?>
+				</div>
+				<a href="logout.php">
+					<div class="accountMenuRow" id="logoutRow">
+						Logout
+					</div>
+				</a>
+			</div>
+		
+		    <script type="text/javascript" src="weekSelect.js" ></script>
+		</div>
 	</body>
 </html>

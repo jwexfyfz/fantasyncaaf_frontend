@@ -228,19 +228,20 @@ tr p {
 
 #accountMenu {
 	width: 200px;
-	height: 140px;
+	height: 100px;
 	border-radius: 25px;
 	background-color: #707070;
 	top: 10px;
 	right: 10px;
 	position: fixed;
 	z-index: 999;
+	display: none;
 }
 
 .accountMenuRow {
-	width: 170px;
+	width: 200px;
 	height: 50px;
-	padding: 10px 20px 10px 10px;
+	padding: 0px 20px 0px 10px;
 	line-height: 50px;
 	text-align: right;
 	color: #A0A0A0;
@@ -256,6 +257,7 @@ tr p {
 	font-size: 1.5em;
 }
 
-a {
+a, a:hover {
 	text-decoration: none;
+	color: #ffffff;
 }

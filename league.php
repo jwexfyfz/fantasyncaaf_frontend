@@ -83,41 +83,43 @@ if(!$fgmembersite->CheckLogin())
 			</table>
 		</div>
 		
-		<!--Have a blank row so that content at top gets pushed underneath header-->
-		<table id="standingsTable">
-			<!--Leave space for the top header-->
-			<tr style="height: 121px"></tr>
-			<!--Leave space between header and first table-->
-			<tr style="height: 10px"></tr>
-			<tr>
-				<th class="standingsTableHeader">
-					Rank
-				</th>
-				<th class="standingsTableHeader">
-					Team Name
-				</th>
-				<th class="standingsTableHeader">
-					Record
-				</th>
-			</tr>
-		</table>
+		<div id="content">
+			<!--Have a blank row so that content at top gets pushed underneath header-->
+			<table id="standingsTable">
+				<!--Leave space for the top header-->
+				<tr style="height: 121px"></tr>
+				<!--Leave space between header and first table-->
+				<tr style="height: 10px"></tr>
+				<tr>
+					<th class="standingsTableHeader">
+						Rank
+					</th>
+					<th class="standingsTableHeader">
+						Team Name
+					</th>
+					<th class="standingsTableHeader">
+						Record
+					</th>
+				</tr>
+			</table>
 		
-		<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
-		<div id="accountMenu">
-			<div class="accountMenuRow" id="avatarRow">
-				<?php 
-					$string = $fgmembersite->getTeamName(); 
-					echo $string;
-				?>
-			</div>
-			<a href="logout.php">
-				<div class="accountMenuRow" id="logoutRow">
-					Logout
+			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
+			<div id="accountMenu">
+				<div class="accountMenuRow" id="avatarRow">
+					<?php 
+						$string = $fgmembersite->getTeamName(); 
+						echo $string;
+					?>
 				</div>
-			</a>
+				<a href="logout.php">
+					<div class="accountMenuRow" id="logoutRow">
+						Logout
+					</div>
+				</a>
+			</div>
+		
+		
+		    <!--<script type="text/javascript" src="weekSelect.js" ></script>-->
 		</div>
-		
-		
-	    <!--<script type="text/javascript" src="weekSelect.js" ></script>-->
 	</body>
 </html>
