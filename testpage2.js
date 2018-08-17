@@ -926,7 +926,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 								
 				if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
 					select.options[select.options.length-1].disabled = true;
-					select.options[select.options.length-1].style.color="red";
+					select.options[select.options.length-1].style.color="#D3D3D3";
 					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
 				}
 				else if (positionList[i]["timesUsed"] == 4) {
@@ -964,7 +964,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 
 				if (	(positionList[i]["timesUsed"] >= 5)		||	(Date.now() > gametime.getTime())	) {
 					select.options[select.options.length-1].disabled = true;
-					select.options[select.options.length-1].style.color="red";
+					select.options[select.options.length-1].style.color="#D3D3D3";
 					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
 				}
 				else if (positionList[i]["timesUsed"] == 4) {
