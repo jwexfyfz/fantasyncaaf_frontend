@@ -24,6 +24,7 @@ if(!$fgmembersite->CheckLogin())
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
     <script type="text/javascript" src="league.js" ></script>
+    <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="standings.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
@@ -35,9 +36,18 @@ if(!$fgmembersite->CheckLogin())
 				<tr style="height:20px">
 				</tr>
 				<tr>
-					<th class="headerTableColumn" id="avatarBox"></th>
+					<th class="headerTableColumn"></th>
+					<th class="headerTableColumn" id="gameLogoBox"></th>
 					<th class="headerTableColumn" id="currentWeekBox">
-					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
+						<div id="accountAvatar">
+							<?php 
+								$string = $fgmembersite->getTeamName(); 
+								preg_match('/(^\w)/', $string, $match);
+								$output = strtolower($match[1][0]);
+								echo $output;
+							?>
+						</div>
+						<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
 							<select id="currentWeekNum">
 								<option value="1">Week 1</option>
 								<option value="2">Week 2</option>
@@ -91,6 +101,21 @@ if(!$fgmembersite->CheckLogin())
 				</th>
 			</tr>
 		</table>
+		
+		<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
+		<div id="accountMenu">
+			<div class="accountMenuRow" id="avatarRow">
+				<?php 
+					$string = $fgmembersite->getTeamName(); 
+					echo $string;
+				?>
+			</div>
+			<a href="logout.php">
+				<div class="accountMenuRow" id="logoutRow">
+					Logout
+				</div>
+			</a>
+		</div>
 		
 		
 	    <!--<script type="text/javascript" src="weekSelect.js" ></script>-->

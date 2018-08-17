@@ -5,7 +5,8 @@
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 	
-	
+	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
+	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
     <script type="text/javascript" src="matchup.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
@@ -13,37 +14,29 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
-	<style>
-		.flexCard {
-			border: 1px solid #A0A0A0;
-			border-radius: 10px;
-			box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-		}
-	</style>
-	
-	<div class="flexCard" style="width: 50px; height: 50px; position:fixed;right: 0; top: 0;">
+	<!--
+		<div id="accountAvatar" style="margin-top: 20px; z-index: 999">
+		w
 	</div>
-	
-	<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right;">
-		<select id="currentWeekNum">
-			<option value="1">Week 1</option>
-			<option value="2">Week 2</option>
-			<option value="3">Week 3</option>
-			<option value="4">Week 4</option>
-			<option value="5">Week 5</option>
-			<option value="6">Week 6</option>
-			<option value="7">Week 7</option>
-			<option value="8">Week 8</option>
-			<option value="9">Week 9</option>
-			<option value="10">Week 10</option>
-			<option value="11">Week 11</option>
-			<option value="12">Week 12</option>
-			<option value="13">Week 13</option>
-		</select>
-	</div>
-		
-		<div class="circle">
+		-->
+	<div id="accountMenu">
+		<div class="accountMenuRow" id="avatarRow">
+			matsumoto720
+			<!--
+			<div id="expandedTeamNameCircle"></div>
+			<div id="expandedTeamNameCircle" style="right: 150px;"></div>
+			<div id="expandedTeamNameBackground">
+				matsumoto720
+			</div>
+				-->
 		</div>
+		<a href="logout.php">
+			<div class="accountMenuRow" id="logoutRow">
+				Logout
+			</div>
+		</a>
+	</div>
+	
 		
 
 

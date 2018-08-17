@@ -24,6 +24,7 @@ if(!$fgmembersite->CheckLogin())
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
     <script type="text/javascript" src="testpage2.js" ></script>
+    <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="myTeam.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
@@ -39,14 +40,16 @@ if(!$fgmembersite->CheckLogin())
 				<th class="headerTableColumn"></th>
 				<th class="headerTableColumn" id="gameLogoBox"></th>
 				<th class="headerTableColumn" id="currentWeekBox">
-					<div id="accountAvatar">
-						<?php 
-							$string = $fgmembersite->getTeamName(); 
-							preg_match('/(^\w)/', $string, $match);
-							$output = strtolower($match[1][0]);
-							echo $output;
-						?>
-					</div>
+					<a href="#">
+						<div id="accountAvatar">
+							<?php 
+								$string = $fgmembersite->getTeamName(); 
+								preg_match('/(^\w)/', $string, $match);
+								$output = strtolower($match[1][0]);
+								echo $output;
+							?>
+						</div>
+					</a>
 					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display: none;">
 						<select id="currentWeekNum">
 							<option value="1">Week 1</option>
@@ -266,34 +269,49 @@ if(!$fgmembersite->CheckLogin())
 		<p></p>
 	</div>  
 	
-	
+	<!--This section is to show the week dropdown-->
 	<div class="fixedPosition" id="weekScrollContainer">
 		<div id="weekSelectBackground"></div>
-	  <div class="circle" style="position: absolute; top:0;"></div>
-	  <div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
-		
-	  <div id="scrollable">
-		  <div class="circle weekSelectCircle" id="week13Circle">13</div>
-		  <div class="circle weekSelectCircle" id="week12Circle">12</div>
-		  <div class="circle weekSelectCircle" id="week11Circle">11</div>
-		  <div class="circle weekSelectCircle" id="week10Circle">10</div>
-		  <div class="circle weekSelectCircle" id="week9Circle">9</div>
-		  <div class="circle weekSelectCircle" id="week8Circle">8</div>
-		  <div class="circle weekSelectCircle" id="week7Circle">7</div>
-		  <div class="circle weekSelectCircle" id="week6Circle">6</div>
-		  <div class="circle weekSelectCircle" id="week5Circle">5</div>
-		  <div class="circle weekSelectCircle" id="week4Circle">4</div>
-		  <div class="circle weekSelectCircle" id="week3Circle">3</div>
-		  <div class="circle weekSelectCircle" id="week2Circle">2</div>
-		  <div class="circle weekSelectCircle" id="week1Circle">1</div>
-	 </div>
+		<div class="circle" style="position: absolute; top:0;"></div>
+		<div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
 
+		<div id="scrollable">
+			<div class="circle weekSelectCircle" id="week13Circle">13</div>
+			<div class="circle weekSelectCircle" id="week12Circle">12</div>
+			<div class="circle weekSelectCircle" id="week11Circle">11</div>
+			<div class="circle weekSelectCircle" id="week10Circle">10</div>
+			<div class="circle weekSelectCircle" id="week9Circle">9</div>
+			<div class="circle weekSelectCircle" id="week8Circle">8</div>
+			<div class="circle weekSelectCircle" id="week7Circle">7</div>
+			<div class="circle weekSelectCircle" id="week6Circle">6</div>
+			<div class="circle weekSelectCircle" id="week5Circle">5</div>
+			<div class="circle weekSelectCircle" id="week4Circle">4</div>
+			<div class="circle weekSelectCircle" id="week3Circle">3</div>
+			<div class="circle weekSelectCircle" id="week2Circle">2</div>
+			<div class="circle weekSelectCircle" id="week1Circle">1</div>
+		</div>
 	</div>
 
 	<a href="#">
 		<p id="weekLabel">WEEK</p>
 		<div class="fixedPosition circle" id ="currentWeekCircle"></div>
 	</a>
+	
+	
+	<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
+	<div id="accountMenu">
+		<div class="accountMenuRow" id="avatarRow">
+			<?php 
+				$string = $fgmembersite->getTeamName(); 
+				echo $string;
+			?>
+		</div>
+		<a href="logout.php">
+			<div class="accountMenuRow" id="logoutRow">
+				Logout
+			</div>
+		</a>
+	</div>
 	
 	<div class="bottomErrorBanner" style="display:none">
 		<div id="errorBannerContent"></div>

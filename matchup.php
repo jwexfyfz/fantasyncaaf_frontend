@@ -24,6 +24,7 @@ if(!$fgmembersite->CheckLogin())
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
     <script type="text/javascript" src="matchup.js" ></script>
+    <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="matchup.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
@@ -208,6 +209,21 @@ if(!$fgmembersite->CheckLogin())
 			<p id="weekLabel">WEEK</p>
 			<div class="fixedPosition circle" id ="currentWeekCircle"></div>
 		</a>
+		
+		<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
+		<div id="accountMenu">
+			<div class="accountMenuRow" id="avatarRow">
+				<?php 
+					$string = $fgmembersite->getTeamName(); 
+					echo $string;
+				?>
+			</div>
+			<a href="logout.php">
+				<div class="accountMenuRow" id="logoutRow">
+					Logout
+				</div>
+			</a>
+		</div>
 		
 	    <script type="text/javascript" src="weekSelect.js" ></script>
 	</body>
