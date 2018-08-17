@@ -55,7 +55,7 @@
     display: table-cell;
 	z-index: 30;
 }
-#sticky.fixed {
+#sticky.fixed, #sticky2.fixed {
     position: sticky;
 	left: 0;
 	background-color: #ffffff;
