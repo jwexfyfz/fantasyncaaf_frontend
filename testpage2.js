@@ -505,20 +505,6 @@ function verifyNoDupes(position, week, teamID, teamName) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
 		  getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);
-		  //console.log("VALID CHANGE: "+valid);
-		  /*if (valid) {
-			  //Player changes RB1 to equal the same value as teamRoster's RB2
-			  comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
-		  }*/
 	    }
 	});  
 }
