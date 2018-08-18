@@ -52,6 +52,13 @@ $( document ).ready(
 			console.log("clearTimeout ran");
 			exitErrorFooter();
 		});	
+		
+		$("#clearPlayerButtonQB").click( function(event) {
+			console.log("clearPlayerButton clicked");
+			$('#inputQB').val("");
+			sendToPhp("QBtophp");
+		});
+		
 });
 
 function updatePage() {
@@ -702,57 +709,6 @@ function checkGameStarted(week, fantasyID) {
 		}
 	});
 	return disabledPositions;
-}
-
-//Disable all players from select dropdown for teams that have already played
-function disableAlreadyPlayedPlayers(playerArray) {
-
-
-/*	
-	//THIS METHOD TAKES TOO LONG, SO ITS COMMENTED OUT.
-	console.log("called disableAlreadyPlayedPlayers");
-  var nonUniqueSchools = new Array();
-  var uniqueSchools = new Array();
-  
-  //Iterate through playerArray to extract teams that have already played
-  for (i = 0; i < playerArray.length; i++) {
-	  console.log("iterating through playerArray: "+playerArray[i]["teamID"]+" "+playerArray[i]["position"]+" "+playerArray[i]["hasPlayed"]+" "+playerArray[i]["gametime"]);
-	  var gametime = new Date(playerArray[i]["gametime"] + " UTC");
-	  
-	  //Check if current time > when the team played. If yes, add to array.
-	  if (Date.now() > gametime.getTime()) {
-		  nonUniqueSchools.push(playerArray[i]["teamID"]);
-		  console.log(i+ ": added "+playerArray[i]["teamID"]+" to nonUniqueSchools");
-	  }
-	  else {
-		  console.log("now: "+Date.now()+", gametime of "+playerArray[i]+ ": "+gametime.getTime());
-	  }
-  }
-  console.log("uniqueSchools length: "+uniqueSchools.length + ", nonUniqueSchools length: "+nonUniqueSchools.length);
-  
- 
-  uniqueSchools = getUnique(nonUniqueSchools)
-  console.log("uniqueSchools length: "+uniqueSchools.length + ", nonUniqueSchools length: "+nonUniqueSchools.length);
-  
-
-  
-  for (j = 0; j < uniqueSchools.length; j++) {
-	  console.log("uniqueSchools["+j+"] = "+uniqueSchools[j]);
-  }
-  
-  //Disable players on teams that have already played
-  disablePlayers("QB",uniqueSchools);
-  disablePlayers("RB1",uniqueSchools);
-  disablePlayers("RB2",uniqueSchools);
-  disablePlayers("WR1",uniqueSchools);
-  disablePlayers("WR2",uniqueSchools);
-  disablePlayers("WR3",uniqueSchools);
-  disablePlayers("TE",uniqueSchools);
-  disablePlayers("DEF",uniqueSchools);
-  disablePlayers("K",uniqueSchools);
-  disablePlayers("FLEX",uniqueSchools);
-	*/
-  updatePage();
 }
 
 //This function is taken from somewhere else, but should take in an array and output the unique values in the array

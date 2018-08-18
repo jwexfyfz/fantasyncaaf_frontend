@@ -96,3 +96,14 @@
 a {
 	text-decoration: none;
 }
+
+.gameTimeBox {
+	position: relative;
+	width: 70%;
+}
+
+#clearPlayerButton {
+	width: 25px;
+	height: 15px;
+	background-color: #808080;
+}
