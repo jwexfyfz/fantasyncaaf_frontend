@@ -204,8 +204,9 @@ function printMatchupListFantasyPoints(week, homeOrAway, roster, tableIndex, tea
 	});
 }
 
-function updatePage(teamID) {	
+function updatePage() {	
 	var week	=	$("#currentWeekNum").val();
+	var teamID	=	$("#teamID").val();
 	var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster

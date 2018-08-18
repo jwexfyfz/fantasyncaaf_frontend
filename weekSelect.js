@@ -95,7 +95,7 @@ function selectWeek(weekNum) {
 	$("#currentWeekCircle").css('display','block');
 	$("#week"+weekNum+"Circle").css('background-color','#6495ED');
 	
-	updatePage($("#teamID").val());
+	updatePage();
 	allMatchupsFunction();
 }
 
@@ -143,7 +143,7 @@ for (i = 0; i < x.length; i++) {
         }
         h.click();
 		console.log("new select value chosen, calling updatePage()");
-		updatePage($("#teamID").val());
+		updatePage();
 		allMatchupsFunction();
     });
     b.appendChild(c);
