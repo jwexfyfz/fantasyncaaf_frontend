@@ -197,7 +197,7 @@ function printMatchupListFantasyPoints(week, homeOrAway, roster, tableIndex, tea
 			  }
 		  }
 	  
-		  totalPlayerPoints = Math.round(totalPlayerPoints*100)/100;
+		  totalPlayerPoints = Math.round(totalPlayerPoints*10)/10;
 		  
 		 $('#table'+tableIndex+homeOrAway+'TeamScore').html(totalPlayerPoints);	  
 	    }
