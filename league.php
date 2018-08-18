@@ -99,16 +99,16 @@ if(!$fgmembersite->CheckLogin())
 						<th class="standingsTableHeader teamColumn" id="sticky">
 							Team
 						</th>
-						<th class="standingsTableHeader">
+						<th class="standingsTableHeader otherColumn">
 							Record
 						</th>
-						<th class="standingsTableHeader">
+						<th class="standingsTableHeader otherColumn">
 							Div. Record
 						</th>
-						<th class="standingsTableHeader">
+						<th class="standingsTableHeader otherColumn">
 							Pts For
 						</th>
-						<th class="standingsTableHeader">
+						<th class="standingsTableHeader otherColumn">
 							Pts Against
 						</th>
 					</tr>

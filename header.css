@@ -31,6 +31,7 @@ tr p {
 	height: var(--headerHeight); 
 	background-color: #EA6C24;
     z-index:3;
+	box-shadow: 1px 1px 1px #A0A0A0;
 }
 
 #currentWeekDisplayTable {
@@ -85,9 +86,9 @@ tr p {
 .arrow-up {
   width: 0; 
   height: 0; 
-  border-left: 17px solid transparent;
-  border-right: 17px solid transparent;
-  border-bottom: 17px solid #ffffff;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid #ffffff;
   top: 0px;
   margin: 0 auto;
   position: relative;  
@@ -95,9 +96,9 @@ tr p {
 }
 
 .hidden-arrow {
-    border-left: 17px solid transparent;
-    border-right: 17px solid transparent;
-	border-bottom: 17px solid transparent;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+	border-bottom: 18px solid transparent;
     z-index:10;
 }
 
