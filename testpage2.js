@@ -473,11 +473,17 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 		      $('#result').html(response);
 			  console.log("successfully sent selected position that changed! "+position);	//For testing
 			  confirmPlayer(confirmPosition);
+			  getGameTimeOfPlayer(confirmPosition);
 			  getFantasyPoints();
 		    }
 		});
 	}
 }
+
+function getGameTimeOfPlayer(position) {	
+	
+}
+
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
