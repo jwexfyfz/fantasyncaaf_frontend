@@ -53,8 +53,8 @@ $( document ).ready(
 			exitErrorFooter();
 		});	
 		
-		$("#clearPlayerButtonQB").click( function(event) {
-			console.log("clearPlayerButton clicked");
+		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
+			console.log(event.targetid+" clicked");
 			$('#inputQB').val("");
 			$('#inputQB').selectpicker('refresh');
 			sendToPhp("QBtophp");
@@ -704,9 +704,6 @@ function checkGameStarted(week, fantasyID) {
 				}
 			}
 			console.log("finished checking if games are started");	//For testing
-		  
-			//Call function to disable all players that have already played
-			//disableAlreadyPlayedPlayers(phpResponse);	//Currently commented out because this method takes too long
 		}
 	});
 	return disabledPositions;
@@ -816,8 +813,6 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-	      //$('#result2').html(response);
-		  //console.log("successfully queried for eligible player names!");
 		  var playerList=JSON.parse(response);
 		  
 		  //Parameters are 1) ID of select, 2) array of eligible players, 3) player currently on the roster
@@ -825,7 +820,6 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 		  populateChoosePlayerLists("input"+position, playerList, currentSelectedPlayer, weekChanged);		
 		  
 		  	if(position="FLEX") {
-		  		//console.log("time to populate inputFLEX. inputPosition= "+inputPosition);
 		  		getFantasyPoints();
 		  	}  
 	    }
