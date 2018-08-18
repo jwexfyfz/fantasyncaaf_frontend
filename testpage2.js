@@ -908,10 +908,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				
 				//Set the option text and value
 				select.options[select.options.length] = currentOption;
-				
-				//data-subtext = Subtext
-				//title = playerAbbr + currentSubtext
-				//data-tokens = currentMetadata
+
 				currentOption.setAttribute("data-subtext",currentSubtext);
 				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+' '+'<small class="text-muted" style="font-weight:100">' + currentSubtext + '</small>');
 				currentOption.setAttribute("data-tokens",currentMetadata);
