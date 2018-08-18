@@ -102,8 +102,11 @@ a {
 	width: 70%;
 }
 
-#clearPlayerButton {
-	width: 25px;
-	height: 15px;
-	background-color: #808080;
+#clearPlayerButtonQB {
+    line-height: 20px;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    color: #fff;
+    text-align: center;
 }

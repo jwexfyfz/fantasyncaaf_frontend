@@ -56,6 +56,7 @@ $( document ).ready(
 		$("#clearPlayerButtonQB").click( function(event) {
 			console.log("clearPlayerButton clicked");
 			$('#inputQB').val("");
+			$('#inputQB').selectpicker('refresh');
 			sendToPhp("QBtophp");
 		});
 		
