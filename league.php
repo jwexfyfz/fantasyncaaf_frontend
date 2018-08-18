@@ -93,11 +93,11 @@ if(!$fgmembersite->CheckLogin())
 					<!--Leave space between header and first table-->
 					<tr style="height: 10px"></tr>
 					<tr id="standingsTableSections">
-						<th class="standingsTableHeader">
+						<th class="standingsTableHeader rankColumn" style="padding-left: 10px">
 							Rank
 						</th>
-						<th class="standingsTableHeader" id="sticky">
-							Team Name
+						<th class="standingsTableHeader teamColumn" id="sticky">
+							Team
 						</th>
 						<th class="standingsTableHeader">
 							Record

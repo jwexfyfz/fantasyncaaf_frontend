@@ -21,6 +21,7 @@
 	border-bottom: 1px solid rgb(221,221,221,0.25);
 	text-align: left;
 	z-index:-1;
+	padding-left: 10px;
 }
 
 #standingsTable {
@@ -48,7 +49,7 @@
 
 #standingsTableWindow {
 	width: 100%;
-	max-width: 700px;
+	max-width: 600px;
 	overflow: scroll;
 	margin: 0 auto;
 }
@@ -78,4 +79,12 @@
     width:100%;
     border-right: 1px solid #ddd;
 	height: 50px;	/*NEED TO FIX THIS. standingsTableHeader has height of 29, but standingsTableRow has height of 50*/
+}
+
+.rankColumn {
+	width: 50px;
+}
+
+.teamColumn {
+	width: 150px;
 }
