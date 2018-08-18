@@ -54,10 +54,11 @@ $( document ).ready(
 		});	
 		
 		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
-			console.log(event.targetid+" clicked");
-			$('#inputQB').val("");
-			$('#inputQB').selectpicker('refresh');
-			sendToPhp("QBtophp");
+			console.log($(this).attr('id')+" clicked");
+			var position = $(this).attr('id').replace("clear","");
+			$('#input'+position).val("");
+			$('#input'+position).selectpicker('refresh');
+			sendToPhp(position+"tophp");
 		});
 		
 });
