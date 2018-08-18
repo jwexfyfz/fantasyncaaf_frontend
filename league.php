@@ -106,10 +106,10 @@ if(!$fgmembersite->CheckLogin())
 							Div. Record
 						</th>
 						<th class="standingsTableHeader">
-							Points For
+							Pts For
 						</th>
 						<th class="standingsTableHeader">
-							Points Against
+							Pts Against
 						</th>
 					</tr>
 				</table>
