@@ -68,6 +68,12 @@
 	border-right: 1px solid #ddd;
 }
 
-.fixed::after {
-	border-right: 1px solid #ddd;
+.fixed:after{
+    content:'';
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    border-right: 1px solid #ddd;
+	height: 29px;
 }
