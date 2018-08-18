@@ -118,7 +118,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong" id="test3">
 		                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)" style="position: relative;">
 		                </select>
-						<div class="gameTimeBox"></div><div id="clearPlayerButton">clear</div>
+						<div class="gameTimeBox"></div><div id="clearPlayerButtonQB">clear</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="qbConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
