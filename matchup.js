@@ -155,6 +155,18 @@ function printMatchupListFantasyPoints(week, homeOrAway, roster, tableIndex, tea
 	});
 }
 
+function setColorOfUserTeam(userTeam, notUserTeam) {
+	var list = document.getElementsByClassName(userTeam);
+	for(var i = 0; i < list.length; i++) {
+      list[i].classList.add('currentPlayerColor');
+	}
+	
+	var list = document.getElementsByClassName(notUserTeam);
+	for(var i = 0; i < list.length; i++) {
+      list[i].classList.add('notCurrentPlayerColor');
+	}
+}
+
 function updatePage() {	
 	var week	=	$("#currentWeekNum").val();
 	var teamID	=	$("#teamID").val();
@@ -172,25 +184,9 @@ function updatePage() {
 		  console.log(phpResponse);	
 		  
 			if(phpResponse[0]["homeTeam"] == teamID) {
-				//Change the team that isn't the user to color: gray
-				$('.home').each(function() {
-				  $(this).find('*').addClass('currentPlayerColor');
-				});
-
-				//Change the user's team to color: purple
-				$('.away').each(function() {
-				  $(this).find('*').addClass('notCurrentPlayerColor');
-				});
+				setColorOfUserTeam("home", "away");
 			} else {
-				//Change the team that isn't the user to color: gray
-				$('.home').each(function() {
-				  $(this).find('*').addClass('notCurrentPlayerColor');
-				});
-
-				//Change the user's team to color: purple
-				$('.away').each(function() {
-				  $(this).find('*').addClass('currentPlayerColor');
-				});
+				setColorOfUserTeam("away", "home");
 			}
 		  
 	  	
