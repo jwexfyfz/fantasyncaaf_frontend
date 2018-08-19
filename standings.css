@@ -54,24 +54,19 @@
 	margin: 0 auto;
 }
 
-#sticky, #stickyRank {
+#sticky, #stickyRank, #sticky2, #sticky2Rank {
     display: table-cell;
 	z-index: 30;
 }
 
-.stickyColumn {
-    display: table-cell;
-	z-index: 30;
-}
-
-#sticky.fixed {
+#sticky.fixed, #sticky2.fixed {
     position: sticky;
 	left: 60px;
 	background-color: #ffffff;
 	border-right: 1px solid #ddd;
 }
 
-#stickyRank.fixed {
+#stickyRank.fixed, #sticky2Rank.fixed {
     position: sticky;
 	left: 0;
 	background-color: #ffffff;
@@ -84,7 +79,17 @@
     bottom: 0;
     width:100%;
     border-right: 1px solid #ddd;
-	height: 50px;	/*NEED TO FIX THIS. standingsTableHeader has height of 29, but standingsTableRow has height of 50*/
+	height: 29px;
+}
+
+#sticky2.fixed:after {
+    content:'';
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    border-right: 1px solid #ddd;
+	height: 50px;
 }
 
 .rankColumn {

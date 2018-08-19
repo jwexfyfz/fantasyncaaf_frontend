@@ -34,16 +34,16 @@ $( document ).ready(
 		        $('#sticky').addClass('fixed');
 		        $('#sticky').css('top',$('#sticky').css('top'));
 				
+		        $('#sticky2Rank').addClass('fixed');
+		        $('#sticky2Rank').css('top',$('#sticky2Rank').css('top'));
+								
 		        $('#sticky2').addClass('fixed');
 		        $('#sticky2').css('top',$('#sticky2').css('top'));
-				
-		        $('.stickyColumn').addClass('fixed');
-		        $('.stickyColumn').css('top',$('#sticky2').css('top'));
 		    } else {
 		        $('#stickyRank').removeClass('fixed');
 		        $('#sticky').removeClass('fixed');
+		        $('#sticky2Rank').removeClass('fixed');
 		        $('#sticky2').removeClass('fixed');
-		        $('.stickyColumn').removeClass('fixed');
 		    }
 		});
 		
@@ -85,9 +85,9 @@ function populateStandings(teamID, getNameFromID) {
 		  
 		  for(i = 0; i < phpResponse.length; i++) {
 			  if(phpResponse[i]["teamID"] == teamID) {
-			  	  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn currentTeam" style="padding-left: 20px">'+(i+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+			  	  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn currentTeam" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow currentTeam teamColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
 			  } else {
-				  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn" style="padding-left: 20px">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+				  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
 			  }
 		  }
 		  
