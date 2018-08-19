@@ -54,19 +54,19 @@
 	margin: 0 auto;
 }
 
-#sticky, #stickyRank, #sticky2, #sticky2Rank, .stickyColumn {
+#sticky, #stickyRank, #sticky2, #sticky2Rank, .stickyColumn, .stickyColumnRank {
     display: table-cell;
 	z-index: 30;
 }
 
-#sticky.fixed, #sticky2.fixed {
+#sticky.fixed, .stickyColumn.fixed {
     position: sticky;
 	left: 60px;
 	background-color: #ffffff;
 	border-right: 1px solid #ddd;
 }
 
-#stickyRank.fixed, #sticky2Rank.fixed {
+#stickyRank.fixed, .stickyColumnRank.fixed {
     position: sticky;
 	left: 0;
 	background-color: #ffffff;
