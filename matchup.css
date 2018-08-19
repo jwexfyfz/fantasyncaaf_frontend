@@ -39,9 +39,9 @@
 .flexCard {
 	margin: 0px 10px 20px 10px; 
 	padding: 10px; 
-	border: 2px solid #F3F3F3;
+	border: 1px solid #F3F3F3;
 	border-radius: 6px;
-	box-shadow: 1px 1px 1px (0, 0, 0, 0.05);
+	box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.05);
 }
 
 #matchupCard {
@@ -60,4 +60,12 @@
 	padding: 0px;
 	border: 0px;
 	background-color: #FFFFFF;
+}
+
+.notCurrentPlayerColor {
+	color: #767676;
+}
+
+.currentPlayerColor {
+	color: blue;
 }

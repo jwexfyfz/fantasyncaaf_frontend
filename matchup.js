@@ -26,23 +26,8 @@ $( document ).ready(
 			window.location.href = "index.php" + window.location.search;
 		});
 		
-		/*
-		$("#allMatchupsButton").click( function(event) {
-		  event.preventDefault();
-		  console.log('clicked allMatchupsButton');
-		  console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
-		  
-		  $('#myTeamMatchupTable').hide();
-		  console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
-		  
-		  allMatchupsFunction();
-		  
-		  //createMatchupTable("dummyTable1", 1, "dummyTeamName1", "dummyTeamName2", "dummyScore1", "dummyScore2");  
-		});
-		*/
 		var urlArray = getUrlVars();
-		//console.log(urlArray);
-		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+		
 		var teamID	=	$("#teamID").val()
 		updatePage(teamID);	
 		allMatchupsFunction();
@@ -86,40 +71,6 @@ function getMatchups(convertTeam) {
 			var rowNum = 0;
 			
 			phpResponse = JSON.parse(response);	//This should output a list of matchups (3d array)
-			//console.log("getMatchups printed: "+phpResponse[0]["homeTeam"] + " " + phpResponse[0]["awayTeam"]);
-		  
-			//Iterate through list of matchups, create table structure, get the fantasy points of both home and away teams
-			
-			/** <table id="hiddenMatchupsTable">
-					<tr>
-						<td id="row0col0">
-							<table>
-								<tr>
-									<td id="table0homeTeamName" />
-									<td id="table0homeTeamScore" />
-								</tr>
-								<tr>
-									<td id="table0awayTeamName" />
-									<td id="table0awayTeamScore" />
-								</tr>
-							</table>
-						</td>
-						<td id="row0col1">
-							<table>
-								<tr>
-									<td id="table1homeTeamName" />
-									<td id="table1homeTeamScore" />
-								</tr>
-								<tr>
-									<td id="table1awayTeamName" />
-									<td id="table1awayTeamScore" />
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table> etc
-			
-			**/
 			
 			// Create table structure
 			for(i = 0; i < phpResponse.length; i++) {
@@ -218,8 +169,30 @@ function updatePage() {
 	    data: dataString,
 	    success: function(response) {
 		  phpResponse = JSON.parse(response);
-		  console.log(phpResponse);
-		  //console.log("matchup: "+phpResponse["homeTeam"]+" vs "+phpResponse["awayTeam"]);	//For testing
+		  console.log(phpResponse);	
+		  
+			if(phpResponse[0]["homeTeam"] == teamID) {
+				//Change the team that isn't the user to color: gray
+				$('.home').each(function() {
+				  $(this).find('*').addClass('currentPlayerColor');
+				});
+
+				//Change the user's team to color: purple
+				$('.away').each(function() {
+				  $(this).find('*').addClass('notCurrentPlayerColor');
+				});
+			} else {
+				//Change the team that isn't the user to color: gray
+				$('.home').each(function() {
+				  $(this).find('*').addClass('notCurrentPlayerColor');
+				});
+
+				//Change the user's team to color: purple
+				$('.away').each(function() {
+				  $(this).find('*').addClass('currentPlayerColor');
+			}
+		  
+	  	
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getTeamRoster(week, phpResponse[0]["homeTeam"], "home");
@@ -252,7 +225,7 @@ function getTeamRoster(week, teamID, homeOrAway) {
 	});
 }
 
-function populateMatchupTable(week, homeOrAway, roster) {
+function populateMatchupTable(week, homeOrAway, roster) {	
 	$("#"+homeOrAway+"QB").html(roster["QB"]);
 	$("#"+homeOrAway+"RB1").html(roster["RB1"]);
 	$("#"+homeOrAway+"RB2").html(roster["RB2"]);

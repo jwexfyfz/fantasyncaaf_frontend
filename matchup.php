@@ -104,82 +104,82 @@ if(!$fgmembersite->CheckLogin())
 				<div class="flexCard" id="matchupCard">
 					<table id="myTeamMatchupTable">
 						<tr>
-							<th class="matchupTotalScore matchupHeading" id="homeTeamScore" colspan="5"></th>
-							<th class="matchupTotalScore matchupHeading" id="awayTeamScore" colspan="5"></th>
+							<th class="matchupTotalScore matchupHeading home" id="homeTeamScore" colspan="5"></th>
+							<th class="matchupTotalScore matchupHeading away" id="awayTeamScore" colspan="5"></th>
 						</tr>
 						<tr>
-							<th class="matchupHeadingTeamName matchupHeading" id="homeTeamName" colspan="5"></th>
-							<th class="matchupHeadingTeamName matchupHeading" id="awayTeamName" colspan="5"></th>
+							<th class="matchupHeadingTeamName matchupHeading home" id="homeTeamName" colspan="5"></th>
+							<th class="matchupHeadingTeamName matchupHeading away" id="awayTeamName" colspan="5"></th>
 						</tr>
 						<tr>
-							<td class="chosenQB homeSide chosenPosition" id="homeQB" colspan="2"></td>
-							<td class="chosenQBPoints homeSide" id="homeQBPoints" colspan="2"></td>
+							<td class="chosenQB homeSide chosenPosition home" id="homeQB" colspan="2"></td>
+							<td class="chosenQBPoints homeSide home" id="homeQBPoints" colspan="2"></td>
 							<td class="position" colspan="2">QB</td>
-							<td class="chosenQBPoints" id="awayQBPoints" colspan="2"></td>
-							<td class="chosenQB chosenPosition" id="awayQB" colspan="2"></td>
+							<td class="chosenQBPoints away" id="awayQBPoints" colspan="2"></td>
+							<td class="chosenQB chosenPosition away" id="awayQB" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenRB1 homeSide chosenPosition" id="homeRB1" colspan="2"></td>
-							<td class="chosenRB1Points homeSide" id="homeRB1Points" colspan="2"></td>
+							<td class="chosenRB1 homeSide chosenPosition home" id="homeRB1" colspan="2"></td>
+							<td class="chosenRB1Points homeSide home" id="homeRB1Points" colspan="2"></td>
 							<td class="position" colspan="2">RB1</td>
-							<td class="chosenRB1Points" id="awayRB1Points" colspan="2"></td>
-							<td class="chosenRB1 chosenPosition" id="awayRB1" colspan="2"></td>
+							<td class="chosenRB1Points away" id="awayRB1Points" colspan="2"></td>
+							<td class="chosenRB1 chosenPosition away" id="awayRB1" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenRB2 homeSide chosenPosition" id="homeRB2" colspan="2"></td>
-							<td class="chosenRB2Points homeSide" id="homeRB2Points" colspan="2"></td>
+							<td class="chosenRB2 homeSide chosenPosition home" id="homeRB2" colspan="2"></td>
+							<td class="chosenRB2Points homeSide home" id="homeRB2Points" colspan="2"></td>
 							<td class="position" colspan="2">RB2</td>
-							<td class="chosenRB2Points" id="awayRB2Points" colspan="2"></td>
-							<td class="chosenRB2 chosenPosition" id="awayRB2" colspan="2"></td>
+							<td class="chosenRB2Points away" id="awayRB2Points" colspan="2"></td>
+							<td class="chosenRB2 chosenPosition away" id="awayRB2" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenWR1 homeSide chosenPosition" id="homeWR1" colspan="2"></td>
-							<td class="chosenWR1Points homeSide" id="homeWR1Points" colspan="2"></td>
+							<td class="chosenWR1 homeSide chosenPosition home" id="homeWR1" colspan="2"></td>
+							<td class="chosenWR1Points homeSide home" id="homeWR1Points" colspan="2"></td>
 							<td class="position" colspan="2">WR1</td>
-							<td class="chosenWR1Points" id="awayWR1Points" colspan="2"></td>
-							<td class="chosenWR1 chosenPosition" id="awayWR1" colspan="2"></td>
+							<td class="chosenWR1Points away" id="awayWR1Points" colspan="2"></td>
+							<td class="chosenWR1 chosenPosition away" id="awayWR1" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenWR2 homeSide chosenPosition" id="homeWR2" colspan="2"></td>
-							<td class="chosenWR2Points homeSide" id="homeWR2Points" colspan="2"></td>
+							<td class="chosenWR2 homeSide chosenPosition home" id="homeWR2" colspan="2"></td>
+							<td class="chosenWR2Points homeSide home" id="homeWR2Points" colspan="2"></td>
 							<td class="position" colspan="2">WR2</td>
-							<td class="chosenWR2Points" id="awayWR2Points" colspan="2"></td>
-							<td class="chosenWR2 chosenPosition" id="awayWR2" colspan="2"></td>
+							<td class="chosenWR2Points away" id="awayWR2Points" colspan="2"></td>
+							<td class="chosenWR2 chosenPosition away" id="awayWR2" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenWR3 homeSide chosenPosition" id="homeWR3" colspan="2"></td>
-							<td class="chosenWR3Points homeSide" id="homeWR3Points" colspan="2"></td>
+							<td class="chosenWR3 homeSide chosenPosition home" id="homeWR3" colspan="2"></td>
+							<td class="chosenWR3Points homeSide home" id="homeWR3Points" colspan="2"></td>
 							<td class="position" colspan="2">WR3</td>
-							<td class="chosenWR3Points" id="awayWR3Points" colspan="2"></td>
-							<td class="chosenWR3 chosenPosition" id="awayWR3" colspan="2"></td>
+							<td class="chosenWR3Points away" id="awayWR3Points" colspan="2"></td>
+							<td class="chosenWR3 chosenPosition away" id="awayWR3" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenTE homeSide chosenPosition" id="homeTE" colspan="2"></td>
-							<td class="chosenTEPoints homeSide" id="homeTEPoints" colspan="2"></td>
+							<td class="chosenTE homeSide chosenPosition home" id="homeTE" colspan="2"></td>
+							<td class="chosenTEPoints homeSide home" id="homeTEPoints" colspan="2"></td>
 							<td class="position" colspan="2">WR/TE</td>
-							<td class="chosenTEPoints" id="awayTEPoints" colspan="2"></td>
-							<td class="chosenTE chosenPosition" id="awayTE" colspan="2"></td>
+							<td class="chosenTEPoints away" id="awayTEPoints" colspan="2"></td>
+							<td class="chosenTE chosenPosition away" id="awayTE" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenDEF homeSide chosenPosition" id="homeDEF" colspan="2"></td>
-							<td class="chosenDEFPoints homeSide" id="homeDEFPoints" colspan="2"></td>
+							<td class="chosenDEF homeSide chosenPosition home" id="homeDEF" colspan="2"></td>
+							<td class="chosenDEFPoints homeSide home" id="homeDEFPoints" colspan="2"></td>
 							<td class="position" colspan="2">DEF</td>
-							<td class="chosenDEFPoints" id="awayDEFPoints" colspan="2"></td>
-							<td class="chosenDEF chosenPosition" id="awayDEF" colspan="2"></td>
+							<td class="chosenDEFPoints away" id="awayDEFPoints" colspan="2"></td>
+							<td class="chosenDEF chosenPosition away" id="awayDEF" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenK homeSide chosenPosition" id="homeK" colspan="2"></td>
-							<td class="chosenKPoints homeSide" id="homeKPoints" colspan="2"></td>
+							<td class="chosenK homeSide chosenPosition home" id="homeK" colspan="2"></td>
+							<td class="chosenKPoints homeSide home" id="homeKPoints" colspan="2"></td>
 							<td class="position" colspan="2">K</td>
-							<td class="chosenKPoints" id="awayKPoints" colspan="2"></td>
-							<td class="chosenK chosenPosition" id="awayK" colspan="2"></td>
+							<td class="chosenKPoints away" id="awayKPoints" colspan="2"></td>
+							<td class="chosenK chosenPosition away" id="awayK" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenFLEX homeSide chosenPosition" id="homeFLEX" colspan="2"></td>
-							<td class="chosenFLEXPoints homeSide" id="homeFLEXPoints" colspan="2"></td>
+							<td class="chosenFLEX homeSide chosenPosition home" id="homeFLEX" colspan="2"></td>
+							<td class="chosenFLEXPoints homeSide home" id="homeFLEXPoints" colspan="2"></td>
 							<td class="position" colspan="2">FLEX</td>
-							<td class="chosenFLEXPoints" id="awayFLEXPoints" colspan="2"></td>
-							<td class="chosenFLEX chosenPosition" id="awayFLEX" colspan="2"></td>
+							<td class="chosenFLEXPoints away" id="awayFLEXPoints" colspan="2"></td>
+							<td class="chosenFLEX chosenPosition away" id="awayFLEX" colspan="2"></td>
 						</tr>
 					</table>
 				</div>
