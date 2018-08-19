@@ -69,3 +69,7 @@
 .currentPlayerColor {
 	color: blue;
 }
+
+.smallerSize {
+	font-size: 0.9em;
+}

@@ -19,58 +19,18 @@
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            /*$week = $row["week"];
-            $teamName = $row["teamName"];
-            $teamID = $row["teamID"];
-            $QB = $row["QB"];
-            $RB1 = $row["RB1"];
-            $RB2 = $row["RB2"];
-            $WR1 = $row["WR1"];
-            $WR2 = $row["WR2"];
-            $WR3 = $row["WR3"];
-            $TE = $row["TE"];
-            $K = $row["K"];
-            $DEF = $row["DEF"];
-            $FLEX = $row["FLEX"];
-            */
+
 			$position = $row["position"];
 			$teamRoster[$row["week"]]["$position"] = $row["playerName"];
 			$teamRoster[$row["week"]]["week"] = $row["week"];
 			//$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
 			$teamRoster[$row["week"]]["teamID"] = $row["teamID"];
 			$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
-			
-            //echo "Finished reading row ".$index."<br>";
-            
-            //Assign rows from table to team roster array
-            /*$teamRoster[$week] = array(
-                "week"=>$week, 
-                "teamName"=>$teamName, 
-                "teamID"=>$teamID, 
-                "QB"=>$QB,
-                "RB1"=>$RB1, 
-                "RB2"=>$RB2, 
-                "WR1"=>$WR1, 
-                "WR2"=>$WR2, 
-                "WR3"=>$WR3, 
-                "TE"=>$TE, 
-                "K"=>$K, 
-                "DEF"=>$DEF, 
-                "FLEX"=>$FLEX);
-*/
-/*
-            //Print team roster
-            foreach($teamRoster as $key => $value) {
-                echo $key.": ".$value."<br>";
-            }
-*/
-//            $index++;
         }
     } else {
         //Set everything to null so at least you return something
         $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
-			//"teamName"=>$teamName,
             "teamID"=>$teamID, 
 			"teamName"=>null,
             "QB"=>null,

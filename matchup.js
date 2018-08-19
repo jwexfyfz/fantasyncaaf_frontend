@@ -223,16 +223,37 @@ function getTeamRoster(week, teamID, homeOrAway) {
 }
 
 function populateMatchupTable(week, homeOrAway, roster) {	
-	$("#"+homeOrAway+"QB").html(roster["QB"]);
-	$("#"+homeOrAway+"RB1").html(roster["RB1"]);
-	$("#"+homeOrAway+"RB2").html(roster["RB2"]);
-	$("#"+homeOrAway+"WR1").html(roster["WR1"]);
-	$("#"+homeOrAway+"WR2").html(roster["WR2"]);
-	$("#"+homeOrAway+"WR3").html(roster["WR3"]);
-	$("#"+homeOrAway+"TE").html(roster["TE"]);
-	$("#"+homeOrAway+"DEF").html(roster["DEF"]);
-	$("#"+homeOrAway+"K").html(roster["K"]);
-	$("#"+homeOrAway+"FLEX").html(roster["FLEX"]);
+	dataString = 	"qb="+roster["QB"] +
+					"&rb1="+roster["RB1"] +
+					"&rb2="+roster["RB2"] +
+					"&wr1="+roster["WR1"] +
+					"&wr2="+roster["WR2"] +
+					"&wr3="+roster["WR3"] +
+					"&te="+roster["TE"] +
+					"&def="+roster["DEF"] +
+					"&k="+roster["K"] +
+					"&flex="+roster["FLEX"];
+	dataString = dataString.trim().replace(/ /g, '%20');
+	
+	$.ajax({
+	    type: "POST",
+	    url: "getPlayerAbbr.php",
+	    data: dataString,
+	    success: function(response) {
+			getPlayerAbbr = response;	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen""
+	    }
+	});
+	
+	$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]);
+	$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
+	$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster["RB2"]]);
+	$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster["WR1"]]);
+	$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster["WR2"]]);
+	$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster["WR3"]]);
+	$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster["TE"]]);
+	$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster["DEF"]]);
+	$("#"+homeOrAway+"K").html(getPlayerAbbr[roster["K"]]);
+	$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster["FLEX"]]);
 	
 	getFantasyPoints(week, homeOrAway, roster);
 }
