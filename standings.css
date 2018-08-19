@@ -54,7 +54,7 @@
 	margin: 0 auto;
 }
 
-#sticky, #stickyRank, #sticky2, #sticky2Rank {
+#sticky, #stickyRank, #sticky2, #sticky2Rank, .stickyColumn {
     display: table-cell;
 	z-index: 30;
 }
