@@ -190,6 +190,7 @@ function updatePage() {
 				//Change the user's team to color: purple
 				$('.away').each(function() {
 				  $(this).find('*').addClass('currentPlayerColor');
+				});
 			}
 		  
 	  	
