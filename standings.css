@@ -25,7 +25,7 @@
 }
 
 #standingsTable {
-	width:500px;
+	/*width:600px;*/
 	table-layout: fixed;	
 	border-bottom: 1px solid rgb(221,221,221,0.25);
 	z-index:-1;
@@ -43,8 +43,8 @@
 	  cursor: pointer;
 	  user-select: none;
 	  font-size: 0.9em;
-	      text-align: left;
-	      font-weight: 100;
+	  text-align: left;
+	  font-weight: 300;
 }
 
 #standingsTableWindow {
@@ -54,7 +54,7 @@
 	margin: 0 auto;
 }
 
-#sticky {
+#sticky, #stickyRank {
     display: table-cell;
 	z-index: 30;
 }
@@ -64,14 +64,20 @@
 	z-index: 30;
 }
 
-.fixed {
+#sticky.fixed {
     position: sticky;
-	left: 0;
+	left: 60px;
 	background-color: #ffffff;
 	border-right: 1px solid #ddd;
 }
 
-.fixed:after{
+#stickyRank.fixed {
+    position: sticky;
+	left: 0;
+	background-color: #ffffff;
+}
+
+#sticky.fixed:after{
     content:'';
     position:absolute;
     left: 0;
@@ -82,7 +88,7 @@
 }
 
 .rankColumn {
-	width: 50px;
+	width: 60px;
 }
 
 .teamColumn {
@@ -90,5 +96,9 @@
 }
 
 .otherColumn {
-	width: 75px;
+	width: 85px;
+}
+
+#bigContainer {
+	width: 550px;
 }
