@@ -232,7 +232,7 @@ function populateMatchupTable(week, homeOrAway, roster) {
 					"&te="+roster["TE"] +
 					"&def="+roster["DEF"] +
 					"&k="+roster["K"] +
-					"&flex="+roster["FLEX"];
+					"&flex="+roster["FLEX"];	
 	dataString = dataString.trim().replace(/ /g, '%20');
 	
 	$.ajax({
@@ -244,7 +244,7 @@ function populateMatchupTable(week, homeOrAway, roster) {
 	    }
 	});
 	
-	$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]);
+	$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]]);
 	$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
 	$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster["RB2"]]);
 	$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster["WR1"]]);
