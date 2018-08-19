@@ -223,6 +223,8 @@ function getTeamRoster(week, teamID, homeOrAway) {
 }
 
 function populateMatchupTable(week, homeOrAway, roster) {	
+	var getPlayerAbbr ="";
+	
 	dataString = 	"qb="+roster["QB"] +
 					"&rb1="+roster["RB1"] +
 					"&rb2="+roster["RB2"] +
@@ -240,9 +242,15 @@ function populateMatchupTable(week, homeOrAway, roster) {
 	    url: "getPlayerAbbr.php",
 	    data: dataString,
 	    success: function(response) {
-			getPlayerAbbr = response;	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen""
+			getPlayerAbbr = response;	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen"
+			console.log(getPlayerAbbr);
 	    }
 	});
+	
+	for (var key in getPlayerAbbr) {
+	  if (getPlayerAbbr.hasOwnProperty(key))
+	    console.log(key+", "+getPlayerAbbr[key]);
+	}
 	
 	$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]]);
 	$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
