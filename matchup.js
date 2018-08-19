@@ -29,7 +29,7 @@ $( document ).ready(
 		var urlArray = getUrlVars();
 		
 		var teamID	=	$("#teamID").val()
-		updatePage(teamID);	
+		updatePage();	
 		allMatchupsFunction();
 });
 
@@ -236,6 +236,7 @@ function populateMatchupTable(week, homeOrAway, roster) {
 					"&k="+roster["K"] +
 					"&flex="+roster["FLEX"];	
 	dataString = dataString.trim().replace(/ /g, '%20');
+	console.log("datastring = "+dataString);
 	
 	$.ajax({
 	    type: "POST",
