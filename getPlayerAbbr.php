@@ -32,6 +32,19 @@
         }
 	}
 	$output[""] = "";
+	$output["Arizona"] = "Arizona";
+	$output["Arizona State"] = "Arizona State";
+	$output["California"] = "California";
+	$output["Colorado"] = "Colorado";
+	$output["Oregon"] = "Oregon";
+	$output["Oregon State"] = "Oregon State";
+	$output["Stanford"] = "Stanford";
+	$output["UCLA"] = "UCLA";
+	$output["USC"] = "USC";
+	$output["Utah"] = "Utah";
+	$output["Washington"] = "Washington";
+	$output["Washington State"] = "Washington State";
+	
 
 	
     //Output table to readTeamRoster.js

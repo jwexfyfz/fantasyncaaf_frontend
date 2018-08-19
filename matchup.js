@@ -247,10 +247,7 @@ function populateMatchupTable(week, homeOrAway, roster) {
 	    }
 	});
 	
-	for (var key in getPlayerAbbr) {
-	  if (getPlayerAbbr.hasOwnProperty(key))
-	    console.log(key+", "+getPlayerAbbr[key]);
-	}
+	console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
 	
 	$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]]);
 	$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
