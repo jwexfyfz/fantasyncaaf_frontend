@@ -136,11 +136,11 @@ function printMatchupListFantasyPoints(week, homeOrAway, roster, tableIndex, tea
 	    success: function(response) {
 	      //$('#result2').html(response);
 		  playerPoints = JSON.parse(response);
-		  console.log(playerPoints);
+		  //console.log(playerPoints);
 	  
 		  var totalPlayerPoints = 0;
 		  for (var key in playerPoints) {
-		      console.log(playerPoints[key]);
+		      //console.log(playerPoints[key]);
 			  if(playerPoints[key] == "--") {
 				  totalPlayerPoints += 0;
 			  } else {
@@ -244,23 +244,26 @@ function populateMatchupTable(week, homeOrAway, roster) {
 	    success: function(response) {
 			getPlayerAbbr = response;	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen"
 			console.log(getPlayerAbbr);
+			
+			console.log("roster[QB] is "+roster["QB"]);
+			console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
+			console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
+			console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
+			
+			$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]]);
+			$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
+			$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster["RB2"]]);
+			$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster["WR1"]]);
+			$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster["WR2"]]);
+			$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster["WR3"]]);
+			$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster["TE"]]);
+			$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster["DEF"]]);
+			$("#"+homeOrAway+"K").html(getPlayerAbbr[roster["K"]]);
+			$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster["FLEX"]]);
+	
+			getFantasyPoints(week, homeOrAway, roster);
 	    }
 	});
-	
-	console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
-	
-	$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]]);
-	$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
-	$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster["RB2"]]);
-	$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster["WR1"]]);
-	$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster["WR2"]]);
-	$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster["WR3"]]);
-	$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster["TE"]]);
-	$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster["DEF"]]);
-	$("#"+homeOrAway+"K").html(getPlayerAbbr[roster["K"]]);
-	$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster["FLEX"]]);
-	
-	getFantasyPoints(week, homeOrAway, roster);
 }
 
 function getUrlVars() {
