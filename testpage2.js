@@ -667,7 +667,7 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 	    data: dataString,
 	    success: function(response) {
 			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
-			console.log("checkPlayerStarted results: "_JSON.stringify(phpResponse));
+			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
 			var i;
