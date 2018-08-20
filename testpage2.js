@@ -703,10 +703,8 @@ function checkGameStarted(week, fantasyID) {
 	    url: "checkGameStarted.php",
 	    data: dataString,
 	    success: function(response) {
-			//$('#result3').html(response);
-			//console.log("response from checkGameStarted.php: "+response);
-			console.log("successfully sent query to tell php to provide game times!");	//For testing
 			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
+			console.log("checkGameStarted response: "+JSON.stringify(phpResponse));
 			//Iterate through game times and disable selector for players whose games have started
 		  
 			//Re-enable all positions
