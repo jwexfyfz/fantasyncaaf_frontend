@@ -10,8 +10,18 @@
 	$weekNum = $_POST["weekNum"];
 	$fantasyID = $_POST["fantasyID"];
 	$position = $_POST["position"];
-	$playerName $_POST["playerName"];
-	$teamID = $_POST["teamID"];
+	if (isset($_POST["playerName"])) {
+		$playerName = $_POST["playerName"];
+	}
+	else {
+		$playerName = null;
+	}
+	if (isset($_POST["teamID"])) {
+		$teamID = $_POST["teamID"]
+	}
+	else {
+		$teamID = null;
+	}
 	
 	$index = 0;
 	if (is_null($teamID)) {
