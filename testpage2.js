@@ -394,10 +394,10 @@ function sendToPhp(position) {
 	
 	//var dupesExist = false;
 	if (newPosition == "inputDEF") {
-		checkPlayerStarted(week, teamID, position.replace("tophp",""), $('#'+newPosition).val(), true, teamName);
+		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), true, teamName);
 	}
 	else {
-		checkPlayerStarted(week, teamID, position.replace("tophp",""), $('#'+newPosition).val(), false, teamName);
+		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), false, teamName);
 	}
 	//verifyNoDupes(position.replace("tophp",""), week, teamID, teamName);		//Check for dupes
 	
@@ -552,10 +552,10 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				console.log("dupeTeams: "+dupeTeams);
 			}
 			
-			var selectedPlayerTeam = $('#input'+position).find('option:selected').attr('data-school');
+			var selectedPlayerTeam = $('#input'+position.replace("tophp","")).find('option:selected').attr('data-school');
 			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 			
-			if (selectedPlayerTeam != positionToTeam[position] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
+			if (selectedPlayerTeam != positionToTeam[position.replace("tophp","")] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//Display error message
@@ -654,10 +654,10 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 	//only need week and fantasyID to retrieve a user's roster
 	var dataString = ""
 	if (defSelected) {
-		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&teamID='+playerNameOrTeamID;
+		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&teamID='+playerNameOrTeamID;
 	}
 	else {
-		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&playerName='+playerNameOrTeamID;
+		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerNameOrTeamID;
 	}
 	
 	$.ajax({
