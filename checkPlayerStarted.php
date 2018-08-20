@@ -38,10 +38,6 @@
 				$index++;
 			}
 		} 
-		else {
-			//Set everything to null so at least you return something
-			$gametimes[0] = null;
-		}
 	}
 	elseif (isset($playerName)) {
 		// Returns playerID, teamID, gametime for a given player
@@ -57,10 +53,6 @@
 				$index++;
 			}
 		} 
-		else {
-			//Set everything to null so at least you return something
-			$gametimes[0] = null;
-		}
 	}
 	
 	$sql = "select distinct C.playerID, C.teamID, C.position, C.hasPlayed, D.gametime from (select A.playerName, B.playerID, B.teamID, A.position, A.hasPlayed from (select playerName, position, hasPlayed from teamroster where week=$weekNum and teamID=$fantasyID and position=\"$position\") as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
@@ -72,10 +64,6 @@
 			$index++;
 		}
 	} 
-	else {
-			//Set everything to null so at least you return something
-			$gametimes[0] = null;
-	}
     
     //Output table to testpage2.js
 	echo json_encode($gametimes);
