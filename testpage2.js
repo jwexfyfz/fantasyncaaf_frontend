@@ -651,10 +651,12 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 	var phpResponse;
 	//only need week and fantasyID to retrieve a user's roster
 	var dataString = ""
-	if defSelected
+	if (defSelected) {
 		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&teamID='+playerNameOrTeamID;
-	else
+	}
+	else {
 		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&playerName='+playerNameOrTeamID;
+	}
 	
 	$.ajax({
 	    type: "POST",
