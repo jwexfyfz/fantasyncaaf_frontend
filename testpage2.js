@@ -659,14 +659,15 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 	else {
 		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerNameOrTeamID;
 	}
+	console.log("checkPlayerStarted dataString: "+dataString);
 	
 	$.ajax({
 	    type: "POST",
 	    url: "checkPlayerStarted.php",
 	    data: dataString,
 	    success: function(response) {
-			console.log("checkPlayerStarted success!");	//For testing
 			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
+			console.log("checkPlayerStarted results: "_JSON.stringify(phpResponse));
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
 			var i;
