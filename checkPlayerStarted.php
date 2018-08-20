@@ -17,7 +17,7 @@
 		$playerName = null;
 	}
 	if (isset($_POST["teamID"])) {
-		$teamID = $_POST["teamID"]
+		$teamID = $_POST["teamID"];
 	}
 	else {
 		$teamID = null;
