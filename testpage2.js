@@ -680,7 +680,7 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 				
 			}
 			if (!playerGameStarted) {
-				verifyNoDupes(position, week, teamID, teamName);		//Check for dupes
+				verifyNoDupes(position, week, fantasyID, teamName);		//Check for dupes
 				checkGameStarted(week, fantasyID);
 			}
 		}
