@@ -532,7 +532,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			$('#result2').html(response);
 			console.log("successfully sent query to tell php to provide list of schools");	//For testing
 			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [position, playerName, team] array
-			console.log("Response from getPlayerSchools.php: "+phpResponse);
+			console.log("Response from getPlayerSchools.php: "+JSON.stringify(phpResponse));
 			
 			var counts = {};
 			var positionToTeam = {};
