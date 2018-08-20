@@ -11,7 +11,7 @@
 	$fantasyID = $_POST["fantasyID"];
 	$position = $_POST["position"];
 	if (isset($_POST["playerName"])) {
-		$playerName = $_POST["playerName"];
+		$playerName = urldecode($_POST["playerName"]);
 	}
 	else {
 		$playerName = null;
