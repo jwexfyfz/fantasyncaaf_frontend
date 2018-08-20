@@ -17,7 +17,7 @@
 	if (is_null($teamID)) {
 		// Returns teamID, gametime for a given team
 		// Input: week, teamID
-		$sql = "select distinct teamID, gametime from gameTimes where teamID=$teamID and week=$weekNum"
+		$sql = "select distinct teamID, gametime from gameTimes where teamID=$teamID and week=$weekNum";
 		
 		$result = $conn->query($sql);
 
@@ -36,7 +36,7 @@
 	else if (is_null($playerName)) {
 		// Returns playerID, teamID, gametime for a given player
 		// Input: week, playerName
-		$sql = "select distinct C.playerID, D.gametime from (select * from collegeteamroster where PlayerName=$playerName) as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum"
+		$sql = "select distinct C.playerID, D.gametime from (select * from collegeteamroster where PlayerName=$playerName) as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
 	
 		$result = $conn->query($sql);
 
