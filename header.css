@@ -5,7 +5,9 @@
 body {
 	top: 0;
 	left: 0;
-	font-family: 'Open Sans Light', sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	text-decoration: none;
+	font-weight: 300;
 }
 
 table { 
@@ -27,8 +29,9 @@ tr p {
 	top: 0;
 	left: 0;
 	height: var(--headerHeight); 
-	background-color: #808080;
+	background-color: #EA6C24;
     z-index:3;
+	box-shadow: 1px 1px 1px #A0A0A0;
 }
 
 #currentWeekDisplayTable {
@@ -42,14 +45,18 @@ tr p {
 
 .headerTable {
 	width: 100%;
+	max-width: 600px;
 	table-layout: fixed;
     z-index:3;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
 }
 
 .headerTableColumn {
 	width: 100%;
 	height: 50px;
-	color: #bfbfbf;
+	color: #FFA500;
 	font-weight:100;
 	position:relative;
 	text-align: center;
@@ -79,9 +86,9 @@ tr p {
 .arrow-up {
   width: 0; 
   height: 0; 
-  border-left: 17px solid transparent;
-  border-right: 17px solid transparent;
-  border-bottom: 17px solid #ffffff;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid #ffffff;
   top: 0px;
   margin: 0 auto;
   position: relative;  
@@ -89,9 +96,9 @@ tr p {
 }
 
 .hidden-arrow {
-    border-left: 17px solid transparent;
-    border-right: 17px solid transparent;
-	border-bottom: 17px solid transparent;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+	border-bottom: 18px solid transparent;
     z-index:10;
 }
 
@@ -108,7 +115,7 @@ tr p {
 	vertical-align: middle;
 	text-align: center;
 	line-height: 30px;
-	background-color: #808080;
+	background-color: #EA6C24;
 	text-color: ;
 }
 
@@ -142,11 +149,38 @@ tr p {
 	font-size: 2em;
 }
 
+/*
 .fixedPosition {
   position: fixed;
   bottom: 30px;
   right: 30px;
 }
+*/
+
+@media screen and (min-width: 600px) {
+  .fixedPosition {
+	  position: fixed;
+	  bottom: 30px;
+	  right: calc(30px + (100% - 600px)/2);
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .fixedPosition {
+	  position: fixed;
+	  bottom: 30px;
+	  right: 30px;
+  }
+}
+
+
+
+
+
+
+
+
 
 #weekSelectBackground {
 	position: absolute;
@@ -187,6 +221,23 @@ tr p {
 	font-size: 0.7em;
 }
 
+@media screen and (min-width: 600px) {
+  #weekLabel {
+	  right: calc(30px + (100% - 600px)/2);
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  #weekLabel {
+	  right: 30px;
+  }
+}
+
+#weekLabel {
+	
+}
+
 #accountAvatar {
 	width: 50px;
 	height: 50px;
@@ -196,7 +247,7 @@ tr p {
 	right: 20px;
 	top: 0px;
 	color: #ffffff;
-	line-height: 50px;
+	line-height: 47px;
 	text-align: center;
 	font-size: 1.2em;
 }
@@ -234,11 +285,24 @@ tr p {
 	border-radius: 25px;
 	background-color: #707070;
 	top: 10px;
-	right: 10px;
 	position: fixed;
 	z-index: 990;
 	display: none;
 }
+
+@media screen and (min-width: 600px) {
+  #accountMenu {
+	  right: calc(10px + (100% - 600px)/2);
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  #accountMenu {
+	  right: 10px;
+  }
+}
+
 
 #unclickable {
 	width: 100%;
@@ -277,4 +341,11 @@ a, a:hover {
 
 #content {
 	height: 100vh;
+	width: 100%;
+}
+
+.center {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
 }

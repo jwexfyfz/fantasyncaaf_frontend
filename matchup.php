@@ -104,82 +104,82 @@ if(!$fgmembersite->CheckLogin())
 				<div class="flexCard" id="matchupCard">
 					<table id="myTeamMatchupTable">
 						<tr>
-							<th class="matchupTotalScore matchupHeading" id="homeTeamScore" colspan="5"></th>
-							<th class="matchupTotalScore matchupHeading" id="awayTeamScore" colspan="5"></th>
+							<th class="matchupTotalScore matchupHeading home" id="homeTeamScore" colspan="5"></th>
+							<th class="matchupTotalScore matchupHeading away" id="awayTeamScore" colspan="5"></th>
 						</tr>
 						<tr>
-							<th class="matchupHeadingTeamName matchupHeading" id="homeTeamName" colspan="5"></th>
-							<th class="matchupHeadingTeamName matchupHeading" id="awayTeamName" colspan="5"></th>
+							<th class="matchupHeadingTeamName matchupHeading home" id="homeTeamName" colspan="5" style="font-size: 1.1em"></th>
+							<th class="matchupHeadingTeamName matchupHeading away" id="awayTeamName" colspan="5" style="font-size: 1.1em"></th>
 						</tr>
 						<tr>
-							<td class="chosenQB homeSide chosenPosition" id="homeQB" colspan="2"></td>
-							<td class="chosenQBPoints homeSide" id="homeQBPoints" colspan="2"></td>
+							<td class="chosenQB homeSide chosenPosition home smallerSize" id="homeQB" colspan="2"></td>
+							<td class="chosenQBPoints homeSide home smallerSize" id="homeQBPoints" colspan="2"></td>
 							<td class="position" colspan="2">QB</td>
-							<td class="chosenQBPoints" id="awayQBPoints" colspan="2"></td>
-							<td class="chosenQB chosenPosition" id="awayQB" colspan="2"></td>
+							<td class="chosenQBPoints away smallerSize" id="awayQBPoints" colspan="2"></td>
+							<td class="chosenQB chosenPosition away smallerSize" id="awayQB" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenRB1 homeSide chosenPosition" id="homeRB1" colspan="2"></td>
-							<td class="chosenRB1Points homeSide" id="homeRB1Points" colspan="2"></td>
+							<td class="chosenRB1 homeSide chosenPosition home smallerSize" id="homeRB1" colspan="2"></td>
+							<td class="chosenRB1Points homeSide home smallerSize" id="homeRB1Points" colspan="2"></td>
 							<td class="position" colspan="2">RB1</td>
-							<td class="chosenRB1Points" id="awayRB1Points" colspan="2"></td>
-							<td class="chosenRB1 chosenPosition" id="awayRB1" colspan="2"></td>
+							<td class="chosenRB1Points away smallerSize" id="awayRB1Points" colspan="2"></td>
+							<td class="chosenRB1 chosenPosition away smallerSize" id="awayRB1" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenRB2 homeSide chosenPosition" id="homeRB2" colspan="2"></td>
-							<td class="chosenRB2Points homeSide" id="homeRB2Points" colspan="2"></td>
+							<td class="chosenRB2 homeSide chosenPosition home smallerSize" id="homeRB2" colspan="2"></td>
+							<td class="chosenRB2Points homeSide home smallerSize" id="homeRB2Points" colspan="2"></td>
 							<td class="position" colspan="2">RB2</td>
-							<td class="chosenRB2Points" id="awayRB2Points" colspan="2"></td>
-							<td class="chosenRB2 chosenPosition" id="awayRB2" colspan="2"></td>
+							<td class="chosenRB2Points away smallerSize" id="awayRB2Points" colspan="2"></td>
+							<td class="chosenRB2 chosenPosition away smallerSize" id="awayRB2" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenWR1 homeSide chosenPosition" id="homeWR1" colspan="2"></td>
-							<td class="chosenWR1Points homeSide" id="homeWR1Points" colspan="2"></td>
+							<td class="chosenWR1 homeSide chosenPosition home smallerSize" id="homeWR1" colspan="2"></td>
+							<td class="chosenWR1Points homeSide home smallerSize" id="homeWR1Points" colspan="2"></td>
 							<td class="position" colspan="2">WR1</td>
-							<td class="chosenWR1Points" id="awayWR1Points" colspan="2"></td>
-							<td class="chosenWR1 chosenPosition" id="awayWR1" colspan="2"></td>
+							<td class="chosenWR1Points away smallerSize" id="awayWR1Points" colspan="2"></td>
+							<td class="chosenWR1 chosenPosition away smallerSize" id="awayWR1" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenWR2 homeSide chosenPosition" id="homeWR2" colspan="2"></td>
-							<td class="chosenWR2Points homeSide" id="homeWR2Points" colspan="2"></td>
+							<td class="chosenWR2 homeSide chosenPosition home smallerSize" id="homeWR2" colspan="2"></td>
+							<td class="chosenWR2Points homeSide home smallerSize" id="homeWR2Points" colspan="2"></td>
 							<td class="position" colspan="2">WR2</td>
-							<td class="chosenWR2Points" id="awayWR2Points" colspan="2"></td>
-							<td class="chosenWR2 chosenPosition" id="awayWR2" colspan="2"></td>
+							<td class="chosenWR2Points away smallerSize" id="awayWR2Points" colspan="2"></td>
+							<td class="chosenWR2 chosenPosition away smallerSize" id="awayWR2" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenWR3 homeSide chosenPosition" id="homeWR3" colspan="2"></td>
-							<td class="chosenWR3Points homeSide" id="homeWR3Points" colspan="2"></td>
+							<td class="chosenWR3 homeSide chosenPosition home smallerSize" id="homeWR3" colspan="2"></td>
+							<td class="chosenWR3Points homeSide home smallerSize" id="homeWR3Points" colspan="2"></td>
 							<td class="position" colspan="2">WR3</td>
-							<td class="chosenWR3Points" id="awayWR3Points" colspan="2"></td>
-							<td class="chosenWR3 chosenPosition" id="awayWR3" colspan="2"></td>
+							<td class="chosenWR3Points away smallerSize" id="awayWR3Points" colspan="2"></td>
+							<td class="chosenWR3 chosenPosition away smallerSize" id="awayWR3" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenTE homeSide chosenPosition" id="homeTE" colspan="2"></td>
-							<td class="chosenTEPoints homeSide" id="homeTEPoints" colspan="2"></td>
+							<td class="chosenTE homeSide chosenPosition home smallerSize" id="homeTE" colspan="2"></td>
+							<td class="chosenTEPoints homeSide home smallerSize" id="homeTEPoints" colspan="2"></td>
 							<td class="position" colspan="2">WR/TE</td>
-							<td class="chosenTEPoints" id="awayTEPoints" colspan="2"></td>
-							<td class="chosenTE chosenPosition" id="awayTE" colspan="2"></td>
+							<td class="chosenTEPoints away smallerSize" id="awayTEPoints" colspan="2"></td>
+							<td class="chosenTE chosenPosition away smallerSize" id="awayTE" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenDEF homeSide chosenPosition" id="homeDEF" colspan="2"></td>
-							<td class="chosenDEFPoints homeSide" id="homeDEFPoints" colspan="2"></td>
+							<td class="chosenDEF homeSide chosenPosition home smallerSize" id="homeDEF" colspan="2"></td>
+							<td class="chosenDEFPoints homeSide home smallerSize" id="homeDEFPoints" colspan="2"></td>
 							<td class="position" colspan="2">DEF</td>
-							<td class="chosenDEFPoints" id="awayDEFPoints" colspan="2"></td>
-							<td class="chosenDEF chosenPosition" id="awayDEF" colspan="2"></td>
+							<td class="chosenDEFPoints away smallerSize" id="awayDEFPoints" colspan="2"></td>
+							<td class="chosenDEF chosenPosition away smallerSize" id="awayDEF" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenK homeSide chosenPosition" id="homeK" colspan="2"></td>
-							<td class="chosenKPoints homeSide" id="homeKPoints" colspan="2"></td>
+							<td class="chosenK homeSide chosenPosition home smallerSize" id="homeK" colspan="2"></td>
+							<td class="chosenKPoints homeSide home smallerSize" id="homeKPoints" colspan="2"></td>
 							<td class="position" colspan="2">K</td>
-							<td class="chosenKPoints" id="awayKPoints" colspan="2"></td>
-							<td class="chosenK chosenPosition" id="awayK" colspan="2"></td>
+							<td class="chosenKPoints away smallerSize" id="awayKPoints" colspan="2"></td>
+							<td class="chosenK chosenPosition away smallerSize" id="awayK" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenFLEX homeSide chosenPosition" id="homeFLEX" colspan="2"></td>
-							<td class="chosenFLEXPoints homeSide" id="homeFLEXPoints" colspan="2"></td>
+							<td class="chosenFLEX homeSide chosenPosition home" id="homeFLEX" colspan="2"></td>
+							<td class="chosenFLEXPoints homeSide home" id="homeFLEXPoints" colspan="2"></td>
 							<td class="position" colspan="2">FLEX</td>
-							<td class="chosenFLEXPoints" id="awayFLEXPoints" colspan="2"></td>
-							<td class="chosenFLEX chosenPosition" id="awayFLEX" colspan="2"></td>
+							<td class="chosenFLEXPoints away" id="awayFLEXPoints" colspan="2"></td>
+							<td class="chosenFLEX chosenPosition away" id="awayFLEX" colspan="2"></td>
 						</tr>
 					</table>
 				</div>

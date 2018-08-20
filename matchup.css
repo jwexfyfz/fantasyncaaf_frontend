@@ -31,7 +31,7 @@
 }
 
 #hiddenMatchupsTable, #flexCardContainer {
-	max-width: 420px;
+	max-width: 600px;
 	width: 100%;
 	margin: 0 auto;
 }
@@ -39,13 +39,13 @@
 .flexCard {
 	margin: 0px 10px 20px 10px; 
 	padding: 10px; 
-	border: 1px solid #A0A0A0;
-	border-radius: 10px;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	border: 1px solid #F3F3F3;
+	border-radius: 6px;
+	box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.05);
 }
 
 #matchupCard {
-	max-width: 420px;
+	max-width: 600px;
 }
 
 .centerTable {
@@ -60,4 +60,16 @@
 	padding: 0px;
 	border: 0px;
 	background-color: #FFFFFF;
+}
+
+.notCurrentPlayerColor {
+	color: #767676;
+}
+
+.currentPlayerColor {
+	color: blue;
+}
+
+.smallerSize {
+	font-size: 0.9em;
 }

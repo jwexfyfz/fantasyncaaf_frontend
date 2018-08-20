@@ -87,32 +87,34 @@ if(!$fgmembersite->CheckLogin())
 		<div id="content">
 			<!--Have a blank row so that content at top gets pushed underneath header-->
 			<div id="standingsTableWindow">
-				<table id="standingsTable">
-					<!--Leave space for the top header-->
-					<tr style="height: 121px"></tr>
-					<!--Leave space between header and first table-->
-					<tr style="height: 10px"></tr>
-					<tr id="standingsTableSections">
-						<th class="standingsTableHeader">
-							Rank
-						</th>
-						<th class="standingsTableHeader" id="sticky">
-							Team Name
-						</th>
-						<th class="standingsTableHeader">
-							Record
-						</th>
-						<th class="standingsTableHeader">
-							Div. Record
-						</th>
-						<th class="standingsTableHeader">
-							Points For
-						</th>
-						<th class="standingsTableHeader">
-							Points Against
-						</th>
-					</tr>
-				</table>
+				<div id="bigContainer">
+					<table id="standingsTable">
+						<!--Leave space for the top header-->
+						<tr style="height: 121px"></tr>
+						<!--Leave space between header and first table-->
+						<tr style="height: 10px"></tr>
+						<tr id="standingsTableSections">
+							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+								Rank
+							</th>
+							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								Team
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Div. Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts For
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts Against
+							</th>
+						</tr>
+					</table>
+				</div>
 			</div>
 		
 			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->

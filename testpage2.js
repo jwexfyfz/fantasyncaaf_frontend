@@ -52,6 +52,15 @@ $( document ).ready(
 			console.log("clearTimeout ran");
 			exitErrorFooter();
 		});	
+		
+		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
+			console.log($(this).attr('id')+" clicked");
+			var position = $(this).attr('id').replace("clear","");
+			$('#input'+position).val("");
+			$('#input'+position).selectpicker('refresh');
+			sendToPhp(position+"tophp");
+		});
+		
 });
 
 function updatePage() {
@@ -470,11 +479,17 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 		      $('#result').html(response);
 			  console.log("successfully sent selected position that changed! "+position);	//For testing
 			  confirmPlayer(confirmPosition);
+			  getGameTimeOfPlayer(confirmPosition);
 			  getFantasyPoints();
 		    }
 		});
 	}
 }
+
+function getGameTimeOfPlayer(position) {	
+	
+}
+
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
@@ -496,20 +511,6 @@ function verifyNoDupes(position, week, teamID, teamName) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
 		  getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);
-		  //console.log("VALID CHANGE: "+valid);
-		  /*if (valid) {
-			  //Player changes RB1 to equal the same value as teamRoster's RB2
-			  comparePotentialDupes("RB1", "RB2", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR1", "WR2", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR2", "WR3", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR1", "WR3", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, teamID, teamName);
-			  comparePotentialDupes("TE", "FLEX", position, phpResponse, week, teamID, teamName);
-		  }*/
 	    }
 	});  
 }
@@ -736,63 +737,9 @@ function checkGameStarted(week, fantasyID) {
 				}
 			}
 			console.log("finished checking if games are started");	//For testing
-		  
-			//Call function to disable all players that have already played
-			//disableAlreadyPlayedPlayers(phpResponse);	//Currently commented out because this method takes too long
 		}
 	});
 	return disabledPositions;
-}
-
-//Disable all players from select dropdown for teams that have already played
-function disableAlreadyPlayedPlayers(playerArray) {
-
-
-/*	
-	//THIS METHOD TAKES TOO LONG, SO ITS COMMENTED OUT.
-	console.log("called disableAlreadyPlayedPlayers");
-  var nonUniqueSchools = new Array();
-  var uniqueSchools = new Array();
-  
-  //Iterate through playerArray to extract teams that have already played
-  for (i = 0; i < playerArray.length; i++) {
-	  console.log("iterating through playerArray: "+playerArray[i]["teamID"]+" "+playerArray[i]["position"]+" "+playerArray[i]["hasPlayed"]+" "+playerArray[i]["gametime"]);
-	  var gametime = new Date(playerArray[i]["gametime"] + " UTC");
-	  
-	  //Check if current time > when the team played. If yes, add to array.
-	  if (Date.now() > gametime.getTime()) {
-		  nonUniqueSchools.push(playerArray[i]["teamID"]);
-		  console.log(i+ ": added "+playerArray[i]["teamID"]+" to nonUniqueSchools");
-	  }
-	  else {
-		  console.log("now: "+Date.now()+", gametime of "+playerArray[i]+ ": "+gametime.getTime());
-	  }
-  }
-  console.log("uniqueSchools length: "+uniqueSchools.length + ", nonUniqueSchools length: "+nonUniqueSchools.length);
-  
- 
-  uniqueSchools = getUnique(nonUniqueSchools)
-  console.log("uniqueSchools length: "+uniqueSchools.length + ", nonUniqueSchools length: "+nonUniqueSchools.length);
-  
-
-  
-  for (j = 0; j < uniqueSchools.length; j++) {
-	  console.log("uniqueSchools["+j+"] = "+uniqueSchools[j]);
-  }
-  
-  //Disable players on teams that have already played
-  disablePlayers("QB",uniqueSchools);
-  disablePlayers("RB1",uniqueSchools);
-  disablePlayers("RB2",uniqueSchools);
-  disablePlayers("WR1",uniqueSchools);
-  disablePlayers("WR2",uniqueSchools);
-  disablePlayers("WR3",uniqueSchools);
-  disablePlayers("TE",uniqueSchools);
-  disablePlayers("DEF",uniqueSchools);
-  disablePlayers("K",uniqueSchools);
-  disablePlayers("FLEX",uniqueSchools);
-	*/
-  updatePage();
 }
 
 //This function is taken from somewhere else, but should take in an array and output the unique values in the array
@@ -899,8 +846,6 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-	      //$('#result2').html(response);
-		  //console.log("successfully queried for eligible player names!");
 		  var playerList=JSON.parse(response);
 		  
 		  //Parameters are 1) ID of select, 2) array of eligible players, 3) player currently on the roster
@@ -908,7 +853,6 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 		  populateChoosePlayerLists("input"+position, playerList, currentSelectedPlayer, weekChanged);		
 		  
 		  	if(position="FLEX") {
-		  		//console.log("time to populate inputFLEX. inputPosition= "+inputPosition);
 		  		getFantasyPoints();
 		  	}  
 	    }
@@ -990,10 +934,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 				
 				//Set the option text and value
 				select.options[select.options.length] = currentOption;
-				
-				//data-subtext = Subtext
-				//title = playerAbbr + currentSubtext
-				//data-tokens = currentMetadata
+
 				currentOption.setAttribute("data-subtext",currentSubtext);
 				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+' '+'<small class="text-muted" style="font-weight:100">' + currentSubtext + '</small>');
 				currentOption.setAttribute("data-tokens",currentMetadata);

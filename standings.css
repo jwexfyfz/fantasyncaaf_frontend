@@ -4,10 +4,11 @@
 	font-weight:100;
 	height:30px;
 	line-height:30px;
-	color:#808080;
-	border-bottom: 1px solid #ddd;
+	color:#F0965E;
+	border-bottom: 1px solid rgb(221,221,221,0.5);
 	z-index:-1;
-	text-align: center;
+	text-align: left;
+	font-size: 0.9em;
 }
 
 .standingsTableRow {
@@ -17,20 +18,21 @@
 	height:50px;
 	line-height:50px;
 	color:#A0A0A0;
-	border-bottom: 1px solid #ddd;
-	text-align: center;
+	border-bottom: 1px solid rgb(221,221,221,0.25);
+	text-align: left;
 	z-index:-1;
+	padding-left: 10px;
 }
 
 #standingsTable {
-	width:700px;
+	/*width:600px;*/
 	table-layout: fixed;	
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid rgb(221,221,221,0.25);
 	z-index:-1;
 }
 
 .currentTeam {
-	color: #3CB371;
+	color: #F0965E;
 }
 
 .test {
@@ -41,34 +43,36 @@
 	  cursor: pointer;
 	  user-select: none;
 	  font-size: 0.9em;
-	      text-align: left;
-	      font-weight: 100;
+	  text-align: left;
+	  font-weight: 300;
 }
 
 #standingsTableWindow {
 	width: 100%;
-	max-width: 600px;
+	max-width: 500px;
 	overflow: scroll;
+	margin: 0 auto;
 }
 
-#sticky {
+#sticky, #stickyRank, #sticky2, #sticky2Rank, .stickyColumn, .stickyColumnRank {
     display: table-cell;
 	z-index: 30;
 }
 
-.stickyColumn {
-    display: table-cell;
-	z-index: 30;
-}
-
-.fixed {
+#sticky.fixed, .stickyColumn.fixed {
     position: sticky;
-	left: 0;
+	left: 60px;
 	background-color: #ffffff;
 	border-right: 1px solid #ddd;
 }
 
-.fixed:after{
+#stickyRank.fixed, .stickyColumnRank.fixed {
+    position: sticky;
+	left: 0;
+	background-color: #ffffff;
+}
+
+#sticky.fixed:after{
     content:'';
     position:absolute;
     left: 0;
@@ -76,4 +80,30 @@
     width:100%;
     border-right: 1px solid #ddd;
 	height: 29px;
+}
+
+#sticky2.fixed:after {
+    content:'';
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    border-right: 1px solid #ddd;
+	height: 50px;
+}
+
+.rankColumn {
+	width: 60px;
+}
+
+.teamColumn {
+	width: 150px;
+}
+
+.otherColumn {
+	width: 85px;
+}
+
+#bigContainer {
+	width: 550px;
 }

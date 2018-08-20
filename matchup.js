@@ -26,25 +26,10 @@ $( document ).ready(
 			window.location.href = "index.php" + window.location.search;
 		});
 		
-		/*
-		$("#allMatchupsButton").click( function(event) {
-		  event.preventDefault();
-		  console.log('clicked allMatchupsButton');
-		  console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
-		  
-		  $('#myTeamMatchupTable').hide();
-		  console.log('matchupsTable currently set to: '+  $('#myTeamMatchupTable').css('display'));
-		  
-		  allMatchupsFunction();
-		  
-		  //createMatchupTable("dummyTable1", 1, "dummyTeamName1", "dummyTeamName2", "dummyScore1", "dummyScore2");  
-		});
-		*/
 		var urlArray = getUrlVars();
-		//console.log(urlArray);
-		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+		
 		var teamID	=	$("#teamID").val()
-		updatePage(teamID);	
+		updatePage();	
 		allMatchupsFunction();
 });
 
@@ -86,40 +71,6 @@ function getMatchups(convertTeam) {
 			var rowNum = 0;
 			
 			phpResponse = JSON.parse(response);	//This should output a list of matchups (3d array)
-			//console.log("getMatchups printed: "+phpResponse[0]["homeTeam"] + " " + phpResponse[0]["awayTeam"]);
-		  
-			//Iterate through list of matchups, create table structure, get the fantasy points of both home and away teams
-			
-			/** <table id="hiddenMatchupsTable">
-					<tr>
-						<td id="row0col0">
-							<table>
-								<tr>
-									<td id="table0homeTeamName" />
-									<td id="table0homeTeamScore" />
-								</tr>
-								<tr>
-									<td id="table0awayTeamName" />
-									<td id="table0awayTeamScore" />
-								</tr>
-							</table>
-						</td>
-						<td id="row0col1">
-							<table>
-								<tr>
-									<td id="table1homeTeamName" />
-									<td id="table1homeTeamScore" />
-								</tr>
-								<tr>
-									<td id="table1awayTeamName" />
-									<td id="table1awayTeamScore" />
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table> etc
-			
-			**/
 			
 			// Create table structure
 			for(i = 0; i < phpResponse.length; i++) {
@@ -185,11 +136,11 @@ function printMatchupListFantasyPoints(week, homeOrAway, roster, tableIndex, tea
 	    success: function(response) {
 	      //$('#result2').html(response);
 		  playerPoints = JSON.parse(response);
-		  console.log(playerPoints);
+		  //console.log(playerPoints);
 	  
 		  var totalPlayerPoints = 0;
 		  for (var key in playerPoints) {
-		      console.log(playerPoints[key]);
+		      //console.log(playerPoints[key]);
 			  if(playerPoints[key] == "--") {
 				  totalPlayerPoints += 0;
 			  } else {
@@ -197,11 +148,23 @@ function printMatchupListFantasyPoints(week, homeOrAway, roster, tableIndex, tea
 			  }
 		  }
 	  
-		  totalPlayerPoints = Math.round(totalPlayerPoints*100)/100;
+		  totalPlayerPoints = Math.round(totalPlayerPoints*10)/10;
 		  
 		 $('#table'+tableIndex+homeOrAway+'TeamScore').html(totalPlayerPoints);	  
 	    }
 	});
+}
+
+function setColorOfUserTeam(userTeam, notUserTeam) {
+	var list = document.getElementsByClassName(userTeam);
+	for(var i = 0; i < list.length; i++) {
+      list[i].classList.add('currentPlayerColor');
+	}
+	
+	var list = document.getElementsByClassName(notUserTeam);
+	for(var i = 0; i < list.length; i++) {
+      list[i].classList.add('notCurrentPlayerColor');
+	}
 }
 
 function updatePage() {	
@@ -218,8 +181,15 @@ function updatePage() {
 	    data: dataString,
 	    success: function(response) {
 		  phpResponse = JSON.parse(response);
-		  console.log(phpResponse);
-		  //console.log("matchup: "+phpResponse["homeTeam"]+" vs "+phpResponse["awayTeam"]);	//For testing
+		  console.log(phpResponse);	
+		  
+			if(phpResponse[0]["homeTeam"] == teamID) {
+				setColorOfUserTeam("home", "away");
+			} else {
+				setColorOfUserTeam("away", "home");
+			}
+		  
+	  	
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getTeamRoster(week, phpResponse[0]["homeTeam"], "home");
@@ -252,19 +222,49 @@ function getTeamRoster(week, teamID, homeOrAway) {
 	});
 }
 
-function populateMatchupTable(week, homeOrAway, roster) {
-	$("#"+homeOrAway+"QB").html(roster["QB"]);
-	$("#"+homeOrAway+"RB1").html(roster["RB1"]);
-	$("#"+homeOrAway+"RB2").html(roster["RB2"]);
-	$("#"+homeOrAway+"WR1").html(roster["WR1"]);
-	$("#"+homeOrAway+"WR2").html(roster["WR2"]);
-	$("#"+homeOrAway+"WR3").html(roster["WR3"]);
-	$("#"+homeOrAway+"TE").html(roster["TE"]);
-	$("#"+homeOrAway+"DEF").html(roster["DEF"]);
-	$("#"+homeOrAway+"K").html(roster["K"]);
-	$("#"+homeOrAway+"FLEX").html(roster["FLEX"]);
+function populateMatchupTable(week, homeOrAway, roster) {	
+	var getPlayerAbbr ="";
 	
-	getFantasyPoints(week, homeOrAway, roster);
+	dataString = 	"qb="+roster["QB"] +
+					"&rb1="+roster["RB1"] +
+					"&rb2="+roster["RB2"] +
+					"&wr1="+roster["WR1"] +
+					"&wr2="+roster["WR2"] +
+					"&wr3="+roster["WR3"] +
+					"&te="+roster["TE"] +
+					"&def="+roster["DEF"] +
+					"&k="+roster["K"] +
+					"&flex="+roster["FLEX"];	
+	dataString = dataString.trim().replace(/ /g, '%20');
+	console.log("datastring = "+dataString);
+	
+	$.ajax({
+	    type: "POST",
+	    url: "getPlayerAbbr.php",
+	    data: dataString,
+	    success: function(response) {
+			getPlayerAbbr = response;	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen"
+			console.log(getPlayerAbbr);
+			
+			console.log("roster[QB] is "+roster["QB"]);
+			console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
+			console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
+			console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
+			
+			$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]]);
+			$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
+			$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster["RB2"]]);
+			$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster["WR1"]]);
+			$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster["WR2"]]);
+			$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster["WR3"]]);
+			$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster["TE"]]);
+			$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster["DEF"]]);
+			$("#"+homeOrAway+"K").html(getPlayerAbbr[roster["K"]]);
+			$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster["FLEX"]]);
+	
+			getFantasyPoints(week, homeOrAway, roster);
+	    }
+	});
 }
 
 function getUrlVars() {
