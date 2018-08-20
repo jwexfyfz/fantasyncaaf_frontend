@@ -560,7 +560,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				//Display error message
 				fadeErrorFooter("Too many players from the same team!<br/><span style='font-size:0.8em'>Remove one or more <b>" + selectedPlayerTeam + "</b> players.</span>");
-				loadTeamRoster(week, fantasyID, true);  // Should this be false??
+				loadTeamRoster(week, fantasyID, false);  // Should this be false??
 				//return false;
 			}
 			else {  // allow the change
@@ -675,7 +675,7 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 				var gametime = new Date(phpResponse[i] + " UTC");
 				if (Date.now() > gametime.getTime()) {
 					fadeErrorFooter("The selected player's game has already begun!<br/>");
-					loadTeamRoster(week, fantasyID, true);  // Should this be false??
+					loadTeamRoster(week, fantasyID, false);  // Should this be false??
 					playerGameStarted = true;
 				}
 				
