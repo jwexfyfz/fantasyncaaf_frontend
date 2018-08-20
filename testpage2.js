@@ -657,7 +657,7 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&teamID='+playerNameOrTeamID;
 	}
 	else {
-		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerNameOrTeamID;
+		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerNameOrTeamID.trim().replace(/ /g, '%20');
 	}
 	console.log("checkPlayerStarted dataString: "+dataString);
 	

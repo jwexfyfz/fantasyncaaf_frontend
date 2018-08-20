@@ -13,8 +13,14 @@
 	if (isset($_POST["playerName"])) {
 		$playerName = $_POST["playerName"];
 	}
+	else {
+		$playerName = null;
+	}
 	if (isset($_POST["teamID"])) {
 		$teamID = $_POST["teamID"];
+	}
+	else {
+		$teamID = null;
 	}
 	
 	$index = 0;
