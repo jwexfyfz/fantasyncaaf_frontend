@@ -785,7 +785,7 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 	var phpResponse;
 	
 	var dataString = 'playerID='+playerID+'&fantasyID='+fantasyID+'&weekNum='+week+'&position='+position;
-	
+	console.log("updateTimesPlayerUsed dataString: "+dataString);
 	$.ajax({
 		type: "POST",
 		url: "updateTimesPlayerUsed.php",
