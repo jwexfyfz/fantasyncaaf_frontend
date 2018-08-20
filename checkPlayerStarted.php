@@ -46,7 +46,7 @@
 	else if (isset($playerName)) {
 		// Returns playerID, teamID, gametime for a given player
 		// Input: week, playerName
-		$sql = "select distinct C.playerID, D.gametime from (select * from collegeteamroster where PlayerName='$playerName') as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
+		$sql = "select distinct C.playerID, D.gametime from (select * from collegeteamroster where PlayerName=\"$playerName\") as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
 	
 		$result = $conn->query($sql);
 
@@ -63,7 +63,7 @@
 		}
 	}
 	
-	$sql = "select distinct C.playerID, C.teamID, C.position, C.hasPlayed, D.gametime from (select A.playerName, B.playerID, B.teamID, A.position, A.hasPlayed from (select playerName, position, hasPlayed from teamroster where week=$weekNum and teamID=$fantasyID and position='$position') as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
+	$sql = "select distinct C.playerID, C.teamID, C.position, C.hasPlayed, D.gametime from (select A.playerName, B.playerID, B.teamID, A.position, A.hasPlayed from (select playerName, position, hasPlayed from teamroster where week=$weekNum and teamID=$fantasyID and position=\"$position\") as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		// output data of each row
