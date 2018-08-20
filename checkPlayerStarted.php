@@ -13,14 +13,8 @@
 	if (isset($_POST["playerName"])) {
 		$playerName = $_POST["playerName"];
 	}
-	else {
-		$playerName = null;
-	}
 	if (isset($_POST["teamID"])) {
 		$teamID = $_POST["teamID"];
-	}
-	else {
-		$teamID = null;
 	}
 	
 	$index = 0;
@@ -43,7 +37,7 @@
 			$gametimes[0] = null;
 		}
 	}
-	else if (isset($playerName)) {
+	elseif (isset($playerName)) {
 		// Returns playerID, teamID, gametime for a given player
 		// Input: week, playerName
 		$sql = "select distinct C.playerID, D.gametime from (select * from collegeteamroster where PlayerName=\"$playerName\") as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
