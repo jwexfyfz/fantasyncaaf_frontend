@@ -37,6 +37,7 @@
 		$output[$index]["homeTeam"] = null;
 		$output[$index]["awayTeam"] = null;
     }
+	
     //Output table to readTeamRoster.js
     echo json_encode($output);
 	
