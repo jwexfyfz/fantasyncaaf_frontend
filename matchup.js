@@ -188,14 +188,12 @@ function updatePage() {
 			} else {
 				setColorOfUserTeam("away", "home");
 			}
-		  
-	  	
-		  
-		  //Set eligible players for each select, set the current chosen player as default value
-		  getTeamRoster(week, phpResponse[0]["homeTeam"], "home");
-		  getTeamRoster(week, phpResponse[0]["awayTeam"], "away");
 	    }
 	});	
+	
+	//Set eligible players for each select, set the current chosen player as default value
+	getTeamRoster(week, phpResponse[0]["homeTeam"], "home");
+	getTeamRoster(week, phpResponse[0]["awayTeam"], "away");
 }
 
 function getTeamRoster(week, teamID, homeOrAway) {
@@ -229,6 +227,7 @@ function populateMatchupTable(week, homeOrAway, roster) {
 	    type: "POST",
 	    url: "checkPlayerAbbrFlag.php",
 	    success: function(response) {
+			console.log("response = "+response);
 			if(response) {
 				usePlayerAbbr = 1;
 			}
