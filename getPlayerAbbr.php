@@ -33,9 +33,8 @@
     //Query to get team rosters
     $sql = "SELECT playerName, playerAbbr FROM collegeTeamRoster where playerName in ('$homeQB', '$homeRB1', '$homeRB2', '$homeWR1', '$homeWR2', '$homeWR3', '$homeTE', '$homeK', '$homeFLEX', '$awayQB', '$awayRB1', '$awayRB2', '$awayWR1', '$awayWR2', '$awayWR3', '$awayTE', '$awayK', '$awayFLEX');";
     $result = $conn->query($sql);
-	echo $sql;
+	//echo $sql;
 	
-	echo "<br><br>";
 	
 	//$playersAndPoints = array();
     if ($result->num_rows > 0) {
