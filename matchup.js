@@ -229,7 +229,7 @@ function populateMatchupTable(week, homeOrAway, roster) {
 	    type: "POST",
 	    url: "checkPlayerAbbrFlag.php",
 	    success: function(response) {
-			if(response == 1) {
+			if(response) {
 				usePlayerAbbr = 1;
 			}
 			else {
@@ -237,6 +237,7 @@ function populateMatchupTable(week, homeOrAway, roster) {
 			}
 	
 		
+			console.log("usePlayerAbbr="+usePlayerAbbr);
 			if(usePlayerAbbr) {
 				var getPlayerAbbr ="";
 
