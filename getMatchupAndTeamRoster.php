@@ -7,8 +7,8 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
-	$weekNum = $_GET["weekNum"];
-	$teamID = $_GET["teamIDNum"];
+	$weekNum = $_POST["weekNum"];
+	$teamID = $_POST["teamIDNum"];
     //Query to get team rosters
     
 	//Get the matchup schedule team IDs
