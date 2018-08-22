@@ -29,7 +29,7 @@ $( document ).ready(
 		var urlArray = getUrlVars();
 		
 		var teamID	=	$("#teamID").val()
-		updatePage();	
+		updatePage(teamID);	
 		allMatchupsFunction();
 });
 
@@ -168,9 +168,9 @@ function setColorOfUserTeam(userTeam, notUserTeam) {
 	}
 }
 
-function updatePage() {	
+function updatePage(teamID) {	
 	var week	=	$("#currentWeekNum").val();
-	var teamID	=	$("#teamID").val();
+	//var teamID	=	$("#teamID").val();
 	var phpResponse;
 	
 	//only need week and teamID to retrieve a user's roster
@@ -387,7 +387,7 @@ function populatePoints(homeOrAway, playerPoints, playerName, position) {
 
 function createMatchupTable(idName, matchupIteration, homeTeam1, awayTeam1, homeTeamScore1, awayTeamScore1, rowNum, maxNumColumn, convertTeam) {
   //var createdTable = "<table class='matchupTableList' id='"+idName+"'> <tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table>";
-	var createdRow = "<div class='flexCard'><button class='centerTable fullWidth noStyle' onClick=updatePage()><table class='fullWidth'><tr><td style='text-align: left; width: 70%;' id='"+idName+"homeTeamName'>"+convertTeam[homeTeam1]+"</td><td style='text-align: left; width: 30%;' id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td style='text-align: left; width: 70%;' id='"+idName+"awayTeamName'>"+convertTeam[awayTeam1]+"</td><td style='text-align: left; width: 30%;' id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></button></div>";
+	var createdRow = "<div class='flexCard'><button class='centerTable fullWidth noStyle' onClick=updatePage("+homeTeam1+")><table class='fullWidth'><tr><td style='text-align: left; width: 70%;' id='"+idName+"homeTeamName'>"+convertTeam[homeTeam1]+"</td><td style='text-align: left; width: 30%;' id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td style='text-align: left; width: 70%;' id='"+idName+"awayTeamName'>"+convertTeam[awayTeam1]+"</td><td style='text-align: left; width: 30%;' id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></button></div>";
   //var createdRow = "<tr><table><tr><td id='"+idName+"homeTeamName'>"+homeTeam1+"</td><td id='"+idName+"homeTeamScore'>"+homeTeamScore1+"</td></tr>  <tr><td id='"+idName+"awayTeamName'>"+awayTeam1+"</td><td id='"+idName+"awayTeamScore'>"+awayTeamScore1+"</td></tr></table></tr>";
   //console.log(createdTable);
   //$('#hiddenMatchupsTable').append(createdRow);
