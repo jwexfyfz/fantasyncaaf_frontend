@@ -330,7 +330,7 @@ function setPlayerNameInMatchup(getPlayerAbbr, roster, homeOrAway, useAbbr) {
 		console.log(homeOrAway+"Team");
 		console.log("roster[homeOrAwayTeam][QB]="+roster[homeOrAway+"Team"]["QB"]);
 		console.log("getPlayerAbbr[Khalil Tate]="+getPlayerAbbr["Khalil Tate"]);
-		console.log("getPlayerAbbr[roster[homeOrAwayTeam][QB]]="+getPlayerAbbr[roster[homeOrAway+"Team"]["QB"]);
+		console.log("getPlayerAbbr[roster[homeOrAwayTeam][QB]]="+getPlayerAbbr[roster[homeOrAway+"Team"]["QB"]]);
 		$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster[homeOrAway+"Team"]["QB"]]);
 		$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster[homeOrAway+"Team"]["RB1"]]);
 		$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster[homeOrAway+"Team"]["RB2"]]);
