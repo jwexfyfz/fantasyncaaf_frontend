@@ -20,20 +20,20 @@
         // output data of each row
         while($row = $result->fetch_assoc()) {
             if($teamID == $row["homeTeamID"]) {
-				$matchup["homeTeam"] = $row["homeTeamID"];
-				$matchup["awayTeam"] = $row["awayTeamID"];
+				$matchupHomeTeam = $row["homeTeamID"];
+				$matchupAwayTeam = $row["awayTeamID"];
             } else {
-				$matchup["homeTeam"] = $row["awayTeamID"];
-				$matchup["awayTeam"] = $row["homeTeamID"];
+				$matchupHomeTeam = $row["awayTeamID"];
+				$matchupAwayTeam = $row["homeTeamID"];
             }
         }
     } else {
-		$matchup["homeTeam"] = null;
-		$matchup["awayTeam"] = null;
+		$matchupHomeTeam = null;
+		$matchupAwayTeam = null;
     }
 	
 	//Select teamRoster data for the home team
-	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchup['homeTeam'] and week in ($weekNum);";
+	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum);";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -61,8 +61,12 @@
             "FLEX"=>null);
     }
 	
+    echo json_encode($teamRoster);
+
+
+/*	
 	//Do the same thing for the away team
-	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchup['awayTeam'] and week in ($weekNum);";
+	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupAwayTeam and week in ($weekNum);";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -92,5 +96,7 @@
     //Output table to readTeamRoster.js
     echo json_encode($teamRoster);
     
+	
+*/	
     $conn->close();
 ?>
