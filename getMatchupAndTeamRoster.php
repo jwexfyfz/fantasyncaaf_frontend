@@ -32,10 +32,6 @@
 		$matchupAwayTeam = null;
     }
 	
-	//echo $matchupHomeTeam;
-	//echo "<br>";
-	//echo $matchupAwayTeam;
-	
 	//Select teamRoster data for the home team
 	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum);";
     $result = $conn->query($sql);
@@ -65,10 +61,6 @@
             "FLEX"=>null);
     }
 	
-    echo json_encode($teamRoster);
-
-
-
 	//Do the same thing for the away team
 	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupAwayTeam and week in ($weekNum);";
     $result = $conn->query($sql);
