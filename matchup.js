@@ -327,28 +327,28 @@ function populateMatchupTable(week, roster) {
 
 function setPlayerNameInMatchup(getPlayerAbbr, roster, homeOrAway, useAbbr) {
 	if(useAbbr) {
-		$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster[homeOrAway]["QB"]]);
-		$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster[homeOrAway]["RB1"]]);
-		$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster[homeOrAway]["RB2"]]);
-		$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster[homeOrAway]["WR1"]]);
-		$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster[homeOrAway]["WR2"]]);
-		$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster[homeOrAway]["WR3"]]);
-		$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster[homeOrAway]["TE"]]);
-		$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster[homeOrAway]["DEF"]]);
-		$("#"+homeOrAway+"K").html(getPlayerAbbr[roster[homeOrAway]["K"]]);
-		$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster[homeOrAway]["FLEX"]]);
+		$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster[homeOrAway+"Team"]["QB"]]);
+		$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster[homeOrAway+"Team"]["RB1"]]);
+		$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster[homeOrAway+"Team"]["RB2"]]);
+		$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster[homeOrAway+"Team"]["WR1"]]);
+		$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster[homeOrAway+"Team"]["WR2"]]);
+		$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster[homeOrAway+"Team"]["WR3"]]);
+		$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster[homeOrAway+"Team"]["TE"]]);
+		$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster[homeOrAway+"Team"]["DEF"]]);
+		$("#"+homeOrAway+"K").html(getPlayerAbbr[roster[homeOrAway+"Team"]["K"]]);
+		$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster[homeOrAway+"Team"]["FLEX"]]);
 	}
 	else {
-		$("#"+homeOrAway+"QB").html(roster[homeOrAway]["QB"]);
-		$("#"+homeOrAway+"RB1").html(roster[homeOrAway]["RB1"]);
-		$("#"+homeOrAway+"RB2").html(roster[homeOrAway]["RB2"]);
-		$("#"+homeOrAway+"WR1").html(roster[homeOrAway]["WR1"]);
-		$("#"+homeOrAway+"WR2").html(roster[homeOrAway]["WR2"]);
-		$("#"+homeOrAway+"WR3").html(roster[homeOrAway]["WR3"]);
-		$("#"+homeOrAway+"TE").html(roster[homeOrAway]["TE"]);
-		$("#"+homeOrAway+"DEF").html(roster[homeOrAway]["DEF"]);
-		$("#"+homeOrAway+"K").html(roster[homeOrAway]["K"]);
-		$("#"+homeOrAway+"FLEX").html(roster[homeOrAway]["FLEX"]);
+		$("#"+homeOrAway+"QB").html(roster[homeOrAway+"Team"]["QB"]);
+		$("#"+homeOrAway+"RB1").html(roster[homeOrAway+"Team"]["RB1"]);
+		$("#"+homeOrAway+"RB2").html(roster[homeOrAway+"Team"]["RB2"]);
+		$("#"+homeOrAway+"WR1").html(roster[homeOrAway+"Team"]["WR1"]);
+		$("#"+homeOrAway+"WR2").html(roster[homeOrAway+"Team"]["WR2"]);
+		$("#"+homeOrAway+"WR3").html(roster[homeOrAway+"Team"]["WR3"]);
+		$("#"+homeOrAway+"TE").html(roster[homeOrAway+"Team"]["TE"]);
+		$("#"+homeOrAway+"DEF").html(roster[homeOrAway+"Team"]["DEF"]);
+		$("#"+homeOrAway+"K").html(roster[homeOrAway+"Team"]["K"]);
+		$("#"+homeOrAway+"FLEX").html(roster[homeOrAway+"Team"]["FLEX"]);
 	}
 }
 
