@@ -396,16 +396,16 @@ function getFantasyPoints(week, homeOrAway, roster) {
 		  //console.log(playerPoints);
 		  //console.log("successfully got fantasyPoints from php!");
 		  
-		  populatePoints(homeOrAway, playerPoints, roster["QB"], "QB");
-		  populatePoints(homeOrAway, playerPoints, roster["RB1"], "RB1");
-		  populatePoints(homeOrAway, playerPoints, roster["RB2"], "RB2");
-		  populatePoints(homeOrAway, playerPoints, roster["WR1"], "WR1");
-		  populatePoints(homeOrAway, playerPoints, roster["WR2"], "WR2");
-		  populatePoints(homeOrAway, playerPoints, roster["WR3"], "WR3");
-		  populatePoints(homeOrAway, playerPoints, roster["TE"], "TE");
-		  populatePoints(homeOrAway, playerPoints, roster["DEF"], "DEF");
-		  populatePoints(homeOrAway, playerPoints, roster["K"], "K");
-		  populatePoints(homeOrAway, playerPoints, roster["FLEX"], "FLEX");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["QB"], "QB");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["RB1"], "RB1");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["RB2"], "RB2");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["WR1"], "WR1");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["WR2"], "WR2");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["WR3"], "WR3");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["TE"], "TE");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["DEF"], "DEF");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["K"], "K");
+		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["FLEX"], "FLEX");
 		  
 		  var totalPlayerPoints = 0;
 		  for (var key in playerPoints) {
@@ -417,7 +417,7 @@ function getFantasyPoints(week, homeOrAway, roster) {
 			  }
 		  }
 		  
-		  totalPlayerPoints = Math.round(totalPlayerPoints*100)/100;
+		  totalPlayerPoints = Math.round(totalPlayerPoints*10)/10;
 		  
 		  $('#'+homeOrAway+"TeamScore").html(totalPlayerPoints);
 	    }
