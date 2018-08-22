@@ -272,6 +272,8 @@ function populateMatchupTable(week, roster) {
 								"&awayK="+roster["awayTeam"]["K"] +
 								"&awayFLEX="+roster["awayTeam"]["FLEX"];	
 				dataString = dataString.trim().replace(/ /g, '%20');
+				dataString = dataString.replace(/'/g, '%5C%27');
+				
 				console.log("datastring = "+dataString);
 
 				$.ajax({

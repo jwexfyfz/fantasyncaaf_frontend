@@ -7,28 +7,28 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
-	$weekNum = $_GET["weekNum"];
-	$homeQB=$_GET["homeQB"];
-	$homeRB1=$_GET["homeRB1"];
-	$homeRB2=$_GET["homeRB2"];
-	$homeWR1=$_GET["homeWR1"];
-	$homeWR2=$_GET["homeWR2"];
-	$homeWR3=$_GET["homeWR3"];
-	$homeTE=$_GET["homeTE"];
-	$homeDEF=$_GET["homeDEF"];
-	$homeK=$_GET["homeK"];
-	$homeFLEX=$_GET["homeFLEX"];
+	$weekNum = $_POST["weekNum"];
+	$homeQB=$_POST["homeQB"];
+	$homeRB1=$_POST["homeRB1"];
+	$homeRB2=$_POST["homeRB2"];
+	$homeWR1=$_POST["homeWR1"];
+	$homeWR2=$_POST["homeWR2"];
+	$homeWR3=$_POST["homeWR3"];
+	$homeTE=$_POST["homeTE"];
+	$homeDEF=$_POST["homeDEF"];
+	$homeK=$_POST["homeK"];
+	$homeFLEX=$_POST["homeFLEX"];
 	
-	$awayQB=$_GET["awayQB"];
-	$awayRB1=$_GET["awayRB1"];
-	$awayRB2=$_GET["awayRB2"];
-	$awayWR1=$_GET["awayWR1"];
-	$awayWR2=$_GET["awayWR2"];
-	$awayWR3=$_GET["awayWR3"];
-	$awayTE=$_GET["awayTE"];
-	$awayDEF=$_GET["awayDEF"];
-	$awayK=$_GET["awayK"];
-	$awayFLEX=$_GET["awayFLEX"];
+	$awayQB=$_POST["awayQB"];
+	$awayRB1=$_POST["awayRB1"];
+	$awayRB2=$_POST["awayRB2"];
+	$awayWR1=$_POST["awayWR1"];
+	$awayWR2=$_POST["awayWR2"];
+	$awayWR3=$_POST["awayWR3"];
+	$awayTE=$_POST["awayTE"];
+	$awayDEF=$_POST["awayDEF"];
+	$awayK=$_POST["awayK"];
+	$awayFLEX=$_POST["awayFLEX"];
 	
     //Query to get team rosters
     $sql = "SELECT playerName, playerAbbr FROM collegeTeamRoster where playerName in ('$homeQB', '$homeRB1', '$homeRB2', '$homeWR1', '$homeWR2', '$homeWR3', '$homeTE', '$homeK', '$homeFLEX', '$awayQB', '$awayRB1', '$awayRB2', '$awayWR1', '$awayWR2', '$awayWR3', '$awayTE', '$awayK', '$awayFLEX');";
