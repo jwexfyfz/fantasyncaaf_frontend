@@ -7,8 +7,8 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
-	$weekNum = $_POST["weekNum"];
-	$teamID = $_POST["teamIDNum"];
+	$weekNum = $_GET["weekNum"];
+	$teamID = $_GET["teamIDNum"];
     //Query to get team rosters
     
 	//Get the matchup schedule team IDs
@@ -31,6 +31,10 @@
 		$matchupHomeTeam = null;
 		$matchupAwayTeam = null;
     }
+	
+	//echo $matchupHomeTeam;
+	//echo "<br>";
+	//echo $matchupAwayTeam;
 	
 	//Select teamRoster data for the home team
 	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum);";
