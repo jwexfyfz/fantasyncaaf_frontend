@@ -281,7 +281,7 @@ function populateMatchupTable(week, roster) {
 				    url: "getPlayerAbbr.php",
 				    data: dataString,
 				    success: function(response) {
-						getPlayerAbbr = response;	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen"
+						getPlayerAbbr = JSON.parse(response);	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen"
 						console.log(getPlayerAbbr);
 
 						console.log("roster[homeTeam][QB] is "+roster["homeTeam"]["QB"]);
