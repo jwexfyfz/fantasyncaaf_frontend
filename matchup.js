@@ -393,7 +393,7 @@ function getFantasyPoints(week, homeOrAway, roster) {
 	    success: function(response) {
 	      //$('#result2').html(response);
 		  playerPoints = JSON.parse(response);
-		  //console.log(playerPoints);
+		  console.log(playerPoints);
 		  //console.log("successfully got fantasyPoints from php!");
 		  
 		  populatePoints(homeOrAway, playerPoints, roster[homeOrAway+"Team"]["QB"], "QB");
