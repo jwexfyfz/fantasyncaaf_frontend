@@ -205,33 +205,6 @@ function updatePage() {
 	
 }
 
-//This function should now be obsolete as it's rolled under updatePage()
-/*
-function getTeamRoster(week, teamID, homeOrAway) {
-	
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
-	//console.log("dataString from getTeamRoster: "+dataString);
-	//Send query to loadTeamRoster.php via AJAX
-	//This gets the roster that was already set by the user previously
-	$.ajax({
-	    type: "POST",
-	    url: "loadTeamRoster.php",
-	    data: dataString,
-	    success: function(response) {
-		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
-		  console.log(phpResponse);
-		  console.log("id: "+'#'+homeOrAway+'TeamName'+" teamName: "+phpResponse[week]["teamName"]);
-		  
-		  $('#'+homeOrAway+'TeamName').html(phpResponse[week]["teamName"]);
-		  
-		  populateMatchupTable(week, homeOrAway, phpResponse[week]);	
-		  console.log("finished populating " + homeOrAway + " roster");	//For testing
-	    }
-	});
-}
-*/
-
 function populateMatchupTable(week, roster) {	
 	var usePlayerAbbr = 0;
 	
