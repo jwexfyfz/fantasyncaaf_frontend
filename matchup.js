@@ -177,25 +177,35 @@ function updatePage() {
 	console.log("updatePage: "+dataString);
 	$.ajax({
 	    type: "POST",
-	    url: "getMatchup.php",
+	    url: "getMatchupAndTeamRoster.php",
 	    data: dataString,
 	    success: function(response) {
 		  phpResponse = JSON.parse(response);
 		  console.log(phpResponse);	
 		  
-			if(phpResponse[0]["homeTeam"] == teamID) {
+			if(phpResponse["homeTeam"]["teamID"] == teamID) {
 				setColorOfUserTeam("home", "away");
 			} else {
 				setColorOfUserTeam("away", "home");
 			}
+			
+			//Set the team names for home and away team
+			$('#homeTeamName').html(phpResponse["homeTeam"]["teamName"]);
+			$('#awayTeamName').html(phpResponse["awayTeam"]["teamName"]);
+			
+			populateMatchupTable(week, phpResponse);	
+			
+			//Set eligible players for each select, set the current chosen player as default value
+			//getTeamRoster(week, phpResponse[0]["homeTeam"], "home");
+			//getTeamRoster(week, phpResponse[0]["awayTeam"], "away");
 	    }
 	});	
 	
-	//Set eligible players for each select, set the current chosen player as default value
-	getTeamRoster(week, phpResponse[0]["homeTeam"], "home");
-	getTeamRoster(week, phpResponse[0]["awayTeam"], "away");
+	
 }
 
+//This function should now be obsolete as it's rolled under updatePage()
+/*
 function getTeamRoster(week, teamID, homeOrAway) {
 	
 	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
@@ -219,8 +229,9 @@ function getTeamRoster(week, teamID, homeOrAway) {
 	    }
 	});
 }
+*/
 
-function populateMatchupTable(week, homeOrAway, roster) {	
+function populateMatchupTable(week, roster) {	
 	var usePlayerAbbr = 0;
 	
 	$.ajax({
@@ -240,16 +251,26 @@ function populateMatchupTable(week, homeOrAway, roster) {
 			if(usePlayerAbbr) {
 				var getPlayerAbbr ="";
 
-				dataString = 	"qb="+roster["QB"] +
-								"&rb1="+roster["RB1"] +
-								"&rb2="+roster["RB2"] +
-								"&wr1="+roster["WR1"] +
-								"&wr2="+roster["WR2"] +
-								"&wr3="+roster["WR3"] +
-								"&te="+roster["TE"] +
-								"&def="+roster["DEF"] +
-								"&k="+roster["K"] +
-								"&flex="+roster["FLEX"];	
+				dataString = 	"homeQB="+roster["homeTeam"]["QB"] +
+								"&homeRB1="+roster["homeTeam"]["RB1"] +
+								"&homeRB2="+roster["homeTeam"]["RB2"] +
+								"&homeWR1="+roster["homeTeam"]["WR1"] +
+								"&homeWR2="+roster["homeTeam"]["WR2"] +
+								"&homeWR3="+roster["homeTeam"]["WR3"] +
+								"&homeTE="+roster["homeTeam"]["TE"] +
+								"&homeDEF="+roster["homeTeam"]["DEF"] +
+								"&homeK="+roster["homeTeam"]["K"] +
+								"&homeFLEX="+roster["homeTeam"]["FLEX"] +
+								"&awayQB="+roster["awayTeam"]["QB"] +
+								"&awayRB1="+roster["awayTeam"]["RB1"] +
+								"&awayRB2="+roster["awayTeam"]["RB2"] +
+								"&awayWR1="+roster["awayTeam"]["WR1"] +
+								"&awayWR2="+roster["awayTeam"]["WR2"] +
+								"&awayWR3="+roster["awayTeam"]["WR3"] +
+								"&awayTE="+roster["awayTeam"]["TE"] +
+								"&awayDEF="+roster["awayTeam"]["DEF"] +
+								"&awayK="+roster["awayTeam"]["K"] +
+								"&awayFLEX="+roster["awayTeam"]["FLEX"];	
 				dataString = dataString.trim().replace(/ /g, '%20');
 				console.log("datastring = "+dataString);
 
@@ -261,27 +282,30 @@ function populateMatchupTable(week, homeOrAway, roster) {
 						getPlayerAbbr = response;	//response should look like: getPlayerAbbr["Josh Rosen"] = "J. Rosen"
 						console.log(getPlayerAbbr);
 
-						console.log("roster[QB] is "+roster["QB"]);
-						console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
-						console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
-						console.log("QB abbr is "+getPlayerAbbr[roster["QB"]]);
+						console.log("roster[homeTeam][QB] is "+roster["homeTeam"]["QB"]);
+						console.log("roster[awayTeam][QB] is "+roster["awayTeam"]["QB"]);
 
-						$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster["QB"]]);
-						$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster["RB1"]]);
-						$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster["RB2"]]);
-						$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster["WR1"]]);
-						$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster["WR2"]]);
-						$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster["WR3"]]);
-						$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster["TE"]]);
-						$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster["DEF"]]);
-						$("#"+homeOrAway+"K").html(getPlayerAbbr[roster["K"]]);
-						$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster["FLEX"]]);
 
-						getFantasyPoints(week, homeOrAway, roster);
-				    }
+						setPlayerNameInMatchup(getPlayerAbbr, roster, "home", true);
+						setPlayerNameInMatchup(getPlayerAbbr, roster, "away", true);
+						/*
+						$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster[homeOrAway]["QB"]]);
+						$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster[homeOrAway]["RB1"]]);
+						$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster[homeOrAway]["RB2"]]);
+						$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster[homeOrAway]["WR1"]]);
+						$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster[homeOrAway]["WR2"]]);
+						$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster[homeOrAway]["WR3"]]);
+						$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster[homeOrAway]["TE"]]);
+						$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster[homeOrAway]["DEF"]]);
+						$("#"+homeOrAway+"K").html(getPlayerAbbr[roster[homeOrAway]["K"]]);
+						$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster[homeOrAway]["FLEX"]]);
+						*/				    }
 				});
 			}
 			else {
+				setPlayerNameInMatchup(getPlayerAbbr, roster, "home", false);
+				setPlayerNameInMatchup(getPlayerAbbr, roster, "away", false);
+				/*
 				$("#"+homeOrAway+"QB").html(roster["QB"]);
 				$("#"+homeOrAway+"RB1").html(roster["RB1"]);
 				$("#"+homeOrAway+"RB2").html(roster["RB2"]);
@@ -292,12 +316,42 @@ function populateMatchupTable(week, homeOrAway, roster) {
 				$("#"+homeOrAway+"DEF").html(roster["DEF"]);
 				$("#"+homeOrAway+"K").html(roster["K"]);
 				$("#"+homeOrAway+"FLEX").html(roster["FLEX"]);
-
-				getFantasyPoints(week, homeOrAway, roster);
+				*/
 			}
+			getFantasyPoints(week, "home", roster);
+			getFantasyPoints(week, "away", roster);
+			
 	    }
 	});
 }
+
+function setPlayerNameInMatchup(getPlayerAbbr, roster, homeOrAway, useAbbr) {
+	if(useAbbr) {
+		$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster[homeOrAway]["QB"]]);
+		$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster[homeOrAway]["RB1"]]);
+		$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster[homeOrAway]["RB2"]]);
+		$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster[homeOrAway]["WR1"]]);
+		$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster[homeOrAway]["WR2"]]);
+		$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster[homeOrAway]["WR3"]]);
+		$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster[homeOrAway]["TE"]]);
+		$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster[homeOrAway]["DEF"]]);
+		$("#"+homeOrAway+"K").html(getPlayerAbbr[roster[homeOrAway]["K"]]);
+		$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster[homeOrAway]["FLEX"]]);
+	}
+	else {
+		$("#"+homeOrAway+"QB").html(roster[homeOrAway]["QB"]);
+		$("#"+homeOrAway+"RB1").html(roster[homeOrAway]["RB1"]);
+		$("#"+homeOrAway+"RB2").html(roster[homeOrAway]["RB2"]);
+		$("#"+homeOrAway+"WR1").html(roster[homeOrAway]["WR1"]);
+		$("#"+homeOrAway+"WR2").html(roster[homeOrAway]["WR2"]);
+		$("#"+homeOrAway+"WR3").html(roster[homeOrAway]["WR3"]);
+		$("#"+homeOrAway+"TE").html(roster[homeOrAway]["TE"]);
+		$("#"+homeOrAway+"DEF").html(roster[homeOrAway]["DEF"]);
+		$("#"+homeOrAway+"K").html(roster[homeOrAway]["K"]);
+		$("#"+homeOrAway+"FLEX").html(roster[homeOrAway]["FLEX"]);
+	}
+}
+
 
 function getUrlVars() {
     var vars = {};
@@ -311,16 +365,16 @@ function getUrlVars() {
 
 
 function getFantasyPoints(week, homeOrAway, roster) {
-	dataString = 	"qb="+roster["QB"] +
-					"&rb1="+roster["RB1"] +
-					"&rb2="+roster["RB2"] +
-					"&wr1="+roster["WR1"] +
-					"&wr2="+roster["WR2"] +
-					"&wr3="+roster["WR3"] +
-					"&te="+roster["TE"] +
-					"&def="+roster["DEF"] +
-					"&k="+roster["K"] +
-					"&flex="+roster["FLEX"] +
+	dataString = 	"qb="+roster[homeOrAway+"Team"]["QB"] +
+					"&rb1="+roster[homeOrAway+"Team"]["RB1"] +
+					"&rb2="+roster[homeOrAway+"Team"]["RB2"] +
+					"&wr1="+roster[homeOrAway+"Team"]["WR1"] +
+					"&wr2="+roster[homeOrAway+"Team"]["WR2"] +
+					"&wr3="+roster[homeOrAway+"Team"]["WR3"] +
+					"&te="+roster[homeOrAway+"Team"]["TE"] +
+					"&def="+roster[homeOrAway+"Team"]["DEF"] +
+					"&k="+roster[homeOrAway+"Team"]["K"] +
+					"&flex="+roster[homeOrAway+"Team"]["FLEX"] +
 					"&week="+week;
 	dataString = dataString.trim().replace(/ /g, '%20');
 
