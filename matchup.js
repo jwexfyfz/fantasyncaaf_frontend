@@ -126,6 +126,7 @@ function printMatchupListFantasyPoints(week, homeOrAway, roster, tableIndex, tea
 					"&flex="+roster["FLEX"] +
 					"&week="+week;
 	dataString = dataString.trim().replace(/ /g, '%20');
+	dataString = dataString.replace(/'/g, '%5C%27');
 
 	console.log("printMatchupListFantasyPoints dataString: "+dataString);
 
@@ -290,35 +291,12 @@ function populateMatchupTable(week, roster) {
 
 						setPlayerNameInMatchup(getPlayerAbbr, roster, "home", true);
 						setPlayerNameInMatchup(getPlayerAbbr, roster, "away", true);
-						/*
-						$("#"+homeOrAway+"QB").html(getPlayerAbbr[roster[homeOrAway]["QB"]]);
-						$("#"+homeOrAway+"RB1").html(getPlayerAbbr[roster[homeOrAway]["RB1"]]);
-						$("#"+homeOrAway+"RB2").html(getPlayerAbbr[roster[homeOrAway]["RB2"]]);
-						$("#"+homeOrAway+"WR1").html(getPlayerAbbr[roster[homeOrAway]["WR1"]]);
-						$("#"+homeOrAway+"WR2").html(getPlayerAbbr[roster[homeOrAway]["WR2"]]);
-						$("#"+homeOrAway+"WR3").html(getPlayerAbbr[roster[homeOrAway]["WR3"]]);
-						$("#"+homeOrAway+"TE").html(getPlayerAbbr[roster[homeOrAway]["TE"]]);
-						$("#"+homeOrAway+"DEF").html(getPlayerAbbr[roster[homeOrAway]["DEF"]]);
-						$("#"+homeOrAway+"K").html(getPlayerAbbr[roster[homeOrAway]["K"]]);
-						$("#"+homeOrAway+"FLEX").html(getPlayerAbbr[roster[homeOrAway]["FLEX"]]);
-						*/				    }
+					}
 				});
 			}
 			else {
 				setPlayerNameInMatchup(getPlayerAbbr, roster, "home", false);
 				setPlayerNameInMatchup(getPlayerAbbr, roster, "away", false);
-				/*
-				$("#"+homeOrAway+"QB").html(roster["QB"]);
-				$("#"+homeOrAway+"RB1").html(roster["RB1"]);
-				$("#"+homeOrAway+"RB2").html(roster["RB2"]);
-				$("#"+homeOrAway+"WR1").html(roster["WR1"]);
-				$("#"+homeOrAway+"WR2").html(roster["WR2"]);
-				$("#"+homeOrAway+"WR3").html(roster["WR3"]);
-				$("#"+homeOrAway+"TE").html(roster["TE"]);
-				$("#"+homeOrAway+"DEF").html(roster["DEF"]);
-				$("#"+homeOrAway+"K").html(roster["K"]);
-				$("#"+homeOrAway+"FLEX").html(roster["FLEX"]);
-				*/
 			}
 			getFantasyPoints(week, "home", roster);
 			getFantasyPoints(week, "away", roster);
@@ -383,6 +361,7 @@ function getFantasyPoints(week, homeOrAway, roster) {
 					"&flex="+roster[homeOrAway+"Team"]["FLEX"] +
 					"&week="+week;
 	dataString = dataString.trim().replace(/ /g, '%20');
+	dataString = dataString.replace(/'/g, '%5C%27');
 
 	console.log("getFantasyPoints dataString: "+dataString);
 	
