@@ -68,7 +68,7 @@
     echo json_encode($teamRoster);
 
 
-/*	
+
 	//Do the same thing for the away team
 	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupAwayTeam and week in ($weekNum);";
     $result = $conn->query($sql);
@@ -101,6 +101,5 @@
     echo json_encode($teamRoster);
     
 	
-*/	
     $conn->close();
 ?>
