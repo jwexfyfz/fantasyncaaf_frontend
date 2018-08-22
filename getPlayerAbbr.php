@@ -35,7 +35,7 @@
     $result = $conn->query($sql);
 	echo $sql;
 	
-	echo "<br><br>"
+	echo "<br><br>";
 	
 	//$playersAndPoints = array();
     if ($result->num_rows > 0) {
