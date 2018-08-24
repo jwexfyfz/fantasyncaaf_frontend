@@ -111,7 +111,7 @@ function getUrlVars() {
     return vars;
 }
 
-function updatePage() {
+function updatePage(teamID) {
 	//This is a dummy function because weekSelect.js calls updatePage() when new week is selected
 	console.log("updatePage() called");
 }

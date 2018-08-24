@@ -63,12 +63,12 @@ $( document ).ready(
 		
 });
 
-function updatePage() {
+function updatePage(teamID) {
 	console.log("week changed to "+$('#currentWeekNum').val());
 	var urlArray = getUrlVars();
 	var week	=	$("#currentWeekNum").val();
 	//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
-	var teamID	=	$("#teamID").val();
+	//var teamID	=	$("#teamID").val();
 	console.log("updatePage teamID: "+teamID);
 	
 	//var teamName=	urlArray["teamName"];
@@ -479,7 +479,7 @@ function makeChangesToTeamRoster(position, week, teamID, teamName) {
 		      $('#result').html(response);
 			  console.log("successfully sent selected position that changed! "+position);	//For testing
 			  confirmPlayer(confirmPosition);
-			  getGameTimeOfPlayer(confirmPosition);
+			  //getGameTimeOfPlayer(confirmPosition);  // WHAT IS THIS??
 			  getFantasyPoints();
 		    }
 		});
