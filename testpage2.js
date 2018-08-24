@@ -410,14 +410,14 @@ function sendToPhp(position) {
 	
 }
 
-function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, dupesExist) {
-	console.log("from makeChangesToTeamRoster, switchPostion1="+switchPosition1+", switchPosition2="+switchPosition2);
-	if(dupesExist) {
-		$("#errorOutput p:first").html("Can't have duplicate players!");
-	} 
+function makeChangesToTeamRoster(position, week, teamID, teamName) {
+	//console.log("from makeChangesToTeamRoster, switchPostion1="+switchPosition1+", switchPosition2="+switchPosition2);
+//	if(dupesExist) {
+//		$("#errorOutput p:first").html("Can't have duplicate players!");
+//	} 
 	//This else condition is here because this function is called many times, so we don't want to execute a query to sql every time.  TE and FLEX happen to be the last one.  TODO: jeffwang to remove the extra query to sql from this function after two players have already been switched via addPlayerToRoster function
-	else if(	(switchPosition1 == "TE")	&&	(switchPosition2 == "FLEX")	) {		
-		$("#errorOutput p:first").html("");
+	//else if(	(switchPosition1 == "TE")	&&	(switchPosition2 == "FLEX")	) {		
+//		$("#errorOutput p:first").html("");
 		switch(position) {
 		    case "QBtophp":
 		        dataString = 'QBtophp='+$('#inputQB').val()+'&weekNum='+week+'&teamIDNum='+teamID+'&teamName='+teamName;
@@ -483,21 +483,17 @@ function makeChangesToTeamRoster(switchPosition1, switchPosition2, position, wee
 			  getFantasyPoints();
 		    }
 		});
-	}
-}
-
-function getGameTimeOfPlayer(position) {	
-	
+	//}
 }
 
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes(position, week, teamID, teamName) {	
+function verifyNoDupes(position, week, fantasyID, teamName) {	
     var phpResponse;
 	
-	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+	//only need week and fantasyID to retrieve a user's roster
+	var dataString = 'weekNum='+week+'&teamIDNum='+fantasyID;
 	var temp;
 	
 	//Send query to loadTeamRoster.php via AJAX
@@ -507,10 +503,21 @@ function verifyNoDupes(position, week, teamID, teamName) {
 	    url: "loadTeamRoster.php",
 	    data: dataString,
 	    success: function(response) {
-		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
+			console.log("successfully sent query to tell php to provide team roster!");	//For testing
+			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
-		  getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);
+			comparePotentialDupes(position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("WR1", "WR2", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("WR2", "WR3", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("WR1", "WR3", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, fantasyID, teamName);
+			//comparePotentialDupes("TE", "FLEX", position, phpResponse, week, fantasyID, teamName);
+		  
+			//getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);
 	    }
 	});  
 }
@@ -565,17 +572,17 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			}
 			else {  // allow the change
 				console.log("CHANGE ALLOWED");
-				
-				comparePotentialDupes("RB1", "RB2", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("RB1", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("RB2", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("WR1", "WR2", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("WR2", "WR3", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("WR1", "WR3", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("WR1", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("WR2", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("WR3", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				comparePotentialDupes("TE", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				makeChangesToTeamRoster(position, week, fantasyID, teamName);
+				//comparePotentialDupes("RB1", "RB2", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("RB1", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("RB2", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("WR1", "WR2", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("WR2", "WR3", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("WR1", "WR3", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("WR1", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("WR2", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("WR3", "FLEX", position, teamRoster, week, fantasyID, teamName);
+				//comparePotentialDupes("TE", "FLEX", position, teamRoster, week, fantasyID, teamName);
 				//return true;
 			}
 	    }
@@ -601,23 +608,33 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName)
 	
 }
 
-function comparePotentialDupes (switchPosition1, switchPosition2, position, phpResponse, week, teamID, teamName){
-    if(	(	($('#input'+switchPosition1).val() == phpResponse[week][switchPosition2]) 	||
-	  		($('#input'+switchPosition2).val() == phpResponse[week][switchPosition1])		)	&& 	
-		(	($('#input'+switchPosition1).val() != "")	&&
-		(	$('#input'+switchPosition2).val() != "")		)												) 
+function comparePotentialDupes (position, phpResponse, week, teamID, teamName){
+    var switchedPlayers = false;
+	var switchPosition1 = ["RB1","RB1","RB2","WR1","WR2","WR1","WR1","WR2","WR3","TE"];
+	var switchPosition2 = ["RB2","FLEX","FLEX","WR2","WR3","WR3","FLEX","FLEX","FLEX","FLEX"];
+	
+	for (var i = 0; i < switchPosition1.length; i++) {
+	
+	if(	(	($('#input'+switchPosition1[i]).val() == phpResponse[week][switchPosition2[i]]) 	||
+	  		($('#input'+switchPosition2[i]).val() == phpResponse[week][switchPosition1[i]])		)	&& 	
+		(	($('#input'+switchPosition1[i]).val() != "")	&&
+		(	$('#input'+switchPosition2[i]).val() != "")		)												) 
 	{
 			console.log("values were the same!");
-			$('#input'+switchPosition1).val(phpResponse[week][switchPosition2]);
-			$('#input'+switchPosition2).val(phpResponse[week][switchPosition1]);
+			$('#input'+switchPosition1[i]).val(phpResponse[week][switchPosition2[i]]);
+			$('#input'+switchPosition2[i]).val(phpResponse[week][switchPosition1[i]]);
 			
-			$('#input'+switchPosition1).selectpicker('refresh');
-			$('#input'+switchPosition2).selectpicker('refresh');
+			$('#input'+switchPosition1[i]).selectpicker('refresh');
+			$('#input'+switchPosition2[i]).selectpicker('refresh');
 
-			switchPlayerUpdateRoster(switchPosition1, switchPosition2, week, teamID, teamName);
+			switchedPlayers = true;
+			switchPlayerUpdateRoster(switchPosition1[i], switchPosition2[i], week, teamID, teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
-	} else {
-			makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
+	} 
+	}
+	if (!switchedPlayers) {
+			getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);		//Check for dupes
+			//makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
 	}
 }
 
@@ -681,6 +698,7 @@ function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSe
 				
 			}
 			if (!playerGameStarted) {
+				
 				verifyNoDupes(position, week, fantasyID, teamName);		//Check for dupes
 				checkGameStarted(week, fantasyID);
 			}
