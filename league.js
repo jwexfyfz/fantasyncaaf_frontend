@@ -2,6 +2,42 @@ $( document ).ready(
 	function startPage() {
 		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
 		var currentWeek = 1;
+		if (Date.now() > new Date('November 20, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 13;
+		}
+		else if (Date.now() > new Date('November 13, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 12;
+		}
+		else if (Date.now() > new Date('November 6, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 11;
+		}
+		else if (Date.now() > new Date('October 30, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 10;
+		}
+		else if (Date.now() > new Date('October 23, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 9;
+		}
+		else if (Date.now() > new Date('October 16, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 8;
+		}
+		else if (Date.now() > new Date('October 9, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 7;
+		}
+		else if (Date.now() > new Date('October 2, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 6;
+		}
+		else if (Date.now() > new Date('September 25, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 5;
+		}
+		else if (Date.now() > new Date('September 18, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 4;
+		}
+		else if (Date.now() > new Date('September 11, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 3;
+		}
+		else if (Date.now() > new Date('September 4, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 2;
+		
 		$(".test").html("Week "+currentWeek);
 		console.log("Current week is now set to "+$(".test").html());
 		
