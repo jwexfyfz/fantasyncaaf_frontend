@@ -37,6 +37,7 @@ $( document ).ready(
 		}
 		else if (Date.now() > new Date('September 4, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
+		}
 		
 		$(".test").html("Week "+currentWeek);
 		console.log("Current week is now set to "+$(".test").html());
