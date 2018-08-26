@@ -8,13 +8,24 @@
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
     //Query to get team rosters
-    $sql = "SELECT username, id_user FROM users group by id_user";
+    $sql = "SELECT * FROM leagueStandings order by wins DESC, losses ASC, divisionWins DESC, divisionLosses ASC, pointsFor DESC, pointsAgainst ASC";
     $result = $conn->query($sql);
 
+    $index = 0;
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            $output[$row["id_user"]] = $row["username"];
+            $output[$index] = array(
+				"teamID"=>$row["teamID"], 
+				"wins"=>$row["wins"], 
+				"losses"=>$row["losses"], 
+				"divisionWins"=>$row["divisionWins"],
+				"divisionLosses"=>$row["divisionLosses"],
+				"pointsFor"=>$row["pointsFor"],
+				"pointsAgainst"=>$row["pointsAgainst"],
+				"division"=>$row["division"]
+			);
+			$index++;
         }
     } else {
         echo "0 results";

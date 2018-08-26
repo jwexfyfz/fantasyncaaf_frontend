@@ -24,7 +24,7 @@
 	padding-left: 10px;
 }
 
-#standingsTable {
+#standingsTable, #standingsTable2 {
 	/*width:600px;*/
 	table-layout: fixed;	
 	border-bottom: 1px solid rgb(221,221,221,0.25);
@@ -47,7 +47,7 @@
 	  font-weight: 300;
 }
 
-#standingsTableWindow {
+#standingsTableWindow, #standingsTableWindow2 {
 	width: 100%;
 	max-width: 500px;
 	overflow: scroll;
@@ -104,6 +104,32 @@
 	width: 85px;
 }
 
-#bigContainer {
+#bigContainer, #bigContainer2 {
 	width: 550px;
+}
+
+.divisionHeader {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.divisionTable {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.divisionRow {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+	height: 30px;
+	line-height: 30px;
+	background-color: #FFA500;
+	color: #ffffff;
+	text-align: left;
+	font-weight: 300;
+	padding-left: 10px;
+	position: relative;
 }

@@ -41,7 +41,12 @@ if(!$fgmembersite->CheckLogin())
 					<th class="headerTableColumn" id="gameLogoBox"></th>
 					<th class="headerTableColumn" id="currentWeekBox">
 						<div id="accountAvatar">
-							w
+							<?php 
+								$string = $fgmembersite->getTeamName(); 
+								preg_match('/(^\w)/', $string, $match);
+								$output = strtolower($match[1][0]);
+								echo $output;
+							?>
 						</div>
 						<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
 							<select id="currentWeekNum">
@@ -80,40 +85,94 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 		
 		<div id="content">
-			<!--Have a blank row so that content at top gets pushed underneath header-->
-			<div id="standingsTableWindow">
-				<table id="standingsTable">
-					<!--Leave space for the top header-->
-					<tr style="height: 121px"></tr>
-					<!--Leave space between header and first table-->
-					<tr style="height: 10px"></tr>
-					<tr id="standingsTableSections">
-						<th class="standingsTableHeader">
-							Rank
-						</th>
-						<th class="standingsTableHeader" id="sticky">
-							Team Name
-						</th>
-						<th class="standingsTableHeader">
-							Record
-						</th>
-						<th class="standingsTableHeader">
-							Div. Record
-						</th>
-						<th class="standingsTableHeader">
-							Points For
-						</th>
-						<th class="standingsTableHeader">
-							Points Against
-						</th>
+			<div class="divisionHeader">
+				<table class="divisionTable">
+					<tr id="leaveRoomForHeader"></tr>
+					<tr>
+						<td class="divisionRow">
+							Division: North
+						</td>
 					</tr>
 				</table>
+			</div>
+			<!--Have a blank row so that content at top gets pushed underneath header-->
+			<div id="standingsTableWindow">
+				<div id="bigContainer">
+					<table id="standingsTable">
+						<!--Leave space for the top header-->
+						<!--<tr style="height: 121px"></tr>-->
+						<!--Leave space between header and first table-->
+						<tr style="height: 10px"></tr>
+						<tr id="standingsTableSections">
+							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+								Rank
+							</th>
+							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								Team
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Div. Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts For
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts Against
+							</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="divisionHeader">
+				<table class="divisionTable">
+					<tr>
+						<td class="divisionRow">
+							Division: South
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="standingsTableWindow2">
+				<div id="bigContainer2">
+					<table id="standingsTable2">
+						<!--Leave space for the top header-->
+						<!--<tr style="height: 121px"></tr>-->
+						<!--Leave space between header and first table-->
+						<tr style="height: 10px"></tr>
+						<tr id="standingsTableSections2">
+							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+								Rank
+							</th>
+							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								Team
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Div. Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts For
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts Against
+							</th>
+						</tr>
+					</table>
+				</div>
 			</div>
 		
 			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
 			<div id="accountMenu">
 				<div class="accountMenuRow" id="avatarRow">
-					w
+					<?php 
+						$string = $fgmembersite->getTeamName(); 
+						echo $string;
+					?>
 				</div>
 				<a href="logout.php">
 					<div class="accountMenuRow" id="logoutRow">

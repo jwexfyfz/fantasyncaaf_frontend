@@ -342,10 +342,16 @@ a, a:hover {
 #content {
 	height: 100vh;
 	width: 100%;
+	position: fixed;
+	top: 0px;
 }
 
 .center {
 	width: 100%;
 	max-width: 600px;
 	margin: 0 auto;
+}
+
+#leaveRoomForHeader {
+	height: calc(var(--headerHeight) + 10px); 
 }

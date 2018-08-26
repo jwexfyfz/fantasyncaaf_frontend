@@ -85,6 +85,11 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 		
 		<div id="content">
+			<table>
+				<tr class="divisionRow">
+					Division: North
+				</tr>
+			</table>
 			<!--Have a blank row so that content at top gets pushed underneath header-->
 			<div id="standingsTableWindow">
 				<div id="bigContainer">
@@ -94,6 +99,41 @@ if(!$fgmembersite->CheckLogin())
 						<!--Leave space between header and first table-->
 						<tr style="height: 10px"></tr>
 						<tr id="standingsTableSections">
+							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+								Rank
+							</th>
+							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								Team
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Div. Record
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts For
+							</th>
+							<th class="standingsTableHeader otherColumn">
+								Pts Against
+							</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<table>
+				<tr class="divisionRow">
+					Division: South
+				</tr>
+			</table>
+			<div id="standingsTableWindow2">
+				<div id="bigContainer2">
+					<table id="standingsTable2">
+						<!--Leave space for the top header-->
+						<tr style="height: 121px"></tr>
+						<!--Leave space between header and first table-->
+						<tr style="height: 10px"></tr>
+						<tr id="standingsTableSections2">
 							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
 								Rank
 							</th>

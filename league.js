@@ -91,10 +91,60 @@ $( document ).ready(
 		    }
 		});
 		
-		getTeamNameFromTeamID(teamID);
+		$('#standingsTableWindow2').scroll(function() {
+		    var distanceFromLeft = $(this).scrollLeft();
+			console.log("scroll @ "+$(this).scrollLeft());
+			
+			var rankWidth = $('#standingsTableSections th:first-child').css('width');
+		    //if (distanceFromLeft >= rankWidth.replace(/px/,'')) {
+			if (distanceFromLeft > 0) {
+				console.log('went sticky @ '+distanceFromLeft);
+		        $('#stickyRank').addClass('fixed');
+		        $('#stickyRank').css('top',$('#stickyRank').css('top'));
+				
+		        $('#sticky').addClass('fixed');
+		        $('#sticky').css('top',$('#sticky').css('top'));
+				
+		        $('#sticky2Rank').addClass('fixed');
+		        $('#sticky2Rank').css('top',$('#sticky2Rank').css('top'));
+								
+		        $('#sticky2').addClass('fixed');
+		        $('#sticky2').css('top',$('#sticky2').css('top'));
+								
+		        $('.stickyColumn').addClass('fixed');
+		        $('.stickyColumn').css('top',$('#sticky2').css('top'));
+								
+		        $('.stickyColumnRank').addClass('fixed');
+		        $('.stickyColumnRank').css('top',$('#sticky2').css('top'));
+		    } else {
+		        $('#stickyRank').removeClass('fixed');
+		        $('#sticky').removeClass('fixed');
+		        $('#sticky2Rank').removeClass('fixed');
+		        $('#sticky2').removeClass('fixed');
+		        $('.stickyColumn').removeClass('fixed');
+		    }
+		});
+		
+		checkDivisionFlag(teamID);
 });
 
-function getTeamNameFromTeamID(teamID) {
+function checkDivisionFlag(teamID) {
+	var useDivision = 1;
+	var dataString = "";
+	
+	$.ajax({
+	    type: "POST",
+	    url: "useDivisionsFlag.php",
+	    data: dataString,
+	    success: function(response) {
+		  useDivision = response;
+
+		  getTeamNameFromTeamID(useDivision, teamID);
+	    }
+	});
+}
+
+function getTeamNameFromTeamID(useDivision, teamID) {
 	var phpResponse;
 	var dataString = "";
 	
@@ -107,12 +157,12 @@ function getTeamNameFromTeamID(teamID) {
 	    success: function(response) {
 		  phpResponse = JSON.parse(response);
 
-		  populateStandings(teamID, phpResponse);
+		  populateStandings(useDivision, teamID, phpResponse);
 	    }
 	});
 }
 
-function populateStandings(teamID, getNameFromID) {
+function populateStandings(useDivision, teamID, getNameFromID) {
 	console.log("getNameFromID: "+getNameFromID);
 	var phpResponse;
 	var dataString = "";
@@ -127,13 +177,36 @@ function populateStandings(teamID, getNameFromID) {
 		  console.log("successfully sent query to get league standings!");	//For testing
 		  phpResponse = JSON.parse(response);
 		  
-		  for(i = 0; i < phpResponse.length; i++) {
-			  if(phpResponse[i]["teamID"] == teamID) {
-			  	  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn currentTeam stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
-			  } else {
-				  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+		  //Populate two tables for the two divisions if the useDivision flag is on
+		  if(useDivision) {
+			  for(i = 0; i < phpResponse.length; i++) {
+				  if(phpResponse[i]["division"] == 1) {
+					  if(phpResponse[i]["teamID"] == teamID) {
+					  	  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn currentTeam stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+					  } else {
+						  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+					  }
+				  }
+				  else {
+					  if(phpResponse[i]["teamID"] == teamID) {
+					  	  $('#standingsTable2').append('<tr><td class="standingsTableRow rankColumn currentTeam stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+					  } else {
+						  $('#standingsTable2').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+					  }
+				  }
 			  }
 		  }
+		  //Otherwise populate everyone into one table
+		  else {
+			  for(i = 0; i < phpResponse.length; i++) {
+				  if(phpResponse[i]["teamID"] == teamID) {
+				  	  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn currentTeam stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+				  } else {
+					  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+				  }				  
+			  }
+		  }
+		  
 		  
 		  console.log("finished populating league standings");	//For testing
 	    }
