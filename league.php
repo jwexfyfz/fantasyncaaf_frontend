@@ -85,9 +85,9 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 		
 		<div id="content">
+			<div id="leaveRoomForHeader"></div>
 			<div class="divisionHeader">
 				<table class="divisionTable">
-					<tr id="leaveRoomForHeader"></tr>
 					<tr>
 						<td class="divisionRow">
 							Division: North
