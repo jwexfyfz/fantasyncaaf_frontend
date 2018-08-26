@@ -139,7 +139,7 @@ function checkDivisionFlag(teamID) {
 	    success: function(response) {
 		  console.log("response from checkDivisionFlag(): "+response);
 		  
-		  if(response) {
+		  if(response == "1") {
 			  useDivisions = 1;
 			  console.log(useDivisions);
 		  }
