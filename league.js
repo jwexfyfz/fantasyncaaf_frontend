@@ -130,6 +130,7 @@ $( document ).ready(
 
 function checkDivisionFlag(teamID) {
 	var dataString = "";
+	var useDivisions = 2;
 	
 	$.ajax({
 	    type: "POST",
@@ -137,6 +138,15 @@ function checkDivisionFlag(teamID) {
 	    data: dataString,
 	    success: function(response) {
 		  console.log("response from checkDivisionFlag(): "+response);
+		  
+		  if(response) {
+			  useDivisions = 1;
+			  console.log(useDivisions);
+		  }
+		  else {
+			  useDivisions = 0;
+			  console.log(useDivisions);
+		  }
 		  
 		  if(!response) {
 			  console.log("hiding #standingsTableWindow2 and .divisionHeader");
