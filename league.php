@@ -143,7 +143,7 @@ if(!$fgmembersite->CheckLogin())
 						<!--Leave space between header and first table-->
 						<tr style="height: 10px"></tr>
 						<tr id="standingsTableSections2">
-							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+							<th class="standingsTableHeader rankColumn" id="stickyDivision2Rank" style="padding-left: 10px">
 								Rank
 							</th>
 							<th class="standingsTableHeader teamColumn" id="stickyDivision2" style="padding-left: 10px">

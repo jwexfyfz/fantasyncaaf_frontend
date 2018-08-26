@@ -54,7 +54,7 @@
 	margin: 0 auto;
 }
 
-#sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Rank, .stickyColumn, .stickyColumnRank {
+#sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Division2, #sticky2Rank, #sticky2Division2Rank, .stickyColumn, .stickyColumnRank {
     display: table-cell;
 	z-index: 30;
 }
@@ -82,7 +82,7 @@
 	height: 29px;
 }
 
-#sticky2.fixed:after {
+#sticky2.fixed:after, #sticky2Division2.fixed:after {
     content:'';
     position:absolute;
     left: 0;

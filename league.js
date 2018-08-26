@@ -105,23 +105,23 @@ $( document ).ready(
 		        $('#stickyDivision2').addClass('fixed');
 		        $('#stickyDivision2').css('top',$('#stickyDivision2').css('top'));
 				
-		        $('#sticky2Rank').addClass('fixed');
-		        $('#sticky2Rank').css('top',$('#sticky2Rank').css('top'));
+		        $('#sticky2Division2Rank').addClass('fixed');
+		        $('#sticky2Division2Rank').css('top',$('#sticky2Division2Rank').css('top'));
 								
-		        $('#sticky2').addClass('fixed');
-		        $('#sticky2').css('top',$('#sticky2').css('top'));
+		        $('#sticky2Division2').addClass('fixed');
+		        $('#sticky2Division2').css('top',$('#sticky2Division2').css('top'));
 								
-		        $('.stickyColumn').addClass('fixed');
-		        $('.stickyColumn').css('top',$('#sticky2').css('top'));
+		        //$('.stickyColumn').addClass('fixed');
+		        //$('.stickyColumn').css('top',$('#sticky2').css('top'));
 								
-		        $('.stickyColumnRank').addClass('fixed');
-		        $('.stickyColumnRank').css('top',$('#sticky2').css('top'));
+		        //$('.stickyColumnRank').addClass('fixed');
+		        //$('.stickyColumnRank').css('top',$('#sticky2').css('top'));
 		    } else {
 		        $('#stickyDivision2Rank').removeClass('fixed');
 		        $('#stickyDivision2').removeClass('fixed');
-		        $('#sticky2Rank').removeClass('fixed');
-		        $('#sticky2').removeClass('fixed');
-		        $('.stickyColumn').removeClass('fixed');
+		        $('#sticky2Division2Rank').removeClass('fixed');
+		        $('#sticky2Division2').removeClass('fixed');
+		        //$('.stickyColumn').removeClass('fixed');
 		    }
 		});
 		
@@ -217,9 +217,9 @@ function populateStandings(useDivision, teamID, getNameFromID) {
 				  }
 				  else {
 					  if(phpResponse[i]["teamID"] == teamID) {
-					  	  $('#standingsTable2').append('<tr><td class="standingsTableRow rankColumn currentTeam stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(division2Marker+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+					  	  $('#standingsTable2').append('<tr><td class="standingsTableRow rankColumn currentTeam stickyColumnRank" style="padding-left: 20px" id="sticky2Division2Rank">'+(division2Marker+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2Division2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
 					  } else {
-						  $('#standingsTable2').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(division2Marker+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
+						  $('#standingsTable2').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Division2Rank">'+(division2Marker+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2Division2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
 					  }
 					  division2Marker++;
 				  }
