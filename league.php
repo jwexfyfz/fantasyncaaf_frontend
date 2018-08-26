@@ -85,17 +85,22 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 		
 		<div id="content">
-			<table>
-				<tr class="divisionRow">
-					Division: North
-				</tr>
-			</table>
+			<div class="divisionHeader">
+				<table class="divisionTable">
+					<tr id="leaveRoomForHeader"></tr>
+					<tr>
+						<td class="divisionRow">
+							Division: North
+						</td>
+					</tr>
+				</table>
+			</div>
 			<!--Have a blank row so that content at top gets pushed underneath header-->
 			<div id="standingsTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space for the top header-->
-						<tr style="height: 121px"></tr>
+						<!--<tr style="height: 121px"></tr>-->
 						<!--Leave space between header and first table-->
 						<tr style="height: 10px"></tr>
 						<tr id="standingsTableSections">
@@ -121,16 +126,20 @@ if(!$fgmembersite->CheckLogin())
 					</table>
 				</div>
 			</div>
-			<table>
-				<tr class="divisionRow">
-					Division: South
-				</tr>
-			</table>
+			<div class="divisionHeader">
+				<table class="divisionTable">
+					<tr>
+						<td class="divisionRow">
+							Division: South
+						</td>
+					</tr>
+				</table>
+			</div>
 			<div id="standingsTableWindow2">
 				<div id="bigContainer2">
 					<table id="standingsTable2">
 						<!--Leave space for the top header-->
-						<tr style="height: 121px"></tr>
+						<!--<tr style="height: 121px"></tr>-->
 						<!--Leave space between header and first table-->
 						<tr style="height: 10px"></tr>
 						<tr id="standingsTableSections2">
