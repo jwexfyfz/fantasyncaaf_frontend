@@ -141,11 +141,15 @@ function checkDivisionFlag(teamID) {
 		  console.log("response from checkDivisionFlag(): "+response);
 		  
 		  if(!useDivision) {
-			  $('#standingsTableWindow2').css('display','none');
+			  console.log("hiding #standingsTableWindow2 and .divisionHeader");
+			  $('#standingsTableWindow2').hide();
 			  $('.divisionHeader').hide();
+			  console.log("#standingsTableWindow2: "+$('#standingsTableWindow2').css('display')+", .divisionHeader: "+$('.divisionHeader').css('display'));
 		  }
 		  else {
+			  console.log("showing #standingsTableWindow2 and .divisionHeader");
 			  $('#standingsTableWindow2').css('display','block');
+			  $('.divisionHeader').css('display','block');
 		  }
 
 		  getTeamNameFromTeamID(useDivision, teamID);
@@ -190,6 +194,7 @@ function populateStandings(useDivision, teamID, getNameFromID) {
 		  
 		  //Populate two tables for the two divisions if the useDivision flag is on
 		  if(useDivision) {
+			  console.log("197: useDivision is set to 1");
 			  var division1Marker = 0;
 			  var division2Marker = 0;
 			  
@@ -214,6 +219,7 @@ function populateStandings(useDivision, teamID, getNameFromID) {
 		  }
 		  //Otherwise populate everyone into one table
 		  else {
+			  console.log("222: useDivision is set to 0");
 			  for(i = 0; i < phpResponse.length; i++) {
 				  if(phpResponse[i]["teamID"] == teamID) {
 				  	  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn currentTeam stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow currentTeam teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn currentTeam">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
