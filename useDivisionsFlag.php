@@ -11,8 +11,17 @@
     $sql = "SELECT val FROM flags where flag = 'divisions'";
     $result = $conn->query($sql);
 
-    //Output table to readTeamRoster.js
-    echo $result["val"];
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $output = $row["val"];
+        }
+    } else {
+        echo "0 results";
+    }
+	
+    //Output value of 'divisons' flag
+    echo $output;
 	
     
     $conn->close();
