@@ -150,7 +150,7 @@ function checkDivisionFlag(teamID) {
 			  $('.divisionHeader').css('display','block');
 		  }
 
-		  getTeamNameFromTeamID(useDivision, teamID);
+		  getTeamNameFromTeamID(response, teamID);
 	    }
 	});
 }
