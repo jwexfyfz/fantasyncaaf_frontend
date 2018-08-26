@@ -88,7 +88,7 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	
-	<div id="content">
+	<!--<div id="content">-->
 		<table>
 			<tr style="height: 121px"></tr>
 				<!--Leave space between header and first table-->
@@ -325,6 +325,6 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 	
 	    <script type="text/javascript" src="weekSelect.js" ></script>
-	</div>
+		<!--</div>-->
 </body>
 </html>

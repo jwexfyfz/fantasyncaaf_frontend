@@ -84,7 +84,7 @@ if(!$fgmembersite->CheckLogin())
 			</table>
 		</div>
 		
-		<!--<div id="content">-->
+		<div id="content">
 			<div id="leaveRoomForHeader"></div>
 			<div class="divisionHeader">
 				<table class="divisionTable">
@@ -183,6 +183,6 @@ if(!$fgmembersite->CheckLogin())
 		
 		
 		    <!--<script type="text/javascript" src="weekSelect.js" ></script>-->
-			<!--</div>-->
+		</div>
 	</body>
 </html>
