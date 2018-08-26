@@ -54,19 +54,19 @@
 	margin: 0 auto;
 }
 
-#sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Division2, #sticky2Rank, #sticky2Division2Rank, .stickyColumn, .stickyColumnRank {
+#sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Division2, #sticky2Rank, #sticky2Division2Rank, .stickyColumn, .stickyColumnRank, .stickyColumnDivision2, .stickyColumnDivision2Rank {
     display: table-cell;
 	z-index: 30;
 }
 
-#sticky.fixed, #stickyDivision2.fixed, .stickyColumn.fixed {
+#sticky.fixed, #stickyDivision2.fixed, .stickyColumn.fixed, .stickyColumnDivision2.fixed {
     position: sticky;
 	left: 60px;
 	background-color: #ffffff;
 	border-right: 1px solid #ddd;
 }
 
-#stickyRank.fixed, #stickyDivision2Rank.fixed, .stickyColumnRank.fixed {
+#stickyRank.fixed, #stickyDivision2Rank.fixed, .stickyColumnRank.fixed, .stickyColumnDivision2Rank.fixed {
     position: sticky;
 	left: 0;
 	background-color: #ffffff;
