@@ -10,9 +10,16 @@
     //Query to get team rosters
     $sql = "SELECT val FROM flags where flag = 'divisions'";
     $result = $conn->query($sql);
+	
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $output = $results["val"];
+        }
+    }
 
-    //Output table to readTeamRoster.js
-    echo $result["val"];
+    //Output the value of the 'divisions' flag
+    echo $output;
 	
     
     $conn->close();
