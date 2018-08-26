@@ -84,7 +84,7 @@ if(!$fgmembersite->CheckLogin())
 			</table>
 		</div>
 		
-		<div id="content">
+		<!--<div id="content">-->
 			<div id="leaveRoomForHeader"></div>
 			<div class="divisionHeader">
 				<table class="divisionTable">
@@ -146,7 +146,7 @@ if(!$fgmembersite->CheckLogin())
 							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
 								Rank
 							</th>
-							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+							<th class="standingsTableHeader teamColumn" id="stickyDivision2" style="padding-left: 10px">
 								Team
 							</th>
 							<th class="standingsTableHeader otherColumn">
@@ -183,6 +183,6 @@ if(!$fgmembersite->CheckLogin())
 		
 		
 		    <!--<script type="text/javascript" src="weekSelect.js" ></script>-->
-		</div>
+			<!--</div>-->
 	</body>
 </html>

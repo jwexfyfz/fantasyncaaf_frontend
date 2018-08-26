@@ -92,18 +92,18 @@ $( document ).ready(
 		});
 		
 		$('#standingsTableWindow2').scroll(function() {
-		    var distanceFromLeft = $(this).scrollLeft();
+		    var distanceFromLeft2 = $(this).scrollLeft();
 			console.log("scroll @ "+$(this).scrollLeft());
 			
-			var rankWidth = $('#standingsTableSections th:first-child').css('width');
+			var rankWidth = $('#standingsTableSections2 th:first-child').css('width');
 		    //if (distanceFromLeft >= rankWidth.replace(/px/,'')) {
-			if (distanceFromLeft > 0) {
-				console.log('went sticky @ '+distanceFromLeft);
-		        $('#stickyRank').addClass('fixed');
-		        $('#stickyRank').css('top',$('#stickyRank').css('top'));
+			if (distanceFromLeft2 > 0) {
+				console.log('went sticky @ '+distanceFromLeft2);
+		        $('#stickyDivision2Rank').addClass('fixed');
+		        $('#stickyDivision2Rank').css('top',$('#stickyDivision2Rank').css('top'));
 				
-		        $('#sticky').addClass('fixed');
-		        $('#sticky').css('top',$('#sticky').css('top'));
+		        $('#stickyDivision2').addClass('fixed');
+		        $('#stickyDivision2').css('top',$('#stickyDivision2').css('top'));
 				
 		        $('#sticky2Rank').addClass('fixed');
 		        $('#sticky2Rank').css('top',$('#sticky2Rank').css('top'));
@@ -117,8 +117,8 @@ $( document ).ready(
 		        $('.stickyColumnRank').addClass('fixed');
 		        $('.stickyColumnRank').css('top',$('#sticky2').css('top'));
 		    } else {
-		        $('#stickyRank').removeClass('fixed');
-		        $('#sticky').removeClass('fixed');
+		        $('#stickyDivision2Rank').removeClass('fixed');
+		        $('#stickyDivision2').removeClass('fixed');
 		        $('#sticky2Rank').removeClass('fixed');
 		        $('#sticky2').removeClass('fixed');
 		        $('.stickyColumn').removeClass('fixed');

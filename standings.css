@@ -54,25 +54,25 @@
 	margin: 0 auto;
 }
 
-#sticky, #stickyRank, #sticky2, #sticky2Rank, .stickyColumn, .stickyColumnRank {
+#sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Rank, .stickyColumn, .stickyColumnRank {
     display: table-cell;
 	z-index: 30;
 }
 
-#sticky.fixed, .stickyColumn.fixed {
+#sticky.fixed, #stickyDivision2.fixed, .stickyColumn.fixed {
     position: sticky;
 	left: 60px;
 	background-color: #ffffff;
 	border-right: 1px solid #ddd;
 }
 
-#stickyRank.fixed, .stickyColumnRank.fixed {
+#stickyRank.fixed, #stickyDivision2Rank.fixed, .stickyColumnRank.fixed {
     position: sticky;
 	left: 0;
 	background-color: #ffffff;
 }
 
-#sticky.fixed:after{
+#sticky.fixed:after, #stickyDivision2.fixed:after;{
     content:'';
     position:absolute;
     left: 0;
