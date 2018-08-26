@@ -129,7 +129,6 @@ $( document ).ready(
 });
 
 function checkDivisionFlag(teamID) {
-	var useDivision;
 	var dataString = "";
 	
 	$.ajax({
@@ -137,10 +136,9 @@ function checkDivisionFlag(teamID) {
 	    url: "useDivisionsFlag.php",
 	    data: dataString,
 	    success: function(response) {
-		  useDivision = response;
 		  console.log("response from checkDivisionFlag(): "+response);
 		  
-		  if(!useDivision) {
+		  if(!response) {
 			  console.log("hiding #standingsTableWindow2 and .divisionHeader");
 			  $('#standingsTableWindow2').hide();
 			  $('.divisionHeader').hide();
