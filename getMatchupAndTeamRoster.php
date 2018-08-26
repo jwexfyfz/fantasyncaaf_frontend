@@ -32,6 +32,25 @@
 		$matchupAwayTeam = null;
     }
 	
+	//Get home team's name
+	$sql="SELECT username FROM users where id_user in ($matchupHomeTeam);";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+			$teamRoster["homeTeam"]["teamName"] = $row["username"];
+        }
+    }
+	//Get away team's name
+	$sql="SELECT username FROM users where id_user in ($matchupAwayTeam);";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+			$teamRoster["awayTeam"]["teamName"] = $row["username"];
+        }
+    }
+	
 	//Select teamRoster data for the home team
 	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum);";
     $result = $conn->query($sql);
@@ -41,14 +60,12 @@
 			$teamRoster["homeTeam"][$row["position"]] = $row["playerName"];
 			$teamRoster["homeTeam"]["week"] = $weekNum;
 			$teamRoster["homeTeam"]["teamID"] = $row["teamID"];
-			$teamRoster["homeTeam"]["teamName"] = $row["teamName"];
         }
     } else {
         //Set everything to null so at least you return something
         $teamRoster["homeTeam"] = array(
             "week"=>$weekNum, 
             "teamID"=>$teamID, 
-			"teamName"=>"",
             "QB"=>"",
             "RB1"=>"", 
             "RB2"=>"", 
@@ -70,14 +87,12 @@
 			$teamRoster["awayTeam"][$row["position"]] = $row["playerName"];
 			$teamRoster["awayTeam"]["week"] = $weekNum;
 			$teamRoster["awayTeam"]["teamID"] = $row["teamID"];
-			$teamRoster["awayTeam"]["teamName"] = $row["teamName"];
         }
     } else {
         //Set everything to null so at least you return something
         $teamRoster["awayTeam"] = array(
             "week"=>$weekNum, 
             "teamID"=>$teamID, 
-			"teamName"=>"",
             "QB"=>"",
             "RB1"=>"", 
             "RB2"=>"", 

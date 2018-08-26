@@ -24,7 +24,7 @@
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            if($teamID == $row["homeTeamID"]) {
+            if($teamID == $row["homeTeamID"] || $teamID == "allTeams") {
 				$output[$index]["homeTeam"] = $row["homeTeamID"];
 				$output[$index]["awayTeam"] = $row["awayTeamID"];
             } else {
