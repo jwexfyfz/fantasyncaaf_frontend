@@ -140,7 +140,7 @@ function checkDivisionFlag(teamID) {
 		  useDivision = response;
 		  console.log("response from checkDivisionFlag(): "+response);
 		  
-		  if(useDivision) {
+		  if(!useDivision) {
 			  $('#standingsTableWindow2').css('display','none');
 			  $('.divisionHeader').hide();
 		  }
@@ -200,6 +200,7 @@ function populateStandings(useDivision, teamID, getNameFromID) {
 					  } else {
 						  $('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(division1Marker+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
 					  }
+					  division1Marker++;
 				  }
 				  else {
 					  if(phpResponse[i]["teamID"] == teamID) {
@@ -207,6 +208,7 @@ function populateStandings(useDivision, teamID, getNameFromID) {
 					  } else {
 						  $('#standingsTable2').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(division2Marker+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+getNameFromID[phpResponse[i]["teamID"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["wins"]+'-'+phpResponse[i]["losses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["divisionWins"]+'-'+phpResponse[i]["divisionLosses"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsFor"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["pointsAgainst"]+'</td></tr>');
 					  }
+					  division2Marker++;
 				  }
 			  }
 		  }
