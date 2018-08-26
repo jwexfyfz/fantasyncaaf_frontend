@@ -25,7 +25,7 @@
 		// output data of each row
         $index = 0;
 		while($row = $result->fetch_assoc()) {
-			if ($row["timesUsed" >= 5) {
+			if ($row["timesUsed"] >= 5) {
 				$usedUpPlayers[$index] = $row["PlayerName"];
 				$index++;
 			}
