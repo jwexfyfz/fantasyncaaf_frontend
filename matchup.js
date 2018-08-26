@@ -122,7 +122,7 @@ function getMatchups(convertTeam) {
 				}
 			
 				// Add matchup to table
-				createMatchupTable("table"+i, i, phpResponse[i]["homeTeam"], phpResponse[i]["awayTeam"], "dummyScore1", "dummyScore2", rowNum-1, maxNumColumn, convertTeam);
+				createMatchupTable("table"+i, i, phpResponse[i]["homeTeam"], phpResponse[i]["awayTeam"], "0", "0", rowNum-1, maxNumColumn, convertTeam);
 			  
 				// Calculate scores
 				getTeamTotalPoints(week, phpResponse[i]["homeTeam"], "home", i);
