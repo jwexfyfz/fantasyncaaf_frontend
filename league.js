@@ -148,7 +148,7 @@ function checkDivisionFlag(teamID) {
 			  console.log(useDivisions);
 		  }
 		  
-		  if(!response) {
+		  if(useDivisions == 0) {
 			  console.log("hiding #standingsTableWindow2 and .divisionHeader");
 			  $('#standingsTableWindow2').hide();
 			  $('.divisionHeader').hide();
@@ -160,7 +160,7 @@ function checkDivisionFlag(teamID) {
 			  $('.divisionHeader').css('display','block');
 		  }
 
-		  getTeamNameFromTeamID(response, teamID);
+		  getTeamNameFromTeamID(useDivisions, teamID);
 	    }
 	});
 }
