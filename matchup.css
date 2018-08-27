@@ -90,11 +90,16 @@
 	padding-top: 2px;
 }
 
-#aroundTheLeague {
-	color: #F7882F;
-	font-size: 1.2em;
+#aroundTheLeagueTable {
 	width: 100%;
 	max-width: 600px;
+}
+
+#aroundTheLeague {
+	color: #F7882F;
+	font-size: 1em;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
+	padding-bottom: 7px;
 }

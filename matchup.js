@@ -128,6 +128,8 @@ function getMatchups(convertTeam) {
 				getTeamTotalPoints(week, phpResponse[i]["homeTeam"], "home", i);
 				getTeamTotalPoints(week, phpResponse[i]["awayTeam"], "away", i);
 			}
+			//Add padding at the bottom so that you can click the bottom right card
+			$('#hiddenMatchupsTable').append("<div style='height: 80px; width: 100%'></div>");
 	    }
 	});	
 }
