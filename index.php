@@ -119,7 +119,7 @@ if(!$fgmembersite->CheckLogin())
 		                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)" style="position: relative;">
 		                </select>
 						<div class="gameTimeBox" id="QBgametime"></div>
-						<div class="clearPlayerButton" id="clearQB">clear</div>
+						<div class="clearPlayerButton" id="clearQB">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="qbConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -135,7 +135,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputRB1" name="RB1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="RB1gametime"></div>
-						<div class="clearPlayerButton" id="clearRB1">clear</div>
+						<div class="clearPlayerButton" id="clearRB1">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="rb1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -151,7 +151,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputRB2" name="RB2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="RB2gametime"></div>
-						<div class="clearPlayerButton" id="clearRB2">clear</div>
+						<div class="clearPlayerButton" id="clearRB2">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="rb2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -167,7 +167,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputWR1" name="WR1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="WR1gametime"></div>
-						<div class="clearPlayerButton" id="clearWR1">clear</div>
+						<div class="clearPlayerButton" id="clearWR1">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="wr1Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -183,7 +183,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputWR2" name="WR2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="WR2gametime"></div>
-						<div class="clearPlayerButton" id="clearWR2">clear</div>
+						<div class="clearPlayerButton" id="clearWR2">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="wr2Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -199,7 +199,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputWR3" name="WR3tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="WR3gametime"></div>
-						<div class="clearPlayerButton" id="clearWR3">clear</div>
+						<div class="clearPlayerButton" id="clearWR3">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="wr3Confirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -215,7 +215,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputTE" name="TEtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="TEgametime"></div>
-						<div class="clearPlayerButton" id="clearTE">clear</div>
+						<div class="clearPlayerButton" id="clearTE">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="teConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -231,7 +231,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputDEF" name="DEFtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="DEFgametime"></div>
-						<div class="clearPlayerButton" id="clearDEF">clear</div>
+						<div class="clearPlayerButton" id="clearDEF">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="defConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -247,7 +247,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputK" name="Ktophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="Kgametime"></div>
-						<div class="clearPlayerButton" id="clearK">clear</div>
+						<div class="clearPlayerButton" id="clearK">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="kConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -263,7 +263,7 @@ if(!$fgmembersite->CheckLogin())
 		            <td class="myTeamTableRowLong">
 		                <select class="selectpicker" id="inputFLEX" name="FLEXtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 						<div class="gameTimeBox" id="FLEXgametime"></div>
-						<div class="clearPlayerButton" id="clearFLEX">clear</div>
+						<div class="clearPlayerButton" id="clearFLEX">clear player</div>
 		            </td>
 					<td class="myTeamTableRow">
 						<img id="flexConfirm" src="checkmark.png" style="width:10px; height:10px; display:none;">
@@ -273,7 +273,7 @@ if(!$fgmembersite->CheckLogin())
 		            </td>
 		        </tr>
 				<tr>
-					<td class="myTeamTableRow" style="height: 80px"></td>
+					<td class="myTeamTableRow" style="height: 120px"></td>
 				</tr>
 		    </table>
 		</form>

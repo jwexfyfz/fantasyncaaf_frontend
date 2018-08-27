@@ -113,7 +113,7 @@ if(!$fgmembersite->CheckLogin())
 							<th class="standingsTableHeader otherColumn">
 								Record
 							</th>
-							<th class="standingsTableHeader otherColumn">
+							<th class="standingsTableHeader otherColumn divFlag">
 								Div. Record
 							</th>
 							<th class="standingsTableHeader otherColumn">
