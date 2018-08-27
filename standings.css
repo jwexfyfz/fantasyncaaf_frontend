@@ -134,6 +134,10 @@
 	position: relative;
 }
 
+.noDivisionsUsed {
+	display: block;
+}
+
 .divFlag {
 	display: block;
 }
