@@ -151,6 +151,11 @@ function checkDivisionFlag(teamID) {
 		  
 		  if(useDivisions == 0) {
 			  console.log("hiding #standingsTableWindow2 and .divisionHeader");
+			  $('.divFlag').each(function(){
+				  console.log('went through .divFlag function');
+				  $(this).empty();
+			  });
+			  
 			  $('#standingsTableWindow2').hide();
 			  $('.divisionHeader').hide();
 			  $('.divFlag').hide();
@@ -160,10 +165,7 @@ function checkDivisionFlag(teamID) {
 			  console.log("#standingsTableWindow2: "+$('#standingsTableWindow2').css('display')+", .divisionHeader: "+$('.divisionHeader').css('display'));
 			  $('.noDivisionsUsed').css('display','block');
 			  
-			  $('.divFlag').each(function(){
-				  console.log('went through .divFlag function');
-				  $(this).empty();
-			  });
+			  
 		  }
 		  else {
 			  console.log("showing #standingsTableWindow2 and .divisionHeader");

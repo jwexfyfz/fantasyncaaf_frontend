@@ -135,15 +135,15 @@
 }
 
 .noDivisionsUsed {
-	display: block;
+	display: none;
 }
 
 .divFlag {
-	display: block;
+	display: none;
 }
 .divFlagTableCell {
-	display: table-cell;
+	display: none;
 }
 .divFlagTable {
-	display: table;
+	display: none;
 }
