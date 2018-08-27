@@ -43,21 +43,20 @@
             $output[$row["playerName"]] = $row["playerAbbr"];
         }
 	}
-	$output[""] = "";
-	$output["Arizona"] = "Arizona";
-	$output["Arizona State"] = "Arizona State";
-	$output["California"] = "California";
-	$output["Colorado"] = "Colorado";
-	$output["Oregon"] = "Oregon";
-	$output["Oregon State"] = "Oregon State";
-	$output["Stanford"] = "Stanford";
-	$output["UCLA"] = "UCLA";
-	$output["USC"] = "USC";
-	$output["Utah"] = "Utah";
-	$output["Washington"] = "Washington";
-	$output["Washington State"] = "Washington State";
 	
-
+	//Set the abbreviation of defenses to the same as their team name
+    $sql = "SELECT teamName FROM collegeTeams;";
+    $result = $conn->query($sql);
+	
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $output[$row["teamName"]] = $row["teamName"];
+        }
+	}
+	
+	//Set the abbreviation of blank players to blank
+	$output[""] = "";
 	
     //Output table to readTeamRoster.js
     echo json_encode($output);
