@@ -56,7 +56,7 @@ tr p {
 .headerTableColumn {
 	width: 100%;
 	height: 50px;
-	color: #F7882F;
+	color: #FAA969;
 	font-weight:100;
 	position:relative;
 	text-align: center;
@@ -123,7 +123,7 @@ tr p {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: #F7882F;
+  background-color: #FAA969;
   text-align: center;
   line-height: 70px;
   color: #ffffff;
@@ -132,7 +132,7 @@ tr p {
 
 #weekScrollContainer {
   width: 70px;
-  height: 560px;
+  height: 490px;
   background-color: transparent;
   display: none;
   z-index: 90;
@@ -140,7 +140,7 @@ tr p {
 
 #scrollable {
   width: 70px;
-  height: 560px;
+  height: 490px;
   background-color: transparent;
   overflow: scroll;
 }
@@ -185,9 +185,9 @@ tr p {
 #weekSelectBackground {
 	position: absolute;
 	width: 70px;
-	height: 490px;
+	height: 420px;
 	bottom: 35px;
-	background-color: #F7882F;
+	background-color: #FAA969;
 	vertical-align: bottom;
 	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
 }
