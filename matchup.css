@@ -76,9 +76,16 @@
 }
 
 .playerRowOneToNine {
-	border-bottom: 1px solid rgb(221,221,221,0.05);
+	border-bottom: 1px solid rgb(221,221,221,0.08);
 }
 
 .smallerText {
 	font-size: 0.9em;
+}
+
+.topMatchup {
+	padding-bottom: 2px;
+}
+.bottomMatchup {
+	padding-top: 2px;
 }
