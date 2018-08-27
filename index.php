@@ -272,6 +272,9 @@ if(!$fgmembersite->CheckLogin())
 		                <p id="flexPoints">--</p>
 		            </td>
 		        </tr>
+				<tr>
+					<td class="myTeamTableRow" style="height: 80px"></td>
+				</tr>
 		    </table>
 		</form>
 	

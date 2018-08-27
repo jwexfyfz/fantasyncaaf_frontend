@@ -56,7 +56,7 @@ tr p {
 .headerTableColumn {
 	width: 100%;
 	height: 50px;
-	color: #F79342;
+	color: rgba(255, 255, 255, 0.5);
 	font-weight:100;
 	position:relative;
 	text-align: center;
