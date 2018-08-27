@@ -135,5 +135,11 @@
 }
 
 .divFlag {
-	display: none;
+	display: block;
+}
+.divFlagTableCell {
+	display: table-cell;
+}
+.divFlagTable {
+	display: table;
 }

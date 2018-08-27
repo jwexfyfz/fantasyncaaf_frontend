@@ -86,16 +86,82 @@ if(!$fgmembersite->CheckLogin())
 		
 		<!--<div id="content">-->
 			<div id="leaveRoomForHeader"></div>
-			<div class="divisionHeader">
-				<table class="divisionTable">
-					<tr>
-						<td class="divisionRow">
-							Division: North
-						</td>
-					</tr>
-				</table>
+			<table class="divFlagTable" id="aroundTheLeagueTable">
+				<tr>
+					<td id="aroundTheLeague">Division: North</td>
+				</tr>
+			</table>
+			<div class="flexCard divFlag">
+				<div id="standingsTableWindow">
+					<div id="bigContainer">
+						<table id="standingsTable">
+							<!--Leave space for the top header-->
+							<!--<tr style="height: 121px"></tr>-->
+							<!--Leave space between header and first table-->
+							<tr style="height: 10px"></tr>
+							<tr id="standingsTableSections">
+								<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+									Rank
+								</th>
+								<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+									Team
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Record
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Div. Record
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Pts For
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Pts Against
+								</th>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
-			<!--Have a blank row so that content at top gets pushed underneath header-->
+			<!--For the south division card-->
+			<table class="divFlagTable" id="aroundTheLeagueTable">
+				<tr>
+					<td id="aroundTheLeague">Division: South</td>
+				</tr>
+			</table>
+			<div class="flexCard divFlag">
+				<div id="standingsTableWindow2">
+					<div id="bigContainer2">
+						<table id="standingsTable2">
+							<!--Leave space for the top header-->
+							<!--<tr style="height: 121px"></tr>-->
+							<!--Leave space between header and first table-->
+							<tr style="height: 10px"></tr>
+							<tr id="standingsTableSections2">
+								<th class="standingsTableHeader rankColumn" id="stickyDivision2Rank" style="padding-left: 10px">
+									Rank
+								</th>
+								<th class="standingsTableHeader teamColumn" id="stickyDivision2" style="padding-left: 10px">
+									Team
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Record
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Div. Record
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Pts For
+								</th>
+								<th class="standingsTableHeader otherColumn">
+									Pts Against
+								</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			
 			<div id="standingsTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
@@ -112,48 +178,6 @@ if(!$fgmembersite->CheckLogin())
 							</th>
 							<th class="standingsTableHeader otherColumn">
 								Record
-							</th>
-							<th class="standingsTableHeader otherColumn divFlag">
-								Div. Record
-							</th>
-							<th class="standingsTableHeader otherColumn">
-								Pts For
-							</th>
-							<th class="standingsTableHeader otherColumn">
-								Pts Against
-							</th>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div class="divisionHeader">
-				<table class="divisionTable">
-					<tr>
-						<td class="divisionRow">
-							Division: South
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div id="standingsTableWindow2">
-				<div id="bigContainer2">
-					<table id="standingsTable2">
-						<!--Leave space for the top header-->
-						<!--<tr style="height: 121px"></tr>-->
-						<!--Leave space between header and first table-->
-						<tr style="height: 10px"></tr>
-						<tr id="standingsTableSections2">
-							<th class="standingsTableHeader rankColumn" id="stickyDivision2Rank" style="padding-left: 10px">
-								Rank
-							</th>
-							<th class="standingsTableHeader teamColumn" id="stickyDivision2" style="padding-left: 10px">
-								Team
-							</th>
-							<th class="standingsTableHeader otherColumn">
-								Record
-							</th>
-							<th class="standingsTableHeader otherColumn">
-								Div. Record
 							</th>
 							<th class="standingsTableHeader otherColumn">
 								Pts For

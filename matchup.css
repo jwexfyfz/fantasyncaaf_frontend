@@ -36,14 +36,6 @@
 	margin: 0 auto;
 }
 
-.flexCard {
-	margin: 0px 10px 20px 10px; 
-	padding: 10px; 
-	border: 1px solid #F3F3F3;
-	border-radius: 6px;
-	box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.05);
-}
-
 #matchupCard {
 	max-width: 600px;
 }
@@ -88,18 +80,4 @@
 }
 .bottomMatchup {
 	padding-top: 2px;
-}
-
-#aroundTheLeagueTable {
-	width: 100%;
-	max-width: 600px;
-}
-
-#aroundTheLeague {
-	color: #F7882F;
-	font-size: 1em;
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-	padding-bottom: 7px;
 }

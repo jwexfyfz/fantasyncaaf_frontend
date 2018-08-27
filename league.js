@@ -154,13 +154,16 @@ function checkDivisionFlag(teamID) {
 			  $('#standingsTableWindow2').hide();
 			  $('.divisionHeader').hide();
 			  $('.divFlag').hide();
+			  $('#bigContainer').css('width','445px');
 			  console.log("#standingsTableWindow2: "+$('#standingsTableWindow2').css('display')+", .divisionHeader: "+$('.divisionHeader').css('display'));
 		  }
 		  else {
 			  console.log("showing #standingsTableWindow2 and .divisionHeader");
 			  $('#standingsTableWindow2').css('display','block');
 			  $('.divisionHeader').css('display','block');
-			  $('.divFlag').css('display','block');
+			  $('.divFlag').css('display','table-cell');
+			  $('#bigContainer').css('width','550px');
+			  $('#bigContainer2').css('width','550px');
 		  }
 
 		  getTeamNameFromTeamID(useDivisions, teamID);
