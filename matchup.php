@@ -175,11 +175,11 @@ if(!$fgmembersite->CheckLogin())
 							<td class="chosenK chosenPosition away smallerSize" id="awayK" colspan="2"></td>
 						</tr>
 						<tr>
-							<td class="chosenFLEX homeSide chosenPosition home" id="homeFLEX" colspan="2"></td>
-							<td class="chosenFLEXPoints homeSide home" id="homeFLEXPoints" colspan="2"></td>
+							<td class="chosenFLEX homeSide chosenPosition home smallerSize" id="homeFLEX" colspan="2"></td>
+							<td class="chosenFLEXPoints homeSide home smallerSize" id="homeFLEXPoints" colspan="2"></td>
 							<td class="position" colspan="2">FLEX</td>
-							<td class="chosenFLEXPoints away" id="awayFLEXPoints" colspan="2"></td>
-							<td class="chosenFLEX chosenPosition away" id="awayFLEX" colspan="2"></td>
+							<td class="chosenFLEXPoints away smallerSize" id="awayFLEXPoints" colspan="2"></td>
+							<td class="chosenFLEX chosenPosition away smallerSize" id="awayFLEX" colspan="2"></td>
 						</tr>
 					</table>
 				</div>
