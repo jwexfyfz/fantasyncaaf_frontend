@@ -27,7 +27,7 @@
 	if (isset($team)) {
 		// Returns teamID, gametime for a given team
 		// Input: week, teamID
-		$sql = "select distinct teamID, gametime from gameTimes where team=$team and week=$weekNum";
+		$sql = "select distinct teamID, gametime from gameTimes where team=\"$team\" and week=$weekNum";
 		
 		$result = $conn->query($sql);
 
