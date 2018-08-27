@@ -162,7 +162,7 @@ if(!$fgmembersite->CheckLogin())
 				</div>
 			</div>
 			
-			<div id="standingsTableWindow">
+			<div class="noDivisionsUsed" id="standingsTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space for the top header-->

@@ -154,9 +154,16 @@ function checkDivisionFlag(teamID) {
 			  $('#standingsTableWindow2').hide();
 			  $('.divisionHeader').hide();
 			  $('.divFlag').hide();
+			  $('.divFlagTable').hide();
+			  $('.divFlagTableCell').hide();
 			  $('#bigContainer').css('width','445px');
 			  console.log("#standingsTableWindow2: "+$('#standingsTableWindow2').css('display')+", .divisionHeader: "+$('.divisionHeader').css('display'));
 			  $('.noDivisionsUsed').css('display','block');
+			  
+			  $('.divFlag').each(function(){
+				  console.log('went through .divFlag function');
+				  $(this).empty();
+			  });
 		  }
 		  else {
 			  console.log("showing #standingsTableWindow2 and .divisionHeader");
