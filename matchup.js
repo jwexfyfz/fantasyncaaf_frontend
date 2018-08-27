@@ -45,7 +45,7 @@ $( document ).ready(
 		
 		$("#currentWeekCircle").html(currentWeek);
 		console.log("setting #week"+currentWeek+"Circle to #6495ED");
-		$("#week"+currentWeek+"Circle").css('background-color','#6495ED');
+		$("#week"+currentWeek+"Circle").css('background-color','#F7882F');
 		console.log("#week"+currentWeek+"Circle is now "+$("#week"+currentWeek+"Circle").css('background-color'));
 	    
 		//var currentWeek = document.getElementById("currentWeekNum");

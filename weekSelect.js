@@ -93,7 +93,7 @@ function selectWeek(weekNum) {
 	
 	$("#currentWeekCircle").html(weekNum);
 	$("#currentWeekCircle").css('display','block');
-	$("#week"+weekNum+"Circle").css('background-color','#6495ED');
+	$("#week"+weekNum+"Circle").css('background-color','#F7882F');
 	
 	updatePage($("#teamID").val());
 	allMatchupsFunction();

@@ -184,6 +184,11 @@ if(!$fgmembersite->CheckLogin())
 					</table>
 				</div>
 			</div>
+			<table id="aroundTheLeagueTable">
+				<tr>
+					<td id="aroundTheLeague">Around The League</td>
+				</tr>
+			</table>
 			<table id="hiddenMatchupsTable"></table>
 		
 			<!--This section is to show the week dropdown-->
