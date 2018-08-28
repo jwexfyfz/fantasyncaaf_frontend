@@ -591,8 +591,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
-				//jeffwang TODO: revert the gametime back to the original player's gametime from teamRoster
-				
+				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
 				
 				//Display error message
 				//"Your roster has too many players from <team>. Remove one of the <team> players and try again."
@@ -602,6 +601,10 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			}
 			else {  // allow the change
 				console.log("CHANGE ALLOWED");
+				
+				//If not switching players and player is a valid change, populate gametime of new player
+				$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
 				//comparePotentialDupes("RB1", "RB2", position, teamRoster, week, fantasyID, teamName);
 				//comparePotentialDupes("RB1", "FLEX", position, teamRoster, week, fantasyID, teamName);
@@ -701,9 +704,9 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 	}
 	if (!switchedPlayers) {
 		//If not switching, populate gametime of new player
-		$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+		//TODO: jeffwang to remove this after moving this into the following functions
+		//$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
 		getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName, playerGametimeArray);		//Check for dupes
-		//makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
 	}
 }
 
