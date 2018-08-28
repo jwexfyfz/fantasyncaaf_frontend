@@ -705,15 +705,15 @@ function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) 
 
 //cauchychoi 8/19/18: When a player gets changed, this function checks to see if both the player prior to the change and the newly selected player's games have begun.
 //The switch is not allowed if either player's game has started
-function checkPlayerStarted(week, fantasyID, position, playerNameOrTeamID, defSelected, teamName) {
+function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSelected, teamName) {
 	var phpResponse;
 	//only need week and fantasyID to retrieve a user's roster
 	var dataString = ""
 	if (defSelected) {
-		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&teamID='+playerNameOrTeamID;
+		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&team='+playerOrTeamName;
 	}
 	else {
-		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerNameOrTeamID.trim().replace(/ /g, '%20');
+		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerOrTeamName.trim().replace(/ /g, '%20');
 	}
 	console.log("checkPlayerStarted dataString: "+dataString);
 	

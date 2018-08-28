@@ -16,18 +16,18 @@
 	else {
 		$playerName = null;
 	}
-	if (isset($_POST["teamID"])) {
-		$teamID = $_POST["teamID"];
+	if (isset($_POST["team"])) {
+		$team = $_POST["team"];
 	}
 	else {
-		$teamID = null;
+		$team = null;
 	}
 	
 	$index = 0;
-	if (isset($teamID)) {
+	if (isset($team)) {
 		// Returns teamID, gametime for a given team
 		// Input: week, teamID
-		$sql = "select distinct teamID, gametime from gameTimes where teamID=$teamID and week=$weekNum";
+		$sql = "select distinct teamID, gametime from gameTimes where team=\"$team\" and week=$weekNum";
 		
 		$result = $conn->query($sql);
 
