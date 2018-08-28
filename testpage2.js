@@ -548,7 +548,7 @@ function verifyNoDupes(position, week, fantasyID, teamName, playerGametimeArray)
 	});  
 }
 
-function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName) {
+function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName, playerGametimeArray) {
 	var dupeTeams = 0;
 	
 	var phpResponse;
@@ -591,6 +591,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
+				//jeffwang TODO: revert the gametime back to the original player's gametime from teamRoster
+				
+				
 				//Display error message
 				//"Your roster has too many players from <team>. Remove one of the <team> players and try again."
 				fadeErrorFooter("Your roster has too many players from <b>" + selectedPlayerTeam + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + selectedPlayerTeam + "</b> players and try again.</span>");
@@ -616,7 +619,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 	});  
 }
 
-function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName) {
+function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName, playerGametimeArray) {
 	var phpResponse;
 	var dataString = 'weekNum='+week;
 	
@@ -629,7 +632,7 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName)
 		  if (phpResponse < 0) {
 			phpResponse = 0;
 		  }
-		  teamDupes(week, fantasyID, phpResponse, position, teamRoster, teamName);
+		  teamDupes(week, fantasyID, phpResponse, position, teamRoster, teamName, playerGametimeArray);
 	    }
 	});
 	
@@ -660,8 +663,23 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 		{
 			//Switch the players in the select dropdown on the page
 			console.log("values were the same!");
+			
 			$('#input'+switchPosition1[i]).val(phpResponse[week][switchPosition2[i]]);
 			$('#input'+switchPosition2[i]).val(phpResponse[week][switchPosition1[i]]);
+			
+			var temp = $('#'+switchPosition1[i]+"gametime").html();
+			
+			console.log("temp: "+temp);
+			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
+			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
+			
+
+			$('#'+switchPosition1[i]+"gametime").html($('#'+switchPosition2[i]+"gametime").html());
+			$('#'+switchPosition2[i]+"gametime").html(temp);
+			
+			console.log("after switch");
+			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
+			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
 		
 			//Refresh the select dropdown so the UI reflects the select values' states
 			$('#input'+switchPosition1[i]).selectpicker('refresh');
@@ -674,7 +692,7 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 		} 
 	}
 	if (!switchedPlayers) {
-			getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);		//Check for dupes
+			getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName, playerGametimeArray);		//Check for dupes
 			//makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
 	}
 }
