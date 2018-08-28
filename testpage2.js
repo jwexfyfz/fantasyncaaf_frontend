@@ -646,7 +646,9 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 	console.log("current position value: "+$('#'+selectVal).val());
 	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]	);
 	console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
-	$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+	if($('#'+position.replace("tophp","gametime")).html() == "") {
+		$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+	}
 	
 	
 	var switchedPlayers = false;
@@ -664,18 +666,22 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 			//Switch the players in the select dropdown on the page
 			console.log("values were the same!");
 			
-			$('#input'+switchPosition1[i]).val(phpResponse[week][switchPosition2[i]]);
-			$('#input'+switchPosition2[i]).val(phpResponse[week][switchPosition1[i]]);
-			
 			var temp = $('#'+switchPosition1[i]+"gametime").html();
 			
 			console.log("temp: "+temp);
 			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
-			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
+			console.log('#'+switchPosition2[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
 			
 
 			$('#'+switchPosition1[i]+"gametime").html($('#'+switchPosition2[i]+"gametime").html());
 			$('#'+switchPosition2[i]+"gametime").html(temp);
+			
+			
+			
+			$('#input'+switchPosition1[i]).val(phpResponse[week][switchPosition2[i]]);
+			$('#input'+switchPosition2[i]).val(phpResponse[week][switchPosition1[i]]);
+			
+			
 			
 			console.log("after switch");
 			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
