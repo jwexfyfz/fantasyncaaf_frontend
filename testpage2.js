@@ -646,9 +646,11 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 	console.log("current position value: "+$('#'+selectVal).val());
 	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]	);
 	console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
-	if($('#'+position.replace("tophp","gametime")).html() == "") {
-		$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
-	}
+	
+	//If position doesn't have a gametime yet, set it.  If it already has one, populate it after switch logic.
+	//if($('#'+position.replace("tophp","gametime")).html() == "") {
+	//	$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+	//}
 	
 	
 	var switchedPlayers = false;
@@ -698,8 +700,10 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 		} 
 	}
 	if (!switchedPlayers) {
-			getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName, playerGametimeArray);		//Check for dupes
-			//makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
+		//If not switching, populate gametime of new player
+		$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+		getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName, playerGametimeArray);		//Check for dupes
+		//makeChangesToTeamRoster(switchPosition1, switchPosition2, position, week, teamID, teamName, false);		
 	}
 }
 
