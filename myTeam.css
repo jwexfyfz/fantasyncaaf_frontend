@@ -102,6 +102,8 @@ a {
 .gameTimeBox {
 	position: relative;
 	width: 70%;
+	float: left;
+	line-height: 20px;
 }
 
 .clearPlayerButton {

@@ -637,6 +637,14 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName)
 
 function comparePotentialDupes (position, phpResponse, week, teamID, teamName, playerGametimeArray){
     console.log("639: position: "+position);
+    console.log("640: position: "+position.replace("tophp","gametime"));
+	
+	var selectVal = "input"+position.replace("tophp","");
+	console.log("current position value: "+$('#'+selectVal).val());
+	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]	);
+	console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
+	$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+	
 	
 	var switchedPlayers = false;
 	var switchPosition1 = ["RB1","RB1","RB2","WR1","WR2","WR1","WR1","WR2","WR3","TE"];
