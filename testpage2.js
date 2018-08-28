@@ -603,6 +603,8 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				console.log("CHANGE ALLOWED");
 				
 				//If not switching players and player is a valid change, populate gametime of new player
+				var selectVal = "input"+position.replace("tophp","");
+				
 				$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
