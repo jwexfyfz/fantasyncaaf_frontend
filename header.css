@@ -31,7 +31,7 @@ tr p {
 	height: var(--headerHeight); 
 	background-color: #F7882F;
     z-index:3;
-	box-shadow: 1px 1px 1px #A0A0A0;
+	/*box-shadow: 1px 1px 1px #A0A0A0;*/
 }
 
 #currentWeekDisplayTable {

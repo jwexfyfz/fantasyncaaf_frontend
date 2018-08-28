@@ -7,17 +7,17 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
-	$weekNum = $_POST["weekNum"];
-	$fantasyID = $_POST["fantasyID"];
-	$position = $_POST["position"];
-	if (isset($_POST["playerName"])) {
-		$playerName = urldecode($_POST["playerName"]);
+	$weekNum = $_GET["weekNum"];
+	$fantasyID = $_GET["fantasyID"];
+	$position = $_GET["position"];
+	if (isset($_GET["playerName"])) {
+		$playerName = urldecode($_GET["playerName"]);
 	}
 	else {
 		$playerName = null;
 	}
-	if (isset($_POST["team"])) {
-		$team = $_POST["team"];
+	if (isset($_GET["team"])) {
+		$team = $_GET["team"];
 	}
 	else {
 		$team = null;
@@ -49,8 +49,7 @@
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-				$gametimes[$index] = $row["gametime"];
-				$index++;
+				$gametimes[$row["playerID"]] = $row["gametime"];
 			}
 		} 
 	}
@@ -60,8 +59,7 @@
 	if ($result->num_rows > 0) {
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
-			$gametimes[$index] = $row["gametime"];
-			$index++;
+			$gametimes[$row["playerID"]] = $row["gametime"];
 		}
 	} 
     

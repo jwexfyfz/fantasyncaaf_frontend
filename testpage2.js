@@ -169,7 +169,6 @@ function getNumTimesPlayersUsed(teamRoster){
 		playersUsedCount[teamRoster[key]["K"]] += 1;
 		playersUsedCount[teamRoster[key]["FLEX"]] += 1;
 	}
-	//$('#result2').html(playersUsedCount);
 }
 
 function getUrlVars() {
@@ -240,7 +239,7 @@ function getFantasyPoints() {
 				  $('#qbPoints').html(playerPoints[$('#inputQB').val()]);
 			  }
 			  else {
-				  console.log("QB is disabled, so setting points to 0");
+				  //console.log("QB is disabled, so setting points to 0");
 				  $('#qbPoints').html("0");
 			  }
 		  } else {
@@ -255,7 +254,7 @@ function getFantasyPoints() {
 				  $('#rb1Points').html(playerPoints[$('#inputRB1').val()]);
 			  }
 			  else {
-				  console.log("RB1 is disabled, so setting points to 0");
+				  //console.log("RB1 is disabled, so setting points to 0");
 				  $('#rb1Points').html("0");
 			  }
 		  } else {
@@ -269,7 +268,7 @@ function getFantasyPoints() {
 				  $('#rb2Points').html(playerPoints[$('#inputRB2').val()]);
 			  }
 			  else {
-				  console.log("RB2 is disabled, so setting points to 0");
+				  //console.log("RB2 is disabled, so setting points to 0");
 				  $('#rb2Points').html("0");
 			  }
 		  } else {
@@ -284,7 +283,7 @@ function getFantasyPoints() {
 				  $('#wr1Points').html(playerPoints[$('#inputWR1').val()]);
 			  }
 			  else {
-				  console.log("WR1 is disabled, so setting points to 0");
+				  //console.log("WR1 is disabled, so setting points to 0");
 				  $('#wr1Points').html("0");
 			  }
 		  } else {
@@ -298,7 +297,7 @@ function getFantasyPoints() {
 				  $('#wr2Points').html(playerPoints[$('#inputWR2').val()]);
 			  }
 			  else {
-				  console.log("WR2 is disabled, so setting points to 0");
+				  //console.log("WR2 is disabled, so setting points to 0");
 				  $('#wr2Points').html("0");
 			  }
 		  } else {
@@ -312,7 +311,7 @@ function getFantasyPoints() {
 				  $('#wr3Points').html(playerPoints[$('#inputWR3').val()]);
 			  }
 			  else {
-				  console.log("WR3 is disabled, so setting points to 0");
+				  //console.log("WR3 is disabled, so setting points to 0");
 				  $('#wr3Points').html("0");
 			  }
 		  } else {
@@ -326,7 +325,7 @@ function getFantasyPoints() {
 				  $('#tePoints').html(playerPoints[$('#inputTE').val()]);
 			  }
 			  else {
-				  console.log("TE is disabled, so setting points to 0");
+				  //console.log("TE is disabled, so setting points to 0");
 				  $('#tePoints').html("0");
 			  }
 		  } else {
@@ -340,7 +339,7 @@ function getFantasyPoints() {
 				  $('#defPoints').html(playerPoints[$('#inputDEF').val()]);
 			  }
 			  else {
-				  console.log("DEF is disabled, so setting points to 0");
+				  //console.log("DEF is disabled, so setting points to 0");
 				  $('#defPoints').html("0");
 			  }
 		  } else {
@@ -354,7 +353,7 @@ function getFantasyPoints() {
 				  $('#kPoints').html(playerPoints[$('#inputK').val()]);
 			  }
 			  else {
-				  console.log("K is disabled, so setting points to 0");
+				  //console.log("K is disabled, so setting points to 0");
 				  $('#kPoints').html("0");
 			  }
 		  } else {
@@ -368,7 +367,7 @@ function getFantasyPoints() {
 				  $('#flexPoints').html(playerPoints[$('#inputFLEX').val()]);
 			  }
 			  else {
-				  console.log("FLEX is disabled, so setting points to 0");
+				  //console.log("FLEX is disabled, so setting points to 0");
 				  $('#flexPoints').html("0");
 			  }
 		  } else {
@@ -737,7 +736,6 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 				
 			}
 			if (!playerGameStarted) {
-				
 				verifyNoDupes(position, week, fantasyID, teamName);		//Check for dupes
 				checkGameStarted(week, fantasyID);
 			}
