@@ -88,7 +88,7 @@ if(!$fgmembersite->CheckLogin())
 			<div id="leaveRoomForHeader"></div>
 			<table class="divFlagTable" id="aroundTheLeagueTable">
 				<tr>
-					<td id="aroundTheLeague">Division: North</td>
+					<td id="aroundTheLeague" style="padding-top: 10px">Division: North</td>
 				</tr>
 			</table>
 			<div class="flexCard divFlag">

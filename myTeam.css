@@ -114,4 +114,5 @@ a {
 	font-size: 0.8em;
 	border-radius: 3px;
 	float: right;
+	cursor: pointer;
 }

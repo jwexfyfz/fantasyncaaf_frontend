@@ -61,6 +61,7 @@ tr p {
 	position:relative;
 	text-align: center;
     z-index:2;
+	cursor: pointer;
 }
 
 .activeHeaderColumn {
@@ -195,6 +196,7 @@ tr p {
 .weekSelectCircle {
 	position: relative !important;
 	background-color: transparent;
+	cursor: pointer;
 }
 
 #currentWeekCircle {
@@ -368,6 +370,7 @@ a, a:hover {
 #aroundTheLeagueTable {
 	width: 100%;
 	max-width: 600px;
+	margin: 0 auto;
 }
 
 #aroundTheLeague {

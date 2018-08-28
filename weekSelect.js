@@ -8,6 +8,29 @@ $( document ).ready(
 			$("#weekScrollContainer").css('display','block');
 			$("#currentWeekCircle").css('display','none');
 			$("#unclickable").css('display','block');
+			
+			switch($('#currentWeekNum').val()) {
+			    case "1":
+			        $('#scrollable').scrollTop(420);
+			        break;
+			    case "2":
+			        $('#scrollable').scrollTop(350);
+			        break;
+			    case "3":
+			        $('#scrollable').scrollTop(280);
+			        break;
+			    case "4":
+			        $('#scrollable').scrollTop(210);
+			        break;
+			    case "5":
+			        $('#scrollable').scrollTop(140);
+			        break;
+			    case "6":
+			        $('#scrollable').scrollTop(70);
+			        break;
+			    default:
+			        $('#scrollable').scrollTop(0);
+			}
 		});
 		
 		//When user selects a week number, hide the week drop-up
@@ -51,19 +74,6 @@ $( document ).ready(
 			selectWeek(1);
 		});
 	
-	/*	
-	$("#content").mouseup(function(e)
-	    {
-	        var subject = $("#weekScrollContainer"); 
-
-	        if(e.target.id != subject.attr('id'))
-	        {
-	            subject.css('display','none');
-				$( "#currentWeekCircle" ).css('display','block');
-				$( "#unclickable" ).css('display','none');
-	        }
-	    });
-		*/
 	$("#unclickable").mouseup(function(e)
     {
         var subject = $("#weekScrollContainer"); 
