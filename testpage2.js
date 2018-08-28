@@ -526,7 +526,7 @@ function makeChangesToTeamRoster(position, week, teamID, teamName) {
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
 //It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes(position, week, fantasyID, teamName) {	
+function verifyNoDupes(position, week, fantasyID, teamName, playerGametimeArray) {	
     var phpResponse;
 	
 	//only need week and fantasyID to retrieve a user's roster
@@ -543,18 +543,7 @@ function verifyNoDupes(position, week, fantasyID, teamName) {
 			console.log("successfully sent query to tell php to provide team roster!");	//For testing
 			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
-			comparePotentialDupes(position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("RB1", "FLEX", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("RB2", "FLEX", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("WR1", "WR2", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("WR2", "WR3", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("WR1", "WR3", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("WR1", "FLEX", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("WR2", "FLEX", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("WR3", "FLEX", position, phpResponse, week, fantasyID, teamName);
-			//comparePotentialDupes("TE", "FLEX", position, phpResponse, week, fantasyID, teamName);
-		  
-			//getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);
+			comparePotentialDupes(position, phpResponse, week, fantasyID, teamName, playerGametimeArray);
 	    }
 	});  
 }
@@ -646,29 +635,35 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName)
 	
 }
 
-function comparePotentialDupes (position, phpResponse, week, teamID, teamName){
-    var switchedPlayers = false;
+function comparePotentialDupes (position, phpResponse, week, teamID, teamName, playerGametimeArray){
+    console.log("639: position: "+position);
+	
+	var switchedPlayers = false;
 	var switchPosition1 = ["RB1","RB1","RB2","WR1","WR2","WR1","WR1","WR2","WR3","TE"];
 	var switchPosition2 = ["RB2","FLEX","FLEX","WR2","WR3","WR3","FLEX","FLEX","FLEX","FLEX"];
 	
 	for (var i = 0; i < switchPosition1.length; i++) {
-	
-	if(	(	($('#input'+switchPosition1[i]).val() == phpResponse[week][switchPosition2[i]]) 	||
-	  		($('#input'+switchPosition2[i]).val() == phpResponse[week][switchPosition1[i]])		)	&& 	
-		(	($('#input'+switchPosition1[i]).val() != "")	&&
-		(	$('#input'+switchPosition2[i]).val() != "")		)												) 
-	{
+		//Cycle through all the potential positions that can be duped
+		//If the current selected player is the same as teamRoster's player for that position and NOT blank:
+		if(	(	($('#input'+switchPosition1[i]).val() == phpResponse[week][switchPosition2[i]]) 	||
+		  		($('#input'+switchPosition2[i]).val() == phpResponse[week][switchPosition1[i]])		)	&& 	
+			(	($('#input'+switchPosition1[i]).val() != "")	&&
+			(	$('#input'+switchPosition2[i]).val() != "")		)												) 
+		{
+			//Switch the players in the select dropdown on the page
 			console.log("values were the same!");
 			$('#input'+switchPosition1[i]).val(phpResponse[week][switchPosition2[i]]);
 			$('#input'+switchPosition2[i]).val(phpResponse[week][switchPosition1[i]]);
-			
+		
+			//Refresh the select dropdown so the UI reflects the select values' states
 			$('#input'+switchPosition1[i]).selectpicker('refresh');
 			$('#input'+switchPosition2[i]).selectpicker('refresh');
 
+			//Make updates to teamRoster
 			switchedPlayers = true;
 			switchPlayerUpdateRoster(switchPosition1[i], switchPosition2[i], week, teamID, teamName);
 			//makeChangesToTeamRoster(position, week, teamID, true);			  
-	} 
+		} 
 	}
 	if (!switchedPlayers) {
 			getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName);		//Check for dupes
@@ -725,6 +720,18 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
+
+			for (var key in phpResponse) {
+				var gametime = new Date(phpResponse[key] + " UTC");
+				if (Date.now() > gametime.getTime()) {
+					fadeErrorFooter("The selected player's game has already begun!<br/>");
+					loadTeamRoster(week, fantasyID, true);  // Should this be false??
+					playerGameStarted = true;
+				}
+			}
+			/*
+			//Commenting this part out because jeffwang changed the output of checkPlayerStarted.php to be an associative array (phpResponse["Khalil Tate"] = <gametime>), 
+			//rather than regular array
 			var i;
 			for(i = 0; i < phpResponse.length; i++) {
 				var gametime = new Date(phpResponse[i] + " UTC");
@@ -735,8 +742,9 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 				}
 				
 			}
+			*/
 			if (!playerGameStarted) {
-				verifyNoDupes(position, week, fantasyID, teamName);		//Check for dupes
+				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
 				checkGameStarted(week, fantasyID);
 			}
 		}
@@ -746,7 +754,7 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has started and disable that 'select'. It will also update timesPlayerUsed
 //TODO: Add to both page load and when a player selects something. (Is that the sendtophp function?)
-function checkGameStarted(week, fantasyID) {
+function checkGameStarted(week, fantasyID, playerGametimeArray) {
 	 
 	var phpResponse;
 	var disabledPositions = [];
