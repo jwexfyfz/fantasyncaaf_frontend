@@ -123,7 +123,7 @@ function loadTeamRoster(week, teamID, weekChanged) {
 	    data: dataString,
 	    success: function(response) {
 	      //$('#result').html(response);
-		  console.log("response from loadTeamRoster.php: "+JSON.parse(response));
+		  console.log("response from loadTeamRoster.php: "+response);
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
