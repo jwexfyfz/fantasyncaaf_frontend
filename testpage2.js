@@ -169,11 +169,11 @@ function convertToReadableDate(date) {
 		hour = date.getHours() - 12;
 		amPM = "PM";
 	}
-	else if(date.getHours() = 12) {
+	else if(date.getHours() == 12) {
 		hour = date.getHours();
 		amPM = "PM";
 	}
-	else if(date.getHours() = 0) {
+	else if(date.getHours() == 0) {
 		amPM = "PM";
 	}
 	else {
