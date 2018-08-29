@@ -11,6 +11,7 @@
 	$teamID = $_POST["teamIDNum"];
 
 	$sql = "select distinct C.teamName, C.playerName, C.week, C.position, D.gametime, C.fantasyID as teamID from (select A.playerName, B.playerID, B.teamID, A.position, A.week, A.teamName, A.teamID as fantasyID from (select playerName, position, teamID, week, teamName from teamroster where week=$weekNum and teamID=$teamID) as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and D.week=$weekNum;";
+    $result = $conn->query($sql);
 	
     //Query to get team rosters
     //$sql = "SELECT * FROM teamRoster where teamID in ($teamID) and week in ($weekNum);";
