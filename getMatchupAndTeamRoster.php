@@ -69,19 +69,18 @@
         }
     } else {
         //Set everything to null so at least you return something
-        $teamRoster["homeTeam"] = array(
-            "week"=>$weekNum, 
-            "teamID"=>$teamID, 
-            "QB"=>"",
-            "RB1"=>"", 
-            "RB2"=>"", 
-            "WR1"=>"", 
-            "WR2"=>"", 
-            "WR3"=>"", 
-            "TE"=>"", 
-            "K"=>"", 
-            "DEF"=>"", 
-            "FLEX"=>"");
+        $teamRoster["homeTeam"]["week"] = $weekNum;
+        $teamRoster["homeTeam"]["teamID"] = $teamID;
+        $teamRoster["homeTeam"]["QB"] = "";
+        $teamRoster["homeTeam"]["RB1"] = "";
+        $teamRoster["homeTeam"]["RB2"] = "";
+        $teamRoster["homeTeam"]["WR1"] = "";
+        $teamRoster["homeTeam"]["WR2"] = "";
+        $teamRoster["homeTeam"]["WR3"] = "";
+        $teamRoster["homeTeam"]["TE"] = "";
+        $teamRoster["homeTeam"]["K"] = "";
+        $teamRoster["homeTeam"]["DEF"] = "";
+        $teamRoster["homeTeam"]["FLEX"] = "";
     }
 	
 	//Do the same thing for the away team
@@ -96,19 +95,19 @@
         }
     } else {
         //Set everything to null so at least you return something
-        $teamRoster["awayTeam"] = array(
-            "week"=>$weekNum, 
-            "teamID"=>$teamID, 
-            "QB"=>"",
-            "RB1"=>"", 
-            "RB2"=>"", 
-            "WR1"=>"", 
-            "WR2"=>"", 
-            "WR3"=>"", 
-            "TE"=>"", 
-            "K"=>"", 
-            "DEF"=>"", 
-            "FLEX"=>"");
+        //Set everything to null so at least you return something
+        $teamRoster["awayTeam"]["week"] = $weekNum;
+        $teamRoster["awayTeam"]["teamID"] = $teamID;
+        $teamRoster["awayTeam"]["QB"] = "";
+        $teamRoster["awayTeam"]["RB1"] = "";
+        $teamRoster["awayTeam"]["RB2"] = "";
+        $teamRoster["awayTeam"]["WR1"] = "";
+        $teamRoster["awayTeam"]["WR2"] = "";
+        $teamRoster["awayTeam"]["WR3"] = "";
+        $teamRoster["awayTeam"]["TE"] = "";
+        $teamRoster["awayTeam"]["K"] = "";
+        $teamRoster["awayTeam"]["DEF"] = "";
+        $teamRoster["awayTeam"]["FLEX"] = "";
     }
     //Output table to readTeamRoster.js
     echo json_encode($teamRoster);
