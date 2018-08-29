@@ -9,11 +9,13 @@
 
 	$weekNum = $_POST["weekNum"];
 	$teamID = $_POST["teamIDNum"];
-	//$teamName = $_POST["teamName"];
+
+	$sql = "select distinct C.teamName, C.playerName, C.week, C.position, D.gametime, C.fantasyID as teamID from (select A.playerName, B.playerID, B.teamID, A.position, A.week, A.teamName, A.teamID as fantasyID from (select playerName, position, teamID, week, teamName from teamroster where week=$weekNum and teamID=$teamID) as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and D.week=$weekNum;";
+	
     //Query to get team rosters
-    $sql = "SELECT * FROM teamRoster where teamID in ($teamID) and week in ($weekNum);";
+    //$sql = "SELECT * FROM teamRoster where teamID in ($teamID) and week in ($weekNum);";
 	//$sql = "SELECT week, teamName, teamID, playerName, position FROM teamRoster where teamID in ($teamID);";
-    $result = $conn->query($sql);
+    //$result = $conn->query($sql);
 
 //    $index = 0;
     if ($result->num_rows > 0) {
@@ -22,13 +24,14 @@
 
 			$position = $row["position"];
 			$teamRoster[$row["week"]]["$position"] = $row["playerName"];
+			$teamRoster["$position"]["gametime"] = $row["gametime"];
 			$teamRoster[$row["week"]]["week"] = $row["week"];
-			//$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
 			$teamRoster[$row["week"]]["teamID"] = $row["teamID"];
 			$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
         }
     } else {
         //Set everything to null so at least you return something
+		var nArray = array(null)
         $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
             "teamID"=>$teamID, 
@@ -43,6 +46,7 @@
             "K"=>null, 
             "DEF"=>null, 
             "FLEX"=>null);
+		$teamRoster["$position"]["gametime"] = null;
     }
     //Output table to readTeamRoster.js
     echo json_encode($teamRoster);

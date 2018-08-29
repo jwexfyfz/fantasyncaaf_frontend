@@ -46,6 +46,32 @@ $( document ).ready(
 			currentWeek = 2;
 		}
 		
+		$("#refreshPoints").click( function(event) {
+		  event.preventDefault();
+		  getFantasyPoints();
+		});
+		
+		$("#headerTableColumn1").click( function(event) {
+			window.location.href = "league.php" + window.location.search;
+		});
+		$("#headerTableColumn3").click( function(event) {
+			window.location.href = "matchup.php" + window.location.search;
+		});	
+				
+		$("#errorBannerExit").click( function(event) {
+			clearTimeout(myVar);
+			console.log("clearTimeout ran");
+			exitErrorFooter();
+		});	
+		
+		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
+			console.log($(this).attr('id')+" clicked");
+			var position = $(this).attr('id').replace("clear","");
+			$('#input'+position).val("");
+			$('#input'+position).selectpicker('refresh');
+			sendToPhp(position+"tophp");
+		});
+		
 		$("#currentWeekNum").val(currentWeek);
 		console.log("Current week is now set to "+$("#currentWeekNum").val());
 		
@@ -60,44 +86,11 @@ $( document ).ready(
 		var week	=	$("#currentWeekNum").val();
 		var teamID	=	$("#teamID").val()
 		console.log("teamID: "+teamID);
-		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		
-		//var teamName=	urlArray["teamName"];
 		var teamName = $("#teamName").val();
-		//$('#currentTeamName').html(teamName);
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
 		checkGameStarted(week, teamID);  //uncomment when ready
-		
-		$("#refreshPoints").click( function(event) {
-		  event.preventDefault();
-		  //console.log("clicked!");
-		  getFantasyPoints();
-		});
-		
-		$("#headerTableColumn1").click( function(event) {
-			window.location.href = "league.php" + window.location.search;
-		});
-		$("#headerTableColumn3").click( function(event) {
-			window.location.href = "matchup.php" + window.location.search;
-		});	
-		
-		
-		//fadeErrorFooter("test test test test test test test test test test test test test test test ");
-		
-		$("#errorBannerExit").click( function(event) {
-			clearTimeout(myVar);
-			console.log("clearTimeout ran");
-			exitErrorFooter();
-		});	
-		
-		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
-			console.log($(this).attr('id')+" clicked");
-			var position = $(this).attr('id').replace("clear","");
-			$('#input'+position).val("");
-			$('#input'+position).selectpicker('refresh');
-			sendToPhp(position+"tophp");
-		});
 		
 });
 
@@ -134,6 +127,7 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
+		  $('#QBgametime').html(phpResponse["QB"]["gametime"]);
 		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
