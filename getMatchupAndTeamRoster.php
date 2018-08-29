@@ -52,7 +52,7 @@
     }
 	
 	//Select teamRoster data for the home team
-	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum);";
+	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum) and hasPlayed = 1;";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -79,7 +79,7 @@
     }
 	
 	//Do the same thing for the away team
-	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupAwayTeam and week in ($weekNum);";
+	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupAwayTeam and week in ($weekNum) and hasPlayed = 1;";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
