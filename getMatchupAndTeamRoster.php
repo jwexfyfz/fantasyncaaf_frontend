@@ -58,7 +58,7 @@
 	}
 	
 	//Select teamRoster data for the home team
-	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum) and hasPlayed = 1;";
+	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum) and hasPlayed in (select val from flags where flag = 'useHasPlayed');";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

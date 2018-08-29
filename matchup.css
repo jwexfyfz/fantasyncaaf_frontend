@@ -22,7 +22,8 @@
 }
 
 .matchupHeadingTeamName {
-	padding-bottom: 15px;
+	padding: 0px 10px 15px 10px;
+	/*padding-bottom: 15px;*/
 }
 
 #myTeamMatchupTable {
