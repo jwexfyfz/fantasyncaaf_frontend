@@ -31,7 +31,6 @@
         }
     } else {
         //Set everything to null so at least you return something
-		var nArray = array(null)
         $teamRoster[$weekNum] = array(
             "week"=>$weekNum, 
             "teamID"=>$teamID, 
