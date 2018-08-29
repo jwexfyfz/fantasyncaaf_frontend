@@ -26,11 +26,33 @@
 		var string = "2018-09-01 23:00:00";
 		var testDate = new Date(string+" UTC");
 		console.log(new Date(string+" UTC"));
+		console.log(testDate.toString());
 		
-		var utcDate = new Date(testDate.toUTCString());
-		utcDate.setHours(utcDate.getHours());
-		var usDate = new Date(utcDate);
-		console.log(usDate);
+		console.log(convertToReadableDate(testDate));
+		console.log(null + " UTC");
+		
+		function convertToReadableDate(date) {
+			var month = date.getMonth() + 1;
+			var dayOfMonth = date.getDate();
+			var hour = date.getHours();
+	
+			var minute = "00";
+			if(date.getMinutes() != 0) {
+				minute = date.getMinutes();
+			}
+	
+			var timezoneArray = date.toString().match(/[A-Z]/g);
+			var timezone = timezoneArray.slice(-3).join("");
+	
+			var output = month+"/"+dayOfMonth+" "+hour+":"+minute+" "+timezone;
+	
+			if(date == "null UTC") {
+				return "";
+			}
+			else {
+				return output;
+			}
+		}
 		
 		</script>
 </body>
