@@ -127,16 +127,16 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
-		  $('#QBgametime').html(phpResponse["QB"]["gametime"]);
-		  $('#RB1gametime').html(phpResponse["RB1"]["gametime"]);
-		  $('#RB2gametime').html(phpResponse["RB2"]["gametime"]);
-		  $('#WR1gametime').html(phpResponse["WR1"]["gametime"]);
-		  $('#WR2gametime').html(phpResponse["WR2"]["gametime"]);
-		  $('#WR3gametime').html(phpResponse["WR3"]["gametime"]);
-		  $('#TEgametime').html(phpResponse["TE"]["gametime"]);
-		  $('#DEFgametime').html(phpResponse["DEF"]["gametime"]);
-		  $('#Kgametime').html(phpResponse["K"]["gametime"]);
-		  $('#FLEXgametime').html(phpResponse["FLEX"]["gametime"]);
+		  $('#QBgametime').html(new Date(phpResponse["QB"]["gametime"]+ "UTC"));
+		  $('#RB1gametime').html(new Date(phpResponse["RB1"]["gametime"]+ "UTC"));
+		  $('#RB2gametime').html(new Date(phpResponse["RB2"]["gametime"]+ "UTC"));
+		  $('#WR1gametime').html(new Date(phpResponse["WR1"]["gametime"]+ "UTC"));
+		  $('#WR2gametime').html(new Date(phpResponse["WR2"]["gametime"]+ "UTC"));
+		  $('#WR3gametime').html(new Date(phpResponse["WR3"]["gametime"]+ "UTC"));
+		  $('#TEgametime').html(new Date(phpResponse["TE"]["gametime"]+ "UTC"));
+		  $('#DEFgametime').html(new Date(phpResponse["DEF"]["gametime"]+ "UTC"));
+		  $('#Kgametime').html(new Date(phpResponse["K"]["gametime"]+ "UTC"));
+		  $('#FLEXgametime').html(new Date(phpResponse["FLEX"]["gametime"]+ "UTC"));
 		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
@@ -608,20 +608,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				//If not switching players and player is a valid change, populate gametime of new player
 				var selectVal = "input"+position.replace("tophp","");
 				
-				$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+				$('#'+position.replace("tophp","gametime")).html(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC"));
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
-				//comparePotentialDupes("RB1", "RB2", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("RB1", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("RB2", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("WR1", "WR2", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("WR2", "WR3", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("WR1", "WR3", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("WR1", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("WR2", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("WR3", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				//comparePotentialDupes("TE", "FLEX", position, teamRoster, week, fantasyID, teamName);
-				//return true;
 			}
 	    }
 	});  
@@ -683,8 +672,8 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 			console.log('#'+switchPosition2[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
 			
 
-			$('#'+switchPosition1[i]+"gametime").html($('#'+switchPosition2[i]+"gametime").html());
-			$('#'+switchPosition2[i]+"gametime").html(temp);
+			$('#'+switchPosition1[i]+"gametime").html(new Date($('#'+switchPosition2[i]+"gametime").html()+" UTC"));
+			$('#'+switchPosition2[i]+"gametime").html(new Date(temp+" UTC"));
 			
 			
 			
@@ -773,20 +762,7 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 					playerGameStarted = true;
 				}
 			}
-			/*
-			//Commenting this part out because jeffwang changed the output of checkPlayerStarted.php to be an associative array (phpResponse["Khalil Tate"] = <gametime>), 
-			//rather than regular array
-			var i;
-			for(i = 0; i < phpResponse.length; i++) {
-				var gametime = new Date(phpResponse[i] + " UTC");
-				if (Date.now() > gametime.getTime()) {
-					fadeErrorFooter("The selected player's game has already begun!<br/>");
-					loadTeamRoster(week, fantasyID, true);  // Should this be false??
-					playerGameStarted = true;
-				}
-				
-			}
-			*/
+
 			if (!playerGameStarted) {
 				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
 				checkGameStarted(week, fantasyID);
