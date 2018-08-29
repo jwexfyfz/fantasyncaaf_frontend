@@ -28,8 +28,8 @@
             }
         }
     } else {
-		$matchupHomeTeam = null;
-		$matchupAwayTeam = null;
+		$matchupHomeTeam = "BYE";
+		$matchupAwayTeam = "BYE";
     }
 	
 	//Get home team's name
@@ -41,6 +41,9 @@
 			$teamRoster["homeTeam"]["teamName"] = $row["username"];
         }
     }
+	else {
+		$teamRoster["homeTeam"]["teamName"] = "BYE";
+	}
 	//Get away team's name
 	$sql="SELECT username FROM users where id_user in ($matchupAwayTeam);";
     $result = $conn->query($sql);
@@ -50,6 +53,9 @@
 			$teamRoster["awayTeam"]["teamName"] = $row["username"];
         }
     }
+	else {
+		$teamRoster["awayTeam"]["teamName"] = "BYE";
+	}
 	
 	//Select teamRoster data for the home team
 	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum) and hasPlayed = 1;";
