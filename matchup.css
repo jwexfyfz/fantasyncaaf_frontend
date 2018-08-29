@@ -5,6 +5,7 @@
 	padding: 0px 5px;
 	line-height: 20px;
 	vertical-align: center;
+	width: 8%;
 }
 
 .homeSide {
@@ -14,7 +15,13 @@
 .chosenPosition {
 	color: #4D4D4D;
 	padding: 5px 5px;
+	width: 41%;
 }
+
+.chosenPositionPoints {
+	width: 5%;
+}
+
 
 .matchupHeading {
 	text-align: center;
