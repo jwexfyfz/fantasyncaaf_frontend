@@ -128,6 +128,15 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
 		  $('#QBgametime').html(phpResponse["QB"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["RB1"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["RB2"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["WR1"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["WR2"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["WR3"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["TE"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["DEF"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["K"]["gametime"]);
+		  $('#QBgametime').html(phpResponse["FLEX"]["gametime"]);
 		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
