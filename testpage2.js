@@ -157,13 +157,30 @@ function loadTeamRoster(week, teamID, weekChanged) {
 
 function convertToReadableDate(date) {
 	console.log(date.toString());
-	if(date.toString() == "null UTC") {
+	if(date.toString() == "Invalid Date") {
 		return "";
 	}
 	
 	var month = date.getMonth() + 1;
 	var dayOfMonth = date.getDate();
-	var hour = date.getHours();
+	var hour = 12;
+	var amPM = "AM";
+	if(date.getHours() > 12) {
+		hour = date.getHours() - 12;
+		amPM = "PM";
+	}
+	else if(date.getHours() = 12) {
+		hour = date.getHours();
+		amPM = "PM";
+	}
+	else if(date.getHours() = 0) {
+		amPM = "PM";
+	}
+	else {
+		hour = date.getHours();
+	}
+	
+	
 
 	var minute = "00";
 	if(date.getMinutes() != 0) {
@@ -173,7 +190,7 @@ function convertToReadableDate(date) {
 	var timezoneArray = date.toString().match(/[A-Z]/g);
 	var timezone = timezoneArray.slice(-3).join("");
 
-	var output = month+"/"+dayOfMonth+" "+hour+":"+minute+" "+timezone;
+	var output = month+"/"+dayOfMonth+" "+hour+":"+minute+" "+amPM+" "+timezone;
 
 	return output;
 }
