@@ -127,16 +127,16 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
 		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
 		  
-		  $('#QBgametime').html(new Date(phpResponse["QB"]["gametime"]+ "UTC"));
-		  $('#RB1gametime').html(new Date(phpResponse["RB1"]["gametime"]+ "UTC"));
-		  $('#RB2gametime').html(new Date(phpResponse["RB2"]["gametime"]+ "UTC"));
-		  $('#WR1gametime').html(new Date(phpResponse["WR1"]["gametime"]+ "UTC"));
-		  $('#WR2gametime').html(new Date(phpResponse["WR2"]["gametime"]+ "UTC"));
-		  $('#WR3gametime').html(new Date(phpResponse["WR3"]["gametime"]+ "UTC"));
-		  $('#TEgametime').html(new Date(phpResponse["TE"]["gametime"]+ "UTC"));
-		  $('#DEFgametime').html(new Date(phpResponse["DEF"]["gametime"]+ "UTC"));
-		  $('#Kgametime').html(new Date(phpResponse["K"]["gametime"]+ "UTC"));
-		  $('#FLEXgametime').html(new Date(phpResponse["FLEX"]["gametime"]+ "UTC"));
+		  $('#QBgametime').html(new Date(phpResponse["QB"]["gametime"]+ " UTC"));
+		  $('#RB1gametime').html(new Date(phpResponse["RB1"]["gametime"]+ " UTC"));
+		  $('#RB2gametime').html(new Date(phpResponse["RB2"]["gametime"]+ " UTC"));
+		  $('#WR1gametime').html(new Date(phpResponse["WR1"]["gametime"]+ " UTC"));
+		  $('#WR2gametime').html(new Date(phpResponse["WR2"]["gametime"]+ " UTC"));
+		  $('#WR3gametime').html(new Date(phpResponse["WR3"]["gametime"]+ " UTC"));
+		  $('#TEgametime').html(new Date(phpResponse["TE"]["gametime"]+ " UTC"));
+		  $('#DEFgametime').html(new Date(phpResponse["DEF"]["gametime"]+ " UTC"));
+		  $('#Kgametime').html(new Date(phpResponse["K"]["gametime"]+ " UTC"));
+		  $('#FLEXgametime').html(new Date(phpResponse["FLEX"]["gametime"]+ " UTC"));
 		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
