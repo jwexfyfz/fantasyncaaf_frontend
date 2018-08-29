@@ -742,8 +742,8 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 			console.log('#'+switchPosition2[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
 			
 
-			$('#'+switchPosition1[i]+"gametime").html(convertToReadableDate(new Date($('#'+switchPosition2[i]+"gametime").html()+" UTC")));
-			$('#'+switchPosition2[i]+"gametime").html(convertToReadableDate(new Date(temp+" UTC")));
+			$('#'+switchPosition1[i]+"gametime").html($('#'+switchPosition2[i]+"gametime").html());
+			$('#'+switchPosition2[i]+"gametime").html(temp);
 			
 			
 			
