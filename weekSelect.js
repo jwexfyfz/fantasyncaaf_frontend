@@ -97,7 +97,7 @@ function selectWeek(weekNum) {
 	$("#week"+prevWeek+"Circle").css('background-color','transparent');
 	console.log("setting previous week, "+prevWeek+", to "+$("#week"+prevWeek+"Circle").css('background-color'));
 	
-	$("#currentWeekNum option:selected").removeAttr("selected");			
+	$("#currentWeekNum option:[value="+prevWeek+"]").removeAttr("selected");			
 	$('#currentWeekNum option[value='+weekNum+']').attr('selected','selected');
 	console.log("new select value chosen, "+$('#currentWeekNum option:selected').val()+", calling updatePage()");
 	
