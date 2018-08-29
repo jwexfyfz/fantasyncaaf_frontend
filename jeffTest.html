@@ -27,31 +27,51 @@
 		var testDate = new Date(string+" UTC");
 		console.log(new Date(string+" UTC"));
 		console.log(testDate.toString());
+		var parenthesis = testDate.toString().match(/\(.+\)/g);
+		var output = parenthesis.toString().match(/[A-Z]/g);
+		console.log("use parenthesis output: "+output.join(""));
 		
 		console.log(convertToReadableDate(testDate));
-		console.log(null + " UTC");
 		
 		function convertToReadableDate(date) {
+			console.log(date.toString());
+			if(date.toString() == "Invalid Date") {
+				return "";
+			}
+	
 			var month = date.getMonth() + 1;
 			var dayOfMonth = date.getDate();
-			var hour = date.getHours();
+			var hour = 12;
+			var amPM = "AM";
+			if(date.getHours() > 12) {
+				hour = date.getHours() - 12;
+				amPM = "PM";
+			}
+			else if(date.getHours() == 12) {
+				hour = date.getHours();
+				amPM = "PM";
+			}
+			else if(date.getHours() == 0) {
+				amPM = "PM";
+			}
+			else {
+				hour = date.getHours();
+			}
 	
+	
+
 			var minute = "00";
 			if(date.getMinutes() != 0) {
 				minute = date.getMinutes();
 			}
-	
-			var timezoneArray = date.toString().match(/[A-Z]/g);
-			var timezone = timezoneArray.slice(-3).join("");
-	
-			var output = month+"/"+dayOfMonth+" "+hour+":"+minute+" "+timezone;
-	
-			if(date == "null UTC") {
-				return "";
-			}
-			else {
-				return output;
-			}
+
+			var parenthesis = date.toString().match(/\(.+\)/g);
+			var timezoneArray = parenthesis.toString().match(/[A-Z]/g);
+			var timezone = timezoneArray.join("");
+
+			var output = month+"/"+dayOfMonth+" "+hour+":"+minute+" "+amPM+" "+timezone;
+
+			return output;
 		}
 		
 		</script>

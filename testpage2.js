@@ -156,41 +156,71 @@ function loadTeamRoster(week, teamID, weekChanged) {
 }
 
 function convertToReadableDate(date) {
-	console.log(date.toString());
+	//If you use new Date(null + " UTC"), it should return "Invalid Date".
+	//If Invalid Date, return blank date
 	if(date.toString() == "Invalid Date") {
 		return "";
 	}
-	
-	var month = date.getMonth() + 1;
-	var dayOfMonth = date.getDate();
-	var hour = 12;
-	var amPM = "AM";
-	if(date.getHours() > 12) {
-		hour = date.getHours() - 12;
-		amPM = "PM";
-	}
-	else if(date.getHours() == 12) {
-		hour = date.getHours();
-		amPM = "PM";
-	}
-	else if(date.getHours() == 0) {
-		amPM = "PM";
-	}
-	else {
-		hour = date.getHours();
-	}
-	
-	
 
-	var minute = "00";
-	if(date.getMinutes() != 0) {
+	var month = date.getMonth() + 1;	//Get month (starts from 0)
+	var dayOfMonth = date.getDate();	//Get date
+	var dayOfWeek = "";
+	
+	switch(date.getDay()) {				//Get day of week.  0 = Sunday, 6 = Saturday
+		case 0:
+			dayOfWeek = "Sun";
+			break;
+		case 1:
+			dayOfWeek = "Mon";
+			break;
+		case 2:
+			dayOfWeek = "Tues";
+			break;
+		case 3:
+			dayOfWeek = "Wed";
+			break;
+		case 4:
+			dayOfWeek = "Thurs";
+			break;
+		case 5:
+			dayOfWeek = "Fri";
+			break;
+		case 6:
+			dayOfWeek = "Sat";
+			break;
+		default:
+			dayOfWeek = "";
+	}
+	
+	var hour = 12;						//Hour will default to 12 for when hour = 0
+	var amPM = "AM";					//Hour will default to AM for when 0 < hour < 12
+	if(date.getHours() > 12) {			//Subtract 12 from hour if > 12
+		hour = date.getHours() - 12;	//Set to PM
+		amPM = "PM";
+	}
+	else if(date.getHours() == 12) {	//Hour is 12 already, means 12:00PM
+		amPM = "PM";					
+	}
+	else if(date.getHours() == 0) {		//Hour is 0 means 12:00AM
+		amPM = "AM";
+	}
+	else {								//Hour < 12 means stay the same
+		hour = date.getHours();			//Hour stays as AM from default value
+	}
+
+	var minute = "00";					
+	if(date.getMinutes() >= 10) {		//If minute value >= 10, no need to change value
 		minute = date.getMinutes();
 	}
+	else {								//If minute vaue < 10 (including 0), need to append 0 in front.  Otherwise it becomes 12:0PM or 12:1PM
+		minute = "0"+date.getMinutes();
+	}
 
-	var timezoneArray = date.toString().match(/[A-Z]/g);
-	var timezone = timezoneArray.slice(-3).join("");
+	var parenthesis = date.toString().match(/\(.+\)/g);			//Extract everything within parenthesis first from date.  Example date: Sat Sep 01 2018 16:00:00 GMT-0700 (Pacific Daylight Time)
+	var timezoneArray = parenthesis.toString().match(/[A-Z]/g);	//Extract capital letters from above string.  Example input: (Pacific Daylight Time)
+	var timezone = timezoneArray.join("");						//Join the array together into a string with no separator
 
-	var output = month+"/"+dayOfMonth+" "+hour+":"+minute+" "+amPM+" "+timezone;
+	var output = month+"/"+dayOfMonth+" "+dayOfWeek+" "+hour+":"+minute+" "+amPM+" "+timezone;	//Put together in format: MM/DD HH:MM AM/PM [timezone] e.g. 9/1 1:00 PM PST
 
 	return output;
 }
