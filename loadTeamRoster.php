@@ -18,6 +18,18 @@
 	//$sql = "SELECT week, teamName, teamID, playerName, position FROM teamRoster where teamID in ($teamID);";
     //$result = $conn->query($sql);
 
+	//Preset gametime values to null so you never get an undefined value
+	$teamRoster["QB"]["gametime"] = null;
+	$teamRoster["RB1"]["gametime"] = null;
+	$teamRoster["RB2"]["gametime"] = null;
+	$teamRoster["WR1"]["gametime"] = null;
+	$teamRoster["WR2"]["gametime"] = null;
+	$teamRoster["WR3"]["gametime"] = null;
+	$teamRoster["TE"]["gametime"] = null;
+	$teamRoster["DEF"]["gametime"] = null;
+	$teamRoster["K"]["gametime"] = null;
+	$teamRoster["FLEX"]["gametime"] = null;
+
 //    $index = 0;
     if ($result->num_rows > 0) {
         // output data of each row
@@ -47,16 +59,6 @@
             "K"=>null, 
             "DEF"=>null, 
             "FLEX"=>null);
-		$teamRoster["QB"]["gametime"] = null;
-		$teamRoster["RB1"]["gametime"] = null;
-		$teamRoster["RB2"]["gametime"] = null;
-		$teamRoster["WR1"]["gametime"] = null;
-		$teamRoster["WR2"]["gametime"] = null;
-		$teamRoster["WR3"]["gametime"] = null;
-		$teamRoster["TE"]["gametime"] = null;
-		$teamRoster["DEF"]["gametime"] = null;
-		$teamRoster["K"]["gametime"] = null;
-		$teamRoster["FLEX"]["gametime"] = null;
     }
     //Output table to readTeamRoster.js
     echo json_encode($teamRoster);
