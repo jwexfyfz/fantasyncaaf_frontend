@@ -156,6 +156,11 @@ function loadTeamRoster(week, teamID, weekChanged) {
 }
 
 function convertToReadableDate(date) {
+	console.log(date.toString());
+	if(date.toString() == "null UTC") {
+		return "";
+	}
+	
 	var month = date.getMonth() + 1;
 	var dayOfMonth = date.getDate();
 	var hour = date.getHours();
@@ -170,12 +175,7 @@ function convertToReadableDate(date) {
 
 	var output = month+"/"+dayOfMonth+" "+hour+":"+minute+" "+timezone;
 
-	if(date == "null UTC") {
-		return "";
-	}
-	else {
-		return output;
-	}
+	return output;
 }
 
 function getNumTimesPlayersUsed(teamRoster){
