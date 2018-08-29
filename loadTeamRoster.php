@@ -7,8 +7,8 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
-	$weekNum = $_GET["weekNum"];
-	$teamID = $_GET["teamIDNum"];
+	$weekNum = $_POST["weekNum"];
+	$teamID = $_POST["teamIDNum"];
 
 	$sql = "select distinct C.teamName, C.playerName, C.week, C.position, D.gametime, C.fantasyID as teamID from (select A.playerName, B.playerID, B.teamID, A.position, A.week, A.teamName, A.teamID as fantasyID from (select playerName, position, teamID, week, teamName from teamroster where week=$weekNum and teamID=$teamID) as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and D.week=$weekNum;";
 	
@@ -24,10 +24,11 @@
 
 			$position = $row["position"];
 			$teamRoster[$row["week"]]["$position"] = $row["playerName"];
-			$teamRoster["$position"]["gametime"] = $row["gametime"];
 			$teamRoster[$row["week"]]["week"] = $row["week"];
 			$teamRoster[$row["week"]]["teamID"] = $row["teamID"];
 			$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
+			
+			$teamRoster["$position"]["gametime"] = $row["gametime"];
         }
     } else {
         //Set everything to null so at least you return something
@@ -45,7 +46,16 @@
             "K"=>null, 
             "DEF"=>null, 
             "FLEX"=>null);
-		$teamRoster["$position"]["gametime"] = null;
+		$teamRoster["QB"]["gametime"] = null;
+		$teamRoster["RB1"]["gametime"] = null;
+		$teamRoster["RB2"]["gametime"] = null;
+		$teamRoster["WR1"]["gametime"] = null;
+		$teamRoster["WR2"]["gametime"] = null;
+		$teamRoster["WR3"]["gametime"] = null;
+		$teamRoster["TE"]["gametime"] = null;
+		$teamRoster["DEF"]["gametime"] = null;
+		$teamRoster["K"]["gametime"] = null;
+		$teamRoster["FLEX"]["gametime"] = null;
     }
     //Output table to readTeamRoster.js
     echo json_encode($teamRoster);
