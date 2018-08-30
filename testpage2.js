@@ -621,32 +621,31 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 	    data: dataString,
 	    success: function(response) {
 			
-			$('#result2').html(response);
-			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [position, playerName, team] array
+			phpResponse = JSON.parse(response);	//Note: phpResponse is teamRoster as an array of hashes, where each index is [position:position, playerName:playerName, teamName:teamName]
 			console.log("Response from getPlayerSchools.php: "+JSON.stringify(phpResponse));
 			
 			var counts = {};
 			var positionToTeam = {};
 			for (var i = 0; i < phpResponse.length; i++) {
-				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
+				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0); // counts the number of times a particular team shows up in teamRoster
 				//console.log("Response from getPlayerSchools.php: "+counts[i]);
-				positionToTeam[phpResponse[i]["position"]] = phpResponse[i]["teamName"];
+				positionToTeam[phpResponse[i]["position"]] = phpResponse[i]["teamName"]; // maps the position to the teamName of the player
 			}
 			console.log("Counts array: "+JSON.stringify(counts));
 			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
 			
 			for (var key in counts) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
-				if (counts[key] >= 2) {
+				if (counts[key] >= 2) {  // If the number of times a team shows up is >= 2, that team is duped
 					dupeTeams++;
 				}
 				console.log("dupeTeams: "+dupeTeams);
 			}
 			var newPosition = position.replace("tophp","");
-			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
+			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); // Get the teamName of the selected player
 			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 			
-			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
+			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
@@ -655,7 +654,6 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				//"Your roster has too many players from <team>. Remove one of the <team> players and try again."
 				fadeErrorFooter("Your roster has too many players from <b>" + selectedPlayerTeam + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + selectedPlayerTeam + "</b> players and try again.</span>");
 				loadTeamRoster(week, fantasyID, true);  // Should this be false??
-				//return false;
 			}
 			else {  // allow the change
 				console.log("CHANGE ALLOWED");
