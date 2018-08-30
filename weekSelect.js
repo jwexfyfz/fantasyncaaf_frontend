@@ -76,6 +76,7 @@ $( document ).ready(
 	
 	$("#unclickable").mouseup(function(e)
     {
+		console.log("clicked unclickable");
         var subject = $("#weekScrollContainer"); 
 
         if(e.target.id != subject.attr('id'))

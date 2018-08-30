@@ -5,9 +5,7 @@
 //1) getDataforChoosePlayerLists(), which calls populateChoosePlayerLists()
 $( document ).ready(
 	function sendTeamRosterToPhp() {
-		//Set default week value 
-		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK TODO: jeffwang to figure out how to make this change based on the current week
-		//cauchychoi: The code below should work.
+		//Set default week value.  Currently hardcoded for the 2018 season
 		var currentWeek = 1;
 		if (Date.now() > new Date('November 20, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 13;
@@ -46,11 +44,7 @@ $( document ).ready(
 			currentWeek = 2;
 		}
 		
-		$("#refreshPoints").click( function(event) {
-		  event.preventDefault();
-		  getFantasyPoints();
-		});
-		
+		//Navigation to other tabs on the page
 		$("#headerTableColumn1").click( function(event) {
 			window.location.href = "league.php" + window.location.search;
 		});
@@ -58,12 +52,14 @@ $( document ).ready(
 			window.location.href = "matchup.php" + window.location.search;
 		});	
 				
+		//Clear the error message if the user clicks the X
 		$("#errorBannerExit").click( function(event) {
 			clearTimeout(myVar);
 			console.log("clearTimeout ran");
 			exitErrorFooter();
 		});	
 		
+		//Clear the currently selected player from the roster when "clear player" button is clicked.  Do this for all positions.
 		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
 			console.log($(this).attr('id')+" clicked");
 			var position = $(this).attr('id').replace("clear","");
@@ -72,61 +68,56 @@ $( document ).ready(
 			sendToPhp(position+"tophp");
 		});
 		
+		//Set the current week for other functions to read from this value
 		$("#currentWeekNum").val(currentWeek);
-		console.log("Current week is now set to "+$("#currentWeekNum").val());
+		//console.log("Current week is now set to "+$("#currentWeekNum").val());
 		
+		//Set the current week circle (non-list) to the current week.  Then, set the current week circle (list) to a different color.
 		$("#currentWeekCircle").html(currentWeek);
-		console.log("setting #week"+currentWeek+"Circle to #6495ED");
 		$("#week"+currentWeek+"Circle").css('background-color','#F7882F');
-		console.log("#week"+currentWeek+"Circle is now "+$("#week"+currentWeek+"Circle").css('background-color'));
 		
-		
-		var urlArray = getUrlVars();
-		//console.log(urlArray);
+		//Get week and current Fantasy team ID to pass to rest of page
 		var week	=	$("#currentWeekNum").val();
 		var teamID	=	$("#teamID").val()
-		console.log("teamID: "+teamID);
+		//console.log("Current teamID: "+teamID);
 		
-		var teamName = $("#teamName").val();
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
-		checkGameStarted(week, teamID);  //uncomment when ready
+		checkGameStarted(week, teamID);  		//On page load, disable selects where the player has already played
 		
 });
 
+//This function acts as a page "refresh", as it calls the same two functions on page load
 function updatePage(teamID) {
-	console.log("week changed to "+$('#currentWeekNum').val());
-	var urlArray = getUrlVars();
-	var week	=	$("#currentWeekNum").val();
-	//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
-	//var teamID	=	$("#teamID").val();
-	console.log("updatePage teamID: "+teamID);
-	
-	//var teamName=	urlArray["teamName"];
-	
+	//Get current week
+	var week = $("#currentWeekNum").val();
+	//console.log("week changed to "+$('#currentWeekNum').val());
+		
 	loadTeamRoster(week, teamID, true);	//Populate select lists based on the week, set rosters that have already been chosen
-	checkGameStarted(week, teamID);  //Uncomment when ready
+	checkGameStarted(week, teamID);  	//On page refresh, disable selects where the player has already played
 	
 }
 
+//This function will populate the select dropdowns with the set rosters that have already been chosen, then set the selected option to the players that are chosen
 function loadTeamRoster(week, teamID, weekChanged) {
-    var phpResponse;
-	
-	//only need week and teamID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
+    var phpResponse;										//Output of PHP file will be stored here
+	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;	//Parameters to pass to PHP. Only need week and teamID to retrieve a user's roster
 	
 	//Send query to loadTeamRoster.php via AJAX
-	//This gets the roster that was already set by the user previously
+	//This gets the roster that was already set by the user previously. Will return 
+	//Columns:	response[week]:	week	playerName	teamID	teamName	QB	RB1	RB2	WR1	...
+	//			response[QB]:	gametime
+	//			response[RB1]:	gametime
+	//			...
 	$.ajax({
 	    type: "POST",
 	    url: "loadTeamRoster.php",
 	    data: dataString,
 	    success: function(response) {
-	      //$('#result').html(response);
-		  console.log("response from loadTeamRoster.php: "+response);
-		  console.log("successfully sent query to tell php to provide team roster!");	//For testing
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
+		  //console.log("response from loadTeamRoster.php: "+response);
+		  phpResponse = JSON.parse(response);
 		  
+		  //Populate the gametime for the already chosen players.  convertToReadableDate() will take a Date format and convert to MM/DD DayOfWeek HH:MM AM/PM timezone
 		  $('#QBgametime').html(convertToReadableDate(new Date(phpResponse["QB"]["gametime"]+ " UTC")));
 		  $('#RB1gametime').html(convertToReadableDate(new Date(phpResponse["RB1"]["gametime"]+ " UTC")));
 		  $('#RB2gametime').html(convertToReadableDate(new Date(phpResponse["RB2"]["gametime"]+ " UTC")));
@@ -137,7 +128,6 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  $('#DEFgametime').html(convertToReadableDate(new Date(phpResponse["DEF"]["gametime"]+ " UTC")));
 		  $('#Kgametime').html(convertToReadableDate(new Date(phpResponse["K"]["gametime"]+ " UTC")));
 		  $('#FLEXgametime').html(convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"]+ " UTC")));
-		  //getNumTimesPlayersUsed(phpResponse);
 		  
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID, weekChanged);
@@ -150,11 +140,12 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  getDataForChoosePlayerLists("DEF", phpResponse[week].DEF, teamID, weekChanged);
 		  getDataForChoosePlayerLists("K", phpResponse[week].K, teamID, weekChanged);
 		  getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX, teamID, weekChanged);
-		  console.log("finished populating available players and loading roster");	//For testing
 	    }
 	});
 }
 
+//This function is called whenever you want to convert a Date object into the following format:
+//	MM/DD DayOfWeek HH:MM AM/PM timezone (e.g. 9/1 Thurs 1:00 PM PST)
 function convertToReadableDate(date) {
 	//If you use new Date(null + " UTC"), it should return "Invalid Date".
 	//If Invalid Date, return blank date
@@ -225,6 +216,7 @@ function convertToReadableDate(date) {
 	return output;
 }
 
+
 function getNumTimesPlayersUsed(teamRoster){
 	var playersUsedCount;
 	
@@ -244,19 +236,15 @@ function getNumTimesPlayersUsed(teamRoster){
 	}
 }
 
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
-
+//This function will populate the fantasy points of the selected players.
+//For players who've already started playing, start at 0.
+//For players who have yet to play, set to "--" so user doesn't think we've already started scoring for that player.
 function getFantasyPoints() {
-	var week=$("#currentWeekNum").val();
-	var dataString="";
+	var week = $("#currentWeekNum").val();	//Get the current week
+	var dataString = "";					//Initialize parameters to go into PHP
 	
+	//If the position is empty, don't get the player's fantasy points (since we know it will be 0 or "not started")
+	//If the position is filled, add the players we need to get points for
 	if($('#inputQB').val() != null) {
 		dataString += "&qb="+$('#inputQB').val();
 	}
@@ -288,163 +276,133 @@ function getFantasyPoints() {
 		dataString += "&flex="+$('#inputFLEX').val();
 	}
 	dataString += "&week="+week;
+	
+	//URL encode spaces
 	dataString = dataString.trim().replace(/ /g, '%20');
-	dataString = dataString.substr(1);
-
-	console.log("getFantasyPoints dataString: "+dataString);
+	dataString = dataString.substr(1);		//not sure what this does
+	//console.log("getFantasyPoints dataString: "+dataString);
 
 	$.ajax({
 	    type: "POST",
 	    url: "getFantasyPoints.php",
 	    data: dataString,
 	    success: function(response) {
-			//console.log("response from getFantasyPoints.php: "+response);
 	      if(response == "0 results") {
 			  console.log("returned 0 results from getFantasyPoints.php");
 	      }
-		  //$('#result2').html(response);
 		  playerPoints = JSON.parse(response);
-		  //console.log("successfully got fantasyPoints from php!");
-	  
+		  
+		  //If the position has already been disabled (due to selected player already started playing), set to player's points from stats tables.  
+		  //If player doesn't exist in stats table, set points to 0.
 		  if($('#inputQB').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputQB').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#qbPoints').html(playerPoints[$('#inputQB').val()]);
 			  }
 			  else {
-				  //console.log("QB is disabled, so setting points to 0");
 				  $('#qbPoints').html("0");
 			  }
 		  } else {
-			  //console.log("QB is not disabled, so setting points to --");
-			  $('#qbPoints').html("--");
+			  $('#qbPoints').html("--");	//For players who haven't played yet, set their points to "--" to indicate that points haven't started counting yet
 		  }
 		  
 		  
 		  if($('#inputRB1').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputRB1').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#rb1Points').html(playerPoints[$('#inputRB1').val()]);
 			  }
 			  else {
-				  //console.log("RB1 is disabled, so setting points to 0");
 				  $('#rb1Points').html("0");
 			  }
 		  } else {
-			  //console.log("RB1 is not disabled, so setting points to --");
 			  $('#rb1Points').html("--");
 		  }
 		  
 		  if($('#inputRB2').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputRB2').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#rb2Points').html(playerPoints[$('#inputRB2').val()]);
 			  }
 			  else {
-				  //console.log("RB2 is disabled, so setting points to 0");
 				  $('#rb2Points').html("0");
 			  }
 		  } else {
-			  //console.log("RB2 is not disabled, so setting points to --");
 			  $('#rb2Points').html("--");
 		  }
 		  
 		  
 		  if($('#inputWR1').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputWR1').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#wr1Points').html(playerPoints[$('#inputWR1').val()]);
 			  }
 			  else {
-				  //console.log("WR1 is disabled, so setting points to 0");
 				  $('#wr1Points').html("0");
 			  }
 		  } else {
-			  //console.log("WR1 is not disabled, so setting points to --");
 			  $('#wr1Points').html("--");
 		  }
 		  
 		  if($('#inputWR2').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputWR2').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#wr2Points').html(playerPoints[$('#inputWR2').val()]);
 			  }
 			  else {
-				  //console.log("WR2 is disabled, so setting points to 0");
 				  $('#wr2Points').html("0");
 			  }
 		  } else {
-			  //console.log("WR2 is not disabled, so setting points to --");
 			  $('#wr2Points').html("--");
 		  }
 		  
 		  if($('#inputWR3').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputWR3').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#wr3Points').html(playerPoints[$('#inputWR3').val()]);
 			  }
 			  else {
-				  //console.log("WR3 is disabled, so setting points to 0");
 				  $('#wr3Points').html("0");
 			  }
 		  } else {
-			  //console.log("WR3 is not disabled, so setting points to --");
 			  $('#wr3Points').html("--");
 		  }
 		  
 		  if($('#inputTE').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputTE').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#tePoints').html(playerPoints[$('#inputTE').val()]);
 			  }
 			  else {
-				  //console.log("TE is disabled, so setting points to 0");
 				  $('#tePoints').html("0");
 			  }
 		  } else {
-			  //console.log("TE is not disabled, so setting points to --");
 			  $('#tePoints').html("--");
 		  }
 		  
 		  if($('#inputDEF').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputDEF').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#defPoints').html(playerPoints[$('#inputDEF').val()]);
 			  }
 			  else {
-				  //console.log("DEF is disabled, so setting points to 0");
 				  $('#defPoints').html("0");
 			  }
 		  } else {
-			  //console.log("DEF is not disabled, so setting points to --");
 			  $('#defPoints').html("--");
 		  }
 		  
 		  if($('#inputK').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputK').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#kPoints').html(playerPoints[$('#inputK').val()]);
 			  }
 			  else {
-				  //console.log("K is disabled, so setting points to 0");
 				  $('#kPoints').html("0");
 			  }
 		  } else {
-			  //console.log("K is not disabled, so setting points to --");
 			  $('#kPoints').html("--");
 		  }
 		  
 		  if($('#inputFLEX').attr('disabled') == 'disabled') {
 			  if(	playerPoints[$('#inputFLEX').val()] != undefined	) {
-				  //console.log(playerPoints[$('#inputQB').val()]);
 				  $('#flexPoints').html(playerPoints[$('#inputFLEX').val()]);
 			  }
 			  else {
-				  //console.log("FLEX is disabled, so setting points to 0");
 				  $('#flexPoints').html("0");
 			  }
 		  } else {
-			  //console.log("FLEX is not disabled, so setting points to --");
 			  $('#flexPoints').html("--");
 		  }
 	    }
