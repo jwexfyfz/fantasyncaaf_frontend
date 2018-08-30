@@ -63,8 +63,6 @@ $( document ).ready(
 			window.location.href = "index.php" + window.location.search;
 		});
 		
-		var urlArray = getUrlVars();
-		
 		var teamID	=	$("#teamID").val()
 		updatePage(teamID);	
 		allMatchupsFunction();
@@ -347,17 +345,6 @@ function setPlayerNameInMatchup(getPlayerAbbr, roster, homeOrAway, useAbbr) {
 		$("#"+homeOrAway+"FLEX").html(roster[homeOrAway+"Team"]["FLEX"]);
 	}
 }
-
-
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
-
 
 
 function getFantasyPoints(week, homeOrAway, roster) {
