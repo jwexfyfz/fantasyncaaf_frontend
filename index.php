@@ -313,7 +313,7 @@ if(!$fgmembersite->CheckLogin())
 				echo $string;
 			?>
 		</div>
-		<a href="https://docs.google.com/spreadsheets/d/1lwFdNeLr8QDMOIyxyWM3Vzm1w2t3GEHP1jYdIVYyJBg/edit?ts=5b84c0aa#gid=0">
+		<a href="https://docs.google.com/spreadsheets/d/1lwFdNeLr8QDMOIyxyWM3Vzm1w2t3GEHP1jYdIVYyJBg/edit?ts=5b84c0aa#gid=0" target="_blank">
 			<div class="accountMenuRow normalRow">
 				League Info
 			</div>

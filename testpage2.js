@@ -851,6 +851,7 @@ function getUnique(inputArray)
 
 
 //Disable players from schools that have already played
+//Is this function even used??
 function disablePlayers(position, teamsPlayed) {
 	console.log('teamsPlayed length: '+teamsPlayed.length);
 	$('#input'+position+' option').each(function(i){
