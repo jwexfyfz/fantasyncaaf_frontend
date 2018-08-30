@@ -216,26 +216,6 @@ function convertToReadableDate(date) {
 	return output;
 }
 
-
-function getNumTimesPlayersUsed(teamRoster){
-	var playersUsedCount;
-	
-	for (var key in teamRoster) {
-	    console.log("iterating through week "+teamRoster[key]);
-		
-		playersUsedCount[teamRoster[key]["QB"]] += 1;
-		playersUsedCount[teamRoster[key]["RB1"]] += 1;
-		playersUsedCount[teamRoster[key]["RB2"]] += 1;
-		playersUsedCount[teamRoster[key]["WR1"]] += 1;
-		playersUsedCount[teamRoster[key]["WR2"]] += 1;
-		playersUsedCount[teamRoster[key]["WR3"]] += 1;
-		playersUsedCount[teamRoster[key]["TE"]] += 1;
-		playersUsedCount[teamRoster[key]["DEF"]] += 1;
-		playersUsedCount[teamRoster[key]["K"]] += 1;
-		playersUsedCount[teamRoster[key]["FLEX"]] += 1;
-	}
-}
-
 //This function will populate the fantasy points of the selected players.
 //For players who've already started playing, start at 0.
 //For players who have yet to play, set to "--" so user doesn't think we've already started scoring for that player.
@@ -415,11 +395,8 @@ function getFantasyPoints() {
 //TODO: jeffwang to add in defense after list of defenses table is created
 function sendToPhp(position) {
 	console.log('------position set: ' + position);
-	var week=$("#currentWeekNum").val();	//Get week # from page	TODO: jeffwang to figure out how to dynamically change week	
-	var urlArray = getUrlVars();
-	//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
+	var week=$("#currentWeekNum").val();	//Get week # from page
 	var teamID	=	$("#teamID").val();
-	//var teamName = urlArray["teamName"];
 	var teamName = $("#teamName").val();
 	
 	var confirmPosition = "";
@@ -461,6 +438,8 @@ function sendToPhp(position) {
 	}
 	
 	//var dupesExist = false;
+	
+	// For when sendToPhp is called as a result of changing a player, first check to see if the newly selected player or the player that was changed has started playing
 	if (newPosition == "inputDEF") {
 		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), true, teamName);
 	}
@@ -469,13 +448,49 @@ function sendToPhp(position) {
 	}
 	//verifyNoDupes(position.replace("tophp",""), week, teamID, teamName);		//Check for dupes
 	
-	//JEFF TO CONFIRM THIS CODE: checkGameStarted returns an array of disabled newPositions. Only run the code below if a position is not disabled. This should also run checkGameStarted which is what we want.
-	//if (!checkGameStarted(week, teamID).indexOf(newPosition) > -1) {
-		// PUT ALL CODE BELOW IN HERE IF YOU AGREE.
-	//}
-	
 	//If duplicate names exist, block the sql query and inform user
 	
+}
+
+//cauchychoi 8/19/18: When a player gets changed, this function checks to see if both the player prior to the change and the newly selected player's games have begun.
+//The switch is not allowed if either player's game has started
+function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSelected, teamName) {
+	var phpResponse;
+	//only need week and fantasyID to retrieve a user's roster
+	var dataString = ""
+	if (defSelected) {
+		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&team='+playerOrTeamName;
+	}
+	else {
+		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerOrTeamName.trim().replace(/ /g, '%20');
+	}
+	console.log("checkPlayerStarted dataString: "+dataString);
+	
+	$.ajax({
+	    type: "POST",
+	    url: "checkPlayerStarted.php",
+	    data: dataString,
+	    success: function(response) {
+			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
+			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
+			//Iterate through game times and don't allow change if the game has started
+			var playerGameStarted = false;
+
+			for (var key in phpResponse) {
+				var gametime = new Date(phpResponse[key] + " UTC");
+				if (Date.now() > gametime.getTime()) {
+					fadeErrorFooter("The selected player's game has already begun!<br/>");
+					loadTeamRoster(week, fantasyID, true);  // Should this be false??
+					playerGameStarted = true;
+				}
+			}
+
+			if (!playerGameStarted) {
+				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
+				checkGameStarted(week, fantasyID);
+			}
+		}
+	});
 }
 
 function makeChangesToTeamRoster(position, week, teamID, teamName) {
@@ -758,46 +773,7 @@ function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) 
 	});	
 }
 
-//cauchychoi 8/19/18: When a player gets changed, this function checks to see if both the player prior to the change and the newly selected player's games have begun.
-//The switch is not allowed if either player's game has started
-function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSelected, teamName) {
-	var phpResponse;
-	//only need week and fantasyID to retrieve a user's roster
-	var dataString = ""
-	if (defSelected) {
-		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&team='+playerOrTeamName;
-	}
-	else {
-		dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position.replace("tophp","")+'&playerName='+playerOrTeamName.trim().replace(/ /g, '%20');
-	}
-	console.log("checkPlayerStarted dataString: "+dataString);
-	
-	$.ajax({
-	    type: "POST",
-	    url: "checkPlayerStarted.php",
-	    data: dataString,
-	    success: function(response) {
-			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
-			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
-			//Iterate through game times and don't allow change if the game has started
-			var playerGameStarted = false;
 
-			for (var key in phpResponse) {
-				var gametime = new Date(phpResponse[key] + " UTC");
-				if (Date.now() > gametime.getTime()) {
-					fadeErrorFooter("The selected player's game has already begun!<br/>");
-					loadTeamRoster(week, fantasyID, true);  // Should this be false??
-					playerGameStarted = true;
-				}
-			}
-
-			if (!playerGameStarted) {
-				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
-				checkGameStarted(week, fantasyID);
-			}
-		}
-	});
-}
 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has started and disable that 'select'. It will also update timesPlayerUsed
