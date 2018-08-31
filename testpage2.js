@@ -911,7 +911,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    case "RB1":
 		case "RB2":
 	        console.log('entered RB, position is '+position);
-			dataString = 'RBtophp='+'RB'+'&weekNum='+week;+'&teamID='+teamID
+			dataString = 'RBtophp='+'RB'+'&weekNum='+week+'&teamID='+teamID
 			positionHash="RB";
 	        break;
 	    case "WR1":
