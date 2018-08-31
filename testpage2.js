@@ -260,7 +260,7 @@ function getFantasyPoints() {
 	
 	//URL encode spaces
 	dataString = dataString.trim().replace(/ /g, '%20');
-	dataString = "?"+dataString.substr(1);		//not sure what this does
+	dataString = dataString.substr(1);		//not sure what this does
 	console.log("getFantasyPoints dataString: "+dataString);
 
 	$.ajax({
@@ -277,8 +277,9 @@ function getFantasyPoints() {
 		  //If the position has already been disabled (due to selected player already started playing), set to player's points from stats tables.  
 		  //If player doesn't exist in stats table, set points to 0.
 		  if($('#inputQB').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputQB').val()] != undefined	) {
-				  $('#qbPoints').html(playerPoints[$('#inputQB').val()]);
+			  console.log("playerPoints[QB] = "+playerPoints["QB"]);
+			  if(	playerPoints["QB"] != undefined	) {
+				  $('#qbPoints').html(playerPoints[playerPoints["QB"]]);
 			  }
 			  else {
 				  $('#qbPoints').html("0");

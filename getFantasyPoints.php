@@ -73,7 +73,7 @@
 	if (isset($_POST["teamID"])) {
 		$teamID = $_POST["teamID"];
 		
-	    $sql = "SELECT playerName, fantasyPoints FROM offenseStats where playerName in (SELECT playerName from teamRoster where week=$weekNum and teamID=$teamID and hasPlayed=1) and week=$weekNum;";
+	    $sql = "SELECT B.playerName, B.position, A.fantasyPoints FROM offenseStats as A inner join (SELECT playerName, position from teamRoster where week=$weekNum and teamID=$teamID and position != 'DEF' and hasPlayed=1) as B on (A.playerName = B.playerName) where week=$weekNum;";
 	    $result = $conn->query($sql);
 	}
 	else {
@@ -94,6 +94,9 @@
             $fantasyPoints = $row["fantasyPoints"];
             
             $playersAndPoints[$playerName] = $fantasyPoints;
+			if (isset($_POST["teamID"])) {		
+            	$playersAndPoints[$row["position"]] = $playerName;
+			}
         }
     } else {
         $playersAndPoints[$qQb] = "0";
@@ -109,7 +112,7 @@
     }
 	
 	if (isset($_POST["teamID"])) {		
-		$sql = "SELECT teamName, fantasyPoints FROM defenseStats where teamName in (SELECT playerName from teamRoster where week=$weekNum and teamID=$teamID and hasPlayed=1 and position = 'DEF') and week=$weekNum;";
+		$sql = "SELECT teamName, position, fantasyPoints FROM defenseStats as A inner join (SELECT playerName, position from teamRoster where week=$weekNum and teamID=$teamID and position = 'DEF' and hasPlayed=1) as B on (A.teamName = B.playerName) where week=$weekNum;";
 		$result = $conn->query($sql);
 	}
 	else {
@@ -127,9 +130,12 @@
             $fantasyPoints = $row["fantasyPoints"];
             
             $playersAndPoints[$playerName] = $fantasyPoints;
+			if (isset($_POST["teamID"])) {		
+            	$playersAndPoints[$row["position"]] = $playerName;
+			}
         }
     } else {
-        $playersAndPoints[$qDef] = "0";
+        $playersAndPoints[$qDef] = "0";		
     }
 	
 	
