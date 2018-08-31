@@ -555,7 +555,9 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 		if(	(	($('#input'+switchPosition1[i]).val() == phpResponse[week][switchPosition2[i]]) 	||
 		  		($('#input'+switchPosition2[i]).val() == phpResponse[week][switchPosition1[i]])		)	&& 	
 			(	($('#input'+switchPosition1[i]).val() != "")	&&
-			(	$('#input'+switchPosition2[i]).val() != "")		)												) 
+			(	$('#input'+switchPosition2[i]).val() != "")		)	&&
+			(	($('#input'+switchPosition1[i]).val() != null)	&&
+			(	$('#input'+switchPosition2[i]).val() != null)		)		) 
 		{
 			//Switch the players in the select dropdown on the page
 			console.log("values were the same!");
@@ -579,7 +581,7 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 			
 			console.log("after switch");
 			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
-			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
+			console.log('#'+switchPosition2[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
 		
 			//Refresh the select dropdown so the UI reflects the select values' states
 			$('#input'+switchPosition1[i]).selectpicker('refresh');
