@@ -907,7 +907,8 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	        break;
 	    case "RB1":
 		case "RB2":
-	        dataString = 'RBtophp='+'RB'+'&weekNum='+week;+'&teamID='+teamID
+	        console.log('entered RB, position is '+position);
+			dataString = 'RBtophp='+'RB'+'&weekNum='+week;+'&teamID='+teamID
 			positionHash="RB";
 	        break;
 	    case "WR1":
@@ -949,6 +950,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    data: dataString,
 	    success: function(response) {
 		  var playerList=JSON.parse(response);
+		  console.log("playerList: "+playerList);
 		  
 		  //Parameters are 1) ID of select, 2) array of eligible players, 3) player currently on the roster
 		  //TODO: jeffwang to figure out edge case when no players are chosen yet

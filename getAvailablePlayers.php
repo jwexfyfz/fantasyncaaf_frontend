@@ -130,20 +130,6 @@ inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime fr
 				}
 			}
 			$index++;
-			
-            /*if($defSelected) {
-            	$playerArray[$row["teamName"]] = $row["teamName"];
-            } else {
-				if(isset($usedPlayerTable[$row["playerID"]])) {
-					$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].") (".$usedPlayerTable[$row["playerID"]].")";
-					//echo $playerArray[$row["playerName"]];
-		            //$index++;
-				} else {
-					$playerArray[$row["playerName"]] = $row["playerName"]." (".$row["position"].", ".$row["team"].") (0)";
-					//echo $playerArray[$row["playerName"]];
-		            //$index++;
-				}
-            }*/
         }
     } else {
         echo "0 results";
