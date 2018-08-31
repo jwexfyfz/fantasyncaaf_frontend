@@ -1048,7 +1048,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	}
 	select.value = currentSelectedPlayer;
 	$('#'+inputPosition).selectpicker('refresh');
-	getFantasyPoints();
+	//getFantasyPoints();
 	console.log("done populating "+inputPosition);
 }
 
