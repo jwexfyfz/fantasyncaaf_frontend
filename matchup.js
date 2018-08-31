@@ -207,8 +207,9 @@ function setColorOfUserTeam(userTeam, notUserTeam) {
 
 function updatePage(teamID) {	
 	var week	=	$("#currentWeekNum").val();
-	//var teamID	=	$("#teamID").val();
 	var phpResponse;
+	
+	clearMatchupCard();
 	
 	//only need week and teamID to retrieve a user's roster
 	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;
@@ -238,8 +239,10 @@ function updatePage(teamID) {
 			//getTeamRoster(week, phpResponse[0]["awayTeam"], "away");
 	    }
 	});	
-	
-	
+}
+
+function clearMatchupCard() {
+	$('#homeQB', '#awayQB', '#homeRB1', '#awayRB1', '#homeRB2', '#awayRB2', '#homeWR1', '#awayWR1', '#homeWR2', '#awayWR2', '#homeWR3', '#awayWR3', '#homeTE', '#awayTE', '#homeDEF', '#awayDEF', '#homeK', '#awayK', '#homeFLEX', '#awayFLEX').empty();
 }
 
 function populateMatchupTable(week, roster) {	
