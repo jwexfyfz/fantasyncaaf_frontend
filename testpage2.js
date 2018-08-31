@@ -260,7 +260,7 @@ function getFantasyPoints() {
 	//URL encode spaces
 	dataString = dataString.trim().replace(/ /g, '%20');
 	dataString = dataString.substr(1);		//not sure what this does
-	//console.log("getFantasyPoints dataString: "+dataString);
+	console.log("getFantasyPoints dataString: "+dataString);
 
 	$.ajax({
 	    type: "POST",
@@ -271,6 +271,7 @@ function getFantasyPoints() {
 			  console.log("returned 0 results from getFantasyPoints.php");
 	      }
 		  playerPoints = JSON.parse(response);
+		  console.log("getFantasyPoints: " + JSON.stringify(playerPoints));
 		  
 		  //If the position has already been disabled (due to selected player already started playing), set to player's points from stats tables.  
 		  //If player doesn't exist in stats table, set points to 0.
@@ -471,26 +472,202 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 	    url: "checkPlayerStarted.php",
 	    data: dataString,
 	    success: function(response) {
-			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [playerID, teamID, position, hasPlayed, gametime]
+			phpResponse = JSON.parse(response);	//Note: phpResponse is a hash of playerName:gametime of both players that have just been selected and the player that was being changed
 			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
 
 			for (var key in phpResponse) {
 				var gametime = new Date(phpResponse[key] + " UTC");
-				if (Date.now() > gametime.getTime()) {
+				if (Date.now() > gametime.getTime()) {  // If the current time is past the player's gametime, don't allow the change and display an error
 					fadeErrorFooter("The selected player's game has already begun!<br/>");
-					loadTeamRoster(week, fantasyID, true);  // Should this be false??
+					loadTeamRoster(week, fantasyID, true);  // Refresh the roster - Should this be false??
 					playerGameStarted = true;
 				}
 			}
 
-			if (!playerGameStarted) {
+			if (!playerGameStarted) {  // If neither the newly selected player or the changed player has started playing, move on to verifyNoDupes and checkGameStarted
 				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
 				checkGameStarted(week, fantasyID);
 			}
 		}
 	});
+}
+
+//jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
+//It loads the teamRoster from the database and kicks off the dupe flow by calling comparePotentialDupes
+function verifyNoDupes(position, week, fantasyID, teamName, playerGametimeArray) {	
+    var phpResponse;
+	
+	//only need week and fantasyID to retrieve a user's roster
+	var dataString = 'weekNum='+week+'&teamIDNum='+fantasyID;
+	var temp;
+	
+	//Send query to loadTeamRoster.php via AJAX
+	//This gets the roster that was already set by the user previously
+	$.ajax({
+	    type: "POST",
+	    url: "loadTeamRoster.php",
+	    data: dataString,
+	    success: function(response) {
+			console.log("successfully sent query to tell php to provide team roster!");	//For testing
+			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
+		  
+			comparePotentialDupes(position, phpResponse, week, fantasyID, teamName, playerGametimeArray);
+	    }
+	});  
+}
+
+//jeffwang: This function checks to see if players can be switched. If they can, switchPlayerUpdateRoster is called. If not, the logic continues to getNumDupeTeamsAllowed
+function comparePotentialDupes (position, phpResponse, week, teamID, teamName, playerGametimeArray){
+    console.log("639: position: "+position);
+    console.log("640: position: "+position.replace("tophp","gametime"));
+	
+	var selectVal = "input"+position.replace("tophp","");
+	console.log("current position value: "+$('#'+selectVal).val());
+	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]	);
+	console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
+	
+	//If position doesn't have a gametime yet, set it.  If it already has one, populate it after switch logic.
+	//if($('#'+position.replace("tophp","gametime")).html() == "") {
+	//	$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+	//}
+	
+	
+	var switchedPlayers = false;
+	var switchPosition1 = ["RB1","RB1","RB2","WR1","WR2","WR1","WR1","WR2","WR3","TE"];
+	var switchPosition2 = ["RB2","FLEX","FLEX","WR2","WR3","WR3","FLEX","FLEX","FLEX","FLEX"];
+	
+	for (var i = 0; i < switchPosition1.length; i++) {
+		//Cycle through all the potential positions that can be duped
+		//If the current selected player is the same as teamRoster's player for that position and NOT blank:
+		if(	(	($('#input'+switchPosition1[i]).val() == phpResponse[week][switchPosition2[i]]) 	||
+		  		($('#input'+switchPosition2[i]).val() == phpResponse[week][switchPosition1[i]])		)	&& 	
+			(	($('#input'+switchPosition1[i]).val() != "")	&&
+			(	$('#input'+switchPosition2[i]).val() != "")		)												) 
+		{
+			//Switch the players in the select dropdown on the page
+			console.log("values were the same!");
+			
+			var temp = $('#'+switchPosition1[i]+"gametime").html();
+			
+			console.log("temp: "+temp);
+			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
+			console.log('#'+switchPosition2[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
+			
+
+			$('#'+switchPosition1[i]+"gametime").html($('#'+switchPosition2[i]+"gametime").html());
+			$('#'+switchPosition2[i]+"gametime").html(temp);
+			
+			
+			
+			$('#input'+switchPosition1[i]).val(phpResponse[week][switchPosition2[i]]);
+			$('#input'+switchPosition2[i]).val(phpResponse[week][switchPosition1[i]]);
+			
+			
+			
+			console.log("after switch");
+			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
+			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
+		
+			//Refresh the select dropdown so the UI reflects the select values' states
+			$('#input'+switchPosition1[i]).selectpicker('refresh');
+			$('#input'+switchPosition2[i]).selectpicker('refresh');
+
+			//Make updates to teamRoster
+			switchedPlayers = true;
+			switchPlayerUpdateRoster(switchPosition1[i], switchPosition2[i], week, teamID, teamName);
+			//makeChangesToTeamRoster(position, week, teamID, true);			  
+		} 
+	}
+	if (!switchedPlayers) {
+		//If not switching, populate gametime of new player
+		//TODO: jeffwang to remove this after moving this into the following functions
+		//$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
+		getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName, playerGametimeArray);		//Check for dupes
+	}
+}
+
+//cauchychoi: This function returns the number of dupe teams allowed and passes it to teamDupes
+function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName, playerGametimeArray) {
+	var phpResponse;
+	var dataString = 'weekNum='+week;
+	
+	$.ajax({
+	    type: "POST",
+	    url: "getNumDupeTeamsAllowed.php",
+	    data: dataString,
+	    success: function(response) {
+		  phpResponse = JSON.parse(response);	//Note: phpResponse is 10 (the number of positions on a fantasy team) minus the number of teams playing that week = numDupeTeamsAllowed
+		  if (phpResponse < 0) {
+			phpResponse = 0;
+		  }
+		  teamDupes(week, fantasyID, phpResponse, position, teamRoster, teamName, playerGametimeArray);
+	    }
+	});
+}
+
+//cauchychoi: This function counts the number of dupe teams and compares it with numDupeTeamsAllowed
+function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName, playerGametimeArray) {
+	var dupeTeams = 0;
+	
+	var phpResponse;
+	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
+	
+	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
+	
+	$.ajax({
+	    type: "POST",
+	    url: "getPlayerSchools.php",
+	    data: dataString,
+	    success: function(response) {
+			
+			phpResponse = JSON.parse(response);	//Note: phpResponse is teamRoster as an array of hashes, where each index is [position:position, playerName:playerName, teamName:teamName]
+			console.log("Response from getPlayerSchools.php: "+JSON.stringify(phpResponse));
+			
+			var counts = {};
+			var positionToTeam = {};
+			for (var i = 0; i < phpResponse.length; i++) {
+				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0); // counts the number of times a particular team shows up in teamRoster
+				//console.log("Response from getPlayerSchools.php: "+counts[i]);
+				positionToTeam[phpResponse[i]["position"]] = phpResponse[i]["teamName"]; // maps the position to the teamName of the player
+			}
+			console.log("Counts array: "+JSON.stringify(counts));
+			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
+			
+			for (var key in counts) {
+				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
+				if (counts[key] >= 2) {  // If the number of times a team shows up is >= 2, that team is duped
+					dupeTeams++;
+				}
+				console.log("dupeTeams: "+dupeTeams);
+			}
+			var newPosition = position.replace("tophp","");
+			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); // Get the teamName of the selected player
+			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
+			
+			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
+				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
+				
+				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
+				
+				//Display error message
+				//"Your roster has too many players from <team>. Remove one of the <team> players and try again."
+				fadeErrorFooter("Your roster has too many players from <b>" + selectedPlayerTeam + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + selectedPlayerTeam + "</b> players and try again.</span>");
+				loadTeamRoster(week, fantasyID, true);  // Should this be false??
+			}
+			else {  // allow the change
+				console.log("CHANGE ALLOWED");
+				
+				//If not switching players and player is a valid change, populate gametime of new player
+				var selectVal = "input"+position.replace("tophp","");
+				
+				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
+				
+				makeChangesToTeamRoster(position, week, fantasyID, teamName);
+			}
+	    }
+	});  
 }
 
 function makeChangesToTeamRoster(position, week, teamID, teamName) {
@@ -567,184 +744,6 @@ function makeChangesToTeamRoster(position, week, teamID, teamName) {
 		    }
 		});
 	//}
-}
-
-
-//jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
-//It will check to see that no player is used twice, return true if all players are unique. return false if there is a duplicate
-function verifyNoDupes(position, week, fantasyID, teamName, playerGametimeArray) {	
-    var phpResponse;
-	
-	//only need week and fantasyID to retrieve a user's roster
-	var dataString = 'weekNum='+week+'&teamIDNum='+fantasyID;
-	var temp;
-	
-	//Send query to loadTeamRoster.php via AJAX
-	//This gets the roster that was already set by the user previously
-	$.ajax({
-	    type: "POST",
-	    url: "loadTeamRoster.php",
-	    data: dataString,
-	    success: function(response) {
-			console.log("successfully sent query to tell php to provide team roster!");	//For testing
-			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a teamRoster, followed by the chosen positions of that roster
-		  
-			comparePotentialDupes(position, phpResponse, week, fantasyID, teamName, playerGametimeArray);
-	    }
-	});  
-}
-
-function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName, playerGametimeArray) {
-	var dupeTeams = 0;
-	
-	var phpResponse;
-	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
-	
-	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
-	
-	$.ajax({
-	    type: "POST",
-	    url: "getPlayerSchools.php",
-	    data: dataString,
-	    success: function(response) {
-			
-			$('#result2').html(response);
-			console.log("successfully sent query to tell php to provide list of schools");	//For testing
-			phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a [position, playerName, team] array
-			console.log("Response from getPlayerSchools.php: "+JSON.stringify(phpResponse));
-			
-			var counts = {};
-			var positionToTeam = {};
-			for (var i = 0; i < phpResponse.length; i++) {
-				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0);
-				//console.log("Response from getPlayerSchools.php: "+counts[i]);
-				positionToTeam[phpResponse[i]["position"]] = phpResponse[i]["teamName"];
-			}
-			console.log("Counts array: "+JSON.stringify(counts));
-			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
-			
-			for (var key in counts) {
-				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
-				if (counts[key] >= 2) {
-					dupeTeams++;
-				}
-				console.log("dupeTeams: "+dupeTeams);
-			}
-			var newPosition = position.replace("tophp","");
-			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school');
-			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
-			
-			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team is >= 1 use and we've hit the limit of dupe teams
-				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
-				
-				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
-				
-				//Display error message
-				//"Your roster has too many players from <team>. Remove one of the <team> players and try again."
-				fadeErrorFooter("Your roster has too many players from <b>" + selectedPlayerTeam + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + selectedPlayerTeam + "</b> players and try again.</span>");
-				loadTeamRoster(week, fantasyID, true);  // Should this be false??
-				//return false;
-			}
-			else {  // allow the change
-				console.log("CHANGE ALLOWED");
-				
-				//If not switching players and player is a valid change, populate gametime of new player
-				var selectVal = "input"+position.replace("tophp","");
-				
-				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
-				
-				makeChangesToTeamRoster(position, week, fantasyID, teamName);
-			}
-	    }
-	});  
-}
-
-function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName, playerGametimeArray) {
-	var phpResponse;
-	var dataString = 'weekNum='+week;
-	
-	$.ajax({
-	    type: "POST",
-	    url: "getNumDupeTeamsAllowed.php",
-	    data: dataString,
-	    success: function(response) {
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is an array of arrays, where each row is a (playerName, team) pair
-		  if (phpResponse < 0) {
-			phpResponse = 0;
-		  }
-		  teamDupes(week, fantasyID, phpResponse, position, teamRoster, teamName, playerGametimeArray);
-	    }
-	});
-	
-}
-
-function comparePotentialDupes (position, phpResponse, week, teamID, teamName, playerGametimeArray){
-    console.log("639: position: "+position);
-    console.log("640: position: "+position.replace("tophp","gametime"));
-	
-	var selectVal = "input"+position.replace("tophp","");
-	console.log("current position value: "+$('#'+selectVal).val());
-	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]	);
-	console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
-	
-	//If position doesn't have a gametime yet, set it.  If it already has one, populate it after switch logic.
-	//if($('#'+position.replace("tophp","gametime")).html() == "") {
-	//	$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
-	//}
-	
-	
-	var switchedPlayers = false;
-	var switchPosition1 = ["RB1","RB1","RB2","WR1","WR2","WR1","WR1","WR2","WR3","TE"];
-	var switchPosition2 = ["RB2","FLEX","FLEX","WR2","WR3","WR3","FLEX","FLEX","FLEX","FLEX"];
-	
-	for (var i = 0; i < switchPosition1.length; i++) {
-		//Cycle through all the potential positions that can be duped
-		//If the current selected player is the same as teamRoster's player for that position and NOT blank:
-		if(	(	($('#input'+switchPosition1[i]).val() == phpResponse[week][switchPosition2[i]]) 	||
-		  		($('#input'+switchPosition2[i]).val() == phpResponse[week][switchPosition1[i]])		)	&& 	
-			(	($('#input'+switchPosition1[i]).val() != "")	&&
-			(	$('#input'+switchPosition2[i]).val() != "")		)												) 
-		{
-			//Switch the players in the select dropdown on the page
-			console.log("values were the same!");
-			
-			var temp = $('#'+switchPosition1[i]+"gametime").html();
-			
-			console.log("temp: "+temp);
-			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
-			console.log('#'+switchPosition2[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
-			
-
-			$('#'+switchPosition1[i]+"gametime").html($('#'+switchPosition2[i]+"gametime").html());
-			$('#'+switchPosition2[i]+"gametime").html(temp);
-			
-			
-			
-			$('#input'+switchPosition1[i]).val(phpResponse[week][switchPosition2[i]]);
-			$('#input'+switchPosition2[i]).val(phpResponse[week][switchPosition1[i]]);
-			
-			
-			
-			console.log("after switch");
-			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition1[i]+"gametime").html());
-			console.log('#'+switchPosition1[i]+"gametime: "+$('#'+switchPosition2[i]+"gametime").html());
-		
-			//Refresh the select dropdown so the UI reflects the select values' states
-			$('#input'+switchPosition1[i]).selectpicker('refresh');
-			$('#input'+switchPosition2[i]).selectpicker('refresh');
-
-			//Make updates to teamRoster
-			switchedPlayers = true;
-			switchPlayerUpdateRoster(switchPosition1[i], switchPosition2[i], week, teamID, teamName);
-			//makeChangesToTeamRoster(position, week, teamID, true);			  
-		} 
-	}
-	if (!switchedPlayers) {
-		//If not switching, populate gametime of new player
-		//TODO: jeffwang to remove this after moving this into the following functions
-		//$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]);
-		getNumDupeTeamsAllowed(week, teamID, position, phpResponse, teamName, playerGametimeArray);		//Check for dupes
-	}
 }
 
 function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) {
@@ -851,6 +850,7 @@ function getUnique(inputArray)
 
 
 //Disable players from schools that have already played
+//Is this function even used??
 function disablePlayers(position, teamsPlayed) {
 	console.log('teamsPlayed length: '+teamsPlayed.length);
 	$('#input'+position+' option').each(function(i){
@@ -1048,8 +1048,9 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	}
 	select.value = currentSelectedPlayer;
 	$('#'+inputPosition).selectpicker('refresh');
+	//getFantasyPoints();
 	console.log("done populating "+inputPosition);
-};
+}
 
 //jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
 function confirmPlayer(position) {

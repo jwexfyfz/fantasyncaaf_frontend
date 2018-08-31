@@ -42,10 +42,7 @@ $( document ).ready(
 		$(".test").html("Week "+currentWeek);
 		console.log("Current week is now set to "+$(".test").html());
 		
-		var urlArray = getUrlVars();
-		
 		var week	=	$("#currentWeekNum").val();
-		//var teamID	=	urlArray["teamID"];		//TODO: jeffwang needs to replace this with an actual login system...
 		var teamID	=	$("#teamID").val();
 				
 		$("#headerTableColumn2").click( function(event) {
@@ -260,14 +257,6 @@ function populateStandings(useDivision, teamID, getNameFromID) {
 		  console.log("finished populating league standings");	//For testing
 	    }
 	});
-}
-
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
 }
 
 function updatePage(teamID) {
