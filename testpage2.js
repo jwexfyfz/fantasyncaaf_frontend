@@ -140,6 +140,8 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  getDataForChoosePlayerLists("DEF", phpResponse[week].DEF, teamID, weekChanged);
 		  getDataForChoosePlayerLists("K", phpResponse[week].K, teamID, weekChanged);
 		  getDataForChoosePlayerLists("FLEX", phpResponse[week].FLEX, teamID, weekChanged);
+		  
+		  getFantasyPoints();
 	    }
 	});
 }
