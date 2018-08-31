@@ -260,7 +260,7 @@ function getFantasyPoints() {
 	//URL encode spaces
 	dataString = dataString.trim().replace(/ /g, '%20');
 	dataString = dataString.substr(1);		//not sure what this does
-	//console.log("getFantasyPoints dataString: "+dataString);
+	console.log("getFantasyPoints dataString: "+dataString);
 
 	$.ajax({
 	    type: "POST",
@@ -271,6 +271,7 @@ function getFantasyPoints() {
 			  console.log("returned 0 results from getFantasyPoints.php");
 	      }
 		  playerPoints = JSON.parse(response);
+		  console.log("getFantasyPoints: " + JSON.stringify(playerPoints));
 		  
 		  //If the position has already been disabled (due to selected player already started playing), set to player's points from stats tables.  
 		  //If player doesn't exist in stats table, set points to 0.
