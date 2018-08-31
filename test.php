@@ -25,49 +25,50 @@
         }
     }
 	
+	$qPosition = "RB";
 	
-	if(isset($_POST['QBtophp'])) {
-		$qPosition = $_POST["QBtophp"];
+	if(isset($_GET['QBtophp'])) {
+		$qPosition = $_GET["QBtophp"];
 		//echo "received QB: $position";
 	} 
-	else if(isset($_POST['RBtophp'])) {
-		$qPosition = $_POST["RBtophp"];
+	else if(isset($_GET['RBtophp'])) {
+		$qPosition = $_GET["RBtophp"];
 		//echo "received RB: $position";
 	} 
-	else if(isset($_POST['WRtophp'])) {
-		$qPosition = $_POST["WRtophp"];
+	else if(isset($_GET['WRtophp'])) {
+		$qPosition = $_GET["WRtophp"];
 	} 
-	else if(isset($_POST['TEtophp'])) {
-		$qPosition = $_POST["TEtophp"];
+	else if(isset($_GET['TEtophp'])) {
+		$qPosition = $_GET["TEtophp"];
 	} 
-	else if(isset($_POST['DEFtophp'])) {
-		$qPosition = $_POST["DEFtophp"];
+	else if(isset($_GET['DEFtophp'])) {
+		$qPosition = $_GET["DEFtophp"];
 		$defSelected = true;
 	} 
-	else if(isset($_POST['Ktophp'])) {
-		$qPosition = $_POST["Ktophp"];
+	else if(isset($_GET['Ktophp'])) {
+		$qPosition = $_GET["Ktophp"];
 	} 
 	
 	//FLEX:	Allow RB, FB, WR, and TE positions 
-	if(isset($_POST['FLEXtophp'])) {
+	if(isset($_GET['FLEXtophp'])) {
 	    //$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB','WR','TE') order by team, PlayerName;";
 		$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime FROM collegeTeamRoster as C
 inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position in ('RB','FB','WR','TE') order by team, PlayerName;";
 	} 
 	//TE:	Allow TE and WR positions
-	else if(isset($_POST['TEtophp'])) {
+	else if(isset($_GET['TEtophp'])) {
 	    //$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('WR','TE') order by team, PlayerName;";
 		$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime FROM collegeTeamRoster as C
 inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position in ('WR','TE') order by team, PlayerName;";
 	} 
 	//RB1:	Allow RB and FB positions
-	else if(isset($_POST['RBtophp'])) {
+	else if(isset($_GET['RBtophp'])) {
 	    //$sql = "SELECT playerName, playerID, team, teamID, position, PlayerAbbr FROM collegeTeamRoster where position in ('RB','FB') order by team, PlayerName;";
 		$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime FROM collegeTeamRoster as C
 inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position in ('RB','FB') order by team, PlayerName;";
 	} 
 	//DEF:	Select from collegeTeams table
-	else if(isset($_POST['DEFtophp'])) {
+	else if(isset($_GET['DEFtophp'])) {
 	    //$sql = "SELECT teamName, teamID FROM collegeTeams order by teamName;";
 		$sql = "SELECT C.teamName as teamName, C.teamID as teamID, D.gametime as gametime FROM collegeTeams as C
 inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) order by teamName;";
@@ -77,7 +78,7 @@ inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime fr
     	$sql = "SELECT C.playerName, C.playerID, C.team, C.teamID, C.position, C.PlayerAbbr, D.gametime as gametime FROM collegeTeamRoster as C
 inner join (SELECT A.teamID as teamid, B.team as team, B.gametime as gametime from collegeteams as A inner join (select teamID, team, gametime from gametimes where week=$weekNum) as B on (A.teamID = B.teamID)) as D on (C.teamID = D.teamid) where position='$qPosition' order by team, PlayerName;";
 	}
-	//echo $sql;
+	echo $sql;
     $result = $conn->query($sql);
 
     $index = 0;
