@@ -290,8 +290,9 @@ function getFantasyPoints() {
 		  
 		  
 		  if($('#inputRB1').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputRB1').val()] != undefined	) {
-				  $('#rb1Points').html(playerPoints[$('#inputRB1').val()]);
+			  console.log("playerPoints[RB1] = "+playerPoints["RB1"]);
+			  if(	playerPoints["RB1"] != undefined	) {
+				  $('#rb1Points').html(playerPoints[playerPoints["RB1"]]);
 			  }
 			  else {
 				  $('#rb1Points').html("0");
@@ -301,8 +302,9 @@ function getFantasyPoints() {
 		  }
 		  
 		  if($('#inputRB2').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputRB2').val()] != undefined	) {
-				  $('#rb2Points').html(playerPoints[$('#inputRB2').val()]);
+			  console.log("playerPoints[RB2] = "+playerPoints["RB2"]);
+			  if(	playerPoints["RB2"] != undefined	) {
+				  $('#rb2Points').html(playerPoints[playerPoints["RB2"]]);
 			  }
 			  else {
 				  $('#rb2Points').html("0");
@@ -313,8 +315,9 @@ function getFantasyPoints() {
 		  
 		  
 		  if($('#inputWR1').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputWR1').val()] != undefined	) {
-				  $('#wr1Points').html(playerPoints[$('#inputWR1').val()]);
+			  console.log("playerPoints[WR1] = "+playerPoints["WR1"]);
+			  if(	playerPoints["WR1"] != undefined	) {
+				  $('#wr1Points').html(playerPoints[playerPoints["WR1"]]);
 			  }
 			  else {
 				  $('#wr1Points').html("0");
@@ -324,8 +327,9 @@ function getFantasyPoints() {
 		  }
 		  
 		  if($('#inputWR2').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputWR2').val()] != undefined	) {
-				  $('#wr2Points').html(playerPoints[$('#inputWR2').val()]);
+			  console.log("playerPoints[WR2] = "+playerPoints["WR2"]);
+			  if(	playerPoints["WR2"] != undefined	) {
+				  $('#wr2Points').html(playerPoints[playerPoints["WR2"]]);
 			  }
 			  else {
 				  $('#wr2Points').html("0");
@@ -335,8 +339,9 @@ function getFantasyPoints() {
 		  }
 		  
 		  if($('#inputWR3').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputWR3').val()] != undefined	) {
-				  $('#wr3Points').html(playerPoints[$('#inputWR3').val()]);
+			  console.log("playerPoints[WR3] = "+playerPoints["WR3"]);
+			  if(	playerPoints["WR3"] != undefined	) {
+				  $('#wr3Points').html(playerPoints[playerPoints["WR3"]]);
 			  }
 			  else {
 				  $('#wr3Points').html("0");
@@ -346,8 +351,9 @@ function getFantasyPoints() {
 		  }
 		  
 		  if($('#inputTE').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputTE').val()] != undefined	) {
-				  $('#tePoints').html(playerPoints[$('#inputTE').val()]);
+			  console.log("playerPoints[TE] = "+playerPoints["TE"]);
+			  if(	playerPoints["TE"] != undefined	) {
+				  $('#tePoints').html(playerPoints[playerPoints["TE"]]);
 			  }
 			  else {
 				  $('#tePoints').html("0");
@@ -357,8 +363,9 @@ function getFantasyPoints() {
 		  }
 		  
 		  if($('#inputDEF').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputDEF').val()] != undefined	) {
-				  $('#defPoints').html(playerPoints[$('#inputDEF').val()]);
+			  console.log("playerPoints[DEF] = "+playerPoints["DEF"]);
+			  if(	playerPoints["DEF"] != undefined	) {
+				  $('#defPoints').html(playerPoints[playerPoints["DEF"]]);
 			  }
 			  else {
 				  $('#defPoints').html("0");
@@ -368,8 +375,9 @@ function getFantasyPoints() {
 		  }
 		  
 		  if($('#inputK').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputK').val()] != undefined	) {
-				  $('#kPoints').html(playerPoints[$('#inputK').val()]);
+			  console.log("playerPoints[K] = "+playerPoints["K"]);
+			  if(	playerPoints["K"] != undefined	) {
+				  $('#kPoints').html(playerPoints[playerPoints["K"]]);
 			  }
 			  else {
 				  $('#kPoints').html("0");
@@ -379,8 +387,9 @@ function getFantasyPoints() {
 		  }
 		  
 		  if($('#inputFLEX').attr('disabled') == 'disabled') {
-			  if(	playerPoints[$('#inputFLEX').val()] != undefined	) {
-				  $('#flexPoints').html(playerPoints[$('#inputFLEX').val()]);
+			  console.log("playerPoints[FLEX] = "+playerPoints["FLEX"]);
+			  if(	playerPoints["FLEX"] != undefined	) {
+				  $('#flexPoints').html(playerPoints[playerPoints["FLEX"]]);
 			  }
 			  else {
 				  $('#flexPoints').html("0");
