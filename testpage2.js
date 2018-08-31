@@ -255,11 +255,12 @@ function getFantasyPoints() {
 	if($('#inputFLEX').val() != null) {
 		dataString += "&flex="+$('#inputFLEX').val();
 	}
+	dataString += "&teamID="+$("#teamID").val();
 	dataString += "&week="+week;
 	
 	//URL encode spaces
 	dataString = dataString.trim().replace(/ /g, '%20');
-	dataString = dataString.substr(1);		//not sure what this does
+	dataString = "?"+dataString.substr(1);		//not sure what this does
 	console.log("getFantasyPoints dataString: "+dataString);
 
 	$.ajax({
