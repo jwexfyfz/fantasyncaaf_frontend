@@ -1050,7 +1050,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	$('#'+inputPosition).selectpicker('refresh');
 	getFantasyPoints();
 	console.log("done populating "+inputPosition);
-};
+}
 
 //jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
 function confirmPlayer(position) {
