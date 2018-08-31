@@ -61,6 +61,28 @@
 	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupHomeTeam and week in ($weekNum) and hasPlayed in (select val from flags where flag = 'useHasPlayed');";
     $result = $conn->query($sql);
 
+	//Initialize teamRoster so that all positions are blank
+    $teamRoster["homeTeam"]["QB"] = "";
+    $teamRoster["homeTeam"]["RB1"] = "";
+    $teamRoster["homeTeam"]["RB2"] = "";
+    $teamRoster["homeTeam"]["WR1"] = "";
+    $teamRoster["homeTeam"]["WR2"] = "";
+    $teamRoster["homeTeam"]["WR3"] = "";
+    $teamRoster["homeTeam"]["TE"] = "";
+    $teamRoster["homeTeam"]["K"] = "";
+    $teamRoster["homeTeam"]["DEF"] = "";
+    $teamRoster["homeTeam"]["FLEX"] = "";
+    $teamRoster["awayTeam"]["QB"] = "";
+    $teamRoster["awayTeam"]["RB1"] = "";
+    $teamRoster["awayTeam"]["RB2"] = "";
+    $teamRoster["awayTeam"]["WR1"] = "";
+    $teamRoster["awayTeam"]["WR2"] = "";
+    $teamRoster["awayTeam"]["WR3"] = "";
+    $teamRoster["awayTeam"]["TE"] = "";
+    $teamRoster["awayTeam"]["K"] = "";
+    $teamRoster["awayTeam"]["DEF"] = "";
+    $teamRoster["awayTeam"]["FLEX"] = "";
+
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
 			$teamRoster["homeTeam"][$row["position"]] = $row["playerName"];
@@ -84,7 +106,7 @@
     }
 	
 	//Do the same thing for the away team
-	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupAwayTeam and week in ($weekNum) and hasPlayed = 1;";
+	$sql="SELECT teamID, position, playerName, teamName FROM teamRoster where teamID = $matchupAwayTeam and week in ($weekNum) and hasPlayed in (select val from flags where flag = 'useHasPlayed');";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
