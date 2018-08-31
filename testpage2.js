@@ -825,14 +825,14 @@ function checkGameStarted(week, fantasyID, playerGametimeArray) {
 							//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
 							document.getElementById("input"+phpResponse[i]["position"]).disabled = true;
 							disabledPositions.push("input"+phpResponse[i]["position"]);
-							if (phpResponse[i]["hasPlayed"] == 0) {
+							/*if (phpResponse[i]["hasPlayed"] == 0) {
 								if (phpResponse[i]["position"].localeCompare("DEF") == 0) {  // if DEF, grab teamID
 									updateTimesPlayerUsed(phpResponse[i]["teamID"], fantasyID, week, phpResponse[i]["position"]);
 								}
 								else {  // else grab playerID
 									updateTimesPlayerUsed(phpResponse[i]["playerID"], fantasyID, week, phpResponse[i]["position"]);
 								}
-							}
+							}*/
 						}
 					}
 				}
@@ -876,7 +876,9 @@ function disablePlayers(position, teamsPlayed) {
 	console.log("finished going through for loop");
 }
 
+/*
 //cauchychoi 6/12/18: Update timesplayerused table
+//cauchychoi 8/30/18: Moved this to ruby so it's not dependent on page load
 function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 	var phpResponse;
 	
@@ -891,6 +893,7 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 		}
 	});
 }
+*/
 
 //jeffwang 3/14/2018: This function is currently run on document.ready for each position. It will:
 //1) Send query to getAvailablePlayers.php to query collegeTeamRoster table to figure out which players you can choose
@@ -1061,7 +1064,6 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	}
 	select.value = currentSelectedPlayer;
 	$('#'+inputPosition).selectpicker('refresh');
-	//getFantasyPoints();
 	console.log("done populating "+inputPosition);
 }
 
