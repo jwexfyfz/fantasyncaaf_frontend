@@ -77,7 +77,7 @@
 	    $result = $conn->query($sql);
 	}
 	else {
-	    $sql = "SELECT playerName, fantasyPoints FROM offenseStats where playerName in ('$qQb', '$qRb1', '$qRb2', '$qWr1', '$qWr2', '$qWr3', '$qTe', '$qFlex') and week=$weekNum;";
+	    $sql = "SELECT playerName, fantasyPoints FROM offenseStats where playerName in ('$qQb', '$qRb1', '$qRb2', '$qWr1', '$qWr2', '$qWr3', '$qTe', '$qFlex', '$qK') and week=$weekNum;";
 	    $result = $conn->query($sql);
 	}
 	
