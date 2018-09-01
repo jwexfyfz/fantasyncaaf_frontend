@@ -7,8 +7,8 @@ $( document ).ready(
 	function sendTeamRosterToPhp() {
 		//Set default week value.  Currently hardcoded for the 2018 season
 		var currentWeek = 1;
-		if (Date.now() > new Date('August 30, 2018 07:00:00 UTC').getTime()) {
-			currentWeek = 2;
+		if (Date.now() > new Date('November 20, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 13;
 		}
 		else if (Date.now() > new Date('November 13, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 12;
