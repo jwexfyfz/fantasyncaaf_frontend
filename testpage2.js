@@ -497,7 +497,7 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			var playerGameStarted = false;
 
 			for (var key in phpResponse) {
-				var gametime = new Date(phpResponse[key] + " UTC");
+				var gametime = new Date(phpResponse[key].replace(' ','T')+"00:00");
 				if (Date.now() > gametime.getTime()) {  // If the current time is past the player's gametime, don't allow the change and display an error
 					fadeErrorFooter("The selected player's game has already begun!<br/>");
 					loadTeamRoster(week, fantasyID, true);  // Refresh the roster - Should this be false??
@@ -687,8 +687,8 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				console.log($('#'+selectVal).val());
 				console.log("washington: "+playerGametimeArray["Washington"]);
 				console.log('#'+position.replace("tophp","gametime"));
-				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
-				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
+				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"00:00")));
+				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"00:00")));
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
 			}
@@ -834,7 +834,7 @@ function checkGameStarted(week, fantasyID, playerGametimeArray) {
 			var i;
 			for (i = 0; i < phpResponse.length; i++) {
 				if (phpResponse[i]["gametime"] != null) {
-					var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
+					var gametime = new Date(phpResponse[i]["gametime"].replace(' ','T') + "00:00");
 					if (Date.now() > gametime.getTime()) {
 						if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 							//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
@@ -1012,7 +1012,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
 				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"] + " UTC");
+				var gametime = new Date(positionList[i]["gametime"].replace(' ','T') + "00:00");
 				
 
 				//Set attributes:
@@ -1045,7 +1045,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		else {
 			for(i = 0; i < positionList.length; i++) {	
 				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"] + " UTC");
+				var gametime = new Date(positionList[i]["gametime"].replace(' ','T') + "00:00");
 						
 				//Set attributes:
 				//currentOption: set text and value of option
