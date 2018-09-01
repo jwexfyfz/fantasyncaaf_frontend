@@ -835,7 +835,7 @@ function checkGameStarted(week, fantasyID, playerGametimeArray) {
 			var i;
 			for (i = 0; i < phpResponse.length; i++) {
 				if (phpResponse[i]["gametime"] != null) {
-					var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
+					var gametime = new Date(phpResponse[i]["gametime"].replace(" ","T") + "+00:00");
 					if (Date.now() > gametime.getTime()) {
 						if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 							//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
@@ -1013,7 +1013,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
 				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"] + " UTC");
+				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 				
 
 				//Set attributes:
@@ -1046,7 +1046,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		else {
 			for(i = 0; i < positionList.length; i++) {	
 				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"] + " UTC");
+				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 						
 				//Set attributes:
 				//currentOption: set text and value of option
