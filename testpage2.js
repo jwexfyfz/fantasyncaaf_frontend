@@ -485,6 +485,10 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 	    success: function(response) {
 			phpResponse = JSON.parse(response);	//Note: phpResponse is a hash of playerName:gametime of both players that have just been selected and the player that was being changed
 			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
+
+			for (var key in phpResponse) {
+			    console.log(key+": "+phpResponse[key]);
+			}
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
 
