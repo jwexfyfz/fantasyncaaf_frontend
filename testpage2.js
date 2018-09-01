@@ -675,6 +675,11 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				//If not switching players and player is a valid change, populate gametime of new player
 				var selectVal = "input"+position.replace("tophp","");
 				
+				console.log(selectVal);
+				console.log($('#'+selectVal).val());
+				console.log("washington: "+playerGametimeArray["Washington"]);
+				console.log('#'+position.replace("tophp","gametime"));
+				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
 				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
