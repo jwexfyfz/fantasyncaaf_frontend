@@ -23,6 +23,8 @@
 		$team = null;
 	}
 	
+	$gametimes[""] = "";
+	
 	$index = 0;
 	if (isset($team)) {
 		// Returns teamID, gametime for a given team
