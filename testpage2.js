@@ -121,7 +121,7 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  
 		  //Populate the gametime for the already chosen players.  convertToReadableDate() will take a Date format and convert to MM/DD DayOfWeek HH:MM AM/PM timezone
 		  console.log("time conversion: " + phpResponse["QB"]["gametime"].replace(' ','T')+ "+00:00");
-		  if (iOS) {
+		  //if (iOS) {
 			$('#QBgametime').html(convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#RB1gametime').html(convertToReadableDate(new Date(phpResponse["RB1"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#RB2gametime').html(convertToReadableDate(new Date(phpResponse["RB2"]["gametime"].replace(' ','T')+"+00:00")));
@@ -132,8 +132,8 @@ function loadTeamRoster(week, teamID, weekChanged) {
 			$('#DEFgametime').html(convertToReadableDate(new Date(phpResponse["DEF"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#Kgametime').html(convertToReadableDate(new Date(phpResponse["K"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#FLEXgametime').html(convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"].replace(' ','T')+"+00:00")));
-		  }
-		  else {
+		  //}
+		  /*else {
 			$('#QBgametime').html(convertToReadableDate(new Date(phpResponse["QB"]["gametime"]+ " UTC")));
 			$('#RB1gametime').html(convertToReadableDate(new Date(phpResponse["RB1"]["gametime"]+ " UTC")));
 			$('#RB2gametime').html(convertToReadableDate(new Date(phpResponse["RB2"]["gametime"]+ " UTC")));
@@ -144,7 +144,7 @@ function loadTeamRoster(week, teamID, weekChanged) {
 			$('#DEFgametime').html(convertToReadableDate(new Date(phpResponse["DEF"]["gametime"]+ " UTC")));
 			$('#Kgametime').html(convertToReadableDate(new Date(phpResponse["K"]["gametime"]+ " UTC")));
 			$('#FLEXgametime').html(convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"]+ " UTC")));
-		  }
+		  }*/
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID, weekChanged);
 		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1, teamID, weekChanged);
