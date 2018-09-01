@@ -497,7 +497,7 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			var playerGameStarted = false;
 
 			for (var key in phpResponse) {
-				var gametime = new Date(phpResponse[key].replace(' ','T')+"00:00");
+				var gametime = new Date(phpResponse[key].replace(' ','T')+"+00:00");
 				if (Date.now() > gametime.getTime()) {  // If the current time is past the player's gametime, don't allow the change and display an error
 					fadeErrorFooter("The selected player's game has already begun!<br/>");
 					loadTeamRoster(week, fantasyID, true);  // Refresh the roster - Should this be false??
@@ -685,10 +685,11 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				console.log(selectVal);
 				console.log($('#'+selectVal).val());
-				console.log("washington: "+playerGametimeArray["Washington"]);
+				console.log($('#'+selectVal).val()+": "+playerGametimeArray[$('#'+selectVal).val()]);
+				console.log("w/ replace: "+playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00");
 				console.log('#'+position.replace("tophp","gametime"));
-				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"00:00")));
-				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"00:00")));
+				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00")));
+				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00")));
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
 			}
