@@ -27,15 +27,13 @@
 	if (isset($team)) {
 		// Returns teamID, gametime for a given team
 		// Input: week, teamID
-		$sql = "select distinct teamID, gametime from gameTimes where team=\"$team\" and week=$weekNum";
-		
+		$sql = "select distinct C.teamID, C.teamName, D.gametime from (select * from collegeTeams where teamName=\"$team\") as C inner join gameTimes as D on C.teamID=D.teamID and week=$weekNum";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-				$gametimes[$index] = $row["gametime"];
-				$index++;
+				$gametimes[$row["teamName"]] = $row["gametime"];
 			}
 		} 
 	}

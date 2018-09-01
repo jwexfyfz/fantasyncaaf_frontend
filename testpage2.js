@@ -492,6 +492,10 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 	    success: function(response) {
 			phpResponse = JSON.parse(response);	//Note: phpResponse is a hash of playerName:gametime of both players that have just been selected and the player that was being changed
 			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
+
+			for (var key in phpResponse) {
+			    console.log(key+": "+phpResponse[key]);
+			}
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
 
@@ -682,6 +686,11 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				//If not switching players and player is a valid change, populate gametime of new player
 				var selectVal = "input"+position.replace("tophp","");
 				
+				console.log(selectVal);
+				console.log($('#'+selectVal).val());
+				console.log("washington: "+playerGametimeArray["Washington"]);
+				console.log('#'+position.replace("tophp","gametime"));
+				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
 				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]+" UTC")));
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
