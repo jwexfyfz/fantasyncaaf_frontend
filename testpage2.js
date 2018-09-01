@@ -133,18 +133,6 @@ function loadTeamRoster(week, teamID, weekChanged) {
 			$('#Kgametime').html(convertToReadableDate(new Date(phpResponse["K"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#FLEXgametime').html(convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"].replace(' ','T')+"+00:00")));
 		  //}
-		  /*else {
-			$('#QBgametime').html(convertToReadableDate(new Date(phpResponse["QB"]["gametime"]+ " UTC")));
-			$('#RB1gametime').html(convertToReadableDate(new Date(phpResponse["RB1"]["gametime"]+ " UTC")));
-			$('#RB2gametime').html(convertToReadableDate(new Date(phpResponse["RB2"]["gametime"]+ " UTC")));
-			$('#WR1gametime').html(convertToReadableDate(new Date(phpResponse["WR1"]["gametime"]+ " UTC")));
-			$('#WR2gametime').html(convertToReadableDate(new Date(phpResponse["WR2"]["gametime"]+ " UTC")));
-			$('#WR3gametime').html(convertToReadableDate(new Date(phpResponse["WR3"]["gametime"]+ " UTC")));
-			$('#TEgametime').html(convertToReadableDate(new Date(phpResponse["TE"]["gametime"]+ " UTC")));
-			$('#DEFgametime').html(convertToReadableDate(new Date(phpResponse["DEF"]["gametime"]+ " UTC")));
-			$('#Kgametime').html(convertToReadableDate(new Date(phpResponse["K"]["gametime"]+ " UTC")));
-			$('#FLEXgametime').html(convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"]+ " UTC")));
-		  }*/
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID, weekChanged);
 		  getDataForChoosePlayerLists("RB1", phpResponse[week].RB1, teamID, weekChanged);

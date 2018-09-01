@@ -19,16 +19,16 @@
     //$result = $conn->query($sql);
 
 	//Preset gametime values to null so you never get an undefined value
-	$teamRoster["QB"]["gametime"] = null;
-	$teamRoster["RB1"]["gametime"] = null;
-	$teamRoster["RB2"]["gametime"] = null;
-	$teamRoster["WR1"]["gametime"] = null;
-	$teamRoster["WR2"]["gametime"] = null;
-	$teamRoster["WR3"]["gametime"] = null;
-	$teamRoster["TE"]["gametime"] = null;
-	$teamRoster["DEF"]["gametime"] = null;
-	$teamRoster["K"]["gametime"] = null;
-	$teamRoster["FLEX"]["gametime"] = null;
+	$teamRoster["QB"]["gametime"] = "";
+	$teamRoster["RB1"]["gametime"] = "";
+	$teamRoster["RB2"]["gametime"] = "";
+	$teamRoster["WR1"]["gametime"] = "";
+	$teamRoster["WR2"]["gametime"] = "";
+	$teamRoster["WR3"]["gametime"] = "";
+	$teamRoster["TE"]["gametime"] = "";
+	$teamRoster["DEF"]["gametime"] = "";
+	$teamRoster["K"]["gametime"] = "";
+	$teamRoster["FLEX"]["gametime"] = "";
 
 //    $index = 0;
     if ($result->num_rows > 0) {
