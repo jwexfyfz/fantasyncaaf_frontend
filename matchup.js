@@ -3,40 +3,40 @@ $( document ).ready(
 		//Set default week value 
 		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK TODO: jeffwang to figure out how to make this change based on the current week
 		var currentWeek = 1;
-		if (Date.now() > new Date('November 20, 2018 07:00:00 UTC').getTime()) {
+		if (Date.now() > new Date('November 19, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 13;
 		}
-		else if (Date.now() > new Date('November 13, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('November 12, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 12;
 		}
-		else if (Date.now() > new Date('November 6, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('November 5, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 11;
 		}
-		else if (Date.now() > new Date('October 30, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 29, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 10;
 		}
-		else if (Date.now() > new Date('October 23, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 22, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 9;
 		}
-		else if (Date.now() > new Date('October 16, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 15, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 8;
 		}
-		else if (Date.now() > new Date('October 9, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 8, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 7;
 		}
-		else if (Date.now() > new Date('October 2, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 1, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 6;
 		}
-		else if (Date.now() > new Date('September 25, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 24, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 5;
 		}
-		else if (Date.now() > new Date('September 18, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 17, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 4;
 		}
-		else if (Date.now() > new Date('September 11, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 10, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 3;
 		}
-		else if (Date.now() > new Date('September 4, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 3, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
 		
