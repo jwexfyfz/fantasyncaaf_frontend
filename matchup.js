@@ -406,6 +406,7 @@ function getFantasyPoints(week, homeOrAway, roster) {
 };
 
 function populatePoints(homeOrAway, playerPoints, playerName, position) {
+  console.log("playerPoints: "playerName+" "+playerPoints[playerName]);
   if(	playerPoints[playerName] != undefined	) {
 	  $('#'+homeOrAway+position+"Points").html(playerPoints[playerName]);
   }
