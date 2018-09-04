@@ -1079,6 +1079,17 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 			}
 		}
 	}
+	else {
+		for (i = 0; i < positionList.length; i++) {
+			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
+			if (	(Date.now() > gametime.getTime())	) {
+				select.options[i].disabled = true;
+			}
+			else {
+				select.options[i].disabled = false;
+			}
+		}
+	}
 	select.value = currentSelectedPlayer;
 	$('#'+inputPosition).selectpicker('refresh');
 	console.log("done populating "+inputPosition);
