@@ -1080,7 +1080,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		}
 	}
 	else {
-		for (i = 1; i < positionList.length; i++) {
+		for (i = 0; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
 			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 			if (	(Date.now() > gametime.getTime())	) {
 				select.options[i].disabled = true;
