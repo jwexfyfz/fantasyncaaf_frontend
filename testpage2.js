@@ -40,7 +40,7 @@ $( document ).ready(
 		else if (Date.now() > new Date('September 10, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 3;
 		}
-		else if (Date.now() > new Date('September 9, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 3, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
 		
