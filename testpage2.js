@@ -40,7 +40,7 @@ $( document ).ready(
 		else if (Date.now() > new Date('September 10, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 3;
 		}
-		else if (Date.now() > new Date('September 3, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 9, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
 		
@@ -1080,13 +1080,18 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		}
 	}
 	else {
-		for (i = 1; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
-			var gametime = new Date(positionList[i-1]["gametime"].replace(" ","T") + "+00:00");
-			if (	(Date.now() > gametime.getTime())	) {
-				select.options[i].disabled = true;
+		for (i = 0; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
+			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
+			if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {
+				select.options[i+1].disabled = true;	// i+1 to ignore --Clear Selection--
+				select.options[i+1].style.color="#D3D3D3";
 			}
 			else {
-				select.options[i].disabled = false;
+				select.options[i+1].disabled = false;
+				select.options[i+1].style.color="#000000";
+			}
+			if (positionList[i]["timesUsed"] == 4) {
+				select.options[i+1].style.color="#FFA500";
 			}
 		}
 	}
