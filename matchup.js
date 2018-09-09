@@ -391,7 +391,7 @@ function getFantasyPoints(week, homeOrAway, roster) {
 		  var totalPlayerPoints = 0;
 		  for (var key in playerPoints) {
 		      //console.log(playerPoints[key]);
-			  if(playerPoints[key] == "--") {
+			  if(playerPoints[key] == "--" || key == "") {
 				  totalPlayerPoints += 0;
 			  } else {
 				  totalPlayerPoints += playerPoints[key];
