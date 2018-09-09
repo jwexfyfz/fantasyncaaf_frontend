@@ -391,7 +391,7 @@ function getFantasyPoints(week, homeOrAway, roster) {
 		  var totalPlayerPoints = 0;
 		  for (var key in playerPoints) {
 		      //console.log(playerPoints[key]);
-			  if(playerPoints[key] == "--" || key == "") {
+			  if(playerPoints[key] == "--") {
 				  totalPlayerPoints += 0;
 			  } else {
 				  totalPlayerPoints += playerPoints[key];
@@ -399,7 +399,7 @@ function getFantasyPoints(week, homeOrAway, roster) {
 		  }
 		  
 		  totalPlayerPoints = Math.round(totalPlayerPoints*10)/10;
-		  
+		  console.log("totalPlayerPoints: "+totalPlayerPoints);
 		  $('#'+homeOrAway+"TeamScore").html(totalPlayerPoints);
 	    }
 	});
