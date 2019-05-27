@@ -7,40 +7,40 @@ $( document ).ready(
 	function sendTeamRosterToPhp() {
 		//Set default week value.  Currently hardcoded for the 2018 season
 		var currentWeek = 1;
-		if (Date.now() > new Date('November 20, 2018 07:00:00 UTC').getTime()) {
+		if (Date.now() > new Date('November 19, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 13;
 		}
-		else if (Date.now() > new Date('November 13, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('November 12, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 12;
 		}
-		else if (Date.now() > new Date('November 6, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('November 5, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 11;
 		}
-		else if (Date.now() > new Date('October 30, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 29, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 10;
 		}
-		else if (Date.now() > new Date('October 23, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 22, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 9;
 		}
-		else if (Date.now() > new Date('October 16, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 15, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 8;
 		}
-		else if (Date.now() > new Date('October 9, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 8, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 7;
 		}
-		else if (Date.now() > new Date('October 2, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 1, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 6;
 		}
-		else if (Date.now() > new Date('September 25, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 24, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 5;
 		}
-		else if (Date.now() > new Date('September 18, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 17, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 4;
 		}
-		else if (Date.now() > new Date('September 11, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 10, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 3;
 		}
-		else if (Date.now() > new Date('September 4, 2018 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 3, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
 		
@@ -835,7 +835,7 @@ function checkGameStarted(week, fantasyID, playerGametimeArray) {
 			var i;
 			for (i = 0; i < phpResponse.length; i++) {
 				if (phpResponse[i]["gametime"] != null) {
-					var gametime = new Date(phpResponse[i]["gametime"] + " UTC");
+					var gametime = new Date(phpResponse[i]["gametime"].replace(" ","T") + "+00:00");
 					if (Date.now() > gametime.getTime()) {
 						if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 							//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
@@ -968,15 +968,15 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-			console.log(response);
+			//console.log(response);
 		  var playerList=JSON.parse(response);
-		  console.log("playerList: "+playerList);
+		  //console.log("playerList: "+JSON.stringify(playerList));
 		  
 		  //Parameters are 1) ID of select, 2) array of eligible players, 3) player currently on the roster
 		  //TODO: jeffwang to figure out edge case when no players are chosen yet
 		  populateChoosePlayerLists("input"+position, playerList, currentSelectedPlayer, weekChanged);		
 		  
-		  	if(position="FLEX") {
+		  	if(position=="FLEX") {
 		  		getFantasyPoints();
 		  	}  
 	    }
@@ -1013,7 +1013,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		if (inputPosition == "inputDEF") {
 			for(i = 0; i < positionList.length; i++) {
 				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"] + " UTC");
+				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 				
 
 				//Set attributes:
@@ -1046,7 +1046,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		else {
 			for(i = 0; i < positionList.length; i++) {	
 				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"] + " UTC");
+				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 						
 				//Set attributes:
 				//currentOption: set text and value of option
@@ -1076,6 +1076,22 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 					select.options[select.options.length-1].style.color="#FFA500";
 					console.log("didn't disable "+positionList[i]["playerName"]);
 				}
+			}
+		}
+	}
+	else {
+		for (i = 0; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
+			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
+			if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {
+				select.options[i+1].disabled = true;	// i+1 to ignore --Clear Selection--
+				select.options[i+1].style.color="#D3D3D3";
+			}
+			else {
+				select.options[i+1].disabled = false;
+				select.options[i+1].style.color="#000000";
+			}
+			if (positionList[i]["timesUsed"] == 4) {
+				select.options[i+1].style.color="#FFA500";
 			}
 		}
 	}
