@@ -124,16 +124,19 @@ if(!$fgmembersite->CheckLogin())
 								Rank
 							</th>
 							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								Player
+							</th>
+							<th class="standingsTableHeader otherColumn">
 								Team
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Record
+								Schedule
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Pts For
+								Position
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Pts Against
+								Points
 							</th>
 						</tr>
 					</table>

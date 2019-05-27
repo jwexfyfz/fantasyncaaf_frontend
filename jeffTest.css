@@ -1,59 +1,150 @@
-/* The container must be positioned relative: */
-.custom-select {
-  position: relative;
-  font-family: Arial;
+.standingsTableHeader {
+	position: relative;
+	margin: 0 auto;
+	font-weight:100;
+	height:30px;
+	line-height:30px;
+	color: #496585;
+	border-bottom: 1px solid rgb(221,221,221,0.5);
+	z-index:-1;
+	text-align: left;
+	font-size: 0.9em;
 }
 
-.custom-select select {
-  display: none; /*hide original SELECT element: */
+.standingsTableRow {
+	position: relative;
+	margin: 0 auto;
+	font-weight:100;
+	height:50px;
+	line-height:50px;
+	color:#A0A0A0;
+	border-bottom: 1px solid rgb(221,221,221,0.25);
+	text-align: left;
+	z-index:-1;
+	padding-left: 10px;
 }
 
-.select-selected {
-  background-color: DodgerBlue;
+#standingsTable, #standingsTable2 {
+	/*width:600px;*/
+	table-layout: fixed;	
+	border-bottom: 1px solid rgb(221,221,221,0.25);
+	z-index:-1;
 }
 
-/* Style the arrow inside the select element: */
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+.currentTeam {
+	color: #496585;
 }
 
-/* Point the arrow upwards when the select box is open (active): */
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
+.test {
+	color: #ffffff;
+	  padding: 8px 8px 8px 16px;
+	  border: 1px solid transparent;
+	  border-color: transparent;
+	  cursor: pointer;
+	  user-select: none;
+	  font-size: 0.9em;
+	  text-align: left;
+	  font-weight: 300;
 }
 
-/* style the items (options), including the selected item: */
-.select-items div,.select-selected {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
+#standingsTableWindow, #standingsTableWindow2 {
+	width: 100%;
+	max-width: 500px;
+	overflow: scroll;
+	margin: 0 auto;
 }
 
-/* Style items (options): */
-.select-items {
-  position: absolute;
-  background-color: DodgerBlue;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
+#sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Division2, #sticky2Rank, #sticky2Division2Rank, .stickyColumn, .stickyColumnRank, .stickyColumnDivision2, .stickyColumnDivision2Rank {
+    display: table-cell;
+	z-index: 30;
 }
 
-/* Hide the items when the select box is closed: */
-.select-hide {
-  display: none;
+#sticky.fixed, #stickyDivision2.fixed, .stickyColumn.fixed, .stickyColumnDivision2.fixed {
+    position: sticky;
+	left: 40px;
+	background-color: #ffffff;
+	border-right: 1px solid #ddd;
 }
 
-.select-items div:hover, .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
+#stickyRank.fixed, #stickyDivision2Rank.fixed, .stickyColumnRank.fixed, .stickyColumnDivision2Rank.fixed {
+    position: sticky;
+	left: 0;
+	background-color: #ffffff;
+}
+
+#sticky.fixed:after, #stickyDivision2.fixed:after;{
+    content:'';
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    border-right: 1px solid #ddd;
+	height: 29px;
+}
+
+#sticky2.fixed:after, #sticky2Division2.fixed:after {
+    content:'';
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width:100%;
+    border-right: 1px solid #ddd;
+	height: 50px;
+}
+
+.rankColumn {
+	width: 40px;
+}
+
+.teamColumn {
+	width: 150px;
+}
+
+.otherColumn {
+	width: 85px;
+}
+
+#bigContainer, #bigContainer2 {
+	width: 445px;
+	margin: 0 auto;
+}
+
+.divisionHeader {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.divisionTable {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.divisionRow {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+	height: 30px;
+	line-height: 30px;
+	background-color: #FFA500;
+	color: #ffffff;
+	text-align: left;
+	font-weight: 300;
+	padding-left: 10px;
+	position: relative;
+}
+
+.noDivisionsUsed {
+	display: none;
+}
+
+.divFlag {
+	display: none;
+}
+.divFlagTableCell {
+	display: none;
+}
+.divFlagTable {
+	display: none;
 }

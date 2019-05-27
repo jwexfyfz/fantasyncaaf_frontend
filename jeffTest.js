@@ -1,74 +1,143 @@
-var x, i, j, selElmnt, a, b, c;
-/* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName("custom-select");
-for (i = 0; i < x.length; i++) {
-  selElmnt = x[i].getElementsByTagName("select")[0];
-  /* For each element, create a new DIV that will act as the selected item: */
-  a = document.createElement("DIV");
-  a.setAttribute("class", "select-selected");
-  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
-  /* For each element, create a new DIV that will contain the option list: */
-  b = document.createElement("DIV");
-  b.setAttribute("class", "select-items select-hide");
-  for (j = 1; j < selElmnt.length; j++) {
-    /* For each option in the original select element,
-    create a new DIV that will act as an option item: */
-    c = document.createElement("DIV");
-    c.innerHTML = selElmnt.options[j].innerHTML;
-    c.addEventListener("click", function(e) {
-        /* When an item is clicked, update the original select box,
-        and the selected item: */
-        var y, i, k, s, h;
-        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-        h = this.parentNode.previousSibling;
-        for (i = 0; i < s.length; i++) {
-          if (s.options[i].innerHTML == this.innerHTML) {
-            s.selectedIndex = i;
-            h.innerHTML = this.innerHTML;
-            y = this.parentNode.getElementsByClassName("same-as-selected");
-            for (k = 0; k < y.length; k++) {
-              y[k].removeAttribute("class");
-            }
-            this.setAttribute("class", "same-as-selected");
-            break;
-          }
-        }
-        h.click();
-    });
-    b.appendChild(c);
-  }
-  x[i].appendChild(b);
-  a.addEventListener("click", function(e) {
-    /* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
-    e.stopPropagation();
-    closeAllSelect(this);
-    this.nextSibling.classList.toggle("select-hide");
-    this.classList.toggle("select-arrow-active");
-  });
+$( document ).ready(
+	function startPage() {
+		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
+		var currentWeek = 1;
+		if (Date.now() > new Date('November 19, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 13;
+		}
+		else if (Date.now() > new Date('November 12, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 12;
+		}
+		else if (Date.now() > new Date('November 5, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 11;
+		}
+		else if (Date.now() > new Date('October 29, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 10;
+		}
+		else if (Date.now() > new Date('October 22, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 9;
+		}
+		else if (Date.now() > new Date('October 15, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 8;
+		}
+		else if (Date.now() > new Date('October 8, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 7;
+		}
+		else if (Date.now() > new Date('October 1, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 6;
+		}
+		else if (Date.now() > new Date('September 24, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 5;
+		}
+		else if (Date.now() > new Date('September 17, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 4;
+		}
+		else if (Date.now() > new Date('September 10, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 3;
+		}
+		else if (Date.now() > new Date('September 3, 2018 07:00:00 UTC').getTime()) {
+			currentWeek = 2;
+		}
+		
+		$(".test").html("Week "+currentWeek);
+		console.log("Current week is now set to "+$(".test").html());
+		
+		var week	=	$("#currentWeekNum").val();
+		var teamID	=	$("#teamID").val();
+				
+		$("#headerTableColumn1").click( function(event) {
+			window.location.href = "league.php" + window.location.search;
+		});
+		
+		$("#headerTableColumn2").click( function(event) {
+			window.location.href = "index.php" + window.location.search;
+		});
+		
+		$("#headerTableColumn3").click( function(event) {
+			window.location.href = "matchup.php" + window.location.search;
+		});	
+		
+		$("#headerTableColumn4").click( function(event) {
+			window.location.href = "jeffTest.php" + window.location.search;
+		});	
+		
+		
+
+		$('#standingsTableWindow').scroll(function() {
+		    var distanceFromLeft = $(this).scrollLeft();
+			console.log("scroll @ "+$(this).scrollLeft());
+			
+			var rankWidth = $('#standingsTableSections th:first-child').css('width');
+		    //if (distanceFromLeft >= rankWidth.replace(/px/,'')) {
+			if (distanceFromLeft > 0) {
+				console.log('went sticky @ '+distanceFromLeft);
+		        $('#stickyRank').addClass('fixed');
+		        $('#stickyRank').css('top',$('#stickyRank').css('top'));
+				
+		        $('#sticky').addClass('fixed');
+		        $('#sticky').css('top',$('#sticky').css('top'));
+				
+		        $('#sticky2Rank').addClass('fixed');
+		        $('#sticky2Rank').css('top',$('#sticky2Rank').css('top'));
+								
+		        $('#sticky2').addClass('fixed');
+		        $('#sticky2').css('top',$('#sticky2').css('top'));
+								
+		        $('.stickyColumn').addClass('fixed');
+		        $('.stickyColumn').css('top',$('#sticky2').css('top'));
+								
+		        $('.stickyColumnRank').addClass('fixed');
+		        $('.stickyColumnRank').css('top',$('#sticky2').css('top'));
+		    } else {
+		        $('#stickyRank').removeClass('fixed');
+		        $('#sticky').removeClass('fixed');
+		        $('#sticky2Rank').removeClass('fixed');
+		        $('#sticky2').removeClass('fixed');
+		        $('.stickyColumn').removeClass('fixed');
+		    }
+		});
+		
+		populatePlayers(currentWeek);
+});
+
+function populatePlayers(currentWeek) {
+	var phpResponse;
+	var dataString = 'weekNum='+currentWeek;
+	
+	//Send query to getLeagueStandings.php via AJAX
+	//This gets the roster that was already set by the user previously
+	$.ajax({
+	    type: "POST",
+	    url: "allPlayersList.php",
+	    data: dataString,
+	    success: function(response) {
+		  console.log("successfully sent query to get allplayerslist.php!");	//For testing
+		  phpResponse = JSON.parse(response);
+		  
+		  //Otherwise populate everyone into one table
+		  else {
+			  for(i = 0; i < phpResponse.length; i++) {
+				  if(phpResponse[i]["homeaway"]=="home") {
+				  	$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+[phpResponse[i]["playerName"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
+				  }
+				  //Add @ if team is player is not at home
+				  else {
+				  	$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+[phpResponse[i]["playerName"]]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">@'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
+				  }
+			  }
+		  }
+		  
+		  
+		  console.log("finished populating league standings");	//For testing
+	    }
+	});
 }
 
-function closeAllSelect(elmnt) {
-  /* A function that will close all select boxes in the document,
-  except the current select box: */
-  var x, y, i, arrNo = [];
-  x = document.getElementsByClassName("select-items");
-  y = document.getElementsByClassName("select-selected");
-  for (i = 0; i < y.length; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i)
-    } else {
-      y[i].classList.remove("select-arrow-active");
-    }
-  }
-  for (i = 0; i < x.length; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add("select-hide");
-    }
-  }
+function updatePage(teamID) {
+	//This is a dummy function because weekSelect.js calls updatePage() when new week is selected
+	console.log("updatePage() called");
 }
-
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-document.addEventListener("click", closeAllSelect);
+function allMatchupsFunction() {
+	//This is a dummy function because weekSelect.js calls allMatchupsFunction() when new week is selected
+	console.log("allMatchupsFunction() called");
+}
