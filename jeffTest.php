@@ -23,7 +23,7 @@ if(!$fgmembersite->CheckLogin())
 	
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
-    <script type="text/javascript" src="league.js" ></script>
+    <script type="text/javascript" src="jeffTest.js" ></script>
     <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="standings.css" media="screen" />
@@ -130,7 +130,7 @@ if(!$fgmembersite->CheckLogin())
 								Team
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Schedule
+								Opponent
 							</th>
 							<th class="standingsTableHeader otherColumn">
 								Position
