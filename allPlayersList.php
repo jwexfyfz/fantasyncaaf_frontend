@@ -7,7 +7,7 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
-	$weekNum = $_GET["weekNum"];
+	$weekNum = $_POST["weekNum"];
 	
     //Query to get team rosters
     $sql = "SELECT roster.playerName, roster.team, roster.teamID, roster.position, gametimes.homeaway, gametimes.opponent, gametimes.gametime, sum(stats.gamesPlayed) as gamesPlayed, sum(stats.fantasyPoints) as fantasyPoints FROM collegeteamroster as roster left join (SELECT playerID, count(*) as gamesPlayed, sum(fantasyPoints) as fantasyPoints from offensestats group by 1) as stats on roster.playerID = stats.playerID left join (select allteams.teamID as teamID, if(homeAway = \"home\", away.team, home.team) as opponent, gametime, homeaway from gametimes as allteams left join (select gameID, team from gametimes where homeAway = \"home\" and week = $weekNum group by 1,2) as home on allteams.gameID = home.gameID inner join (select gameID, team from gametimes where homeAway = \"away\" and week = $weekNum  group by 1,2) as away on allteams.gameID = away.gameID group by 1,2,3,4) as gametimes on roster.teamID = gametimes.teamID group by 1,2,3,4,5,6,7 order by stats.fantasyPoints desc limit 100";
