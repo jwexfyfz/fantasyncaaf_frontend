@@ -118,7 +118,7 @@ if(!$fgmembersite->CheckLogin())
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space for the top header-->
-						<!--<tr style="height: 121px"></tr>-->
+						<tr style="height: 121px"></tr>
 						<!--Leave space between header and first table-->
 						<tr style="height: 10px"></tr>
 						<tr id="standingsTableSections">
