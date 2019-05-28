@@ -38,6 +38,8 @@ $( document ).ready(
 		else if (Date.now() > new Date('September 3, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
+		
+		$("#weekOpponent").html("Wk " + currentWeek + " Opp");
 				
 		$("#headerTableColumn1").click( function(event) {
 			window.location.href = "league.php" + window.location.search;

@@ -131,8 +131,8 @@ if(!$fgmembersite->CheckLogin())
 							<th class="standingsTableHeader otherColumn">
 								Team
 							</th>
-							<th class="standingsTableHeader otherColumn">
-								Opponent
+							<th class="standingsTableHeader otherColumn" id="weekOpponent">
+								
 							</th>
 							<th class="standingsTableHeader otherColumn">
 								Position
