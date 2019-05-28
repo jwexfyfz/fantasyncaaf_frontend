@@ -114,7 +114,7 @@ if(!$fgmembersite->CheckLogin())
 			</div>
 		-->
 			
-			<div class="noDivisionsUsed" id="standingsTableWindow">
+			<!--<div class="noDivisionsUsed" id="standingsTableWindow">-->
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space for the top header-->
@@ -143,7 +143,7 @@ if(!$fgmembersite->CheckLogin())
 						</tr>
 					</table>
 				</div>
-			</div>
+				<!--</div>-->
 		
 			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
 			<div id="accountMenu">
