@@ -38,12 +38,6 @@ $( document ).ready(
 		else if (Date.now() > new Date('September 3, 2018 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
-		
-		$(".test").html("Week "+currentWeek);
-		console.log("Current week is now set to "+$(".test").html());
-		
-		var week	=	$("#currentWeekNum").val();
-		var teamID	=	$("#teamID").val();
 				
 		$("#headerTableColumn1").click( function(event) {
 			window.location.href = "league.php" + window.location.search;
@@ -118,11 +112,14 @@ function populatePlayers(currentWeek) {
 			  console.log("i="+i);
 			  console.log("length="+phpResponse.length);
 			  console.log("player="+phpResponse[i]["playerName"]);
+			  console.log("homeaway="+phpResponse[i]["homeaway"]);
 			  if(phpResponse[i]["homeaway"]=="home") {
+				  console.log("if entered");
 			  	$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
 			  }
 			  //Add @ if team is player is not at home
 			  else {
+				  console.log("else entered");
 			  	$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">@'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
 			  }
 		  } 

@@ -72,6 +72,7 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 		
 		<!--<div id="content">-->
+			<!--
 			<div id="leaveRoomForHeader"></div>
 			<table class="divFlagTable" id="aroundTheLeagueTable">
 				<tr>
@@ -82,10 +83,11 @@ if(!$fgmembersite->CheckLogin())
 				<div id="standingsTableWindow">
 					<div id="bigContainer">
 						<table id="standingsTable">
+			-->
 							<!--Leave space for the top header-->
 							<!--<tr style="height: 121px"></tr>-->
 							<!--Leave space between header and first table-->
-							<tr style="height: 10px"></tr>
+			<!--			<tr style="height: 10px"></tr>
 							<tr id="standingsTableSections">
 								<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
 									Rank
@@ -110,7 +112,7 @@ if(!$fgmembersite->CheckLogin())
 					</div>
 				</div>
 			</div>
-			
+		-->
 			
 			<div class="noDivisionsUsed" id="standingsTableWindow">
 				<div id="bigContainer">
