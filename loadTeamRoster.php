@@ -59,7 +59,7 @@
 			}
 			else {
 				if($row["homeaway"] == "away") {
-					$teamRoster["$position"]["opponent"] = "@"+$row["opponent"];
+					$teamRoster["$position"]["opponent"] = "@".$row["opponent"];
 				}
 				else {
 					$teamRoster["$position"]["opponent"] = $row["opponent"];
