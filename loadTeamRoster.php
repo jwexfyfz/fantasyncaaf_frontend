@@ -41,17 +41,6 @@
 	$teamRoster["DEF"]["opponent"] = "";
 	$teamRoster["K"]["opponent"] = "";
 	$teamRoster["FLEX"]["opponent"] = "";
-	//Preset homeaway values to null so you never get an undefined value
-	$teamRoster["QB"]["homeaway"] = "";
-	$teamRoster["RB1"]["homeaway"] = "";
-	$teamRoster["RB2"]["homeaway"] = "";
-	$teamRoster["WR1"]["homeaway"] = "";
-	$teamRoster["WR2"]["homeaway"] = "";
-	$teamRoster["WR3"]["homeaway"] = "";
-	$teamRoster["TE"]["homeaway"] = "";
-	$teamRoster["DEF"]["homeaway"] = "";
-	$teamRoster["K"]["homeaway"] = "";
-	$teamRoster["FLEX"]["homeaway"] = "";
 
 //    $index = 0;
     if ($result->num_rows > 0) {
@@ -65,11 +54,11 @@
 			$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
 			
 			$teamRoster["$position"]["gametime"] = $row["gametime"];
-			if($row["opponent"] = null) {
+			if($row["opponent"] == null) {
 				$teamRoster["$position"]["opponent"] = "BYE";
 			}
 			else {
-				if($row["homeaway"] = "away") {
+				if($row["homeaway"] == "away") {
 					$teamRoster["$position"]["opponent"] = "@"+$row["opponent"];
 				}
 				else {
