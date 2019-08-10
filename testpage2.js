@@ -136,7 +136,7 @@ function loadTeamRoster(week, teamID, weekChanged) {
 			$('#Kgametime').html(phpResponse["K"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["K"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#FLEXgametime').html(phpResponse["FLEX"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"].replace(' ','T')+"+00:00")));
 			
-			console.log($('#QBgametime').html();
+			console.log($('#QBgametime').html());
 			console.log(phpResponse["QB"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
 		  //}
 		  //Set eligible players for each select, set the current chosen player as default value
