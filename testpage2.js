@@ -122,7 +122,7 @@ function loadTeamRoster(week, teamID, weekChanged) {
 		  //Populate the gametime for the already chosen players.  convertToReadableDate() will take a Date format and convert to MM/DD DayOfWeek HH:MM AM/PM timezone
 		  console.log("time conversion: " + phpResponse["QB"]["gametime"].replace(' ','T')+ "+00:00");
 		  //if (iOS) {
-			$('#QBgametime').html(convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
+			$('#QBgametime').html(phpResponse["QB"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#RB1gametime').html(convertToReadableDate(new Date(phpResponse["RB1"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#RB2gametime').html(convertToReadableDate(new Date(phpResponse["RB2"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#WR1gametime').html(convertToReadableDate(new Date(phpResponse["WR1"]["gametime"].replace(' ','T')+"+00:00")));
