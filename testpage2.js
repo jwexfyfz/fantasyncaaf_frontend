@@ -132,6 +132,9 @@ function loadTeamRoster(week, teamID, weekChanged) {
 			$('#DEFgametime').html(phpResponse["DEF"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["DEF"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#Kgametime').html(phpResponse["K"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["K"]["gametime"].replace(' ','T')+"+00:00")));
 			$('#FLEXgametime').html(phpResponse["FLEX"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"].replace(' ','T')+"+00:00")));
+			
+			console.log($('#QBgametime').html();
+			console.log(phpResponse["QB"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
 		  //}
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID, weekChanged);
@@ -690,6 +693,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				console.log('#'+position.replace("tophp","gametime"));
 				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00")));
 				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00")));
+				//$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00")));
+				//$('#QBgametime').html(phpResponse["QB"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
+				
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
 			}
