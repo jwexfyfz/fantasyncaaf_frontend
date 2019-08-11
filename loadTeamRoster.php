@@ -30,6 +30,7 @@
 	$teamRoster["DEF"]["gametime"] = "";
 	$teamRoster["K"]["gametime"] = "";
 	$teamRoster["FLEX"]["gametime"] = "";
+	//$teamRoster[""]["gametime"] = "";
 	//Preset opponent values to null so you never get an undefined value
 	$teamRoster["QB"]["opponent"] = "";
 	$teamRoster["RB1"]["opponent"] = "";
@@ -41,6 +42,7 @@
 	$teamRoster["DEF"]["opponent"] = "";
 	$teamRoster["K"]["opponent"] = "";
 	$teamRoster["FLEX"]["opponent"] = "";
+	//$teamRoster[""]["opponent"] = "";
 
 //    $index = 0;
     if ($result->num_rows > 0) {

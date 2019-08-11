@@ -743,11 +743,21 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				console.log(selectVal);
 				console.log($('#'+selectVal).val());
-				console.log($('#'+selectVal).val()+": "+playerGametimeArray[$('#'+selectVal).val()]);
-				console.log("w/ replace: "+playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00");
-				console.log('#'+position.replace("tophp","gametime"));
-				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00")));
-				if(playerGametimeArray[$('#'+selectVal).val()]["opponent"] == null) {
+				if(selectVal).val() != null) {
+					console.log($('#'+selectVal).val()+": "+playerGametimeArray[$('#'+selectVal).val()]);
+					console.log("w/ replace: "+playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00");
+					console.log('#'+position.replace("tophp","gametime"));
+					console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00")));
+				}
+				else {
+					console.log("selectVal = null")
+				}
+				
+				
+				if(selectVal).val() == null) {
+					$('#'+position.replace("tophp","gametime")).html("");
+				}
+				else if(playerGametimeArray[$('#'+selectVal).val()]["opponent"] == null) {
 					$('#'+position.replace("tophp","gametime")).html("BYE");
 				}
 				else {
