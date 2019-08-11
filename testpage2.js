@@ -743,8 +743,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				console.log(selectVal);
 				console.log($('#'+selectVal).val());
-				if(selectVal).val() != null) {
-					console.log($('#'+selectVal).val()+": "+playerGametimeArray[$('#'+selectVal).val()]);
+				if($('#'+selectVal).val() != null) {
+					console.log($('#'+selectVal).val()+" (gametime): "+playerGametimeArray[$('#'+selectVal).val()]["gametime"]);
+					console.log($('#'+selectVal).val()+" (opponent): "+playerGametimeArray[$('#'+selectVal).val()]["opponent"]);
 					console.log("w/ replace: "+playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00");
 					console.log('#'+position.replace("tophp","gametime"));
 					console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00")));
