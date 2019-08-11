@@ -23,7 +23,7 @@
 		$team = null;
 	}
 	
-	$gametimes[""] = "";
+	//$gametimes[""] = "";
 	
 	$index = 0;
 	if (isset($team)) {

@@ -547,9 +547,6 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
 
 			for (var key in phpResponse) {
-				if(key == "") {
-					return true;
-				}
 			    console.log(key+" (gametime): "+phpResponse[key]["gametime"]);
 			    console.log(key+" (opponent): "+phpResponse[key]["opponent"]);
 			}
@@ -557,9 +554,6 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			var playerGameStarted = false;
 
 			for (var key in phpResponse) {
-				if(key == "") {
-					return true;
-				}
 				var gametime = new Date(phpResponse[key]["gametime"].replace(' ','T')+"+00:00");
 				if (Date.now() > gametime.getTime()) {  // If the current time is past the player's gametime, don't allow the change and display an error
 					fadeErrorFooter("The selected player's game has already begun!<br/>");
