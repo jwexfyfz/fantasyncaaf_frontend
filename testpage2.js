@@ -755,7 +755,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				}
 				
 				
-				if(selectVal).val() == null) {
+				if($('#'+selectVal).val() == null) {
 					$('#'+position.replace("tophp","gametime")).html("");
 				}
 				else if(playerGametimeArray[$('#'+selectVal).val()]["opponent"] == null) {
