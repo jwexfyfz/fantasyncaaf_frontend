@@ -600,7 +600,7 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
     console.log("640: position: "+position.replace("tophp","gametime"));
 	
 	var selectVal = "input"+position.replace("tophp","");
-	if($('#'+selectVal).val() != null) {
+	if($('#'+selectVal).val() != "") {
 		console.log("current position value: "+$('#'+selectVal).val());
 		console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]["gametime"]	);
 		console.log("opponent of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]["opponent"]	);
@@ -748,7 +748,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				console.log(selectVal);
 				console.log($('#'+selectVal).val());
-				if($('#'+selectVal).val() != null) {
+				if($('#'+selectVal).val() != "") {
 					console.log($('#'+selectVal).val()+" (gametime): "+playerGametimeArray[$('#'+selectVal).val()]["gametime"]);
 					console.log($('#'+selectVal).val()+" (opponent): "+playerGametimeArray[$('#'+selectVal).val()]["opponent"]);
 					console.log("w/ replace: "+playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00");
@@ -756,11 +756,11 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 					console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00")));
 				}
 				else {
-					console.log("selectVal = null")
+					console.log("selectVal is empty")
 				}
 				
 				
-				if($('#'+selectVal).val() == null) {
+				if($('#'+selectVal).val() == "") {
 					$('#'+position.replace("tophp","gametime")).html("");
 				}
 				else if(playerGametimeArray[$('#'+selectVal).val()]["opponent"] == null) {
