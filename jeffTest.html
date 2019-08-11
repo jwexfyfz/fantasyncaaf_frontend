@@ -23,10 +23,10 @@ if(!$fgmembersite->CheckLogin())
 	
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
-    <script type="text/javascript" src="league.js" ></script>
+    <script type="text/javascript" src="jeffTest.js" ></script>
     <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="standings.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="jeffTest.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -72,6 +72,7 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 		
 		<!--<div id="content">-->
+			<!--
 			<div id="leaveRoomForHeader"></div>
 			<table class="divFlagTable" id="aroundTheLeagueTable">
 				<tr>
@@ -82,10 +83,11 @@ if(!$fgmembersite->CheckLogin())
 				<div id="standingsTableWindow">
 					<div id="bigContainer">
 						<table id="standingsTable">
+			-->
 							<!--Leave space for the top header-->
 							<!--<tr style="height: 121px"></tr>-->
 							<!--Leave space between header and first table-->
-							<tr style="height: 10px"></tr>
+			<!--			<tr style="height: 10px"></tr>
 							<tr id="standingsTableSections">
 								<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
 									Rank
@@ -110,13 +112,13 @@ if(!$fgmembersite->CheckLogin())
 					</div>
 				</div>
 			</div>
+		-->
 			
-			
-			<div class="noDivisionsUsed" id="standingsTableWindow">
+			<div class="screenContainer" id="playersTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space for the top header-->
-						<!--<tr style="height: 121px"></tr>-->
+						<tr style="height: 121px"></tr>
 						<!--Leave space between header and first table-->
 						<tr style="height: 10px"></tr>
 						<tr id="standingsTableSections">
@@ -124,21 +126,24 @@ if(!$fgmembersite->CheckLogin())
 								Rank
 							</th>
 							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								Player
+							</th>
+							<th class="standingsTableHeader otherColumn">
 								Team
 							</th>
-							<th class="standingsTableHeader otherColumn">
-								Record
+							<th class="standingsTableHeader otherColumn" id="weekOpponent">
+								
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Pts For
+								Position
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Pts Against
+								Points
 							</th>
 						</tr>
 					</table>
 				</div>
-			</div>
+				<!--</div>-->
 		
 			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
 			<div id="accountMenu">

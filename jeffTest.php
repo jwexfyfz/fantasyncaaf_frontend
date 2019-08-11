@@ -26,7 +26,7 @@ if(!$fgmembersite->CheckLogin())
     <script type="text/javascript" src="jeffTest.js" ></script>
     <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="standings.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="jeffTest.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -114,7 +114,7 @@ if(!$fgmembersite->CheckLogin())
 			</div>
 		-->
 			
-			<!--<div class="noDivisionsUsed" id="standingsTableWindow">-->
+			<div class="screenContainer" id="playersTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space for the top header-->

@@ -47,7 +47,7 @@
 	  font-weight: 300;
 }
 
-#standingsTableWindow, #standingsTableWindow2 {
+#playersTableWindow, #standingsTableWindow, #standingsTableWindow2 {
 	width: 100%;
 	max-width: 500px;
 	overflow: scroll;
