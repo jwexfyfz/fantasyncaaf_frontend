@@ -1,0 +1,260 @@
+2132, cincinnati bearcats 
+2132, cincinnati bearcats 
+151, east carolina pirates 
+151, east carolina pirates 
+248, houston cougars 
+248, houston cougars 
+235, memphis tigers 
+235, memphis tigers 
+2426, navy midshipmen 
+2426, navy midshipmen 
+2567, smu mustangs 
+2567, smu mustangs 
+58, south florida bulls 
+58, south florida bulls 
+218, temple owls 
+218, temple owls 
+2655, tulane green wave 
+2655, tulane green wave 
+202, tulsa golden hurricane 
+202, tulsa golden hurricane 
+2116, ucf knights 
+2116, ucf knights 
+41, uconn huskies 
+41, uconn huskies 
+103, boston college eagles 
+103, boston college eagles 
+228, clemson tigers 
+228, clemson tigers 
+150, duke blue devils 
+150, duke blue devils 
+52, florida state seminoles 
+52, florida state seminoles 
+59, georgia tech yellow jackets 
+59, georgia tech yellow jackets 
+97, louisville cardinals 
+97, louisville cardinals 
+2390, miami hurricanes 
+2390, miami hurricanes 
+152, nc state wolfpack 
+152, nc state wolfpack 
+153, north carolina tar heels 
+153, north carolina tar heels 
+221, pittsburgh panthers 
+221, pittsburgh panthers 
+183, syracuse orange 
+183, syracuse orange 
+258, virginia cavaliers 
+258, virginia cavaliers 
+259, virginia tech hokies 
+259, virginia tech hokies 
+154, wake forest demon deacons 
+154, wake forest demon deacons 
+239, baylor bears 
+239, baylor bears 
+66, iowa state cyclones 
+66, iowa state cyclones 
+2305, kansas jayhawks 
+2305, kansas jayhawks 
+2306, kansas state wildcats 
+2306, kansas state wildcats 
+201, oklahoma sooners 
+201, oklahoma sooners 
+197, oklahoma state cowboys 
+197, oklahoma state cowboys 
+2628, tcu horned frogs 
+2628, tcu horned frogs 
+251, texas longhorns 
+251, texas longhorns 
+2641, texas tech red raiders 
+2641, texas tech red raiders 
+277, west virginia mountaineers 
+277, west virginia mountaineers 
+356, illinois fighting illini 
+356, illinois fighting illini 
+84, indiana hoosiers 
+84, indiana hoosiers 
+2294, iowa hawkeyes 
+2294, iowa hawkeyes 
+120, maryland terrapins 
+120, maryland terrapins 
+127, michigan state spartans 
+127, michigan state spartans 
+130, michigan wolverines 
+130, michigan wolverines 
+135, minnesota golden gophers 
+135, minnesota golden gophers 
+158, nebraska cornhuskers 
+158, nebraska cornhuskers 
+77, northwestern wildcats 
+77, northwestern wildcats 
+194, ohio state buckeyes 
+194, ohio state buckeyes 
+213, penn state nittany lions 
+213, penn state nittany lions 
+2509, purdue boilermakers 
+2509, purdue boilermakers 
+164, rutgers scarlet knights 
+164, rutgers scarlet knights 
+275, wisconsin badgers 
+275, wisconsin badgers 
+2429, charlotte 49ers 
+2429, charlotte 49ers 
+2226, florida atlantic owls 
+2226, florida atlantic owls 
+2229, florida international panthers 
+2229, florida international panthers 
+2348, louisiana tech bulldogs 
+2348, louisiana tech bulldogs 
+276, marshall thundering herd 
+276, marshall thundering herd 
+2393, middle tennessee blue raiders 
+2393, middle tennessee blue raiders 
+249, north texas mean green 
+249, north texas mean green 
+295, old dominion monarchs 
+295, old dominion monarchs 
+242, rice owls 
+242, rice owls 
+2572, southern mississippi golden eagles 
+2572, southern mississippi golden eagles 
+5, uab blazers 
+5, uab blazers 
+2638, utep miners 
+2638, utep miners 
+2636, utsa roadrunners 
+2636, utsa roadrunners 
+98, western kentucky hilltoppers 
+98, western kentucky hilltoppers 
+349, army black knights 
+349, army black knights 
+252, byu cougars 
+252, byu cougars 
+2335, liberty flames 
+2335, liberty flames 
+166, new mexico state aggies 
+166, new mexico state aggies 
+87, notre dame fighting irish 
+87, notre dame fighting irish 
+113, umass minutemen 
+113, umass minutemen 
+2006, akron zips 
+2006, akron zips 
+2050, ball state cardinals 
+2050, ball state cardinals 
+189, bowling green falcons 
+189, bowling green falcons 
+2084, buffalo bulls 
+2084, buffalo bulls 
+2117, central michigan chippewas 
+2117, central michigan chippewas 
+2199, eastern michigan eagles 
+2199, eastern michigan eagles 
+2309, kent state golden flashes 
+2309, kent state golden flashes 
+193, miami oh redhawks 
+193, miami oh redhawks 
+2459, northern illinois huskies 
+2459, northern illinois huskies 
+195, ohio bobcats 
+195, ohio bobcats 
+2649, toledo rockets 
+2649, toledo rockets 
+2711, western michigan broncos 
+2711, western michigan broncos 
+2005, air force falcons 
+2005, air force falcons 
+68, boise state broncos 
+68, boise state broncos 
+36, colorado state rams 
+36, colorado state rams 
+278, fresno state bulldogs 
+278, fresno state bulldogs 
+62, hawaii rainbow warriors 
+62, hawaii rainbow warriors 
+2440, nevada wolf pack 
+2440, nevada wolf pack 
+167, new mexico lobos 
+167, new mexico lobos 
+21, san diego state aztecs 
+21, san diego state aztecs 
+23, san jose state spartans 
+23, san jose state spartans 
+2439, unlv rebels 
+2439, unlv rebels 
+328, utah state aggies 
+328, utah state aggies 
+2751, wyoming cowboys 
+2751, wyoming cowboys 
+9, arizona state sun devils 
+9, arizona state sun devils 
+12, arizona wildcats 
+12, arizona wildcats 
+25, california golden bears 
+25, california golden bears 
+38, colorado buffaloes 
+38, colorado buffaloes 
+2483, oregon ducks 
+2483, oregon ducks 
+204, oregon state beavers 
+204, oregon state beavers 
+24, stanford cardinal 
+24, stanford cardinal 
+26, ucla bruins 
+26, ucla bruins 
+30, usc trojans 
+30, usc trojans 
+254, utah utes 
+254, utah utes 
+264, washington huskies 
+264, washington huskies 
+265, washington state cougars 
+265, washington state cougars 
+333, alabama crimson tide 
+333, alabama crimson tide 
+8, arkansas razorbacks 
+8, arkansas razorbacks 
+2, auburn tigers 
+2, auburn tigers 
+57, florida gators 
+57, florida gators 
+61, georgia bulldogs 
+61, georgia bulldogs 
+96, kentucky wildcats 
+96, kentucky wildcats 
+99, lsu tigers 
+99, lsu tigers 
+344, mississippi state bulldogs 
+344, mississippi state bulldogs 
+142, missouri tigers 
+142, missouri tigers 
+145, ole miss rebels 
+145, ole miss rebels 
+2579, south carolina gamecocks 
+2579, south carolina gamecocks 
+2633, tennessee volunteers 
+2633, tennessee volunteers 
+245, texas am aggies 
+245, texas am aggies 
+238, vanderbilt commodores 
+238, vanderbilt commodores 
+2026, appalachian state mountaineers 
+2026, appalachian state mountaineers 
+2032, arkansas state red wolves 
+2032, arkansas state red wolves 
+324, coastal carolina chanticleers 
+324, coastal carolina chanticleers 
+290, georgia southern eagles 
+290, georgia southern eagles 
+2247, georgia state panthers 
+2247, georgia state panthers 
+309, louisiana ragin cajuns 
+309, louisiana ragin cajuns 
+6, south alabama jaguars 
+6, south alabama jaguars 
+326, texas state bobcats 
+326, texas state bobcats 
+2653, troy trojans 
+2653, troy trojans 
+2433, ul monroe warhawks 
+2433, ul monroe warhawks 
