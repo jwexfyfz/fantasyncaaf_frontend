@@ -601,7 +601,8 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 	
 	var selectVal = "input"+position.replace("tophp","");
 	console.log("current position value: "+$('#'+selectVal).val());
-	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]	);
+	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]["gametime"]	);
+	console.log("opponent of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]["opponent"]	);
 	console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
 	
 	//If position doesn't have a gametime yet, set it.  If it already has one, populate it after switch logic.
