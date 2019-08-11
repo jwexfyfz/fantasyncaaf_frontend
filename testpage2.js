@@ -547,13 +547,14 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
 
 			for (var key in phpResponse) {
-			    console.log(key+": "+phpResponse[key]);
+			    console.log(key+" (gametime): "+phpResponse[key]["gametime"]);
+			    console.log(key+" (opponent): "+phpResponse[key]["opponent"]);
 			}
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
 
 			for (var key in phpResponse) {
-				var gametime = new Date(phpResponse[key].replace(' ','T')+"+00:00");
+				var gametime = new Date(phpResponse[key]["gametime"].replace(' ','T')+"+00:00");
 				if (Date.now() > gametime.getTime()) {  // If the current time is past the player's gametime, don't allow the change and display an error
 					fadeErrorFooter("The selected player's game has already begun!<br/>");
 					loadTeamRoster(week, fantasyID, true);  // Refresh the roster - Should this be false??
