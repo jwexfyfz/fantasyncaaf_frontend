@@ -135,13 +135,31 @@ function populatePlayers(currentWeek) {
 	var phpResponse;
 	var dataString = 'weekNum=';//+currentWeek+'&filteredPositions=\'';
 	var numFilters = 0;
+	var currentPosition;
 	$(".filterButton").each(function( index ) {
 		if($( this ).attr("data-enabled") == "true") {
+			switch($(this).text()) {
+				case 'QB': currentPosition = 'QB';
+					break;
+				case 'RB': currentPosition = 'RB1\',\'RB2';
+					break;
+				case 'WR': currentPosition = 'WR1\',\'WR2\',\'WR3';
+					break;
+				case 'TE': currentPosition = 'TE';
+					break;
+				case 'DEF': currentPosition = 'DEF';
+					break;
+				case 'K': currentPosition = 'PK';
+					break;
+				
+				default: currentPosition = '';
+			};
+			
 			if(numFilters == 0) {
-				dataString += '&filteredPositions=\''+$(this).text(),'\'';
+				dataString += '&filteredPositions=\''+currentPosition,'\'';
 			}
 			else {
-				dataString += ',\''+$(this).text()+'\'';
+				dataString += ',\''+currentPosition+'\'';
 			}
 			numFilters++;
 		}

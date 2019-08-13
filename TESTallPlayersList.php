@@ -30,7 +30,7 @@
 			$index++;
         }
     } else {
-        echo "0 results";
+        echo "$sql";
     }
     //Output table to readTeamRoster.js
     echo json_encode($output);
