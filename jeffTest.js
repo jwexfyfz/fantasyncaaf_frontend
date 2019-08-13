@@ -149,7 +149,7 @@ function filterClick(clicked_id)
 
 function populatePlayers(currentWeek) {
 	var phpResponse;
-	var dataString = 'weekNum='+currentWeek;
+	var dataString = 'weekNum='+currentWeek+'&filteredPositions=';
 	var numFilters = 0;
 	var currentPosition;
 	$(".filterButton").each(function( index ) {
@@ -172,7 +172,7 @@ function populatePlayers(currentWeek) {
 			};
 			
 			if(numFilters == 0) {
-				dataString += '&filteredPositions=\''+currentPosition+'\'';
+				dataString += '\''+currentPosition+'\'';
 			}
 			else {
 				dataString += ',\''+currentPosition+'\'';
