@@ -93,12 +93,60 @@ $( document ).ready(
 		    }
 		});
 		
+		$("#enableFilterDropdown").click( function(event) {
+			if($('.filterRows').is(":visible") == false) {
+				$("#filterClear").show();
+				$(".filterRows").show();
+			}
+			else {
+				$("#filterClear").hide();
+				$(".filterRows").hide();
+			}
+		});	
+		
+		$("#filterClearButton").click( function(event) {			
+			$(".filterButton").each(function( index ) {
+				$( this ).attr("data-enabled","false");
+				$( this ).css("background-color","#FFFFFF");
+				console.log( index + ": " + $( this ).text() + " " + $( this ).attr("data-enabled"));
+			});
+			console.log("ended loop");	
+		});	
+		
+		
+		
 		populatePlayers(currentWeek);
 });
 
+//This function changes the color of the div that represents filters by position. If it's enabled (green) and clicked, set it to disabled (white), and vice versa
+function filterClick(clicked_id)
+  {
+	  if($("#"+clicked_id).attr("data-enabled") == "true") {
+		  $("#"+clicked_id).attr("data-enabled","false");
+		  $("#"+clicked_id).css("background-color","#FFFFFF");
+	  }
+	  else {
+		  $("#"+clicked_id).attr("data-enabled","true");
+		  $("#"+clicked_id).css("background-color","#B8FEBF");
+	  }
+  }
+
 function populatePlayers(currentWeek) {
 	var phpResponse;
-	var dataString = 'weekNum='+currentWeek;
+	var dataString = 'weekNum=';//+currentWeek+'&filteredPositions=\'';
+	var numFilters = 0;
+	$(".filterButton").each(function( index ) {
+		if($( this ).attr("data-enabled") == "true") {
+			if(numFilters == 0) {
+				dataString += '&filteredPositions=\''+$(this).text(),'\'';
+			}
+			else {
+				dataString += ',\''+$(this).text()+'\'';
+			}
+			numFilters++;
+		}
+	});
+	console.log(dataString);
 	
 	//Send query to getLeagueStandings.php via AJAX
 	//This gets the roster that was already set by the user previously

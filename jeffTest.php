@@ -113,7 +113,26 @@ if(!$fgmembersite->CheckLogin())
 				</div>
 			</div>
 		-->
-			
+			<div class="skipHeader"></div>
+			<div class="filters">
+				<table id="headerTable">
+					<tr>
+						<td class="positionFilterCell" id="QBpositionFilterCell">QB</td>
+						<td class="positionFilterCell" id="RB1positionFilterCell">RB1</td>
+						<td class="positionFilterCell" id="RB2positionFilterCell">RB2</td>
+					</tr>
+					<tr>
+						<td class="positionFilterCell" id="WR1positionFilterCell">WR1</td>
+						<td class="positionFilterCell" id="WR2positionFilterCell">WR2</td>
+						<td class="positionFilterCell" id="WR3positionFilterCell">WR3</td>
+					</tr>
+					<tr>
+						<td class="positionFilterCell" id="TEpositionFilterCell">TE</td>
+						<td class="positionFilterCell" id="DEFpositionFilterCell">DEF</td>
+						<td class="positionFilterCell" id="KpositionFilterCell">K</td>
+					</tr>
+				</table>
+			</div>
 			<div class="screenContainer" id="playersTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">

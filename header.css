@@ -23,6 +23,11 @@ tr p {
 	margin: 0px;
 }
 
+.skipHeader {
+	width: 100%;
+	height: var(--headerHeight); 
+}
+
 #headerWrapper {
 	position: fixed;
 	width: 100%;

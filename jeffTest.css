@@ -49,7 +49,7 @@
 
 #playersTableWindow, #standingsTableWindow, #standingsTableWindow2 {
 	width: 100%;
-	max-width: 500px;
+	max-width: 600px;
 	overflow: scroll;
 	margin: 0 auto;
 }
@@ -147,4 +147,50 @@
 }
 .divFlagTable {
 	display: none;
+}
+
+.positionFilterCell {
+	width: 100%;
+	color: #496585;
+	font-weight:100;
+	position:relative;
+	text-align: center;
+    z-index:2;
+	cursor: pointer;
+}
+
+#enableFilterDropdown {
+	width: 50px;
+	float: left;
+}
+
+.filterIndicator {
+	float: left;
+	border: 1px solid #B8FEBF;
+    border-radius: 4px;
+    /*box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);*/
+	background-color: #FFFFFF;
+	width: 60px;
+	text-align: left;
+	padding-left: 5px;
+	line-height: 30px;
+	margin: 0px 2px;
+}
+
+.filterButton {
+	border-color: #496585;
+    border-radius: 6px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+	margin: 5px;
+	padding: 10px;
+	background-color: #B8FEBF;
+}
+
+.filterRows, #filterClear {
+	display:none;
+}
+
+.removeFilterIndicator {
+	width: 20px;
+	text-align: center;
 }
