@@ -52,7 +52,7 @@ if(!$fgmembersite->CheckLogin())
 				</tr>
 			</table>
 			<table class="headerTable">
-				<th class="headerTableColumn activeHeaderColumn" id="headerTableColumn1">
+				<th class="headerTableColumn" id="headerTableColumn1">
 					<div style="height: 36px; vertical-align: middle; line-height: 45px">Standings</div>
 					<div class="arrow-up hidden-arrow"></div>
 				</th>
@@ -64,7 +64,7 @@ if(!$fgmembersite->CheckLogin())
 					<div style="height: 36px; vertical-align: middle; line-height: 45px">My Team</div>
 					<div class="arrow-up hidden-arrow"></div>
 				</th>
-				<th class="headerTableColumn" id="headerTableColumn4">
+				<th class="headerTableColumn activeHeaderColumn" id="headerTableColumn4">
 					<div style="height: 36px; vertical-align: middle; line-height: 45px">Players</div>
 					<div class="arrow-up"></div>
 				</th>
@@ -115,70 +115,70 @@ if(!$fgmembersite->CheckLogin())
 		-->
 			<div class="skipHeader"></div>
 			<div style="width: 100%; height: 10px"></div>
+			<div class="filters">
+				<table class="headerTable" id="headerTable">
+					<tr>
+						<td colspan="2">
+							<div id="enableFilterDropdown">
+								<img src="filter.png" height="30" width="30" style="margin: 0px 10px">
+							</div>
+							<!--This section contains some filter elements that could be useful in the future
+								<div class="filterIndicator" id="QBfilterIndicator">
+								<p style="float: left; width: 30px">QB</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="RBfilterIndicator">
+								<p style="float: left; width: 30px">RB</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="WRfilterIndicator">
+								<p style="float: left; width: 30px">WR</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="TEfilterIndicator">
+								<p style="float: left; width: 30px">TE</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="DEFfilterIndicator">
+								<p style="float: left; width: 30px">DEF</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="KfilterIndicator">
+								<p style="float: left; width: 30px">K</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>-->
+						</td>
+						<td id="filterClear">
+							<div id="filterClearButton">
+								<p align="right" style="margin: 0px 10px; color: #FFA500; line-height: 30px">Clear All</p>
+							</div>
+						</td>
+					</tr>
+					<tr class="filterRows">
+						<td class="positionFilterCell" id="QBpositionFilterCell">
+							<div class="filterButton" id="QBfilter" data-enabled="true" onClick="filterClick(this.id)">QB</div>
+						</td>
+						<td class="positionFilterCell" id="RBpositionFilterCell">
+							<div class="filterButton" id="RBfilter" data-enabled="true" onClick="filterClick(this.id)">RB</div>
+						</td>
+						<td class="positionFilterCell" id="WRpositionFilterCell">
+							<div class="filterButton" id="WRfilter" data-enabled="true" onClick="filterClick(this.id)">WR</div>
+						</td>
+					</tr>
+					<tr class="filterRows">
+						<td class="positionFilterCell" id="TEpositionFilterCell">
+							<div class="filterButton" id="TEfilter" data-enabled="true" onClick="filterClick(this.id)">TE</div>
+						</td>
+						<td class="positionFilterCell" id="DEFpositionFilterCell">
+							<div class="filterButton" id="DEFfilter" data-enabled="true" onClick="filterClick(this.id)">DEF</div>
+						</td>
+						<td class="positionFilterCell" id="KpositionFilterCell">
+							<div class="filterButton" id="Kfilter" data-enabled="true" onClick="filterClick(this.id)">K</div>
+						</td>
+					</tr>
+				</table>
+			</div>
 			<div class="screenContainer" id="playersTableWindow">
-				<div class="filters">
-					<table class="headerTable" id="headerTable">
-						<tr>
-							<td colspan="2">
-								<div id="enableFilterDropdown">
-									<img src="filter.png" height="30" width="30" style="margin: 0px 10px">
-								</div>
-								<!--This section contains some filter elements that could be useful in the future
-									<div class="filterIndicator" id="QBfilterIndicator">
-									<p style="float: left; width: 30px">QB</p>
-									<p class="removeFilterIndicator" style="float: right">×</p>
-								</div>
-								<div class="filterIndicator" id="RBfilterIndicator">
-									<p style="float: left; width: 30px">RB</p>
-									<p class="removeFilterIndicator" style="float: right">×</p>
-								</div>
-								<div class="filterIndicator" id="WRfilterIndicator">
-									<p style="float: left; width: 30px">WR</p>
-									<p class="removeFilterIndicator" style="float: right">×</p>
-								</div>
-								<div class="filterIndicator" id="TEfilterIndicator">
-									<p style="float: left; width: 30px">TE</p>
-									<p class="removeFilterIndicator" style="float: right">×</p>
-								</div>
-								<div class="filterIndicator" id="DEFfilterIndicator">
-									<p style="float: left; width: 30px">DEF</p>
-									<p class="removeFilterIndicator" style="float: right">×</p>
-								</div>
-								<div class="filterIndicator" id="KfilterIndicator">
-									<p style="float: left; width: 30px">K</p>
-									<p class="removeFilterIndicator" style="float: right">×</p>
-								</div>-->
-							</td>
-							<td id="filterClear">
-								<div id="filterClearButton">
-									<p align="right" style="margin: 0px 10px; color: #FFA500; line-height: 30px">Clear All</p>
-								</div>
-							</td>
-						</tr>
-						<tr class="filterRows">
-							<td class="positionFilterCell" id="QBpositionFilterCell">
-								<div class="filterButton" id="QBfilter" data-enabled="true" onClick="filterClick(this.id)">QB</div>
-							</td>
-							<td class="positionFilterCell" id="RBpositionFilterCell">
-								<div class="filterButton" id="RBfilter" data-enabled="true" onClick="filterClick(this.id)">RB</div>
-							</td>
-							<td class="positionFilterCell" id="WRpositionFilterCell">
-								<div class="filterButton" id="WRfilter" data-enabled="true" onClick="filterClick(this.id)">WR</div>
-							</td>
-						</tr>
-						<tr class="filterRows">
-							<td class="positionFilterCell" id="TEpositionFilterCell">
-								<div class="filterButton" id="TEfilter" data-enabled="true" onClick="filterClick(this.id)">TE</div>
-							</td>
-							<td class="positionFilterCell" id="DEFpositionFilterCell">
-								<div class="filterButton" id="DEFfilter" data-enabled="true" onClick="filterClick(this.id)">DEF</div>
-							</td>
-							<td class="positionFilterCell" id="KpositionFilterCell">
-								<div class="filterButton" id="Kfilter" data-enabled="true" onClick="filterClick(this.id)">K</div>
-							</td>
-						</tr>
-					</table>
-				</div>
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space between header and first table-->
