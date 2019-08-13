@@ -114,7 +114,7 @@ if(!$fgmembersite->CheckLogin())
 			</div>
 		-->
 			<div class="skipHeader"></div>
-			<div style="width: 100%; height: 10px"></div>
+			<div class="stickyBufferSpace"></div>
 			<div class="filters">
 				<table class="headerTable" id="headerTable">
 					<tr>
