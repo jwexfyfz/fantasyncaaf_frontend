@@ -114,6 +114,13 @@ $( document ).ready(
 				console.log( index + ": " + $( this ).text() + " " + $( this ).attr("data-enabled"));
 			});
 			console.log("ended loop");	
+			
+	
+			$(".filteredResults").each(function( index ) {
+				$( this ).remove();
+			});
+	  
+			populatePlayers(getCurrentWeek());
 		});	
 		
 		
@@ -150,9 +157,9 @@ function populatePlayers(currentWeek) {
 			switch($(this).text()) {
 				case 'QB': currentPosition = 'QB';
 					break;
-				case 'RB': currentPosition = 'RB1\',\'RB2';
+				case 'RB': currentPosition = 'RB';
 					break;
-				case 'WR': currentPosition = 'WR1\',\'WR2\',\'WR3';
+				case 'WR': currentPosition = 'WR';
 					break;
 				case 'TE': currentPosition = 'TE';
 					break;
