@@ -1,45 +1,48 @@
+function getCurrentWeek() {
+	var currentWeek = 1;
+	if (Date.now() > new Date('November 18, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 13;
+	}
+	else if (Date.now() > new Date('November 11, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 12;
+	}
+	else if (Date.now() > new Date('November 4, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 11;
+	}
+	else if (Date.now() > new Date('October 28, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 10;
+	}
+	else if (Date.now() > new Date('October 21, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 9;
+	}
+	else if (Date.now() > new Date('October 14, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 8;
+	}
+	else if (Date.now() > new Date('October 7, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 7;
+	}
+	else if (Date.now() > new Date('September 30, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 6;
+	}
+	else if (Date.now() > new Date('September 23, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 5;
+	}
+	else if (Date.now() > new Date('September 16, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 4;
+	}
+	else if (Date.now() > new Date('September 2, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 3;
+	}
+	else if (Date.now() > new Date('August 26, 2019 07:00:00 UTC').getTime()) {
+		currentWeek = 2;
+	}
+	
+	return currentWeek;
+}
+
 $( document ).ready(
-	function startPage() {
-		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK
-		var currentWeek = 1;
-		if (Date.now() > new Date('November 18, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 13;
-		}
-		else if (Date.now() > new Date('November 11, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 12;
-		}
-		else if (Date.now() > new Date('November 4, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 11;
-		}
-		else if (Date.now() > new Date('October 28, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 10;
-		}
-		else if (Date.now() > new Date('October 21, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 9;
-		}
-		else if (Date.now() > new Date('October 14, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 8;
-		}
-		else if (Date.now() > new Date('October 7, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 7;
-		}
-		else if (Date.now() > new Date('September 30, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 6;
-		}
-		else if (Date.now() > new Date('September 23, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 5;
-		}
-		else if (Date.now() > new Date('September 16, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 4;
-		}
-		else if (Date.now() > new Date('September 2, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 3;
-		}
-		else if (Date.now() > new Date('August 26, 2019 07:00:00 UTC').getTime()) {
-			currentWeek = 2;
-		}
-		
-		$("#weekOpponent").html("Wk " + currentWeek + " Opp");
+	function startPage() {	
+		$("#weekOpponent").html("Wk " + getCurrentWeek() + " Opp");
 				
 		$("#headerTableColumn1").click( function(event) {
 			window.location.href = "league.php" + window.location.search;
@@ -115,7 +118,7 @@ $( document ).ready(
 		
 		
 		
-		populatePlayers(currentWeek);
+		populatePlayers(getCurrentWeek());
 });
 
 //This function changes the color of the div that represents filters by position. If it's enabled (green) and clicked, set it to disabled (white), and vice versa
@@ -134,7 +137,7 @@ function filterClick(clicked_id)
 		  $( this ).remove();
 	  });
 	  
-	  populatePlayers(currentWeek);
+	  populatePlayers(getCurrentWeek());
   }
 
 function populatePlayers(currentWeek) {
