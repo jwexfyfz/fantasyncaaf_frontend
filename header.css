@@ -393,3 +393,19 @@ a, a:hover {
 	text-align: center;
 	padding-bottom: 7px;
 }
+
+.filters {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	z-index: 3;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: calc(var(--headerHeight) + 10px);
+}
+
+#standingsTableSections {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: calc(var(--headerHeight) + 10px);
+}
