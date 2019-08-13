@@ -129,6 +129,12 @@ function filterClick(clicked_id)
 		  $("#"+clicked_id).attr("data-enabled","true");
 		  $("#"+clicked_id).css("background-color","#B8FEBF");
 	  }
+	
+	  $(".filteredResults").each(function( index ) {
+		  $( this ).remove();
+	  });
+	  
+	  populatePlayers(currentWeek);
   }
 
 function populatePlayers(currentWeek) {
@@ -184,20 +190,20 @@ function populatePlayers(currentWeek) {
 			  if(phpResponse[i]["homeaway"]=="home") {
 				  console.log("if entered");
 			  	if(phpResponse[i]["fantasyPoints"] == null) {
-			  		$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+'0</td></tr>');			  
+			  		$('#standingsTable').append('<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+'0</td></tr>');			  
 			  	}
 				else {
-					$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
+					$('#standingsTable').append('<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
 				}
 			  }
 			  //Add @ if team is player is not at home
 			  else {
 				  console.log("else entered");
 				if(phpResponse[i]["fantasyPoints"] == null) {
-					$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">@'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+'0</td></tr>');
+					$('#standingsTable').append('<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">@'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+'0</td></tr>');
 				}
 				else {
-					$('#standingsTable').append('<tr><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">@'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
+					$('#standingsTable').append('<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">'+(i+1)+'</td><td class="standingsTableRow teamColumn stickyColumn" style="padding-left: 20px" id="sticky2">'+phpResponse[i]["playerName"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["team"]+'</td><td class="standingsTableRow otherColumn">@'+phpResponse[i]["opponent"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["position"]+'</td><td class="standingsTableRow otherColumn">'+phpResponse[i]["fantasyPoints"]+'</td></tr>');			  
 				}
 			  }
 		  } 
