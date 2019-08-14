@@ -141,6 +141,11 @@ $( document ).ready(
 			populatePlayers(getCurrentWeek());
 		});	
 		
+		$(".screenContainer").on( 'scroll', function(){
+		   console.log($( ".screenContainer").scrollLeft());
+		   $( ".screenContainer2").scrollLeft($( ".screenContainer").scrollLeft());
+		});
+		
 		
 		
 		populatePlayers(getCurrentWeek());
