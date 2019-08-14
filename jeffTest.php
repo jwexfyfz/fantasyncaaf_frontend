@@ -217,12 +217,13 @@ if(!$fgmembersite->CheckLogin())
 		
 			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
 			<div id="accountMenu">
-				<div class="accountMenuRow" id="avatarRow">
+				<!--<div class="accountMenuRow" id="avatarRow">
 					<?php 
 						$string = $fgmembersite->getTeamName(); 
-						echo $string;
+						echo "Team: ".$string;
 					?>
-				</div>
+				</div>-->
+				<div class="arrow-up" id="accountArrow"></div>
 				<a href="logout.php">
 					<div class="accountMenuRow" id="logoutRow">
 						Logout

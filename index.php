@@ -83,6 +83,10 @@ if(!$fgmembersite->CheckLogin())
 				<div style="height: 36px; vertical-align: middle; line-height: 45px">My Team</div>
 				<div class="arrow-up"></div>
 			</th>
+			<th class="headerTableColumn" id="headerTableColumn4">
+				<div style="height: 36px; vertical-align: middle; line-height: 45px">Players</div>
+				<div class="arrow-up hidden-arrow"></div>
+			</th>
 		</table>
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
@@ -309,6 +313,13 @@ if(!$fgmembersite->CheckLogin())
 	<div id="accountMenu">
 		<div class="arrow-up" id="accountArrow"></div>
 		<a href="logout.php">
+			<!--<div class="accountMenuRow" id="avatarRow">
+				<?php 
+					$string = $fgmembersite->getTeamName(); 
+					echo "Team: ".$string;
+				?>
+			</div>-->
+			<div class="arrow-up" id="accountArrow"></div>
 			<div class="accountMenuRow normalRow">
 				Logout
 			</div>
