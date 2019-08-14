@@ -91,16 +91,20 @@
 	height: 50px;
 }
 
+.rankColumnHead {
+	width: 30px;
+}
+
+.playerColumnHead {
+	width: 110px;
+}
+
 .rankColumn {
-	width: 40px;
+	width: 20px;
 }
 
 .playerColumn {
-	width: 120px;
-}
-
-.otherColumn {
-	width: 85px; /*70 68 75 72*/
+	width: 100px;
 }
 
 .teamColumn {

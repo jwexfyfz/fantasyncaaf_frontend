@@ -191,22 +191,22 @@ if(!$fgmembersite->CheckLogin())
 							<!--Leave space between header and first table-->
 							<tr style="height: 10px"></tr>
 							<tr id="standingsTableSections">
-								<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+								<th class="standingsTableHeader rankColumnHead" id="stickyRank" style="padding-left: 10px">
 									Rank
 								</th>
-								<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								<th class="standingsTableHeader playerColumnHead" id="sticky" style="padding-left: 10px">
 									Player
 								</th>
-								<th class="standingsTableHeader otherColumn">
+								<th class="standingsTableHeader teamColumn">
 									Team
 								</th>
-								<th class="standingsTableHeader otherColumn" id="weekOpponent">
+								<th class="standingsTableHeader oppColumn" id="weekOpponent">
 							
 								</th>
-								<th class="standingsTableHeader otherColumn">
+								<th class="standingsTableHeader positionColumn">
 									Position
 								</th>
-								<th class="standingsTableHeader otherColumn">
+								<th class="standingsTableHeader pointsColumn">
 									Points
 								</th>
 							</tr>
@@ -218,9 +218,9 @@ if(!$fgmembersite->CheckLogin())
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<tr id="standingsTableSections">
-							<th class="standingsTableHeader rankColumn" style="padding-left: 10px">
+							<th class="standingsTableHeader rankColumnHead" style="padding-left: 10px">
 							</th>
-							<th class="standingsTableHeader playerColumn" style="padding-left: 10px">
+							<th class="standingsTableHeader playerColumnHead" style="padding-left: 10px">
 							</th>
 							<th class="standingsTableHeader teamColumn">
 							</th>
