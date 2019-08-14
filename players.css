@@ -92,35 +92,35 @@
 }
 
 .rankColumnHead {
-	width: 30px;
+	width: 35px;
 }
 
 .playerColumnHead {
-	width: 110px;
+	width: 150px;
 }
 
 .rankColumn {
-	width: 20px;
+	width: 25px;
 }
 
 .playerColumn {
-	width: 100px;
+	width: 130px;
 }
 
 .teamColumn {
-	width: 70px; /*70 68 75 72*/
+	width: 60px; /*70 68 75 72*/
 }
 
 .oppColumn {
-	width: 68px; /*70 68 75 72*/
+	width: 70px; /*70 68 75 72*/
 }
 
 .positionColumn {
-	width: 75px; /*70 68 75 72*/
+	width: 60px; /*70 68 75 72*/
 }
 
 .pointsColumn {
-	width: 72px; /*70 68 75 72*/
+	width: 60px; /*70 68 75 72*/
 }
 
 #bigContainer, #bigContainer2 {

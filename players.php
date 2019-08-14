@@ -218,17 +218,17 @@ if(!$fgmembersite->CheckLogin())
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<tr id="standingsTableSections">
-							<th class="standingsTableHeader rankColumnHead" style="padding-left: 10px">
+							<th style="width: 45px">
 							</th>
-							<th class="standingsTableHeader playerColumnHead" style="padding-left: 10px">
+							<th style="width: 150px">
 							</th>
-							<th class="standingsTableHeader teamColumn">
+							<th style="width: 60px">
 							</th>
-							<th class="standingsTableHeader oppColumn">
+							<th style="width: 70px">
 							</th>
-							<th class="standingsTableHeader positionColumn">
+							<th style="width: 60px">
 							</th>
-							<th class="standingsTableHeader pointsColumn">
+							<th style="width: 60px">
 							</th>
 						</tr>
 					</table>

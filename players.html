@@ -191,22 +191,22 @@ if(!$fgmembersite->CheckLogin())
 							<!--Leave space between header and first table-->
 							<tr style="height: 10px"></tr>
 							<tr id="standingsTableSections">
-								<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+								<th class="standingsTableHeader rankColumnHead" id="stickyRank" style="padding-left: 10px">
 									Rank
 								</th>
-								<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+								<th class="standingsTableHeader playerColumnHead" id="sticky" style="padding-left: 10px">
 									Player
 								</th>
-								<th class="standingsTableHeader otherColumn">
+								<th class="standingsTableHeader teamColumn">
 									Team
 								</th>
-								<th class="standingsTableHeader otherColumn" id="weekOpponent">
+								<th class="standingsTableHeader oppColumn" id="weekOpponent">
 							
 								</th>
-								<th class="standingsTableHeader otherColumn">
+								<th class="standingsTableHeader positionColumn">
 									Position
 								</th>
-								<th class="standingsTableHeader otherColumn">
+								<th class="standingsTableHeader pointsColumn">
 									Points
 								</th>
 							</tr>
@@ -218,45 +218,28 @@ if(!$fgmembersite->CheckLogin())
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<tr id="standingsTableSections">
-							<th class="standingsTableHeader rankColumn" style="padding-left: 10px">
+							<th style="width: 45px">
 							</th>
-							<th class="standingsTableHeader playerColumn" style="padding-left: 10px">
+							<th style="width: 150px">
 							</th>
-							<th class="standingsTableHeader teamColumn">
+							<th style="width: 60px">
 							</th>
-							<th class="standingsTableHeader oppColumn">
+							<th style="width: 70px">
 							</th>
-							<th class="standingsTableHeader positionColumn">
+							<th style="width: 60px">
 							</th>
-							<th class="standingsTableHeader pointsColumn">
+							<th style="width: 60px">
 							</th>
 						</tr>
-						<tr style="width: 100%; height: 1500px">
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							<p style="padding-left: 20px">test</p>
-							
-							
-						</tr>
+						<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">1</td><td class="standingsTableRow playerColumn stickyColumn" style="padding-left: 20px" id="sticky2">Dorian Thompson-Robinson</td><td class="standingsTableRow oppColumn">USC</td><td class="standingsTableRow oppColumn">FRES</td><td class="standingsTableRow positionColumn">DEF</td><td class="standingsTableRow pointsColumn">215.2</td></tr>
+						<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">1</td><td class="standingsTableRow playerColumn stickyColumn" style="padding-left: 20px" id="sticky2">USC</td><td class="standingsTableRow oppColumn">USC</td><td class="standingsTableRow oppColumn">FRES</td><td class="standingsTableRow positionColumn">DEF</td><td class="standingsTableRow pointsColumn">21.2</td></tr>
+						<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">1</td><td class="standingsTableRow playerColumn stickyColumn" style="padding-left: 20px" id="sticky2">USC</td><td class="standingsTableRow oppColumn">USC</td><td class="standingsTableRow oppColumn">FRES</td><td class="standingsTableRow positionColumn">DEF</td><td class="standingsTableRow pointsColumn">21.2</td></tr>
+						<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">1</td><td class="standingsTableRow playerColumn stickyColumn" style="padding-left: 20px" id="sticky2">USC</td><td class="standingsTableRow oppColumn">USC</td><td class="standingsTableRow oppColumn">FRES</td><td class="standingsTableRow positionColumn">DEF</td><td class="standingsTableRow pointsColumn">21.2</td></tr>
+						<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">1</td><td class="standingsTableRow playerColumn stickyColumn" style="padding-left: 20px" id="sticky2">USC</td><td class="standingsTableRow oppColumn">USC</td><td class="standingsTableRow oppColumn">FRES</td><td class="standingsTableRow positionColumn">DEF</td><td class="standingsTableRow pointsColumn">21.2</td></tr>
+						<tr class="filteredResults"><td class="standingsTableRow rankColumn stickyColumnRank" style="padding-left: 20px" id="sticky2Rank">1</td><td class="standingsTableRow playerColumn stickyColumn" style="padding-left: 20px" id="sticky2">USC</td><td class="standingsTableRow oppColumn">USC</td><td class="standingsTableRow oppColumn">FRES</td><td class="standingsTableRow positionColumn">DEF</td><td class="standingsTableRow pointsColumn">21.2</td></tr>
 					</table>
 				</div>
-				<!--</div>-->
+			</div>
 		
 			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
 			<div id="accountMenu">
