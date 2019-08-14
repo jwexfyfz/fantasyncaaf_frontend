@@ -61,7 +61,11 @@ $( document ).ready(
 		
 		$("#headerTableColumn2").click( function(event) {
 			window.location.href = "index.php" + window.location.search;
-		});
+		});	
+		
+		$("#headerTableColumn4").click( function(event) {
+			window.location.href = "players.php" + window.location.search;
+		});	
 		
 		var teamID	=	$("#teamID").val()
 		updatePage(teamID);	
