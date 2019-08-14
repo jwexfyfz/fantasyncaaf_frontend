@@ -54,12 +54,7 @@ $( document ).ready(
 		
 		$("#headerTableColumn3").click( function(event) {
 			window.location.href = "matchup.php" + window.location.search;
-		});	
-		
-		$("#headerTableColumn4").click( function(event) {
-			window.location.href = "jeffTest.php" + window.location.search;
-		});	
-		
+		});			
 		
 
 		$('#standingsTableWindow').scroll(function() {
@@ -106,9 +101,11 @@ $( document ).ready(
 			
 			if($('.filterRows').is(":visible") == false) {
 				$(".filterRows").show();
+				$("#standingsTableSections").css(top, "calc(var(--headerHeight) + 170px)");
 			}
 			else {
 				$(".filterRows").hide();
+				$("#standingsTableSections").css(top, "calc(var(--headerHeight) + 40px)");
 			}
 		});	
 		

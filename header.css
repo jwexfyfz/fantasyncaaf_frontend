@@ -425,5 +425,5 @@ a, a:hover {
 #standingsTableSections {
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
-	top: calc(var(--headerHeight) + 10px);
+	top: calc(var(--headerHeight) + 40px);
 }

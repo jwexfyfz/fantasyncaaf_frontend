@@ -23,10 +23,10 @@ if(!$fgmembersite->CheckLogin())
 	
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
-    <script type="text/javascript" src="jeffTest.js" ></script>
+    <script type="text/javascript" src="players.js" ></script>
     <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="jeffTest.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="players.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
