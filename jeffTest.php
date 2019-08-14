@@ -211,7 +211,6 @@ if(!$fgmembersite->CheckLogin())
 								Points
 							</th>
 						</tr>
-						<tr style="height: 1500px"></tr>
 					</table>
 				</div>
 				<!--</div>-->
