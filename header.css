@@ -421,9 +421,3 @@ a, a:hover {
 .rotated {
   transform: rotate(180deg); /* Equal to rotateZ(45deg) */
 }
-
-#standingsTableSections {
-	position: -webkit-sticky; /* Safari */
-	position: sticky;
-	top: calc(var(--headerHeight) + 40px);
-}

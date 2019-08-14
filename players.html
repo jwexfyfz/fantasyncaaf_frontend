@@ -23,10 +23,10 @@ if(!$fgmembersite->CheckLogin())
 	
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
-    <script type="text/javascript" src="jeffTest.js" ></script>
+    <script type="text/javascript" src="players.js" ></script>
     <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="jeffTest.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="players.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -185,45 +185,57 @@ if(!$fgmembersite->CheckLogin())
 						</td>
 					</tr>
 				</table>
+				<table id="standingsTable2">
+					<!--Leave space between header and first table-->
+					<tr style="height: 10px"></tr>
+					<tr id="standingsTableSections">
+						<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+							Rank
+						</th>
+						<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+							Player
+						</th>
+						<th class="standingsTableHeader otherColumn">
+							Team
+						</th>
+						<th class="standingsTableHeader otherColumn" id="weekOpponent">
+							
+						</th>
+						<th class="standingsTableHeader otherColumn">
+							Position
+						</th>
+						<th class="standingsTableHeader otherColumn">
+							Points
+						</th>
+					</tr>
+				</table>
 			</div>
 			<div class="screenContainer" id="playersTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space between header and first table-->
-						<tr style="height: 10px"></tr>
-						<tr id="standingsTableSections">
+						<!--<tr style="height: 10px"></tr>-->
+						<tr id="standingsTableSections" style="display:none">
 							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
-								Rank
 							</th>
 							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
-								Player
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Team
-							</th>
-							<th class="standingsTableHeader otherColumn" id="weekOpponent">
-								
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Position
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Points
+							</th>
+							<th class="standingsTableHeader otherColumn">
 							</th>
 						</tr>
-						<tr style="height: 1500px"></tr>
 					</table>
 				</div>
 				<!--</div>-->
 		
 			<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
 			<div id="accountMenu">
-				<div class="accountMenuRow" id="avatarRow">
-					<?php 
-						$string = $fgmembersite->getTeamName(); 
-						echo $string;
-					?>
-				</div>
+				<div class="arrow-up" id="accountArrow"></div>
 				<a href="logout.php">
 					<div class="accountMenuRow" id="logoutRow">
 						Logout

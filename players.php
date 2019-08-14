@@ -185,30 +185,48 @@ if(!$fgmembersite->CheckLogin())
 						</td>
 					</tr>
 				</table>
+				<table id="standingsTable2">
+					<!--Leave space between header and first table-->
+					<tr style="height: 10px"></tr>
+					<tr id="standingsTableSections">
+						<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
+							Rank
+						</th>
+						<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+							Player
+						</th>
+						<th class="standingsTableHeader otherColumn">
+							Team
+						</th>
+						<th class="standingsTableHeader otherColumn" id="weekOpponent">
+							
+						</th>
+						<th class="standingsTableHeader otherColumn">
+							Position
+						</th>
+						<th class="standingsTableHeader otherColumn">
+							Points
+						</th>
+					</tr>
+				</table>
 			</div>
 			<div class="screenContainer" id="playersTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
 						<!--Leave space between header and first table-->
-						<tr style="height: 10px"></tr>
-						<tr id="standingsTableSections">
+						<!--<tr style="height: 10px"></tr>-->
+						<tr id="standingsTableSections" style="display:none">
 							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
-								Rank
 							</th>
 							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
-								Player
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Team
-							</th>
-							<th class="standingsTableHeader otherColumn" id="weekOpponent">
-								
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Position
 							</th>
 							<th class="standingsTableHeader otherColumn">
-								Points
+							</th>
+							<th class="standingsTableHeader otherColumn">
 							</th>
 						</tr>
 					</table>
