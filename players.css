@@ -95,12 +95,28 @@
 	width: 40px;
 }
 
-.teamColumn {
-	width: 150px;
+.playerColumn {
+	width: 120px;
 }
 
 .otherColumn {
-	width: 85px;
+	width: 85px; /*70 68 75 72*/
+}
+
+.teamColumn {
+	width: 70px; /*70 68 75 72*/
+}
+
+.oppColumn {
+	width: 68px; /*70 68 75 72*/
+}
+
+.positionColumn {
+	width: 75px; /*70 68 75 72*/
+}
+
+.pointsColumn {
+	width: 72px; /*70 68 75 72*/
 }
 
 #bigContainer, #bigContainer2 {
