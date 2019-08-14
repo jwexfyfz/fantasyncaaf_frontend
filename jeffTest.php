@@ -148,6 +148,14 @@ if(!$fgmembersite->CheckLogin())
 								<p class="removeFilterIndicator" style="float: right">×</p>
 							</div>-->
 						</td>
+					</tr>
+					<tr class="filterRows">
+						<td id="filterSelectAll">
+							<div id="filterSelectAllButton">
+								<p align="left" style="margin: 0px 10px; color: #FFA500; line-height: 30px">Select All</p>
+							</div>
+						</td>
+						<td></td>
 						<td id="filterClear">
 							<div id="filterClearButton">
 								<p align="right" style="margin: 0px 10px; color: #FFA500; line-height: 30px">Clear All</p>
@@ -203,6 +211,7 @@ if(!$fgmembersite->CheckLogin())
 								Points
 							</th>
 						</tr>
+						<tr style="height: 1500px"></tr>
 					</table>
 				</div>
 				<!--</div>-->
