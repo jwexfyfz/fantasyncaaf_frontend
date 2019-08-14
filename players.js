@@ -101,11 +101,11 @@ $( document ).ready(
 			
 			if($('.filterRows').is(":visible") == false) {
 				$(".filterRows").show();
-				$("#standingsTableSections").css(top, "calc(var(--headerHeight) + 170px)");
+				$("#standingsTableSections").css("top", "calc(var(--headerHeight) + 170px)");
 			}
 			else {
 				$(".filterRows").hide();
-				$("#standingsTableSections").css(top, "calc(var(--headerHeight) + 40px)");
+				$("#standingsTableSections").css("top", "calc(var(--headerHeight) + 40px)");
 			}
 		});	
 		
