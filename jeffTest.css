@@ -185,11 +185,17 @@
 	background-color: #B8FEBF;
 }
 
-.filterRows, #filterClear {
+.filterRows {
 	display:none;
 }
 
 .removeFilterIndicator {
 	width: 20px;
 	text-align: center;
+}
+
+#filterExitButton {
+	float: right; 
+	width:30px;
+	font-size: 1.5em;
 }

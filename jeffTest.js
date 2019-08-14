@@ -97,12 +97,17 @@ $( document ).ready(
 		});
 		
 		$("#enableFilterDropdown").click( function(event) {
+			if($("#enableFilterDropdown").hasClass("rotated")) {
+				$("#enableFilterDropdown").removeClass("rotated");
+			}
+			else {
+				$("#enableFilterDropdown").addClass("rotated");
+			}
+			
 			if($('.filterRows').is(":visible") == false) {
-				$("#filterClear").show();
 				$(".filterRows").show();
 			}
 			else {
-				$("#filterClear").hide();
 				$(".filterRows").hide();
 			}
 		});	
@@ -111,6 +116,22 @@ $( document ).ready(
 			$(".filterButton").each(function( index ) {
 				$( this ).attr("data-enabled","false");
 				$( this ).css("background-color","#FFFFFF");
+				console.log( index + ": " + $( this ).text() + " " + $( this ).attr("data-enabled"));
+			});
+			console.log("ended loop");	
+			
+	
+			$(".filteredResults").each(function( index ) {
+				$( this ).remove();
+			});
+	  
+			populatePlayers(getCurrentWeek());
+		});	
+		
+		$("#filterSelectAllButton").click( function(event) {			
+			$(".filterButton").each(function( index ) {
+				$( this ).attr("data-enabled","true");
+				$( this ).css("background-color","#B8FEBF");
 				console.log( index + ": " + $( this ).text() + " " + $( this ).attr("data-enabled"));
 			});
 			console.log("ended loop");	
