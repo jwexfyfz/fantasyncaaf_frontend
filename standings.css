@@ -56,7 +56,7 @@
 
 #sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Division2, #sticky2Rank, #sticky2Division2Rank, .stickyColumn, .stickyColumnRank, .stickyColumnDivision2, .stickyColumnDivision2Rank {
     display: table-cell;
-	z-index: 30;
+	z-index: 0;
 }
 
 #sticky.fixed, #stickyDivision2.fixed, .stickyColumn.fixed, .stickyColumnDivision2.fixed {
