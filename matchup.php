@@ -90,9 +90,9 @@ if(!$fgmembersite->CheckLogin())
 		<!--Have a blank row so that content at top gets pushed underneath header-->
 		
 		<!--<div id="content">-->
-			<table class="headerTable">
+<!--			<table class="headerTable">
 				<tr style="height: 121px"></tr>
-	<!--
+-->	<!--
 				<tr>
 					<td class="leftAlignTableCell">
 					</td>
@@ -101,10 +101,10 @@ if(!$fgmembersite->CheckLogin())
 					</td>
 				</tr>
 	-->
-				<tr style="height:25px"></tr>
+<!--				<tr style="height:25px"></tr>
 			</table>
-	
-			<div id="flexCardContainer">
+-->	
+			<div id="flexCardContainer" style="margin-top: 131px">
 				<div class="flexCard" id="matchupCard">
 					<table id="myTeamMatchupTable">
 						<tr>

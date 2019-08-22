@@ -91,13 +91,12 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	
-	<table>
+	<!--<table>
 		<tr style="height: 121px"></tr>
-			<!--Leave space between header and first table-->
-			<tr style="height: 10px"></tr>
-	</table>
+		<tr style="height: 10px"></tr>
+	</table>-->
 
-	<form method="POST">	
+	<form method="POST" style="margin-top: 131px">	
 	    <table id="myTeamTable">
 			<tr id="test1">
 				<th class="myTeamTableHeader" style="width: 60px"> <!--Try width:30 for "Pos"-->
