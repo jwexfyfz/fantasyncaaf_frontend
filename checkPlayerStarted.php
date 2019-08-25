@@ -29,18 +29,18 @@
 	if (isset($team)) {
 		// Returns teamID, gametime for a given team
 		// Input: week, teamID
-		$sql = "SELECT abbreviations.abbreviation, roster.teamID, gametimes.homeaway, gametimes.opponent, gametimes.gametime FROM collegeteamroster as roster left join abbreviations on roster.team = abbreviations.team left join ( select allteams.teamID as teamID, if(homeAway = \"home\", away.abbreviation, home.abbreviation) as opponent, gametime, homeaway from gametimes as allteams left join ( select gametimes.gameID, abbreviations.abbreviation from gametimes as gametimes left join abbreviations on gametimes.team = abbreviations.team where homeAway = \"home\" and week = $weekNum group by 1,2 ) as home on allteams.gameID = home.gameID inner join ( select gametimes.gameID, abbreviations.abbreviation from gametimes as gametimes left join abbreviations on gametimes.team = abbreviations.team where homeAway = \"away\" and week = $weekNum group by 1,2 ) as away on allteams.gameID = away.gameID group by 1,2,3,4 ) as gametimes on roster.teamID = gametimes.teamID left join collegeteams as collegeteams on roster.teamID = collegeteams.teamID where collegeteams.teamName = \"$team\" group by 1,2,3,4,5";
+		$sql = "SELECT abbreviations.abbreviation, roster.teamID, roster.team, gametimes.homeaway, gametimes.opponent, gametimes.gametime FROM collegeteamroster as roster left join abbreviations on roster.team = abbreviations.team left join ( select allteams.teamID as teamID, if(homeAway = \"home\", away.abbreviation, home.abbreviation) as opponent, gametime, homeaway from gametimes as allteams left join ( select gametimes.gameID, abbreviations.abbreviation from gametimes as gametimes left join abbreviations on gametimes.team = abbreviations.team where homeAway = \"home\" and week = $weekNum group by 1,2 ) as home on allteams.gameID = home.gameID inner join ( select gametimes.gameID, abbreviations.abbreviation from gametimes as gametimes left join abbreviations on gametimes.team = abbreviations.team where homeAway = \"away\" and week = $weekNum group by 1,2 ) as away on allteams.gameID = away.gameID group by 1,2,3,4 ) as gametimes on roster.teamID = gametimes.teamID left join collegeteams as collegeteams on roster.teamID = collegeteams.teamID where collegeteams.teamName = \"$team\" group by 1,2,3,4,5,6";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-				$gametimes[$row["teamName"]] = $row["gametime"];
+				$gametimes[$row["team"]]["gametime"] = $row["gametime"];
 				if($row["homeaway"] == "away") {
-					$gametimes[$row["playerName"]]["opponent"] = "@".$row["opponent"];
+					$gametimes[$row["team"]]["opponent"] = "@".$row["opponent"];
 				}
 				else {
-					$gametimes[$row["playerName"]]["opponent"] = $row["opponent"];
+					$gametimes[$row["team"]]["opponent"] = $row["opponent"];
 				}
 			}
 		} 
