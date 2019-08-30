@@ -10,7 +10,8 @@
 	$weekNum = $_POST["weekNum"];
 	$teamID = $_POST["teamIDNum"];
 
-	$sql = "select distinct C.teamName, C.playerName, C.week, C.position, D.gametime, C.fantasyID as teamID from (select A.playerName, B.playerID, B.teamID, A.position, A.week, A.teamName, A.teamID as fantasyID from (select playerName, position, teamID, week, teamName from teamroster where week=$weekNum and teamID=$teamID) as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and D.week=$weekNum;";
+	//$sql = "select distinct C.teamName, C.playerName, C.week, C.position, D.gametime, C.fantasyID as teamID from (select A.playerName, B.playerID, B.teamID, A.position, A.week, A.teamName, A.teamID as fantasyID from (select playerName, position, teamID, week, teamName from teamroster where week=$weekNum and teamID=$teamID) as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join gameTimes as D on C.teamID=D.teamID and D.week=$weekNum;";
+	$sql = "select distinct C.teamName, C.playerName, C.week, C.position, D.gametime, D.abbreviation, D.homeaway, D.opponent, C.fantasyID as teamID from ( select A.playerName, B.playerID, B.teamID, A.position, A.week, A.teamName, A.teamID as fantasyID from ( select playerName, position, teamID, week, teamName from teamroster where week=$weekNum and teamID=$teamID ) as A inner join collegeteamroster as B on A.playerName=B.PlayerName or A.playerName=B.team) as C inner join ( SELECT roster.playerName, abbreviations.abbreviation, roster.teamID, roster.position, gametimes.homeaway, gametimes.opponent, gametimes.gametime FROM collegeteamroster as roster left join abbreviations on roster.team = abbreviations.team left join ( select allteams.teamID as teamID, if(homeAway = \"home\", away.abbreviation, home.abbreviation) as opponent, gametime, homeaway from gametimes as allteams left join ( select gametimes.gameID, abbreviations.abbreviation from gametimes as gametimes left join abbreviations on gametimes.team = abbreviations.team where homeAway = \"home\" and week = $weekNum group by 1,2 ) as home on allteams.gameID = home.gameID inner join ( select gametimes.gameID, abbreviations.abbreviation from gametimes as gametimes left join abbreviations on gametimes.team = abbreviations.team where homeAway = \"away\" and week = $weekNum group by 1,2 ) as away on allteams.gameID = away.gameID group by 1,2,3,4 ) as gametimes on roster.teamID = gametimes.teamID group by 1,2,3,4,5,6,7) as D on C.teamID=D.teamID";
     $result = $conn->query($sql);
 	
     //Query to get team rosters
@@ -29,6 +30,19 @@
 	$teamRoster["DEF"]["gametime"] = "";
 	$teamRoster["K"]["gametime"] = "";
 	$teamRoster["FLEX"]["gametime"] = "";
+	//$teamRoster[""]["gametime"] = "";
+	//Preset opponent values to null so you never get an undefined value
+	$teamRoster["QB"]["opponent"] = "";
+	$teamRoster["RB1"]["opponent"] = "";
+	$teamRoster["RB2"]["opponent"] = "";
+	$teamRoster["WR1"]["opponent"] = "";
+	$teamRoster["WR2"]["opponent"] = "";
+	$teamRoster["WR3"]["opponent"] = "";
+	$teamRoster["TE"]["opponent"] = "";
+	$teamRoster["DEF"]["opponent"] = "";
+	$teamRoster["K"]["opponent"] = "";
+	$teamRoster["FLEX"]["opponent"] = "";
+	//$teamRoster[""]["opponent"] = "";
 
 //    $index = 0;
     if ($result->num_rows > 0) {
@@ -42,6 +56,17 @@
 			$teamRoster[$row["week"]]["teamName"] = $row["teamName"];
 			
 			$teamRoster["$position"]["gametime"] = $row["gametime"];
+			if($row["opponent"] == null) {
+				$teamRoster["$position"]["opponent"] = "BYE";
+			}
+			else {
+				if($row["homeaway"] == "away") {
+					$teamRoster["$position"]["opponent"] = "@".$row["opponent"];
+				}
+				else {
+					$teamRoster["$position"]["opponent"] = $row["opponent"];
+				}
+			}			
         }
     } else {
         //Set everything to null so at least you return something

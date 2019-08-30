@@ -83,17 +83,20 @@ if(!$fgmembersite->CheckLogin())
 				<div style="height: 36px; vertical-align: middle; line-height: 45px">My Team</div>
 				<div class="arrow-up"></div>
 			</th>
+			<th class="headerTableColumn" id="headerTableColumn4">
+				<div style="height: 36px; vertical-align: middle; line-height: 45px">Players</div>
+				<div class="arrow-up hidden-arrow"></div>
+			</th>
 		</table>
 	</div>
 	<!--Have a blank row so that content at top gets pushed underneath header-->
 	
-	<table>
+	<!--<table>
 		<tr style="height: 121px"></tr>
-			<!--Leave space between header and first table-->
-			<tr style="height: 10px"></tr>
-	</table>
+		<tr style="height: 10px"></tr>
+	</table>-->
 
-	<form method="POST">	
+	<form method="POST" style="margin-top: 131px">	
 	    <table id="myTeamTable">
 			<tr id="test1">
 				<th class="myTeamTableHeader" style="width: 60px"> <!--Try width:30 for "Pos"-->
@@ -309,6 +312,13 @@ if(!$fgmembersite->CheckLogin())
 	<div id="accountMenu">
 		<div class="arrow-up" id="accountArrow"></div>
 		<a href="logout.php">
+			<!--<div class="accountMenuRow" id="avatarRow">
+				<?php 
+					$string = $fgmembersite->getTeamName(); 
+					echo "Team: ".$string;
+				?>
+			</div>-->
+			<div class="arrow-up" id="accountArrow"></div>
 			<div class="accountMenuRow normalRow">
 				Logout
 			</div>

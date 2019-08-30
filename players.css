@@ -47,16 +47,15 @@
 	  font-weight: 300;
 }
 
-#standingsTableWindow, #standingsTableWindow2 {
+#playersTableWindow, #standingsTableWindow, #standingsTableWindow2 {
 	width: 100%;
-	max-width: 500px;
+	max-width: 600px;
 	overflow: scroll;
 	margin: 0 auto;
 }
 
 #sticky, #stickyDivision2, #stickyRank, #stickyDivision2Rank, #sticky2, #sticky2Division2, #sticky2Rank, #sticky2Division2Rank, .stickyColumn, .stickyColumnRank, .stickyColumnDivision2, .stickyColumnDivision2Rank {
     display: table-cell;
-	z-index: 30;
 }
 
 #sticky.fixed, #stickyDivision2.fixed, .stickyColumn.fixed, .stickyColumnDivision2.fixed {
@@ -92,16 +91,36 @@
 	height: 50px;
 }
 
-.rankColumn {
-	width: 40px;
+.rankColumnHead {
+	width: 45px;
 }
 
-.teamColumn {
+.playerColumnHead {
 	width: 150px;
 }
 
-.otherColumn {
-	width: 85px;
+.rankColumn {
+	width: 25px;
+}
+
+.playerColumn {
+	width: 130px;
+}
+
+.teamColumn {
+	width: 60px; /*70 68 75 72*/
+}
+
+.oppColumn {
+	width: 70px; /*70 68 75 72*/
+}
+
+.positionColumn {
+	width: 60px; /*70 68 75 72*/
+}
+
+.pointsColumn {
+	width: 60px; /*70 68 75 72*/
 }
 
 #bigContainer, #bigContainer2 {
@@ -147,4 +166,56 @@
 }
 .divFlagTable {
 	display: none;
+}
+
+.positionFilterCell {
+	width: 100%;
+	color: #496585;
+	font-weight:100;
+	position:relative;
+	text-align: center;
+    z-index:2;
+	cursor: pointer;
+}
+
+#enableFilterDropdown {
+	width: 50px;
+	float: left;
+}
+
+.filterIndicator {
+	float: left;
+	border: 1px solid #B8FEBF;
+    border-radius: 4px;
+    /*box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);*/
+	background-color: #FFFFFF;
+	width: 60px;
+	text-align: left;
+	padding-left: 5px;
+	line-height: 30px;
+	margin: 0px 2px;
+}
+
+.filterButton {
+	border-color: #496585;
+    border-radius: 6px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+	margin: 5px;
+	padding: 10px;
+	background-color: #B8FEBF;
+}
+
+.filterRows {
+	display:none;
+}
+
+.removeFilterIndicator {
+	width: 20px;
+	text-align: center;
+}
+
+#filterExitButton {
+	float: right; 
+	width:30px;
+	font-size: 1.5em;
 }

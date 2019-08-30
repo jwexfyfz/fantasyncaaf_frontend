@@ -50,6 +50,10 @@ $( document ).ready(
 		});
 		$("#headerTableColumn3").click( function(event) {
 			window.location.href = "matchup.php" + window.location.search;
+		});		
+		
+		$("#headerTableColumn4").click( function(event) {
+			window.location.href = "players.php" + window.location.search;
 		});	
 				
 		//Clear the error message if the user clicks the X
@@ -116,22 +120,78 @@ function loadTeamRoster(week, teamID, weekChanged) {
 	    success: function(response) {
 		  //console.log("response from loadTeamRoster.php: "+response);
 		  phpResponse = JSON.parse(response);
+		  console.log("response: "+JSON.stringify(phpResponse));
+		  
 		  
 		  var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 		  
 		  //Populate the gametime for the already chosen players.  convertToReadableDate() will take a Date format and convert to MM/DD DayOfWeek HH:MM AM/PM timezone
 		  console.log("time conversion: " + phpResponse["QB"]["gametime"].replace(' ','T')+ "+00:00");
+		  console.log("opponent: " + phpResponse["QB"]["opponent"]);
 		  //if (iOS) {
-			$('#QBgametime').html(convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#RB1gametime').html(convertToReadableDate(new Date(phpResponse["RB1"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#RB2gametime').html(convertToReadableDate(new Date(phpResponse["RB2"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#WR1gametime').html(convertToReadableDate(new Date(phpResponse["WR1"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#WR2gametime').html(convertToReadableDate(new Date(phpResponse["WR2"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#WR3gametime').html(convertToReadableDate(new Date(phpResponse["WR3"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#TEgametime').html(convertToReadableDate(new Date(phpResponse["TE"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#DEFgametime').html(convertToReadableDate(new Date(phpResponse["DEF"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#Kgametime').html(convertToReadableDate(new Date(phpResponse["K"]["gametime"].replace(' ','T')+"+00:00")));
-			$('#FLEXgametime').html(convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"].replace(' ','T')+"+00:00")));
+			  if(phpResponse["QB"]["opponent"] == null) {
+				  $('#QBgametime').html("BYE");
+			  }
+			  else {
+				  $('#QBgametime').html(phpResponse["QB"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["RB1"]["opponent"] == null) {
+				  $('#RB1gametime').html("BYE");
+			  }
+			  else {
+	  			$('#RB1gametime').html(phpResponse["RB1"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["RB1"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["RB2"]["opponent"] == null) {
+				  $('#RB2gametime').html("BYE");
+			  }
+			  else {
+				  $('#RB2gametime').html(phpResponse["RB2"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["RB2"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["WR1"]["opponent"] == null) {
+				  $('#WR1gametime').html("BYE");
+			  }
+			  else {
+				  $('#WR1gametime').html(phpResponse["WR1"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["WR1"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["WR2"]["opponent"] == null) {
+				  $('#WR2gametime').html("BYE");
+			  }
+			  else {
+				  $('#WR2gametime').html(phpResponse["WR2"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["WR2"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["WR3"]["opponent"] == null) {
+				  $('#WR3gametime').html("BYE");
+			  }
+			  else {
+				  $('#WR3gametime').html(phpResponse["WR3"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["WR3"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["TE"]["opponent"] == null) {
+				  $('#TEgametime').html("BYE");
+			  }
+			  else {
+				  $('#TEgametime').html(phpResponse["TE"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["TE"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["DEF"]["opponent"] == null) {
+				  $('#DEFgametime').html("BYE");
+			  }
+			  else {
+				  $('#DEFgametime').html(phpResponse["DEF"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["DEF"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["K"]["opponent"] == null) {
+				  $('#Kgametime').html("BYE");
+			  }
+			  else {
+				  $('#Kgametime').html(phpResponse["K"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["K"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			  if(phpResponse["FLEX"]["opponent"] == null) {
+				  $('#FLEXgametime').html("BYE");
+			  }
+			  else {
+				  $('#FLEXgametime').html(phpResponse["FLEX"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["FLEX"]["gametime"].replace(' ','T')+"+00:00")));
+			  }
+			
+			console.log($('#QBgametime').html());
+			console.log(phpResponse["QB"]["opponent"] + " " + convertToReadableDate(new Date(phpResponse["QB"]["gametime"].replace(' ','T')+"+00:00")));
 		  //}
 		  //Set eligible players for each select, set the current chosen player as default value
 		  getDataForChoosePlayerLists("QB", phpResponse[week].QB, teamID, weekChanged);
@@ -491,13 +551,14 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			console.log("checkPlayerStarted results: "+JSON.stringify(phpResponse));
 
 			for (var key in phpResponse) {
-			    console.log(key+": "+phpResponse[key]);
+			    console.log(key+" (gametime): "+phpResponse[key]["gametime"]);
+			    console.log(key+" (opponent): "+phpResponse[key]["opponent"]);
 			}
 			//Iterate through game times and don't allow change if the game has started
 			var playerGameStarted = false;
 
 			for (var key in phpResponse) {
-				var gametime = new Date(phpResponse[key].replace(' ','T')+"+00:00");
+				var gametime = new Date(phpResponse[key]["gametime"].replace(' ','T')+"+00:00");
 				if (Date.now() > gametime.getTime()) {  // If the current time is past the player's gametime, don't allow the change and display an error
 					fadeErrorFooter("The selected player's game has already begun!<br/>");
 					loadTeamRoster(week, fantasyID, true);  // Refresh the roster - Should this be false??
@@ -543,9 +604,15 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
     console.log("640: position: "+position.replace("tophp","gametime"));
 	
 	var selectVal = "input"+position.replace("tophp","");
-	console.log("current position value: "+$('#'+selectVal).val());
-	console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]	);
-	console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
+	if($('#'+selectVal).val() != "") {
+		console.log("current position value: "+$('#'+selectVal).val());
+		console.log("gametime of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]["gametime"]	);
+		console.log("opponent of current position value: " + playerGametimeArray[	$('#'+selectVal).val()	]["opponent"]	);
+		console.log("name of div setting html in: "+'#'+position.replace("tophp","gametime"));
+	}
+	else {
+		console.log("selectVal is null");
+	}
 	
 	//If position doesn't have a gametime yet, set it.  If it already has one, populate it after switch logic.
 	//if($('#'+position.replace("tophp","gametime")).html() == "") {
@@ -685,11 +752,27 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				console.log(selectVal);
 				console.log($('#'+selectVal).val());
-				console.log($('#'+selectVal).val()+": "+playerGametimeArray[$('#'+selectVal).val()]);
-				console.log("w/ replace: "+playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00");
-				console.log('#'+position.replace("tophp","gametime"));
-				console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00")));
-				$('#'+position.replace("tophp","gametime")).html(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()].replace(' ','T')+"+00:00")));
+				if($('#'+selectVal).val() != "") {
+					console.log($('#'+selectVal).val()+" (gametime): "+playerGametimeArray[$('#'+selectVal).val()]["gametime"]);
+					console.log($('#'+selectVal).val()+" (opponent): "+playerGametimeArray[$('#'+selectVal).val()]["opponent"]);
+					console.log("w/ replace: "+playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00");
+					console.log('#'+position.replace("tophp","gametime"));
+					console.log(convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00")));
+				}
+				else {
+					console.log("selectVal is empty")
+				}
+				
+				
+				if($('#'+selectVal).val() == "") {
+					$('#'+position.replace("tophp","gametime")).html("");
+				}
+				else if(playerGametimeArray[$('#'+selectVal).val()]["opponent"] == null) {
+					$('#'+position.replace("tophp","gametime")).html("BYE");
+				}
+				else {
+					$('#'+position.replace("tophp","gametime")).html(playerGametimeArray[$('#'+selectVal).val()]["opponent"] + " " + convertToReadableDate(new Date(playerGametimeArray[$('#'+selectVal).val()]["gametime"].replace(' ','T')+"+00:00")));
+				}
 				
 				makeChangesToTeamRoster(position, week, fantasyID, teamName);
 			}

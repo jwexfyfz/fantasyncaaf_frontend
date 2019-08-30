@@ -53,6 +53,9 @@ $( document ).ready(
 			window.location.href = "matchup.php" + window.location.search;
 		});	
 		
+		$("#headerTableColumn4").click( function(event) {
+			window.location.href = "players.php" + window.location.search;
+		});	
 
 		$('#standingsTableWindow').scroll(function() {
 		    var distanceFromLeft = $(this).scrollLeft();

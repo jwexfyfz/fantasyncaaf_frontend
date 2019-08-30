@@ -23,6 +23,11 @@ tr p {
 	margin: 0px;
 }
 
+.skipHeader {
+	width: 100%;
+	height: var(--headerHeight); 
+}
+
 #headerWrapper {
 	position: fixed;
 	width: 100%;
@@ -387,4 +392,32 @@ a, a:hover {
 	margin: 0 auto;
 	text-align: center;
 	padding-bottom: 7px;
+}
+
+.stickyBufferSpace {
+	width: 100%;
+	height: 10px;
+	max-width: 600px;
+	margin: 0 auto;
+	z-index: 3;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: var(--headerHeight);
+	background-color: #FFFFFF;
+}
+
+.filters {
+	width: 100%;
+	max-width: 445px;
+	margin: 0 auto;
+	z-index: 3;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: calc(var(--headerHeight) + 10px);
+	background-color: #FFFFFF;
+    /*box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);*/
+}
+
+.rotated {
+  transform: rotate(180deg); /* Equal to rotateZ(45deg) */
 }

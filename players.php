@@ -23,10 +23,10 @@ if(!$fgmembersite->CheckLogin())
 	
 	<input type="hidden" id="teamName" value="<?php echo $fgmembersite->getTeamName() ?>" />
 	<input type="hidden" id="teamID" value="<?php echo $fgmembersite->getFantasyID() ?>" />
-    <script type="text/javascript" src="league.js" ></script>
+    <script type="text/javascript" src="players.js" ></script>
     <script type="text/javascript" src="header.js" ></script>
 	<link rel="stylesheet" type="text/css" href="header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="standings.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="players.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="weekSelect.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -48,30 +48,13 @@ if(!$fgmembersite->CheckLogin())
 								echo $output;
 							?>
 						</div>
-						<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display:none;">
-							<select id="currentWeekNum">
-								<option value="1">Week 1</option>
-								<option value="2">Week 2</option>
-								<option value="3">Week 3</option>
-								<option value="4">Week 4</option>
-								<option value="5">Week 5</option>
-								<option value="6">Week 6</option>
-								<option value="7">Week 7</option>
-								<option value="8">Week 8</option>
-								<option value="9">Week 9</option>
-								<option value="10">Week 10</option>
-								<option value="11">Week 11</option>
-								<option value="12">Week 12</option>
-								<option value="13">Week 13</option>
-							</select>
-						</div>
 					</th>
 				</tr>
 			</table>
 			<table class="headerTable">
-				<th class="headerTableColumn activeHeaderColumn" id="headerTableColumn1">
+				<th class="headerTableColumn" id="headerTableColumn1">
 					<div style="height: 36px; vertical-align: middle; line-height: 45px">Standings</div>
-					<div class="arrow-up"></div>
+					<div class="arrow-up hidden-arrow"></div>
 				</th>
 				<th class="headerTableColumn" id="headerTableColumn3">
 					<div style="height: 36px; vertical-align: middle; line-height: 45px">Match Up</div>
@@ -81,14 +64,15 @@ if(!$fgmembersite->CheckLogin())
 					<div style="height: 36px; vertical-align: middle; line-height: 45px">My Team</div>
 					<div class="arrow-up hidden-arrow"></div>
 				</th>
-				<th class="headerTableColumn" id="headerTableColumn4">
+				<th class="headerTableColumn activeHeaderColumn" id="headerTableColumn4">
 					<div style="height: 36px; vertical-align: middle; line-height: 45px">Players</div>
-					<div class="arrow-up hidden-arrow"></div>
+					<div class="arrow-up"></div>
 				</th>
 			</table>
 		</div>
 		
 		<!--<div id="content">-->
+			<!--
 			<div id="leaveRoomForHeader"></div>
 			<table class="divFlagTable" id="aroundTheLeagueTable">
 				<tr>
@@ -99,95 +83,152 @@ if(!$fgmembersite->CheckLogin())
 				<div id="standingsTableWindow">
 					<div id="bigContainer">
 						<table id="standingsTable">
+			-->
 							<!--Leave space for the top header-->
 							<!--<tr style="height: 121px"></tr>-->
 							<!--Leave space between header and first table-->
-							<tr style="height: 10px"></tr>
+			<!--			<tr style="height: 10px"></tr>
 							<tr id="standingsTableSections">
 								<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
 									Rank
 								</th>
 								<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
+									Player
+								</th>
+								<th class="standingsTableHeader otherColumn">
 									Team
 								</th>
 								<th class="standingsTableHeader otherColumn">
-									Record
+									Position
 								</th>
 								<th class="standingsTableHeader otherColumn">
-									Div. Record
+									Opponent
 								</th>
 								<th class="standingsTableHeader otherColumn">
-									Pts For
-								</th>
-								<th class="standingsTableHeader otherColumn">
-									Pts Against
+									Total Points
 								</th>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
-			<!--For the south division card-->
-			<table class="divFlagTable" id="aroundTheLeagueTable">
-				<tr>
-					<td id="aroundTheLeague">Division: South</td>
-				</tr>
-			</table>
-			<div class="flexCard divFlag">
-				<div id="standingsTableWindow2">
+		-->
+			<div class="skipHeader"></div>
+			<div class="stickyBufferSpace"></div>
+			<div class="filters">
+				<table class="headerTable" id="headerTable">
+					<tr>
+						<td colspan="2">
+							<div id="enableFilterDropdown">
+								<img src="filter.png" height="30" width="30" style="margin: 0px 10px">
+							</div>
+							<!--This section contains some filter elements that could be useful in the future
+								<div class="filterIndicator" id="QBfilterIndicator">
+								<p style="float: left; width: 30px">QB</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="RBfilterIndicator">
+								<p style="float: left; width: 30px">RB</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="WRfilterIndicator">
+								<p style="float: left; width: 30px">WR</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="TEfilterIndicator">
+								<p style="float: left; width: 30px">TE</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="DEFfilterIndicator">
+								<p style="float: left; width: 30px">DEF</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>
+							<div class="filterIndicator" id="KfilterIndicator">
+								<p style="float: left; width: 30px">K</p>
+								<p class="removeFilterIndicator" style="float: right">×</p>
+							</div>-->
+						</td>
+					</tr>
+					<tr class="filterRows">
+						<td id="filterSelectAll">
+							<div id="filterSelectAllButton">
+								<p align="left" style="margin: 0px 10px; color: #FFA500; line-height: 30px">Select All</p>
+							</div>
+						</td>
+						<td></td>
+						<td id="filterClear">
+							<div id="filterClearButton">
+								<p align="right" style="margin: 0px 10px; color: #FFA500; line-height: 30px">Clear All</p>
+							</div>
+						</td>
+					</tr>
+					<tr class="filterRows">
+						<td class="positionFilterCell" id="QBpositionFilterCell">
+							<div class="filterButton" id="QBfilter" data-enabled="true" onClick="filterClick(this.id)">QB</div>
+						</td>
+						<td class="positionFilterCell" id="RBpositionFilterCell">
+							<div class="filterButton" id="RBfilter" data-enabled="true" onClick="filterClick(this.id)">RB</div>
+						</td>
+						<td class="positionFilterCell" id="WRpositionFilterCell">
+							<div class="filterButton" id="WRfilter" data-enabled="true" onClick="filterClick(this.id)">WR</div>
+						</td>
+					</tr>
+					<tr class="filterRows">
+						<td class="positionFilterCell" id="TEpositionFilterCell">
+							<div class="filterButton" id="TEfilter" data-enabled="true" onClick="filterClick(this.id)">TE</div>
+						</td>
+						<td class="positionFilterCell" id="DEFpositionFilterCell">
+							<div class="filterButton" id="DEFfilter" data-enabled="true" onClick="filterClick(this.id)">DEF</div>
+						</td>
+						<td class="positionFilterCell" id="KpositionFilterCell">
+							<div class="filterButton" id="Kfilter" data-enabled="true" onClick="filterClick(this.id)">K</div>
+						</td>
+					</tr>
+				</table>
+				<div class="screenContainer2" id="playersTableWindow">
 					<div id="bigContainer2">
 						<table id="standingsTable2">
-							<!--Leave space for the top header-->
-							<!--<tr style="height: 121px"></tr>-->
 							<!--Leave space between header and first table-->
 							<tr style="height: 10px"></tr>
-							<tr id="standingsTableSections2">
-								<th class="standingsTableHeader rankColumn" id="stickyDivision2Rank" style="padding-left: 10px">
+							<tr id="standingsTableSections">
+								<th class="standingsTableHeader rankColumnHead" id="stickyRank" style="padding-left: 10px">
 									Rank
 								</th>
-								<th class="standingsTableHeader teamColumn" id="stickyDivision2" style="padding-left: 10px">
+								<th class="standingsTableHeader playerColumnHead" id="sticky" style="padding-left: 10px">
+									Player
+								</th>
+								<th class="standingsTableHeader teamColumn">
 									Team
 								</th>
-								<th class="standingsTableHeader otherColumn">
-									Record
+								<th class="standingsTableHeader oppColumn" id="weekOpponent">
+							
 								</th>
-								<th class="standingsTableHeader otherColumn">
-									Div. Record
+								<th class="standingsTableHeader positionColumn">
+									Position
 								</th>
-								<th class="standingsTableHeader otherColumn">
-									Pts For
-								</th>
-								<th class="standingsTableHeader otherColumn">
-									Pts Against
+								<th class="standingsTableHeader pointsColumn">
+									Points
 								</th>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
-			
-			<div class="noDivisionsUsed" id="standingsTableWindow">
+			<div class="screenContainer" id="playersTableWindow">
 				<div id="bigContainer">
 					<table id="standingsTable">
-						<!--Leave space for the top header-->
-						<!--<tr style="height: 121px"></tr>-->
-						<!--Leave space between header and first table-->
-						<tr style="height: 10px"></tr>
 						<tr id="standingsTableSections">
-							<th class="standingsTableHeader rankColumn" id="stickyRank" style="padding-left: 10px">
-								Rank
+							<th style="width: 45px">
 							</th>
-							<th class="standingsTableHeader teamColumn" id="sticky" style="padding-left: 10px">
-								Team
+							<th style="width: 150px">
 							</th>
-							<th class="standingsTableHeader otherColumn">
-								Record
+							<th style="width: 60px">
 							</th>
-							<th class="standingsTableHeader otherColumn">
-								Pts For
+							<th style="width: 70px">
 							</th>
-							<th class="standingsTableHeader otherColumn">
-								Pts Against
+							<th style="width: 60px">
+							</th>
+							<th style="width: 60px">
 							</th>
 						</tr>
 					</table>
