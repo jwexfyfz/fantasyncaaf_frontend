@@ -63,15 +63,6 @@ $( document ).ready(
 			exitErrorFooter();
 		});	
 		
-		//Clear the currently selected player from the roster when "clear player" button is clicked.  Do this for all positions.
-		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
-			console.log($(this).attr('id')+" clicked");
-			var position = $(this).attr('id').replace("clear","");
-			$('#input'+position).val("");
-			$('#input'+position).selectpicker('refresh');
-			sendToPhp(position+"tophp");
-		});
-		
 		//Set the current week for other functions to read from this value
 		$("#currentWeekNum").val(currentWeek);
 		//console.log("Current week is now set to "+$("#currentWeekNum").val());
@@ -88,6 +79,15 @@ $( document ).ready(
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
 		checkGameStarted(week, teamID);  		//On page load, disable selects where the player has already played
+		
+		//Clear the currently selected player from the roster when "clear player" button is clicked.  Do this for all positions.
+		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
+			console.log($(this).attr('id')+" clicked");
+			var position = $(this).attr('id').replace("clear","");
+			$('#input'+position).val("");
+			$('#input'+position).selectpicker('refresh');
+			sendToPhp(position+"tophp");
+		});
 		
 });
 
