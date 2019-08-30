@@ -840,6 +840,7 @@ function checkGameStarted(week, fantasyID, playerGametimeArray) {
 						if (!document.getElementById("input"+phpResponse[i]["position"]).disabled) {
 							//document.getElementById(phpResponse[i]["selector"]).setAttribute('disabled',true);
 							document.getElementById("input"+phpResponse[i]["position"]).disabled = true;
+							document.getElementById("clear"+phpResponse[i]["position"]).disabled = true;
 							disabledPositions.push("input"+phpResponse[i]["position"]);
 							/*if (phpResponse[i]["hasPlayed"] == 0) {
 								if (phpResponse[i]["position"].localeCompare("DEF") == 0) {  // if DEF, grab teamID
