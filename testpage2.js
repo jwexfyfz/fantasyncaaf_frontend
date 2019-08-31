@@ -67,9 +67,11 @@ $( document ).ready(
 		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
 			console.log($(this).attr('id')+" clicked");
 			var position = $(this).attr('id').replace("clear","");
-			$('#input'+position).val("");
-			$('#input'+position).selectpicker('refresh');
-			sendToPhp(position+"tophp");
+			if (!(sendToPhp(position+"tophp"))) {
+				$('#input'+position).val("");
+				$('#input'+position).selectpicker('refresh');
+				sendToPhp(position+"tophp");
+			}
 		});
 		
 		//Set the current week for other functions to read from this value
@@ -517,15 +519,15 @@ function sendToPhp(position) {
 	
 	// For when sendToPhp is called as a result of changing a player, first check to see if the newly selected player or the player that was changed has started playing
 	if (newPosition == "inputDEF") {
-		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), true, teamName);
+		playerGameStarted = checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), true, teamName);
 	}
 	else {
-		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), false, teamName);
+		playerGameStarted = checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), false, teamName);
 	}
 	//verifyNoDupes(position.replace("tophp",""), week, teamID, teamName);		//Check for dupes
 	
 	//If duplicate names exist, block the sql query and inform user
-	
+	return playerGameStarted;
 }
 
 //cauchychoi 8/19/18: When a player gets changed, this function checks to see if both the player prior to the change and the newly selected player's games have begun.
@@ -572,6 +574,7 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			}
 		}
 	});
+	return playerGameStarted;
 }
 
 //jeffwang 3/14/2018: This function is currently runs whenever a player change is made.
