@@ -569,6 +569,7 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			}
 
 			if (!playerGameStarted) {  // If neither the newly selected player or the changed player has started playing, move on to verifyNoDupes and checkGameStarted
+				console.log("clearPlayer: "+clearPlayer);
 				if (clearPlayer) {
 					$('#input'+position).val("");
 					$('#input'+position).selectpicker('refresh');
