@@ -63,6 +63,15 @@ $( document ).ready(
 			exitErrorFooter();
 		});	
 		
+		//Clear the currently selected player from the roster when "clear player" button is clicked.  Do this for all positions.
+		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
+			console.log($(this).attr('id')+" clicked");
+			var position = $(this).attr('id').replace("clear","");
+			$('#input'+position).val("");
+			$('#input'+position).selectpicker('refresh');
+			sendToPhp(position+"tophp");
+		});
+		
 		//Set the current week for other functions to read from this value
 		$("#currentWeekNum").val(currentWeek);
 		//console.log("Current week is now set to "+$("#currentWeekNum").val());
@@ -79,15 +88,6 @@ $( document ).ready(
 		
 	    loadTeamRoster(week, teamID, false);	//Populate select lists based on the week, set rosters that have already been chosen
 		checkGameStarted(week, teamID);  		//On page load, disable selects where the player has already played
-		
-		//Clear the currently selected player from the roster when "clear player" button is clicked.  Do this for all positions.
-		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
-			console.log($(this).attr('id')+" clicked");
-			var position = $(this).attr('id').replace("clear","");
-			$('#input'+position).val("");
-			$('#input'+position).selectpicker('refresh');
-			sendToPhp(position+"tophp");
-		});
 		
 });
 
@@ -887,7 +887,7 @@ function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) 
 //cauchychoi 4/4/2018: This function runs on page load or whenever a player change is made.
 //It will check to see if a player's gametime has started and disable that 'select'. It will also update timesPlayerUsed
 //TODO: Add to both page load and when a player selects something. (Is that the sendtophp function?)
-function checkGameStarted(week, fantasyID, playerGametimeArray) {
+function checkGameStarted(week, fantasyID) {
 	 
 	var phpResponse;
 	var disabledPositions = [];
