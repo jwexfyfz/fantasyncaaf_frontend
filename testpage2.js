@@ -573,7 +573,7 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 				if (clearPlayer) {
 					$('#input'+position).val("");
 					$('#input'+position).selectpicker('refresh');
-					sendToPhp(position+"tophp", false);
+					sendToPhp(position, false);
 				}
 				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
 				checkGameStarted(week, fantasyID);
