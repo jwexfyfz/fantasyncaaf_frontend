@@ -476,6 +476,7 @@ function sendToPhp(position) {
 	var week=$("#currentWeekNum").val();	//Get week # from page
 	var teamID	=	$("#teamID").val();
 	var teamName = $("#teamName").val();
+	var playerGameStarted = false;
 	
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
