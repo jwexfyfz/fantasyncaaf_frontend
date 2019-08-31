@@ -571,9 +571,10 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			if (!playerGameStarted) {  // If neither the newly selected player or the changed player has started playing, move on to verifyNoDupes and checkGameStarted
 				console.log("clearPlayer: "+clearPlayer);
 				if (clearPlayer) {
+					console.log("clearPlayer position: "+position);
 					$('#input'+position).val("");
 					$('#input'+position).selectpicker('refresh');
-					sendToPhp(position, false);
+					sendToPhp(position+"tophp", false);
 				}
 				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
 				checkGameStarted(week, fantasyID);
