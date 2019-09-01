@@ -510,7 +510,7 @@ function getFantasyPoints() {
 //1) Run verifyNoDupes(), which will check if two of the same player is selected. If false,
 //2) send the playerName, week, and teamID to testpage2.php to update the week's roster
 //TODO: jeffwang to add in defense after list of defenses table is created
-function sendToPhp(position_ {//, clearPlayer) {
+function sendToPhp(position) {//, clearPlayer) {
 	console.log('------position set: ' + position);
 	var week=$("#currentWeekNum").val();	//Get week # from page
 	var teamID	=	$("#teamID").val();
