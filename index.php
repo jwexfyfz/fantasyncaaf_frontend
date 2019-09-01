@@ -117,7 +117,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">QB</label>
 	            </td>
 	            <td class="myTeamTableRowLong" id="test3">
-	                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)" style="position: relative;">
+	                <select class="selectpicker" id="inputQB" name="QBtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)" style="position: relative;">
 	                </select>
 					<div class="gameTimeBox" id="QBgametime"></div>
 					<div class="clearPlayerButton" id="clearQB">clear player</div>
@@ -134,7 +134,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">RB1</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputRB1" name="RB1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputRB1" name="RB1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="RB1gametime"></div>
 					<div class="clearPlayerButton" id="clearRB1">clear player</div>
 	            </td>
@@ -150,7 +150,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">RB2</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputRB2" name="RB2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputRB2" name="RB2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="RB2gametime"></div>
 					<div class="clearPlayerButton" id="clearRB2">clear player</div>
 	            </td>
@@ -166,7 +166,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">WR1</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputWR1" name="WR1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputWR1" name="WR1tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="WR1gametime"></div>
 					<div class="clearPlayerButton" id="clearWR1">clear player</div>
 	            </td>
@@ -182,7 +182,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">WR2</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputWR2" name="WR2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputWR2" name="WR2tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="WR2gametime"></div>
 					<div class="clearPlayerButton" id="clearWR2">clear player</div>
 	            </td>
@@ -198,7 +198,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">WR3</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputWR3" name="WR3tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputWR3" name="WR3tophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="WR3gametime"></div>
 					<div class="clearPlayerButton" id="clearWR3">clear player</div>
 	            </td>
@@ -214,7 +214,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">WR/TE</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputTE" name="TEtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputTE" name="TEtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="TEgametime"></div>
 					<div class="clearPlayerButton" id="clearTE">clear player</div>
 	            </td>
@@ -230,7 +230,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">DEF</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputDEF" name="DEFtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputDEF" name="DEFtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="DEFgametime"></div>
 					<div class="clearPlayerButton" id="clearDEF">clear player</div>
 	            </td>
@@ -246,7 +246,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">K</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputK" name="Ktophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputK" name="Ktophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="Kgametime"></div>
 					<div class="clearPlayerButton" id="clearK">clear player</div>
 	            </td>
@@ -262,7 +262,7 @@ if(!$fgmembersite->CheckLogin())
 	                <label class="positionLabel">FLEX</label>
 	            </td>
 	            <td class="myTeamTableRowLong">
-	                <select class="selectpicker" id="inputFLEX" name="FLEXtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name, false)"></select>
+	                <select class="selectpicker" id="inputFLEX" name="FLEXtophp" data-live-search="true" data-width="100%" data-show-subtext="true" onchange="sendToPhp(this.name)"></select>
 					<div class="gameTimeBox" id="FLEXgametime"></div>
 					<div class="clearPlayerButton" id="clearFLEX">clear player</div>
 	            </td>
