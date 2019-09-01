@@ -67,6 +67,7 @@ $( document ).ready(
 		$("#clearQB, #clearRB1, #clearRB2, #clearWR1, #clearWR2, #clearWR3, #clearTE, #clearDEF, #clearK, #clearFLEX").click( function(event) {
 			console.log($(this).attr('id')+" clicked");
 			var position = $(this).attr('id').replace("clear","");
+			console.log(position);
 			var week		=	$("#currentWeekNum").val();	//Get week # from page
 			var fantasyID	=	$("#teamID").val();
 			var teamName 	= 	$("#teamName").val();
@@ -74,10 +75,10 @@ $( document ).ready(
 			//only need week and fantasyID to retrieve a user's roster
 			var dataString = ""
 			if (position == "DEF") {
-				dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&team='+$('#input'+position).val();
+				dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&team='+document.getElementById('input'+position).value;
 			}
 			else {
-				dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&playerName='+$('#input'+position).val().trim().replace(/ /g, '%20');
+				dataString = 'weekNum='+week+'&fantasyID='+fantasyID+'&position='+position+'&playerName='+document.getElementById('input'+position).value.trim().replace(/ /g, '%20');
 			}
 			console.log("checkPlayerStarted dataString: "+dataString);
 	
