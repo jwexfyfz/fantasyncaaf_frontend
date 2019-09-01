@@ -101,11 +101,12 @@ $( document ).ready(
 						var gametime = new Date(phpResponse[key]["gametime"].replace(' ','T')+"+00:00");
 						if (Date.now() > gametime.getTime()) {  // If the current time is past the player's gametime, don't allow the change and display an error
 							fadeErrorFooter("The selected player's game has already begun!<br/>");
-							loadTeamRoster(week, fantasyID, true);  // Refresh the roster - Should this be false??
+							//loadTeamRoster(week, fantasyID, true);  // Refresh the roster - Should this be false??
 							playerGameStarted = true;
 						}
 					}
 					if(!playerGameStarted) {
+						console.log("playerGameStarted is "+playerGameStarted);
 						$('#input'+position).val("");
 						$('#input'+position).selectpicker('refresh');
 						sendToPhp(position+"tophp");//, true);
