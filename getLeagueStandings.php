@@ -8,7 +8,7 @@
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
     //Query to get team rosters
-    $sql = "SELECT * FROM leagueStandings order by wins DESC, losses ASC, divisionWins DESC, divisionLosses ASC, pointsFor DESC, pointsAgainst ASC";
+    $sql = "SELECT LS.*, D.division FROM leagueStandings as LS left join divisions as D on LS.teamID = D.teamID order by wins DESC, losses ASC, divisionWins DESC, divisionLosses ASC, pointsFor DESC, pointsAgainst ASC";
     $result = $conn->query($sql);
 
     $index = 0;

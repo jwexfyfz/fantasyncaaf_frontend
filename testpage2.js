@@ -109,7 +109,7 @@ $( document ).ready(
 						console.log("playerGameStarted is "+playerGameStarted);
 						$('#input'+position).val("");
 						$('#input'+position).selectpicker('refresh');
-						sendToPhp(position+"tophp");//, true);
+						sendToPhp(position+"tophp");
 					}
 				}
 			});
@@ -561,10 +561,10 @@ function sendToPhp(position) {//, clearPlayer) {
 	
 	// For when sendToPhp is called as a result of changing a player, first check to see if the newly selected player or the player that was changed has started playing
 	if (newPosition == "inputDEF") {
-		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), true, teamName);//, clearPlayer);
+		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), true, teamName);
 	}
 	else {
-		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), false, teamName);//, clearPlayer);
+		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), false, teamName);
 	}
 	//verifyNoDupes(position.replace("tophp",""), week, teamID, teamName);		//Check for dupes
 	
@@ -573,7 +573,7 @@ function sendToPhp(position) {//, clearPlayer) {
 
 //cauchychoi 8/19/18: When a player gets changed, this function checks to see if both the player prior to the change and the newly selected player's games have begun.
 //The switch is not allowed if either player's game has started
-function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSelected, teamName) {//, clearPlayer) {
+function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSelected, teamName) {
 	var phpResponse;
 	//only need week and fantasyID to retrieve a user's roster
 	var dataString = ""
@@ -610,14 +610,6 @@ function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSele
 			}
 
 			if (!playerGameStarted) {  // If neither the newly selected player or the changed player has started playing, move on to verifyNoDupes and checkGameStarted
-				/*console.log("clearPlayer: "+clearPlayer);
-				if (clearPlayer) {
-					position = position.replace("tophp","");
-					console.log("clearPlayer position: "+position);
-					$('#input'+position).val("");
-					$('#input'+position).selectpicker('refresh');
-					sendToPhp(position+"tophp", false);
-				}*/
 				verifyNoDupes(position, week, fantasyID, teamName, phpResponse);		//Check for dupes
 				checkGameStarted(week, fantasyID);
 			}
