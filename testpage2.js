@@ -1095,9 +1095,9 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-			console.log(response);
+			console.log("getAvailablePlayers response: "+response);
 		  var playerList=JSON.parse(response);
-		  //console.log("playerList: "+JSON.stringify(playerList));
+		  console.log("playerList: "+JSON.stringify(playerList));
 		  
 		  //Parameters are 1) ID of select, 2) array of eligible players, 3) player currently on the roster
 		  //TODO: jeffwang to figure out edge case when no players are chosen yet
