@@ -46,7 +46,7 @@ $( document ).ready(
 		else if (Date.now() > new Date('September 2, 2019 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
-		//console.log("currentWeek: "+currentWeek)
+		console.log("currentWeek: "+currentWeek)
 
 		//Navigation to other tabs on the page
 		$("#headerTableColumn1").click( function(event) {
