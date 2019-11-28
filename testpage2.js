@@ -46,7 +46,8 @@ $( document ).ready(
 		else if (Date.now() > new Date('September 2, 2019 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
-		
+		//console.log("currentWeek: "+currentWeek)
+
 		//Navigation to other tabs on the page
 		$("#headerTableColumn1").click( function(event) {
 			window.location.href = "league.php" + window.location.search;
@@ -120,7 +121,7 @@ $( document ).ready(
 		
 		//Set the current week for other functions to read from this value
 		$("#currentWeekNum").val(currentWeek);
-		//console.log("Current week is now set to "+$("#currentWeekNum").val());
+		console.log("Current week is now set to "+$("#currentWeekNum").val());
 		
 		//Set the current week circle (non-list) to the current week.  Then, set the current week circle (list) to a different color.
 		$("#currentWeekCircle").html(currentWeek);
