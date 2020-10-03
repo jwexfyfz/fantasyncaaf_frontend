@@ -5,45 +5,49 @@
 //1) getDataforChoosePlayerLists(), which calls populateChoosePlayerLists()
 $( document ).ready(
 	function sendTeamRosterToPhp() {
-		//Set default week value.  Currently hardcoded for the 2018 season
+		//Set default week value.  Currently hardcoded for the 2019 season
 		var currentWeek = 1;
-		if (Date.now() > new Date('November 18, 2019 07:00:00 UTC').getTime()) {
+		if (Date.now() > new Date('November 30, 2020 07:00:00 UTC').getTime()) {
+			currentWeek = 14;
+		}
+		else if (Date.now() > new Date('November 23, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 13;
 		}
-		else if (Date.now() > new Date('November 11, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('November 16, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 12;
 		}
-		else if (Date.now() > new Date('November 4, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('November 9, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 11;
 		}
-		else if (Date.now() > new Date('October 28, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('November 2, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 10;
 		}
-		else if (Date.now() > new Date('October 21, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 26, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 9;
 		}
-		else if (Date.now() > new Date('October 14, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 19, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 8;
 		}
-		else if (Date.now() > new Date('October 7, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 12, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 7;
 		}
-		else if (Date.now() > new Date('September 30, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('October 5, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 6;
 		}
-		else if (Date.now() > new Date('September 23, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 28, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 5;
 		}
-		else if (Date.now() > new Date('September 16, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 21, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 4;
 		}
-		else if (Date.now() > new Date('September 9, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 14, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 3;
 		}
-		else if (Date.now() > new Date('September 2, 2019 07:00:00 UTC').getTime()) {
+		else if (Date.now() > new Date('September 7, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
-		
+		console.log("currentWeek: "+currentWeek)
+
 		//Navigation to other tabs on the page
 		$("#headerTableColumn1").click( function(event) {
 			window.location.href = "league.php" + window.location.search;
@@ -117,7 +121,7 @@ $( document ).ready(
 		
 		//Set the current week for other functions to read from this value
 		$("#currentWeekNum").val(currentWeek);
-		//console.log("Current week is now set to "+$("#currentWeekNum").val());
+		console.log("Current week is now set to "+$("#currentWeekNum").val());
 		
 		//Set the current week circle (non-list) to the current week.  Then, set the current week circle (list) to a different color.
 		$("#currentWeekCircle").html(currentWeek);
@@ -1101,7 +1105,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-			//console.log(response);
+		  //console.log("getAvailablePlayers response: "+response);
 		  var playerList=JSON.parse(response);
 		  //console.log("playerList: "+JSON.stringify(playerList));
 		  

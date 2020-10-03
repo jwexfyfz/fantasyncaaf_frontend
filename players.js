@@ -1,39 +1,42 @@
 function getCurrentWeek() {
 	var currentWeek = 1;
-	if (Date.now() > new Date('November 18, 2019 07:00:00 UTC').getTime()) {
+	if (Date.now() > new Date('November 30, 2020 07:00:00 UTC').getTime()) {
+		currentWeek = 14;
+	}
+	else if (Date.now() > new Date('November 23, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 13;
 	}
-	else if (Date.now() > new Date('November 11, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('November 16, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 12;
 	}
-	else if (Date.now() > new Date('November 4, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('November 9, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 11;
 	}
-	else if (Date.now() > new Date('October 28, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('November 2, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 10;
 	}
-	else if (Date.now() > new Date('October 21, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('October 26, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 9;
 	}
-	else if (Date.now() > new Date('October 14, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('October 19, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 8;
 	}
-	else if (Date.now() > new Date('October 7, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('October 12, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 7;
 	}
-	else if (Date.now() > new Date('September 30, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('October 5, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 6;
 	}
-	else if (Date.now() > new Date('September 23, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('September 28, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 5;
 	}
-	else if (Date.now() > new Date('September 16, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('September 21, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 4;
 	}
-	else if (Date.now() > new Date('September 2, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('September 14, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 3;
 	}
-	else if (Date.now() > new Date('August 26, 2019 07:00:00 UTC').getTime()) {
+	else if (Date.now() > new Date('September 7, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 2;
 	}
 	
