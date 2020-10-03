@@ -46,6 +46,7 @@ $( document ).ready(
 		else if (Date.now() > new Date('September 7, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 2;
 		}
+		currentWeek = 10;
 		console.log("currentWeek: "+currentWeek)
 
 		//Navigation to other tabs on the page
