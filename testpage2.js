@@ -1105,7 +1105,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 	    url: "getAvailablePlayers.php",
 	    data: dataString,
 	    success: function(response) {
-		  //console.log("getAvailablePlayers response: "+response);
+		  console.log("getAvailablePlayers response: "+response);
 		  var playerList=JSON.parse(response);
 		  console.log("playerList: "+JSON.stringify(playerList));
 		  
