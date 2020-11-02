@@ -3,10 +3,10 @@ require_once("./include/membersite_config.php");
 
 if(isset($_POST['submitted']))
 {
-    print("REGISTRATION SUBMITTED")
+    print("REGISTRATION SUBMITTED");
    if($fgmembersite->RegisterUser())
    {
-        print("RegisterUser true")
+        print("RegisterUser true");
         $fgmembersite->RedirectToURL("thank-you.html");
    }
 }
