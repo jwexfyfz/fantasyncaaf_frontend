@@ -1,4 +1,5 @@
 <?PHP
+ob_start();
 require_once("./include/membersite_config.php");
 
 $success = false;
