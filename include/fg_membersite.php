@@ -483,6 +483,8 @@ class FGMembersite
         $mailer = new PHPMailer();
 		
 		$mailer->isSMTP();
+
+        $mailer->Mailer = "smtp";
 		
 		$mailer->SMTPDebug = 2;
 		
@@ -494,10 +496,14 @@ class FGMembersite
 		
 		$mailer->SMTPAuth = true;
 		
-		$mailer->AuthType = 'XOAUTH2';
+		//$mailer->AuthType = 'XOAUTH2';
 		
 		$email = 'ncaaf.fantasy@gmail.com';
         
+        $mailer->UserName = "ncaaf.fantasy@gmail.com";
+
+        $mailer->Password = "jeffcauchylonny";
+
 		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
 		
         $clientId = '779284746872-kda61e9fsms6jpmpa3vger198g5rob8d.apps.googleusercontent.com';
@@ -508,7 +514,8 @@ class FGMembersite
 
 		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
 		
-		$provider = new Google(
+		/*
+        $provider = new Google(
 			[
 				'clientId' => $clientId,
 				'clientSecret' => $clientSecret,
@@ -526,6 +533,7 @@ class FGMembersite
 				]
 			)
 		);
+        */
 		
 		$mailer->setFrom($email, 'NCAAF Fantasy');
 		
