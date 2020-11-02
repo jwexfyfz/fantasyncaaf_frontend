@@ -1014,6 +1014,7 @@ class FGMembersite
             $this->HandleError("Failed sending registration confirmation email.");
             return false;
         }
+        print("SendUserConfirmationEmail true");
         return true;
     }
 	
@@ -1110,6 +1111,7 @@ class FGMembersite
         {
             return false;
         }
+        print("SendAdminIntimationEmail true");
         return true;
     }
     
