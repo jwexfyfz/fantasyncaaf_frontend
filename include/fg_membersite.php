@@ -498,10 +498,14 @@ class FGMembersite
 		
 		$email = 'ncaaf.fantasy@gmail.com';
         
-		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
 		
-		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+        $clientId = '779284746872-kda61e9fsms6jpmpa3vger198g5rob8d.apps.googleusercontent.com';
+
+		//$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
 		
+        $clientSecret = 'rhd04Yvc57fXAMNZbpyT424j';
+
 		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
 		
 		$provider = new Google(
