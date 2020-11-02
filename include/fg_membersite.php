@@ -500,7 +500,7 @@ class FGMembersite
 		
 		$email = 'ncaaf.fantasy@gmail.com';
         
-        $mailer->UserName = 'ncaaf.fantasy@gmail.com';
+        $mailer->Username = 'ncaaf.fantasy@gmail.com';
 
         $mailer->Password = 'jeffcauchylonny';
 
@@ -588,7 +588,7 @@ class FGMembersite
 		
 		//$mailer->AuthType = 'XOAUTH2';
 
-        $mailer->UserName = 'ncaaf.fantasy@gmail.com';
+        $mailer->Username = 'ncaaf.fantasy@gmail.com';
 
         $mailer->Password = 'jeffcauchylonny';
 		
@@ -679,7 +679,7 @@ class FGMembersite
 		
 		//$mailer->AuthType = 'XOAUTH2';
 		
-		$mailer->UserName = 'ncaaf.fantasy@gmail.com';
+		$mailer->Username = 'ncaaf.fantasy@gmail.com';
 
         $mailer->Password = 'jeffcauchylonny';
 
@@ -771,7 +771,7 @@ class FGMembersite
 		
 		//$mailer->AuthType = 'XOAUTH2';
 
-        $mailer->UserName = 'ncaaf.fantasy@gmail.com';
+        $mailer->Username = 'ncaaf.fantasy@gmail.com';
 
         $mailer->Password = 'jeffcauchylonny';
 		
@@ -927,7 +927,7 @@ class FGMembersite
 		
 		$mail->isSMTP();
 
-        //$mail->Mailer = "smtp";
+        $mail->Mailer = "smtp";
 		
 		$mail->SMTPDebug = 2;
 		
@@ -1048,7 +1048,7 @@ class FGMembersite
 		
 		//$mailer->AuthType = 'XOAUTH2';
 
-        $mailer->UserName = 'ncaaf.fantasy@gmail.com';
+        $mailer->Username = 'ncaaf.fantasy@gmail.com';
 
         $mailer->Password = 'jeffcauchylonny';
 		
