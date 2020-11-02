@@ -151,6 +151,8 @@ function updatePage(teamID) {
 
 //This function will populate the select dropdowns with the set rosters that have already been chosen, then set the selected option to the players that are chosen
 function loadTeamRoster(week, teamID, weekChanged) {
+	console.log("entered loadTeamRoster");
+
     var phpResponse;										//Output of PHP file will be stored here
 	var dataString = 'weekNum='+week+'&teamIDNum='+teamID;	//Parameters to pass to PHP. Only need week and teamID to retrieve a user's roster
 	
@@ -578,6 +580,8 @@ function sendToPhp(position) {//, clearPlayer) {
 //cauchychoi 8/19/18: When a player gets changed, this function checks to see if both the player prior to the change and the newly selected player's games have begun.
 //The switch is not allowed if either player's game has started
 function checkPlayerStarted(week, fantasyID, position, playerOrTeamName, defSelected, teamName) {
+	console.log("entered checkPlayerStarted");
+	
 	var phpResponse;
 	//only need week and fantasyID to retrieve a user's roster
 	var dataString = ""
@@ -935,6 +939,7 @@ function switchPlayerUpdateRoster(position1, position2, week, teamID, teamName) 
 //It will check to see if a player's gametime has started and disable that 'select'. It will also update timesPlayerUsed
 //TODO: Add to both page load and when a player selects something. (Is that the sendtophp function?)
 function checkGameStarted(week, fantasyID) {
+	console.log("entered checkGameStarted");
 	 
 	var phpResponse;
 	var disabledPositions = [];
@@ -1047,6 +1052,7 @@ function updateTimesPlayerUsed(playerID, fantasyID, week, position) {
 //2) Run populateChoosePlayerLists(), which populates the select options for each position
 //TODO: jeffwang to add case "DEF" to the switch statement
 function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, weekChanged) {
+	console.log("entered getDataForChoosePlayerLists");
 	var dataString="";
 	var positionHash="";
 	var week=$("#currentWeekNum").val();		//TODO: jeffwang to pass week # as a parameter into this function
@@ -1121,6 +1127,7 @@ function getDataForChoosePlayerLists(position,currentSelectedPlayer,teamID, week
 //Also added select option disabled for players with 5+ uses
 //TODO: jeffwang to think through use case where defensive players are being used on offense (e.g. Myles Jack)
 function populateChoosePlayerLists(inputPosition, positionList, currentSelectedPlayer, weekChanged) {
+	console.log("entered populateChoosePlayerLists");
     var select = document.getElementById(inputPosition);
 	var currentOption;
 	var currentSubtext;
@@ -1211,7 +1218,9 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 		}
 	}
 	else {
+		console.log("positionList.length = "+positionList.length);
 		for (i = 0; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
+			console.log("i="+i);
 			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 			if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {
 				select.options[i+1].disabled = true;	// i+1 to ignore --Clear Selection--
