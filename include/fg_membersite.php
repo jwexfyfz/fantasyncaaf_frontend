@@ -486,7 +486,7 @@ class FGMembersite
 
         $mailer->Mailer = "smtp";
 		
-		$mailer->SMTPDebug = 2;
+		//$mailer->SMTPDebug = 2;
 		
 		$mailer->Host = 'smtp.gmail.com';
 		
@@ -576,7 +576,7 @@ class FGMembersite
 
         $mailer->Mailer = "smtp";
 		
-		$mailer->SMTPDebug = 2;
+		//$mailer->SMTPDebug = 2;
 		
 		$mailer->Host = 'smtp.gmail.com';
 		
@@ -667,7 +667,7 @@ class FGMembersite
 
         $mailer->Mailer = "smtp";
 		
-		$mailer->SMTPDebug = 2;
+		//$mailer->SMTPDebug = 2;
 		
 		$mailer->Host = 'smtp.gmail.com';
 		
@@ -759,7 +759,7 @@ class FGMembersite
 
         $mailer->Mailer = "smtp";
 		
-		$mailer->SMTPDebug = 2;
+		//$mailer->SMTPDebug = 2;
 		
 		$mailer->Host = 'smtp.gmail.com';
 		
@@ -929,7 +929,7 @@ class FGMembersite
 
         $mail->Mailer = "smtp";
 		
-		$mail->SMTPDebug = 2;
+		//$mail->SMTPDebug = 2;
 		
 		$mail->Host = 'smtp.gmail.com';
 		
@@ -1036,7 +1036,7 @@ class FGMembersite
 
         $mailer->Mailer = "smtp";
 		
-		$mailer->SMTPDebug = 2;
+		//$mailer->SMTPDebug = 2;
 		
 		$mailer->Host = 'smtp.gmail.com';
 		
