@@ -927,7 +927,7 @@ class FGMembersite
 		
 		$mail->isSMTP();
 
-        $mail->Mailer = "smtp";
+        //$mail->Mailer = "smtp";
 		
 		$mail->SMTPDebug = 2;
 		
@@ -941,7 +941,7 @@ class FGMembersite
 		
 		//$mail->AuthType = 'XOAUTH2';
 
-        $mail->UserName = 'ncaaf.fantasy@gmail.com';
+        $mail->Username = 'ncaaf.fantasy@gmail.com';
 
         $mail->Password = 'jeffcauchylonny';
 		
