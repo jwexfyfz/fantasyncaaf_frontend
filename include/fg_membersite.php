@@ -484,7 +484,7 @@ class FGMembersite
 		
 		$mailer->isSMTP();
 
-        $mailer->Mailer = "smtp";
+        //$mailer->Mailer = "smtp";
 		
 		$mailer->SMTPDebug = 2;
 		
@@ -496,13 +496,13 @@ class FGMembersite
 		
 		$mailer->SMTPAuth = true;
 		
-		//$mailer->AuthType = 'XOAUTH2';
+		$mailer->AuthType = 'XOAUTH2';
 		
 		$email = 'ncaaf.fantasy@gmail.com';
         
-        $mailer->UserName = "ncaaf.fantasy@gmail.com";
+        //$mailer->UserName = 'ncaaf.fantasy@gmail.com';
 
-        $mailer->Password = "jeffcauchylonny";
+        //$mailer->Password = 'jeffcauchylonny';
 
 		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
 		
@@ -512,9 +512,12 @@ class FGMembersite
 		
         $clientSecret = 'rhd04Yvc57fXAMNZbpyT424j';
 
-		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		//$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+
+        $refreshToken = '1//058S6B9ZlrbFWCgYIARAAGAUSNwF-L9Ir3DtBGr8Mu5N-2SmUxXROS1yMN7C903Q3nb9boLVlUCbipmR4D81fn3vPFCsqny7z_Ws';
+
+        //$refreshToken = '1//0dNvvoEQnBh5SCgYIARAAGA0SNwF-L9IrEfhelLWw95EQ_cvrTtDN5cc0fKeBa0Efxpj4QB1zIC1vtIn4bug-5nhIc9bY4NmtPWM';
 		
-		/*
         $provider = new Google(
 			[
 				'clientId' => $clientId,
@@ -533,7 +536,6 @@ class FGMembersite
 				]
 			)
 		);
-        */
 		
 		$mailer->setFrom($email, 'NCAAF Fantasy');
 		
@@ -584,11 +586,19 @@ class FGMembersite
 		
 		$email = 'ncaaf.fantasy@gmail.com';
         
-		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
-		
-		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
-		
-		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+        
+        $clientId = '779284746872-kda61e9fsms6jpmpa3vger198g5rob8d.apps.googleusercontent.com';
+
+        //$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+        
+        $clientSecret = 'rhd04Yvc57fXAMNZbpyT424j';
+
+        //$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+
+        $refreshToken = '1//058S6B9ZlrbFWCgYIARAAGAUSNwF-L9Ir3DtBGr8Mu5N-2SmUxXROS1yMN7C903Q3nb9boLVlUCbipmR4D81fn3vPFCsqny7z_Ws';
+
+        //$refreshToken = '1//0dNvvoEQnBh5SCgYIARAAGA0SNwF-L9IrEfhelLWw95EQ_cvrTtDN5cc0fKeBa0Efxpj4QB1zIC1vtIn4bug-5nhIc9bY4NmtPWM';
 		
 		$provider = new Google(
 			[
@@ -659,11 +669,19 @@ class FGMembersite
 		
 		$admin_email = 'ncaaf.fantasy@gmail.com';
         
-		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
-		
-		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
-		
-		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+        
+        $clientId = '779284746872-kda61e9fsms6jpmpa3vger198g5rob8d.apps.googleusercontent.com';
+
+        //$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+        
+        $clientSecret = 'rhd04Yvc57fXAMNZbpyT424j';
+
+        //$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+
+        $refreshToken = '1//058S6B9ZlrbFWCgYIARAAGAUSNwF-L9Ir3DtBGr8Mu5N-2SmUxXROS1yMN7C903Q3nb9boLVlUCbipmR4D81fn3vPFCsqny7z_Ws';
+
+        //$refreshToken = '1//0dNvvoEQnBh5SCgYIARAAGA0SNwF-L9IrEfhelLWw95EQ_cvrTtDN5cc0fKeBa0Efxpj4QB1zIC1vtIn4bug-5nhIc9bY4NmtPWM';
 		
 		$provider = new Google(
 			[
@@ -737,11 +755,19 @@ class FGMembersite
 		
 		$admin_email = 'ncaaf.fantasy@gmail.com';
         
-		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
-		
-		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
-		
-		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+        
+        $clientId = '779284746872-kda61e9fsms6jpmpa3vger198g5rob8d.apps.googleusercontent.com';
+
+        //$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+        
+        $clientSecret = 'rhd04Yvc57fXAMNZbpyT424j';
+
+        //$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+
+        $refreshToken = '1//058S6B9ZlrbFWCgYIARAAGAUSNwF-L9Ir3DtBGr8Mu5N-2SmUxXROS1yMN7C903Q3nb9boLVlUCbipmR4D81fn3vPFCsqny7z_Ws';
+
+        //$refreshToken = '1//0dNvvoEQnBh5SCgYIARAAGA0SNwF-L9IrEfhelLWw95EQ_cvrTtDN5cc0fKeBa0Efxpj4QB1zIC1vtIn4bug-5nhIc9bY4NmtPWM';
 		
 		$provider = new Google(
 			[
@@ -893,11 +919,19 @@ class FGMembersite
 		
 		$email = 'ncaaf.fantasy@gmail.com';
 		
-		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
-		
-		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
-		
-		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+        
+        $clientId = '779284746872-kda61e9fsms6jpmpa3vger198g5rob8d.apps.googleusercontent.com';
+
+        //$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+        
+        $clientSecret = 'rhd04Yvc57fXAMNZbpyT424j';
+
+        //$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+
+        $refreshToken = '1//058S6B9ZlrbFWCgYIARAAGAUSNwF-L9Ir3DtBGr8Mu5N-2SmUxXROS1yMN7C903Q3nb9boLVlUCbipmR4D81fn3vPFCsqny7z_Ws';
+
+        //$refreshToken = '1//0dNvvoEQnBh5SCgYIARAAGA0SNwF-L9IrEfhelLWw95EQ_cvrTtDN5cc0fKeBa0Efxpj4QB1zIC1vtIn4bug-5nhIc9bY4NmtPWM';
 		
 		$provider = new Google(
 			[
@@ -986,11 +1020,19 @@ class FGMembersite
 		
 		$email = 'ncaaf.fantasy@gmail.com';
         
-		$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
-		
-		$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
-		
-		$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+		//$clientId = '686864734495-lht24uha88i230acp2ijn5p8kkuo7cd0.apps.googleusercontent.com';
+        
+        $clientId = '779284746872-kda61e9fsms6jpmpa3vger198g5rob8d.apps.googleusercontent.com';
+
+        //$clientSecret = 'oGLdadO9v2g2lLaNSr7tNQ-F';
+        
+        $clientSecret = 'rhd04Yvc57fXAMNZbpyT424j';
+
+        //$refreshToken = '1/DUCkE7ieYLETcUHy8djhA0JAFoQoP3QkfhZMTcRIPbkthWRDML9Nym3X_K2Tm6gb';
+
+        $refreshToken = '1//058S6B9ZlrbFWCgYIARAAGAUSNwF-L9Ir3DtBGr8Mu5N-2SmUxXROS1yMN7C903Q3nb9boLVlUCbipmR4D81fn3vPFCsqny7z_Ws';
+
+        //$refreshToken = '1//0dNvvoEQnBh5SCgYIARAAGA0SNwF-L9IrEfhelLWw95EQ_cvrTtDN5cc0fKeBa0Efxpj4QB1zIC1vtIn4bug-5nhIc9bY4NmtPWM';
 		
 		$provider = new Google(
 			[
