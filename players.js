@@ -1,6 +1,9 @@
 function getCurrentWeek() {
 	var currentWeek = 1;
-	if (Date.now() > new Date('December 7, 2020 07:00:00 UTC').getTime()) {
+	if (Date.now() > new Date('December 14, 2020 07:00:00 UTC').getTime()) {
+		currentWeek = 16;
+	}
+	else if (Date.now() > new Date('December 7, 2020 07:00:00 UTC').getTime()) {
 		currentWeek = 15;
 	}
 	else if (Date.now() > new Date('November 30, 2020 07:00:00 UTC').getTime()) {
