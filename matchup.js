@@ -3,7 +3,10 @@ $( document ).ready(
 		//Set default week value 
 		//UPDATE THIS EVERY WEEK TO SET CURRENT WEEK TODO: jeffwang to figure out how to make this change based on the current week
 		var currentWeek = 1;
-		if (Date.now() > new Date('November 30, 2020 07:00:00 UTC').getTime()) {
+		if (Date.now() > new Date('December 7, 2020 07:00:00 UTC').getTime()) {
+			currentWeek = 15;
+		}
+		else if (Date.now() > new Date('November 30, 2020 07:00:00 UTC').getTime()) {
 			currentWeek = 14;
 		}
 		else if (Date.now() > new Date('November 23, 2020 07:00:00 UTC').getTime()) {
