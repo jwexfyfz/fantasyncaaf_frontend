@@ -34,6 +34,12 @@ $( document ).ready(
 		});
 		
 		//When user selects a week number, hide the week drop-up
+		$( "#week16Circle" ).click(function() {
+			selectWeek(16);
+		});
+		$( "#week15Circle" ).click(function() {
+			selectWeek(15);
+		});
 		$( "#week14Circle" ).click(function() {
 			selectWeek(14);
 		});
