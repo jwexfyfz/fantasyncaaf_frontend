@@ -52,7 +52,7 @@ if(!$fgmembersite->CheckLogin())
 					</a>
 					<div class="custom-select" style="width:160px; position:absolute; right:0; top:0; float:right; display: none;">
 						<select id="currentWeekNum">
-							<option value="1">Week 1</option>
+							<!--><option value="1">Week 1</option>
 							<option value="2">Week 2</option>
 							<option value="3">Week 3</option>
 							<option value="4">Week 4</option>
@@ -60,12 +60,15 @@ if(!$fgmembersite->CheckLogin())
 							<option value="6">Week 6</option>
 							<option value="7">Week 7</option>
 							<option value="8">Week 8</option>
-							<option value="9">Week 9</option>
+							<option value="9">Week 9</option>-->
 							<option value="10">Week 10</option>
 							<option value="11">Week 11</option>
 							<option value="12">Week 12</option>
 							<option value="13">Week 13</option>
 							<option value="14">Week 14</option>
+							<option value="12">Week 15</option>
+							<option value="13">Week 16</option>
+							<option value="14">Week 17</option>
 						</select>
 					</div>
 				</th>
@@ -313,6 +316,11 @@ if(!$fgmembersite->CheckLogin())
 	<!--This section is for when the user clicks on the avatar icon, this is the expanded menu-->
 	<div id="accountMenu">
 		<div class="arrow-up" id="accountArrow"></div>
+		<a href="change-pwd.php">
+			<div class="accountMenuRow normalRow">
+				Change Password
+			</div>
+		</a>
 		<a href="logout.php">
 			<!--<div class="accountMenuRow" id="avatarRow">
 				<?php 
@@ -320,7 +328,7 @@ if(!$fgmembersite->CheckLogin())
 					echo "Team: ".$string;
 				?>
 			</div>-->
-			<div class="arrow-up" id="accountArrow"></div>
+			<!--<div class="arrow-up" id="accountArrow"></div>-->
 			<div class="accountMenuRow normalRow">
 				Logout
 			</div>
