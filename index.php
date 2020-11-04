@@ -317,19 +317,12 @@ if(!$fgmembersite->CheckLogin())
 	<div id="accountMenu">
 		<div class="arrow-up" id="accountArrow"></div>
 		<a href="change-pwd.php">
-			<div class="accountMenuRow normalRow">
+			<div class="accountMenuRowTop">
 				Change Password
 			</div>
 		</a>
 		<a href="logout.php">
-			<!--<div class="accountMenuRow" id="avatarRow">
-				<?php 
-					$string = $fgmembersite->getTeamName(); 
-					echo "Team: ".$string;
-				?>
-			</div>-->
-			<!--<div class="arrow-up" id="accountArrow"></div>-->
-			<div class="accountMenuRow normalRow">
+			<div class="accountMenuRowBottom">
 				Logout
 			</div>
 		</a>
