@@ -1138,112 +1138,128 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	var currentOption;
 	var currentSubtext;
 	var currentMetadata;
-    //for(var index in positionList) {
-    //    select.options[select.options.length] = new Option(positionList[index], index);
-    //}
-	
-	//If we just changed the week, then we don't want to re-populate the rosters
-	if(!weekChanged) {
+	var dataString = "";
+	var maxPlayerUses = 5;
+
+	$.ajax({
+	    type: "POST",
+	    url: "getMaxPlayerUseFlag.php",
+	    data: dataString,
+	    success: function(response) {
+		  console.log("response from getMaxPlayerUseFlag(): "+response);
+		  
+		  if(response != "0 results") {
+			  maxPlayerUses = response;
+			  console.log("maxPlayerUses: " + maxPlayerUses);
+		  }
+		  else {
+			  console.log("maxPlayerUses: " + maxPlayerUses);
+		  }
+		  
+	  	//If we just changed the week, then we don't want to re-populate the rosters
+	  	if(!weekChanged) {
 				
-		//This adds a blank option
-		currentOption = new Option("-- Clear Selection --","");
-		select.options[select.options.length] = currentOption;
+	  		//This adds a blank option
+	  		currentOption = new Option("-- Clear Selection --","");
+	  		select.options[select.options.length] = currentOption;
 		
-		//Make the empty option show as "clear selection" in dropdown
-		currentOption.setAttribute("title", "");
-		currentOption.setAttribute("data-tokens", "clear selection");
+	  		//Make the empty option show as "clear selection" in dropdown
+	  		currentOption.setAttribute("title", "");
+	  		currentOption.setAttribute("data-tokens", "clear selection");
 		
 		
-		if (inputPosition == "inputDEF") {
-			for(i = 0; i < positionList.length; i++) {
-				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
+	  		if (inputPosition == "inputDEF") {
+	  			for(i = 0; i < positionList.length; i++) {
+	  				//Convert positionList's gametime to UTC time format
+	  				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 				
 
-				//Set attributes:
-				//currentOption: set text and value of option
-				//currentSubtext: show metadata of team: "(<number of uses>)" e.g. (0)
-				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
-				currentSubtext = "<span style='font-weight:100'>("+positionList[i]["timesUsed"]+")</span>";
+	  				//Set attributes:
+	  				//currentOption: set text and value of option
+	  				//currentSubtext: show metadata of team: "(<number of uses>)" e.g. (0)
+	  				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
+	  				currentSubtext = "<span style='font-weight:100'>("+positionList[i]["timesUsed"]+")</span>";
 				
-				//Set the option text and value
-				select.options[select.options.length] = currentOption;
+	  				//Set the option text and value
+	  				select.options[select.options.length] = currentOption;
 				
-				//data-subtext = Subtext
-				currentOption.setAttribute("data-subtext",currentSubtext);
-				currentOption.setAttribute("data-position","DEF");
-				currentOption.setAttribute("data-school",positionList[i]["playerName"]);
-				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
-				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
+	  				//data-subtext = Subtext
+	  				currentOption.setAttribute("data-subtext",currentSubtext);
+	  				currentOption.setAttribute("data-position","DEF");
+	  				currentOption.setAttribute("data-school",positionList[i]["playerName"]);
+	  				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
+	  				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
 								
-				if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {   // disables the selector for the player just created if timesUsed >= 5. TODO: Remove all future uses
-					select.options[select.options.length-1].disabled = true;
-					select.options[select.options.length-1].style.color="#D3D3D3";
-					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
-				}
-				else if (positionList[i]["timesUsed"] == 4) {
-					select.options[select.options.length-1].style.color="#FFA500";
-					console.log("didn't disable "+positionList[i]["playerName"]);
-				}
-			}
-		}
-		else {
-			for(i = 0; i < positionList.length; i++) {	
-				//Convert positionList's gametime to UTC time format
-				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
+	  				if (	(positionList[i]["timesUsed"] >= maxPlayerUses)	||	(Date.now() > gametime.getTime())	) {   // disables the selector for the player just created if timesUsed >= maxPlayerUses flag. TODO: Remove all future uses
+	  					select.options[select.options.length-1].disabled = true;
+	  					select.options[select.options.length-1].style.color="#D3D3D3";
+	  					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
+	  				}
+	  				else if (positionList[i]["timesUsed"] == maxPlayerUses - 1) {
+	  					select.options[select.options.length-1].style.color="#FFA500";
+	  					console.log("didn't disable "+positionList[i]["playerName"]);
+	  				}
+	  			}
+	  		}
+	  		else {
+	  			for(i = 0; i < positionList.length; i++) {	
+	  				//Convert positionList's gametime to UTC time format
+	  				var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 						
-				//Set attributes:
-				//currentOption: set text and value of option
-				//currentSubtext: show metadata of player: "<position>, <school> (<number of uses>)" e.g. QB, UCLA (0)
-				//currentMetadata: searchable key words: "<player first name> <player last name> <school>" e.g. Josh Rosen UCLA
-				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
-				currentSubtext = positionList[i]["position"]+", "+positionList[i]["team"]+" ("+positionList[i]["timesUsed"]+")";
-				currentMetadata = positionList[i]["playerName"] + " " + positionList[i]["team"];
+	  				//Set attributes:
+	  				//currentOption: set text and value of option
+	  				//currentSubtext: show metadata of player: "<position>, <school> (<number of uses>)" e.g. QB, UCLA (0)
+	  				//currentMetadata: searchable key words: "<player first name> <player last name> <school>" e.g. Josh Rosen UCLA
+	  				currentOption = new Option(positionList[i]["playerName"], positionList[i]["playerName"]);
+	  				currentSubtext = positionList[i]["position"]+", "+positionList[i]["team"]+" ("+positionList[i]["timesUsed"]+")";
+	  				currentMetadata = positionList[i]["playerName"] + " " + positionList[i]["team"];
 				
-				//Set the option text and value
-				select.options[select.options.length] = currentOption;
+	  				//Set the option text and value
+	  				select.options[select.options.length] = currentOption;
 
-				currentOption.setAttribute("data-subtext",currentSubtext);
-				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+' '+'<small class="text-muted" style="font-weight:100">' + currentSubtext + '</small>');
-				currentOption.setAttribute("data-tokens",currentMetadata);
-				currentOption.setAttribute("data-position",positionList[i]["position"]);
-				currentOption.setAttribute("data-school",positionList[i]["team"]);
-				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
-				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
+	  				currentOption.setAttribute("data-subtext",currentSubtext);
+	  				currentOption.setAttribute("title",positionList[i]["playerAbbr"]+' '+'<small class="text-muted" style="font-weight:100">' + currentSubtext + '</small>');
+	  				currentOption.setAttribute("data-tokens",currentMetadata);
+	  				currentOption.setAttribute("data-position",positionList[i]["position"]);
+	  				currentOption.setAttribute("data-school",positionList[i]["team"]);
+	  				currentOption.setAttribute("data-timesUsed",positionList[i]["timesUsed"]);
+	  				currentOption.setAttribute("data-teamID",positionList[i]["teamID"]);
 
-				if (	(positionList[i]["timesUsed"] >= 5)		||	(Date.now() > gametime.getTime())	) {
-					select.options[select.options.length-1].disabled = true;
-					select.options[select.options.length-1].style.color="#D3D3D3";
-					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
-				}
-				else if (positionList[i]["timesUsed"] == 4) {
-					select.options[select.options.length-1].style.color="#FFA500";
-					console.log("didn't disable "+positionList[i]["playerName"]);
-				}
-			}
-		}
-	}
-	else {
-		console.log("positionList.length = "+positionList.length);
-		for (i = 0; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
-			console.log("i="+i);
-			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
-			if (	(positionList[i]["timesUsed"] >= 5)	||	(Date.now() > gametime.getTime())	) {
-				select.options[i+1].disabled = true;	// i+1 to ignore --Clear Selection--
-				select.options[i+1].style.color="#D3D3D3";
-			}
-			else {
-				select.options[i+1].disabled = false;
-				select.options[i+1].style.color="#000000";
-			}
-			if (positionList[i]["timesUsed"] == 4) {
-				select.options[i+1].style.color="#FFA500";
-			}
-		}
-	}
-	select.value = currentSelectedPlayer;
-	$('#'+inputPosition).selectpicker('refresh');
-	console.log("done populating "+inputPosition);
+	  				if (	(positionList[i]["timesUsed"] >= maxPlayerUses)		||	(Date.now() > gametime.getTime())	) {
+	  					select.options[select.options.length-1].disabled = true;
+	  					select.options[select.options.length-1].style.color="#D3D3D3";
+	  					console.log("disabled "+positionList[i]["playerName"]+"because used 5 times or game is already done. gametime: "+positionList[i]["gametime"]);
+	  				}
+	  				else if (positionList[i]["timesUsed"] == maxPlayerUses - 1) {
+	  					select.options[select.options.length-1].style.color="#FFA500";
+	  					console.log("didn't disable "+positionList[i]["playerName"]);
+	  				}
+	  			}
+	  		}
+	  	}
+	  	else {
+	  		console.log("positionList.length = "+positionList.length);
+	  		for (i = 0; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
+	  			console.log("i="+i);
+	  			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
+	  			if (	(positionList[i]["timesUsed"] >= maxPlayerUses)	||	(Date.now() > gametime.getTime())	) {
+	  				select.options[i+1].disabled = true;	// i+1 to ignore --Clear Selection--
+	  				select.options[i+1].style.color="#D3D3D3";
+	  			}
+	  			else {
+	  				select.options[i+1].disabled = false;
+	  				select.options[i+1].style.color="#000000";
+	  			}
+	  			if (positionList[i]["timesUsed"] == maxPlayerUses - 1) {
+	  				select.options[i+1].style.color="#FFA500";
+	  			}
+	  		}
+	  	}
+	  	select.value = currentSelectedPlayer;
+	  	$('#'+inputPosition).selectpicker('refresh');
+	  	console.log("done populating "+inputPosition);
+	    }
+	});
 }
 
 //jeffwang 3/24/2018: This function will unhide the hidden checkmarks to tell user that the player change was successfully made.  It will then quickly re-hide it.
