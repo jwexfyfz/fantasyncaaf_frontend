@@ -798,7 +798,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			
 			if ((selectedPlayerTeam != positionToTeam[newPosition] && selectedPlayerTeam != undefined && dupeTeams >= numDupeTeamsAllowed) || ((counts[selectedPlayerTeam])+1) > 2/* || moreThanTwoDupeTeams*/) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
 				var test = parseInt(counts[selectedPlayerTeam],10)+1;
-				console.log("test: " test);
+				console.log("test: "+test);
 				console.log("counts[selectedPlayerTeam]+1: "+(parseInt(counts[selectedPlayerTeam],10)+1));
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
