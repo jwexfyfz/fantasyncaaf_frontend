@@ -1240,7 +1240,7 @@ function populateChoosePlayerLists(inputPosition, positionList, currentSelectedP
 	  	else {
 	  		console.log("positionList.length = "+positionList.length);
 	  		for (i = 0; i < positionList.length; i++) {  // i = 1 to ignore --Clear Selection--
-	  			console.log("i="+i);
+	  			//console.log("i="+i);
 	  			var gametime = new Date(positionList[i]["gametime"].replace(" ","T") + "+00:00");
 	  			if (	(positionList[i]["timesUsed"] >= maxPlayerUses)	||	(Date.now() > gametime.getTime())	) {
 	  				select.options[i+1].disabled = true;	// i+1 to ignore --Clear Selection--
