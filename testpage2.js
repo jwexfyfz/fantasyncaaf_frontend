@@ -755,7 +755,6 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName,
 //cauchychoi: This function counts the number of dupe teams and compares it with numDupeTeamsAllowed
 function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName, playerGametimeArray) {
 	var dupeTeams = 0;
-	var moreThanTwoDupeTeams = 0;
 	var phpResponse;
 	
 	
@@ -785,11 +784,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				if (counts[key] >= 2) {  // If the number of times a team shows up is >= 2, that team is duped
 					dupeTeams++;
 				}
-				if (counts[key] > 2) {  // If the number of times a team shows up is >= 2, that team is duped
-					moreThanTwoDupeTeams = 1;
-				}
 				console.log("dupeTeams: "+dupeTeams);
-				console.log("moreThanTwoDupeTeams: "+moreThanTwoDupeTeams);
 			}
 			var newPosition = position.replace("tophp","");
 			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); // Get the teamName of the selected player
@@ -798,7 +793,9 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			var newPlayerCount = (parseInt(counts[selectedPlayerTeam],10)+1);
 			console.log("newPlayerCount: "+newPlayerCount);
 
-			if (((counts[positionToTeam[newPosition]] <= 1 && dupeTeams >= numDupeTeamsAllowed)) || (selectedPlayerTeam != positionToTeam[newPosition] && selectedPlayerTeam != undefined && newPlayerCount > 2)/* || moreThanTwoDupeTeams*/) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
+			// First clause: if you are modifying a non-duped team and you are already at max dupes, change not allowed
+			// Second clause: if you are trying to add a 3rd instance of a team, change not allowed. However, you are allowed to swap players on the same team and clear players
+			if ((counts[positionToTeam[newPosition]] <= 1 && counts[selectedPlayerTeam] >= 2 && dupeTeams >= numDupeTeamsAllowed) || (selectedPlayerTeam != positionToTeam[newPosition] && selectedPlayerTeam != undefined && newPlayerCount > 2)) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
