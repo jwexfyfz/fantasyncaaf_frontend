@@ -102,7 +102,7 @@ function selectWeek(weekNum) {
 	$("#weekScrollContainer").css('display','none');
 	$( "#unclickable" ).css('display','none');
 	console.log($('#week'+weekNum+'Circle').html());
-	
+	console.log("weekNum = " + weekNum);
 	var prevWeek = $('#currentWeekNum option:selected').val();
 	$("#week"+prevWeek+"Circle").css('background-color','transparent');
 	console.log("setting previous week, "+prevWeek+", to "+$("#week"+prevWeek+"Circle").css('background-color'));
