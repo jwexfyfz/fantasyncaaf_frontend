@@ -755,12 +755,12 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName,
 //cauchychoi: This function counts the number of dupe teams and compares it with numDupeTeamsAllowed
 function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName, playerGametimeArray) {
 	var dupeTeams = 0;
-	
+	var moreThanTwoDupeTeams = 0;
 	var phpResponse;
+	
+	
 	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
-	
 	console.log("numDupeTeamsAllowed: "+numDupeTeamsAllowed);	//For testing
-	
 	$.ajax({
 	    type: "POST",
 	    url: "getPlayerSchools.php",
@@ -782,8 +782,11 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			
 			for (var key in counts) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
-				if (counts[key] >= 2) {  // If the number of times a team shows up is >= 2, that team is duped
+				if (counts[key] = 2) {  // If the number of times a team shows up is >= 2, that team is duped
 					dupeTeams++;
+				}
+				if (counts[key] > 2) {  // If the number of times a team shows up is >= 2, that team is duped
+					moreThanTwoDupeTeams = 1;
 				}
 				console.log("dupeTeams: "+dupeTeams);
 			}
@@ -791,7 +794,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); // Get the teamName of the selected player
 			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 			
-			if (selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
+			if ((selectedPlayerTeam != positionToTeam[newPosition] && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) || moreThanTwoDupeTeams) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
