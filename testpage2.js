@@ -798,7 +798,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			var newPlayerCount = (parseInt(counts[selectedPlayerTeam],10)+1);
 			console.log("newPlayerCount: "+newPlayerCount);
 
-			if ((selectedPlayerTeam != positionToTeam[newPosition] && selectedPlayerTeam != undefined && (counts[positionToTeam[newPosition]] <= 1 && dupeTeams >= numDupeTeamsAllowed)) || newPlayerCount > 2/* || moreThanTwoDupeTeams*/) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
+			if (((counts[positionToTeam[newPosition]] <= 1 && dupeTeams >= numDupeTeamsAllowed)) || (selectedPlayerTeam != positionToTeam[newPosition] && selectedPlayerTeam != undefined && newPlayerCount > 2)/* || moreThanTwoDupeTeams*/) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
