@@ -66,8 +66,8 @@ if(!$fgmembersite->CheckLogin())
 							<option value="12">Week 12</option>
 							<option value="13">Week 13</option>
 							<option value="14">Week 14</option>
-							<option value="12">Week 15</option>
-							<option value="13">Week 16</option>
+							<option value="15">Week 15</option>
+							<option value="16">Week 16</option>
 						</select>
 					</div>
 				</th>
