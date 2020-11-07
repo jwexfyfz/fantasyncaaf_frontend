@@ -782,7 +782,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			
 			for (var key in counts) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
-				if (counts[key] = 2) {  // If the number of times a team shows up is >= 2, that team is duped
+				if (counts[key] == 2) {  // If the number of times a team shows up is >= 2, that team is duped
 					dupeTeams++;
 				}
 				if (counts[key] > 2) {  // If the number of times a team shows up is >= 2, that team is duped
