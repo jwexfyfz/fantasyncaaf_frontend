@@ -529,7 +529,6 @@ function sendToPhp(position) {//, clearPlayer) {
 	var week=$("#currentWeekNum").val();	//Get week # from page
 	var teamID	=	$("#teamID").val();
 	var teamName = $("#teamName").val();
-	//var playerGameStarted = false;
 	
 	var confirmPosition = "";
 	var temp;								//Temporarily hold the duplicate player to switch
@@ -569,8 +568,6 @@ function sendToPhp(position) {//, clearPlayer) {
 	        newPosition = "";
 	}
 	
-	//var dupesExist = false;
-	
 	// For when sendToPhp is called as a result of changing a player, first check to see if the newly selected player or the player that was changed has started playing
 	if (newPosition == "inputDEF") {
 		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), true, teamName);
@@ -578,9 +575,6 @@ function sendToPhp(position) {//, clearPlayer) {
 	else {
 		checkPlayerStarted(week, teamID, position, $('#'+newPosition).val(), false, teamName);
 	}
-	//verifyNoDupes(position.replace("tophp",""), week, teamID, teamName);		//Check for dupes
-	
-	//If duplicate names exist, block the sql query and inform user
 }
 
 //cauchychoi 8/19/18: When a player gets changed, this function checks to see if both the player prior to the change and the newly selected player's games have begun.
