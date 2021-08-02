@@ -6,49 +6,50 @@
 $( document ).ready(
 	function sendTeamRosterToPhp() {
 		var mondayAfterWeek1 = new Date('September 6, 2021 07:00:00 UTC').getTime();
-		 
+		var weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+
 		//Set default week value.  Currently hardcoded for the 2019 season
 		var currentWeek = 1;
-		if (Date.now() > mondayAfterWeek1 + 98) {
+		if (Date.now() > mondayAfterWeek1 + (14 * weekInMilliseconds)) {
 			currentWeek = 16;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 91) {
+		else if (Date.now() > mondayAfterWeek1 + (13 * weekInMilliseconds)) {
 			currentWeek = 15;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 84) {
+		else if (Date.now() > mondayAfterWeek1 + (12 * weekInMilliseconds)) {
 			currentWeek = 14;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 77) {
+		else if (Date.now() > mondayAfterWeek1 + (11 * weekInMilliseconds)) {
 			currentWeek = 13;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 70) {
+		else if (Date.now() > mondayAfterWeek1 + (10 * weekInMilliseconds)) {
 			currentWeek = 12;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 63) {
+		else if (Date.now() > mondayAfterWeek1 + (9 * weekInMilliseconds)) {
 			currentWeek = 11;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 56) {
+		else if (Date.now() > mondayAfterWeek1 + (8 * weekInMilliseconds)) {
 			currentWeek = 10;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 49) {
+		else if (Date.now() > mondayAfterWeek1 + (7 * weekInMilliseconds)) {
 			currentWeek = 9;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 42) {
+		else if (Date.now() > mondayAfterWeek1 + (6 * weekInMilliseconds)) {
 			currentWeek = 8;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 35) {
+		else if (Date.now() > mondayAfterWeek1 + (5 * weekInMilliseconds)) {
 			currentWeek = 7;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 28) {
+		else if (Date.now() > mondayAfterWeek1 + (4 * weekInMilliseconds)) {
 			currentWeek = 6;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 21) {
+		else if (Date.now() > mondayAfterWeek1 + (3 * weekInMilliseconds)) {
 			currentWeek = 5;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 14) {
+		else if (Date.now() > mondayAfterWeek1 + (2 * weekInMilliseconds)) {
 			currentWeek = 4;
 		}
-		else if (Date.now() > mondayAfterWeek1 + 7) {
+		else if (Date.now() > mondayAfterWeek1 + weekInMilliseconds) {
 			currentWeek = 3;
 		}
 		else if (Date.now() > mondayAfterWeek1) {
