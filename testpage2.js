@@ -6,7 +6,7 @@
 $( document ).ready(
 	function sendTeamRosterToPhp() {
 		var mondayAfterWeek1 = new Date('September 6, 2021 07:00:00 UTC').getTime();
-
+		 
 		//Set default week value.  Currently hardcoded for the 2019 season
 		var currentWeek = 1;
 		if (Date.now() > mondayAfterWeek1 + 98) {
