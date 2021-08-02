@@ -5,51 +5,53 @@
 //1) getDataforChoosePlayerLists(), which calls populateChoosePlayerLists()
 $( document ).ready(
 	function sendTeamRosterToPhp() {
+		var mondayAfterWeek1 = new Date('September 6, 2021 07:00:00 UTC').getTime();
+
 		//Set default week value.  Currently hardcoded for the 2019 season
 		var currentWeek = 1;
-		if (Date.now() > new Date('December 14, 2020 07:00:00 UTC').getTime()) {
+		if (Date.now() > mondayAfterWeek1 + 98) {
 			currentWeek = 16;
 		}
-		else if (Date.now() > new Date('December 7, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 91) {
 			currentWeek = 15;
 		}
-		else if (Date.now() > new Date('November 30, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 84) {
 			currentWeek = 14;
 		}
-		else if (Date.now() > new Date('November 23, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 77) {
 			currentWeek = 13;
 		}
-		else if (Date.now() > new Date('November 16, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 70) {
 			currentWeek = 12;
 		}
-		else if (Date.now() > new Date('November 9, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 63) {
 			currentWeek = 11;
 		}
-		else if (Date.now() > new Date('November 2, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 56) {
 			currentWeek = 10;
 		}
-		else if (Date.now() > new Date('October 26, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 49) {
 			currentWeek = 9;
 		}
-		else if (Date.now() > new Date('October 19, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 42) {
 			currentWeek = 8;
 		}
-		else if (Date.now() > new Date('October 12, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 35) {
 			currentWeek = 7;
 		}
-		else if (Date.now() > new Date('October 5, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 28) {
 			currentWeek = 6;
 		}
-		else if (Date.now() > new Date('September 28, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 21) {
 			currentWeek = 5;
 		}
-		else if (Date.now() > new Date('September 21, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 14) {
 			currentWeek = 4;
 		}
-		else if (Date.now() > new Date('September 14, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1 + 7) {
 			currentWeek = 3;
 		}
-		else if (Date.now() > new Date('September 7, 2020 07:00:00 UTC').getTime()) {
+		else if (Date.now() > mondayAfterWeek1) {
 			currentWeek = 2;
 		}
 		console.log("currentWeek: "+currentWeek)
