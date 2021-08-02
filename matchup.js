@@ -51,6 +51,7 @@ $( document ).ready(
 			currentWeek = 2;
 		}
 		
+		console.log("currentWeek: "+currentWeek)
 		$("#currentWeekNum").val(currentWeek);
 		console.log("Current week is now set to "+$("#currentWeekNum").val());
 		
