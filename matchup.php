@@ -63,9 +63,9 @@ if(!$fgmembersite->CheckLogin())
 								<option value="11">Week 11</option>
 								<option value="12">Week 12</option>
 								<option value="13">Week 13</option>
-								<option value="14">Week 14</option>
+								<!--><option value="14">Week 14</option>
 								<option value="15">Week 15</option>
-								<option value="16">Week 16</option>
+								<option value="16">Week 16</option>-->
 							</select>
 						</div>
 					</th>
@@ -205,9 +205,9 @@ if(!$fgmembersite->CheckLogin())
 			  <div class="circle" style="position: absolute; bottom:0; 	box-shadow: 2px 2px 4px -4px rgba(0, 0, 0, 0.2);"></div>
 		
 	  		<div id="scrollable">
-	  			<div class="circle weekSelectCircle" id="week16Circle">16</div>
+	  			<!--><div class="circle weekSelectCircle" id="week16Circle">16</div>
 	  			<div class="circle weekSelectCircle" id="week15Circle">15</div>
-	  			<div class="circle weekSelectCircle" id="week14Circle">14</div>
+	  			<div class="circle weekSelectCircle" id="week14Circle">14</div>-->
 	  			<div class="circle weekSelectCircle" id="week13Circle">13</div>
 	  			<div class="circle weekSelectCircle" id="week12Circle">12</div>
 	  			<div class="circle weekSelectCircle" id="week11Circle">11</div>
