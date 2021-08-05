@@ -296,7 +296,7 @@ if(!$fgmembersite->CheckLogin())
 			<div class="circle weekSelectCircle" id="week12Circle">12</div>
 			<div class="circle weekSelectCircle" id="week11Circle">11</div>
 			<div class="circle weekSelectCircle" id="week10Circle">10</div>
-			<!--<div class="circle weekSelectCircle" id="week9Circle">9</div>
+			<div class="circle weekSelectCircle" id="week9Circle">9</div>
 			<div class="circle weekSelectCircle" id="week8Circle">8</div>
 			<div class="circle weekSelectCircle" id="week7Circle">7</div>
 			<div class="circle weekSelectCircle" id="week6Circle">6</div>
@@ -304,7 +304,7 @@ if(!$fgmembersite->CheckLogin())
 			<div class="circle weekSelectCircle" id="week4Circle">4</div>
 			<div class="circle weekSelectCircle" id="week3Circle">3</div>
 			<div class="circle weekSelectCircle" id="week2Circle">2</div>
-			<div class="circle weekSelectCircle" id="week1Circle">1</div>-->
+			<div class="circle weekSelectCircle" id="week1Circle">1</div>
 		</div>
 	</div>
 
