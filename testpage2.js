@@ -130,7 +130,7 @@ $( document ).ready(
 		
 		//Set the current week for other functions to read from this value
 		$("#currentWeekNum").val(currentWeek);
-		console.log("jeff's change: currentWeekNum is now set to "+$("#currentWeekNum").val());
+		console.log("currentWeekNum is now set to "+$("#currentWeekNum").val());
 		
 		//Set the current week circle (non-list) to the current week.  Then, set the current week circle (list) to a different color.
 		$("#currentWeekCircle").html(currentWeek);
