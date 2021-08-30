@@ -10,8 +10,6 @@
     //Query to get team rosters
     $sql = "SELECT val FROM flags WHERE flag = 'isRotoLeague'";
     $result = $conn->query($sql);
-	
-	echo $result;
 
     if ($result->num_rows > 0) {
         // output data of each row
