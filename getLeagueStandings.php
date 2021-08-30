@@ -7,6 +7,10 @@
     //Connect to database
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
+    //Get the rotiserrie league flag for if statement to change query if roto league
+    //$sql = "SELECT isRotoLeague FROM flags";
+    //$result = $conn->query($sql);
+
     //Query to get team rosters
     $sql = "SELECT LS.*, D.division FROM leagueStandings as LS left join divisions as D on LS.teamID = D.teamID order by wins DESC, losses ASC, divisionWins DESC, divisionLosses ASC, pointsFor DESC, pointsAgainst ASC";
     $result = $conn->query($sql);
