@@ -8,7 +8,7 @@
     $conn=mysqli_connect($host, $username, $password, $db_name);
 
     //Query to get team rosters
-    $sql = "SELECT isRotoLeague FROM flags";
+    $sql = "SELECT val FROM flags WHERE flag = 'isRotoLeague'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
