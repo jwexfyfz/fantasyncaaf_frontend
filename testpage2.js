@@ -752,7 +752,9 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName,
 //cauchychoi: This function counts the number of dupe teams and compares it with numDupeTeamsAllowed
 function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, teamName, playerGametimeArray) {
 	var dupeTeams = 0;
-	var phpResponse;
+	var rosterBeforePlayerChange;
+	var rosterAfterPlayerChange;
+	
 	
 	
 	var dataString = 'weekNum='+week+'&fantasyID='+fantasyID;
@@ -763,58 +765,59 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 	    data: dataString,
 	    success: function(response) {
 			
-			phpResponse = JSON.parse(response);	//Note: phpResponse is teamRoster as an array of hashes, where each index is [position:position, playerName:playerName, teamName:teamName]
-			console.log("Response from getPlayerSchools.php: "+JSON.stringify(phpResponse));
+			rosterBeforePlayerChange = JSON.parse(response);	//Note: phpResponse is teamRoster as an array of hashes, where each index is [position:position, playerName:playerName, teamName:teamName]
+			console.log("Response from getPlayerSchools.php: "+JSON.stringify(rosterBeforePlayerChange));
 			
+			//Duplicate the roster, replace or add the new player, check for dupes
+			rosterAfterPlayerChange = rosterBeforePlayerChange;
+			console.log("rosterAfterPlayerChange: "+JSON.stringify(rosterAfterPlayerChange));
+			
+			var newPlayerPosition = position.replace("tophp","");
+			var newPlayerName = $('#input'+newPosition).find('option:selected').html(); 
+			var newPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); 
+			console.log(newPlayerPosition);
+			console.log(newPlayerName);
+			console.log(newPlayerTeam);
+			
+			//If they are swapping out a player, then replace the player in the new potential roster
+			var replacedPosition = 0;
+			for (var i = 0; i < rosterAfterPlayerChange.length; i++) {
+				if(rosterAfterPlayerChange[i]["position"] == newPlayerPosition) {
+					rosterAfterPlayerChange[i]["playerName"] = newPlayerName;
+					rosterAfterPlayerChange[i]["teamName"] = newPlayerTeam;
+					rosterAfterPlayerChange[i]["position"] = newPlayerPosition;
+					
+					replacedPosition = 1;
+					console.log("replaced player");
+				}
+			}
+			//If they're not swapping out a player, then add the player to the new potential roster
+			if(!replacedPosition) {
+				rosterAfterPlayerChange[rosterAfterPlayerChange.length]["playerName"] = newPlayerName;
+				rosterAfterPlayerChange[rosterAfterPlayerChange.length]["teamName"] = newPlayerTeam;
+				rosterAfterPlayerChange[rosterAfterPlayerChange.length]["position"] = newPlayerPosition;
+				
+				console.log("didn't replace player");
+			}
+			console.log("rosterAfterPlayerChange: "+JSON.stringify(rosterAfterPlayerChange));
+			
+			//Count the number of times each team shows up in the new potential roster
 			var counts = {};
-			var positionToTeam = {};
-			for (var i = 0; i < phpResponse.length; i++) {
-				counts[phpResponse[i]["teamName"]] = 1 + (counts[phpResponse[i]["teamName"]] || 0); // counts the number of times a particular team shows up in teamRoster
-				//console.log("Response from getPlayerSchools.php: "+counts[i]);
-				positionToTeam[phpResponse[i]["position"]] = phpResponse[i]["teamName"]; // maps the position to the teamName of the player
+			for (var i = 0; i < rosterAfterPlayerChange.length; i++) {
+				counts[rosterAfterPlayerChange[i]["teamName"]]++;
 			}
 			console.log("Counts array: "+JSON.stringify(counts));
-			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
 			
-			var newPosition = position.replace("tophp","");
-			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); // Get the teamName of the selected player
-			
-			//Include the selected player into dupe checks
-			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
-			console.log("newPosition: "+newPosition);
-			counts[selectedPlayerTeam]++;
-			positionToTeam[newPosition] = selectedPlayerTeam;
-			
-
-			console.log("Counts array: "+JSON.stringify(counts));
-			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
-			
+			//Keep track of # of dupe teams in new potential roster
 			for (var key in counts) {
-				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
 				if (counts[key] >= 2) {  // If the number of times a team shows up is >= 2, that team is duped
 					dupeTeams++;
 				}
 				console.log("key: " + key + ", dupeTeams: "+dupeTeams);
 			}
 
-			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
-			console.log("newPosition: "+newPosition);
-			var newPlayerCount = (parseInt(counts[selectedPlayerTeam],10)+1);
-			console.log("newPlayerCount: "+newPlayerCount);
-			
-			console.log("counts[positionToTeam[newPosition]]: " + counts[positionToTeam[newPosition]]);
-			console.log("counts[selectedPlayerTeam]: " + counts[selectedPlayerTeam]);
-
-			// First clause: if you are modifying a non-duped team and you are already at max dupes, change not allowed
-			// Second clause: if you are trying to add a 3rd instance of a team, change not allowed. However, you are allowed to swap players on the same team and clear players
-			if (
-					(counts[positionToTeam[newPosition]] <= 1 
-						&& counts[selectedPlayerTeam] >= 1 
-						&& dupeTeams >= numDupeTeamsAllowed) 
-					|| (selectedPlayerTeam != positionToTeam[newPosition] 
-						&& selectedPlayerTeam != undefined 
-						&& newPlayerCount > 2)
-				) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
+			//If you have more dupe teams than allowed, disallow the change to roster
+			if (dupeTeams >= numDupeTeamsAllowed) {
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
