@@ -804,7 +804,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			//Count the number of times each team shows up in the new potential roster
 			var counts = {};
 			for (var i = 0; i < rosterAfterPlayerChange.length; i++) {
-				counts[rosterAfterPlayerChange[i]["teamName"]]++;
+				counts[rosterAfterPlayerChange[i]["teamName"]] = (counts[rosterAfterPlayerChange[i]["teamName"]] || 0) + 1;
 			}
 			console.log("Counts array: "+JSON.stringify(counts));
 			
