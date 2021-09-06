@@ -732,7 +732,7 @@ function comparePotentialDupes (position, phpResponse, week, teamID, teamName, p
 
 //cauchychoi: This function returns the number of dupe teams allowed and passes it to teamDupes
 function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName, playerGametimeArray) {
-	var phpResponse;
+	var numGamesPlayedCurrentWeek;
 	var dataString = 'weekNum='+week;
 	
 	$.ajax({
@@ -740,11 +740,11 @@ function getNumDupeTeamsAllowed(week, fantasyID, position, teamRoster, teamName,
 	    url: "getNumDupeTeamsAllowed.php",
 	    data: dataString,
 	    success: function(response) {
-		  phpResponse = JSON.parse(response);	//Note: phpResponse is 10 (the number of positions on a fantasy team) minus the number of teams playing that week = numDupeTeamsAllowed
-		  if (phpResponse < 0) {
-			phpResponse = 0;
+		  numGamesPlayedCurrentWeek = JSON.parse(response);	//Note: phpResponse is 10 (the number of positions on a fantasy team) minus the number of teams playing that week = numDupeTeamsAllowed
+		  if (numGamesPlayedCurrentWeek < 0) {
+			numGamesPlayedCurrentWeek = 0;
 		  }
-		  teamDupes(week, fantasyID, phpResponse, position, teamRoster, teamName, playerGametimeArray);
+		  teamDupes(week, fantasyID, numGamesPlayedCurrentWeek, position, teamRoster, teamName, playerGametimeArray);
 	    }
 	});
 }
@@ -776,15 +776,27 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			console.log("Counts array: "+JSON.stringify(counts));
 			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
 			
+			var newPosition = position.replace("tophp","");
+			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); // Get the teamName of the selected player
+			
+			//Include the selected player into dupe checks
+			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
+			console.log("newPosition: "+newPosition);
+			counts[selectedPlayerTeam]++;
+			positionToTeam[newPosition] = selectedPlayerTeam;
+			
+
+			console.log("Counts array: "+JSON.stringify(counts));
+			console.log("positionToTeam: "+JSON.stringify(positionToTeam));
+			
 			for (var key in counts) {
 				//dupeTeams += (phpResponse[i]["teamCount"] - 1);
 				if (counts[key] >= 2) {  // If the number of times a team shows up is >= 2, that team is duped
 					dupeTeams++;
 				}
-				console.log("dupeTeams: "+dupeTeams);
+				console.log("key: " + key + ", dupeTeams: "+dupeTeams);
 			}
-			var newPosition = position.replace("tophp","");
-			var selectedPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); // Get the teamName of the selected player
+
 			console.log("selectedPlayerTeam: "+selectedPlayerTeam);
 			console.log("newPosition: "+newPosition);
 			var newPlayerCount = (parseInt(counts[selectedPlayerTeam],10)+1);
