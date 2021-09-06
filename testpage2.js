@@ -817,7 +817,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			}
 
 			//If you have more dupe teams than allowed, disallow the change to roster
-			if (dupeTeams >= numDupeTeamsAllowed) {
+			if (dupeTeams > numDupeTeamsAllowed) {
 				console.log("CHANGE NOT ALLOWED FOR " + newPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
