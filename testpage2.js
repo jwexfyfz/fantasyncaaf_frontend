@@ -789,10 +789,20 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			console.log("newPosition: "+newPosition);
 			var newPlayerCount = (parseInt(counts[selectedPlayerTeam],10)+1);
 			console.log("newPlayerCount: "+newPlayerCount);
+			
+			console.log("counts[positionToTeam[newPosition]]: " + counts[positionToTeam[newPosition]]);
+			console.log("counts[selectedPlayerTeam]: " + counts[selectedPlayerTeam]);
 
 			// First clause: if you are modifying a non-duped team and you are already at max dupes, change not allowed
 			// Second clause: if you are trying to add a 3rd instance of a team, change not allowed. However, you are allowed to swap players on the same team and clear players
-			if ((counts[positionToTeam[newPosition]] <= 1 && counts[selectedPlayerTeam] >= 1 && dupeTeams >= numDupeTeamsAllowed) || (selectedPlayerTeam != positionToTeam[newPosition] && selectedPlayerTeam != undefined && newPlayerCount > 2)) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
+			if (
+					(counts[positionToTeam[newPosition]] <= 1 
+						&& counts[selectedPlayerTeam] >= 1 
+						&& dupeTeams >= numDupeTeamsAllowed) 
+					|| (selectedPlayerTeam != positionToTeam[newPosition] 
+						&& selectedPlayerTeam != undefined 
+						&& newPlayerCount > 2)
+				) {  // If selected team has >= 1 use and we've hit the limit of dupe teams
 				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
