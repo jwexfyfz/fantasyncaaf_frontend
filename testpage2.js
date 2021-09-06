@@ -824,7 +824,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 				
 				//Display error message
 				//"Your roster has too many players from <team>. Remove one of the <team> players and try again."
-				fadeErrorFooter("Your roster has too many players from <b>" + selectedPlayerTeam + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + selectedPlayerTeam + "</b> players and try again.</span>");
+				fadeErrorFooter("Your roster has too many players from <b>" + newPlayerTeam + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + newPlayerTeam + "</b> players and try again.</span>");
 				loadTeamRoster(week, fantasyID, true);  // Should this be false??
 			}
 			else {  // allow the change
