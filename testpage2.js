@@ -773,8 +773,8 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			console.log("rosterAfterPlayerChange: "+JSON.stringify(rosterAfterPlayerChange));
 			
 			var newPlayerPosition = position.replace("tophp","");
-			var newPlayerName = $('#input'+newPosition).find('option:selected').html(); 
-			var newPlayerTeam = $('#input'+newPosition).find('option:selected').attr('data-school'); 
+			var newPlayerName = $('#input'+newPlayerPosition).find('option:selected').html(); 
+			var newPlayerTeam = $('#input'+newPlayerPosition).find('option:selected').attr('data-school'); 
 			console.log(newPlayerPosition);
 			console.log(newPlayerName);
 			console.log(newPlayerTeam);
@@ -818,7 +818,7 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 
 			//If you have more dupe teams than allowed, disallow the change to roster
 			if (dupeTeams >= numDupeTeamsAllowed) {
-				console.log("CHANGE NOT ALLOWED FOR " + selectedPlayerTeam);
+				console.log("CHANGE NOT ALLOWED FOR " + newPlayerTeam);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
 				
