@@ -818,13 +818,13 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 
 			//If you have more dupe teams than allowed, disallow the change to roster
 			if (dupeTeams > numDupeTeamsAllowed) {
-				console.log("CHANGE NOT ALLOWED FOR " + newPlayerTeam);
+				console.log("CHANGE NOT ALLOWED FOR " + newPlayer["teamName"]);
 				
 				//No need to revert back to the original player's gametime unless the change is allowed, since we never made the change to the new player's gametime
 				
 				//Display error message
 				//"Your roster has too many players from <team>. Remove one of the <team> players and try again."
-				fadeErrorFooter("Your roster has too many players from <b>" + newPlayerTeam + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + newPlayerTeam + "</b> players and try again.</span>");
+				fadeErrorFooter("Your roster has too many players from <b>" + newPlayer["teamName"] + "<b>.<br/><span style='font-size:0.8em'>Remove one of the <b>" + newPlayer["teamName"] + "</b> players and try again.</span>");
 				loadTeamRoster(week, fantasyID, true);  // Should this be false??
 			}
 			else {  // allow the change
