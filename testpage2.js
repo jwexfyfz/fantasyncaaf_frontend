@@ -772,20 +772,21 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			rosterAfterPlayerChange = rosterBeforePlayerChange;
 			console.log("rosterAfterPlayerChange: "+JSON.stringify(rosterAfterPlayerChange));
 			
-			var newPlayerPosition = position.replace("tophp","");
-			var newPlayerName = $('#input'+newPlayerPosition).find('option:selected').html(); 
-			var newPlayerTeam = $('#input'+newPlayerPosition).find('option:selected').attr('data-school'); 
-			console.log(newPlayerPosition);
-			console.log(newPlayerName);
-			console.log(newPlayerTeam);
+			var newPlayer = {};
+			newPlayer["position"] = position.replace("tophp","");
+			newPlayer["playerName"] = $('#input'+newPlayer["position"]).find('option:selected').html(); 
+			newPlayer["teamName"] = $('#input'+newPlayer["position"]).find('option:selected').attr('data-school'); 
+			console.log(newPlayer["playerName"]);
+			console.log(newPlayer["teamName"]);
+			console.log(newPlayer["position"]);
 			
 			//If they are swapping out a player, then replace the player in the new potential roster
 			var replacedPosition = 0;
 			for (var i = 0; i < rosterAfterPlayerChange.length; i++) {
-				if(rosterAfterPlayerChange[i]["position"] == newPlayerPosition) {
-					rosterAfterPlayerChange[i]["playerName"] = newPlayerName;
-					rosterAfterPlayerChange[i]["teamName"] = newPlayerTeam;
-					rosterAfterPlayerChange[i]["position"] = newPlayerPosition;
+				if(rosterAfterPlayerChange[i]["position"] == newPlayer["position"]) {
+					rosterAfterPlayerChange[i]["playerName"] = newPlayer["playerName"];
+					rosterAfterPlayerChange[i]["teamName"] = newPlayer["teamName"];
+					rosterAfterPlayerChange[i]["position"] = newPlayer["position"];
 					
 					replacedPosition = 1;
 					console.log("replaced player");
@@ -793,11 +794,10 @@ function teamDupes(week, fantasyID, numDupeTeamsAllowed, position, teamRoster, t
 			}
 			//If they're not swapping out a player, then add the player to the new potential roster
 			if(!replacedPosition) {
-				rosterAfterPlayerChange[rosterAfterPlayerChange.length]["playerName"] = newPlayerName;
-				rosterAfterPlayerChange[rosterAfterPlayerChange.length]["teamName"] = newPlayerTeam;
-				rosterAfterPlayerChange[rosterAfterPlayerChange.length]["position"] = newPlayerPosition;
+				rosterAfterPlayerChange.push(newPlayer);
+				console.log(rosterAfterPlayerChange);
 				
-				console.log("didn't replace player");
+				console.log("new player added to roster (instead of swapping players)");
 			}
 			console.log("rosterAfterPlayerChange: "+JSON.stringify(rosterAfterPlayerChange));
 			
