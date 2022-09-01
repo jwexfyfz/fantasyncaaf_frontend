@@ -1,6 +1,6 @@
 $( document ).ready(
 	function startPage() {
-		var mondayAfterWeek1 = new Date('September 6, 2021 07:00:00 UTC').getTime();
+		var mondayAfterWeek1 = new Date('September 5, 2022 07:00:00 UTC').getTime();
 		var weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
 
 		var currentWeek = 1;

@@ -2,10 +2,10 @@
 
 # To reset a season:
 #	First make sure to also read the README in github/fantasyncaaf
-#	Update currentWeek in league.js
-#	Update currentWeek in matchup.js
-#	Update currentWeek in players.js
-#	Update currentWeek in testpage2.js
+#	Update mondayAfterWeek1 in league.js
+#	Update mondayAfterWeek1 in matchup.js
+#	Update mondayAfterWeek1 in players.js
+#	Update mondayAfterWeek1 in testpage2.js
 
 #To upload to github/heroku:
 #	git add .

@@ -5,10 +5,10 @@
 //1) getDataforChoosePlayerLists(), which calls populateChoosePlayerLists()
 $( document ).ready(
 	function sendTeamRosterToPhp() {
-		var mondayAfterWeek1 = new Date('September 6, 2021 07:00:00 UTC').getTime();
+		var mondayAfterWeek1 = new Date('September 5, 2022 07:00:00 UTC').getTime();
 		var weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
 
-		//Set default week value.  Currently hardcoded for the 2019 season
+		//Set default week value.  Based on mondayAfterWeek1
 		var currentWeek = 1;
 		if (Date.now() > mondayAfterWeek1 + (14 * weekInMilliseconds)) {
 			currentWeek = 16;
