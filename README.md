@@ -12,3 +12,9 @@
 #	git commit -m "<commit message>"
 #	git push
 #	git push heroku master (you may need to do a heroku login first)
+
+# in case you delete your local copy of the code:
+# git clone https://github.com/jwexfyfz/fantasyncaaf_frontend.git
+# heroku login
+
+# every season: need to add new teams to abbreviations table
