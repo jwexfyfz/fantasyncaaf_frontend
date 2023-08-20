@@ -5,7 +5,7 @@ runtime: php
 env: flex
 
 runtime_config:
-    document_root: fantasyncaaf_frontend
+    document_root: .
 
 env_variables:
     GOOGLE_STORAGE_BUCKET: ""
